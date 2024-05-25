@@ -13,7 +13,8 @@
             <div class="w-full md:w-6/12 flex justify-center items-center">
                 <div class="w-full h-full md:h-4/6 flex justify-center items-center">
                     <div class="w-full flex-col justify-center items-center text-center text-blue6a">
-                        <div class="">
+                        <div class="mt-20 md:mt-0">
+                            <h2 class="text-5xl font-bold">Mika</h2>
                             <h2 class="text-5xl font-bold">Sign In</h2>
                         </div>
                         <div class="w-full h-16 mb-10 mt-14 flex justify-center items-center">
@@ -30,25 +31,30 @@
                             </div>
                         </div>
                         <p>atau masukkan nomor telpon dan password Anda</p>
-                        <div class="mt-5 flex-col items-center">
+                        <div class="mt-10 md:mt-5 flex-col items-center">
                             <form action="" method="POST">
                                 @csrf
                                 <input type="tel" placeholder="Nomor Telpon" class="p-4 text-xl bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium placeholder-white">
                                 <input type="tel" placeholder="Password" class="p-4 text-xl bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium placeholder-white mt-5">
-                                <div class="mt-10">
+                                <div class="mt-10 md:mt-5">
                                     <a href="" class="text-blue6a">
                                         Lupa Password Anda?
                                     </a>
                                 </div>
-                                <button class="bg-blue6a w-2/5 h-14 rounded-2xl font-bold text-white mt-5">MASUK</button>
+                                <button class="bg-blue6a w-2/5 h-14 rounded-2xl font-bold text-white mt-5 md:mt-5">MASUK</button>
                             </form>
+                            <p class="block md:hidden mt-10"> Belum Punya Akun? 
+                                <a href="/register" class="underline">
+                                    Daftar Disini
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-6/12 h-full flex justify-center items-center text-white">
-                <div class="w-full h-full flex justify-center items-center gradient-login border rounded-login">
-                    <div class="w-4/5 h-4/6 flex justify-center items-center">
+            <div class="w-6/12 h-full my-20 md:my-0 hidden md:block">
+                <div class="w-full h-full flex justify-center items-center">
+                    <div class="w-full h-full flex justify-center items-center gradient-login border rounded-login text-white">
                         <div class="w-full flex-col justify-center items-center text-center">
                             <div class="">
                                 <h2 class="text-5xl font-bold">Hai, Selamat Datang!</h2>
@@ -56,7 +62,7 @@
                             <div class="w-full h-20 flex justify-center items-center mt-8">
                                 <p class="w-2/3 text-xl">Daftarkan diri Anda dengan membuat akun Mika melalui registrasi dibawah ini!</p>
                             </div>
-                            <div class="flex items-center justify-center mt-8">
+                            <div class="flex items-center justify-center mt-8 mb-20">
                                 <a href="/register" class="border-white border-2 w-2/5 h-14 rounded-2xl font-bold text-white flex justify-center items-center">
                                     DAFTAR AKUN
                                 </a>

@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="flex flex-col md:flex-row w-full h-screen font-futura">
-        <div class="w-6/12 h-full flex justify-center items-center text-white">
+        <div class="w-6/12 h-full hidden md:block text-white">
             <div class="w-full h-full flex justify-center items-center gradient-regist border rounded-regist">
                 <div class="w-4/5 h-4/6 flex justify-center items-center">
                     <div class="w-full flex-col justify-center items-center text-center">
@@ -32,7 +32,7 @@
         <div class="w-full md:w-6/12 flex justify-center items-center">
             <div class="w-full h-full md:h-4/6 flex justify-center items-center">
                 <div class="w-full flex-col justify-center items-center text-center text-blue6a">
-                    <div class="">
+                    <div class="mt-20 md:mt-0">
                         <h2 class="text-5xl font-bold">Daftar Akun</h2>
                     </div>
                     <div class="w-full h-16 mb-8 mt-10 flex justify-center items-center">
@@ -62,6 +62,11 @@
                             </div>
                             <button class="bg-blue6a w-2/5 h-14 rounded-2xl font-bold text-white mt-6">DAFTAR</button>
                         </form>
+                        <p class="block md:hidden mt-5 mb-20"> Sudah Punya Akun? Ayo segera,
+                            <a href="/login" class="underline">
+                                Masuk Disini
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
