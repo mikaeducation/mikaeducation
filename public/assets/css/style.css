@@ -25,3 +25,23 @@ background: linear-gradient(90deg, rgba(227,245,255,1) 0%, rgba(106,164,217,1) 6
 .tinggi {
     height: 100%;
 }
+
+.bg-custom {
+    background-image: url('../../images/bg-1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bg-custom-1 {
+    background-image: url('../../images/bg-2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.bg-custom-3 {
+    background-image: url('../../images/bg-3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}

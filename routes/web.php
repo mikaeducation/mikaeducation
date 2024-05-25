@@ -13,3 +13,7 @@ Route::get('/login', function (){
 Route::get('/register', function (){
     return view('registerpage');
 });
+
+Route::get('/profile', function (){
+    return view('components/profile');
+});
