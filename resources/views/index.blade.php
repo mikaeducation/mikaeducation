@@ -9,56 +9,9 @@
         @vite('public/assets/css/style.css')
     </head>
     <body class="font-futura h-max w-full relative">
-        <header class="w-full h-24 bg-bluee3 flex justify-between items-center p-4">
-            <div class="w-full h-full flex justify-center">
-                <div class="flex justify-center items-center h-full w-3/4">
-                    <div class="flex justify-center items-center mr-auto">
-                        <a href="" class="flex items-center">
-                            <div class="mr-5">
-                                <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-10 w-10">
-                            </div>
-                            <h1 class="font-bold text-3xl text-blue6a">MIKA</h1>
-                        </a>
-                    </div>
-                    <div class="hidden md:flex md:items-center md:space-x-8">
-                        <nav class="flex space-x-10 justify-center items-center">
-                            <a href="/" class="text-blue6a font-bold hover:text-pinkee">Beranda</a>
-                            <a href="" class="text-blue6a font-bold hover:text-pinkee">Tentang Kami</a>
-                            <a href="" class="text-blue6a font-bold hover:text-pinkee">Aplikasi</a>
-                            <a href="" class="text-blue6a font-bold hover:text-pinkee">Artikel</a>
-                            <a href="" class="text-blue6a font-bold hover:text-pinkee">Ulasan</a>
-                            <a href="/login" class="bg-blue6a text-white hover:bg-pinkee font-bold rounded-full px-4 py-2">E-Learning</a>
-                        </nav>
-                        <a href="/login" class="h-10 w-10 flex justify-center items-center">
-                            <div onclick="" class="
-                                bg-white h-10 w-10 rounded-full border-2 border-blue6a hover:bg-blue31 flex justify-center items-center">
-                                <img src="{{ asset('images/profile.png') }}" alt="Profile" class="">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="lg:hidden flex items-center">
-                        <button id="menu-btn" class="text-blue6a focus:outline-none">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Mobile-->
-        <div id="menu" class="hidden md:hidden fixed flex-col justify-center items-center bg-bluee3 w-full border-4 border-blue31">
-            <nav class="flex flex-col justify-center items-center space-y-4 py-8 text-center">
-                <a href="/" class="text-blue6a font-bold">Beranda</a>
-                <a href="" class="text-blue6a font-bold">Profile</a>
-                <a href="" class="text-blue6a font-bold">E-Learning</a>
-                <a href="" class="text-blue6a font-bold">Tentang Kami</a>
-                <a href="" class="text-blue6a font-bold">Aplikasi</a>
-                <a href="" class="text-blue6a font-bold">Artikel</a>
-                <a href="" class="text-blue6a font-bold">Ulasan</a>
-            </nav>
-        </div>
-        
+        @include('includes.components.main.header')
+        @include('includes.content.main.dropdown')
+
         <section class="w-full h-max flex justify-center bg-bluee3">
             <div class="w-3/4 h-full flex items-center pt-10">
                 <div class="">
@@ -112,7 +65,7 @@
             </div>
         </section>
 
-        <section class="w-full h-max flex justify-center items-center bg-custom">
+        <section id="about" class="w-full h-max flex justify-center items-center bg-custom">
             <div class="xl:w-3/4 w-3/4 h-full flex-col mt-20">
                 <div class="w-full flex justify-center">
                     <div class="sm:w-1/2 h-20 bg-bluee3 mt-40 rounded-2xl flex justify-center items-center px-4 font-bold text-blue6a">
@@ -278,55 +231,7 @@
                 </div>
         </section>
 
-        <footer class="w-full bg-bluee3">
-            <div class="container w-3/4 mx-auto flex flex-col lg:flex-row justify-between py-8 lg:py-12 px-6 lg:px-0">
-                <div class="w-full lg:w-1/12 flex justify-center items-center mb-6 lg:mb-0">
-                    <div class="text-center">
-                        <img src="{{ asset('images/logo-1.png') }}" alt="" class="w-24 lg:w-full">
-                        <h1 class="font-bold text-2xl lg:text-4xl text-blue6a">MIKA</h1>
-                        <h6 class="font-medium text-xs lg:text-sm text-blue6a">Copyright©2024</h6>
-                    </div>
-                </div>
-                <div class="w-full lg:w-2/6 flex justify-center items-center mb-6 lg:mb-0 ">
-                    <div class="text-center md:text-left">
-                        <h1 class="font-semibold text-2xl md:text-xl text-blue6a">Media Visual Komunikasi Anak</h1>
-                        <p class="font-medium text-base lg:text-lg text-blue6a mt-3">
-                            Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya, Jawa Timur 60115</p>
-                        <p class="font-medium text-base lg:text-lg text-blue6a">Email: mikaunivairlangga@gmail.com</p>
-                        <p class="font-medium text-base lg:text-lg text-blue6a">Whatsapp : +62 123-456-789</p>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/5 flex justify-center items-center mb-6 lg:mb-0">
-                    <div class="w-full h-48 lg:h-full bg-blue-200 flex items-center justify-center">
-                        <div class="overflow-hidden w-full h-full">
-                            <iframe src="https://maps.google.com/maps?q=PQMM%2BJF8%2C+Mulyorejo%2C+Kec.+Mulyorejo%2C+Surabaya%2C+Jawa+Timur+60115&t=k&z=18&ie=UTF8&iwloc=&output=embed" 
-                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0" class="w-full h-full">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 flex justify-center items-center mb-6 md:mb-0 ">
-                    <div class="flex">
-                        <div class="text-blue6a font-semibold text-center md:text-left mr-0 md:mr-4">
-                            <a href="" class="block hover:underline my-1">Beranda</a>
-                            <a href="" class="block hover:underline my-1">Tentang Kami</a>
-                            <a href="" class="block hover:underline my-1">Aplikasi</a>
-                            <a href="" class="block hover:underline my-1">Artikel</a>
-                            <a href="" class="block hover:underline my-1">E-Learning</a>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <div class="text-blue6a font-semibold text-center md:text-left ml-10 md:ml-2">
-                            <a href="" class="block hover:underline my-1">User Agreement</a>
-                            <a href="" class="block hover:underline my-1">Privacy Policy</a>
-                            <a href="" class="block hover:underline my-1">Community Guidelines</a>
-                            <a href="" class="block hover:underline my-1">Feedback</a>
-                            <a href="" class="block hover:underline my-1">Language</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('includes.components.main.footer')      
         
     </body>
 
