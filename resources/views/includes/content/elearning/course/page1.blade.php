@@ -127,8 +127,7 @@
                 </div>
                 
                 {{-- #Left List Menu (Daftar Modul Pembelajaran), only Mobile --}}
-                <div id="menuModul" 
-                    class="w-full h-full hidden fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 left-0 z-50 head-shadow">
+                <div id="menuModul" class="w-full h-full hidden fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 left-0 z-50 head-shadow">
                     <div class="w-full flex justify-center items-center py-5 border-b-2 border-bluee3 relative">
                         <a href="/course" id="" class="flex items-center">
                             <div class="h-8 w-8 mr-2">
@@ -323,8 +322,16 @@
         </div>
     </div>
     <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
-        <a href="" class="text-base hidden text-blue31 font-semibold"><span class="text-blue6a font-medium"> < </span>Sebelumnya</a>
-        <a href="/page2" class="text-base text-blue31 font-semibold">Selanjutnya <span class="text-blue6a font-medium"> > </span></a>
+        <a href="" class="text-base hidden text-blue31 font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
+            </svg>
+            Sebelumnya</a>
+        <a href="/page2_0" class="text-base flex items-center text-blue31 font-semibold">Selanjutnya
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+            </svg>
+        </a>
     </div>
 </section>
 

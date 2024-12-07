@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="bg-bluee3 w-full bg-opacity-40 px-4 py-3 flex justify-center space-x-4 sm:px-6">
-            <button id="btnBack" type="button" class="inline-flex w-1/3 justify-center rounded-full border-2 border-blue31 px-3 py-2 text-base font-semibold text-blue31 shadow-sm transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+            <button id="btnBack2" type="button" class="inline-flex w-1/3 justify-center rounded-full border-2 border-blue31 px-3 py-2 text-base font-semibold text-blue31 shadow-sm transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                 Kembali
             </button>
-            <button id="btnStartLearning" type="button" class="inline-flex w-1/3 justify-center rounded-full bg-blue31 hover:border-2 hover:border-blue31 px-3 py-2 text-base font-semibold text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+            <button id="btnStartLearning2" type="button" class="inline-flex w-1/3 justify-center rounded-full bg-blue31 hover:border-2 hover:border-blue31 px-3 py-2 text-base font-semibold text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                 Mulai
             </button>
         </div>
@@ -32,11 +32,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     // Mendapatkan elemen-elemen
-    const modal = document.getElementById('modalDialog1');
-    const btnStartLearning = document.getElementById('btnStartLearning');
-    const btnBack = document.getElementById('btnBack');
-    const startButtonNow = document.getElementById('startButtonNow');
-    const startButtonNext = document.getElementById('startButtonNext');
+    const modal = document.getElementById('modalDialog2');
+    const btnStartLearning2 = document.getElementById('btnStartLearning2');
+    const btnBack2 = document.getElementById('btnBack2');
+    const startButtonNow2 = document.getElementById('startButtonNow2');
+    const startButtonNext2 = document.getElementById('startButtonNext2');
 
     // Fungsi untuk menampilkan atau menyembunyikan modal
     function toggleModal() {
@@ -44,25 +44,25 @@
     }
 
     // Menampilkan modal saat tombol "Mulai Sekarang" atau "Selanjutnya" diklik
-    startButtonNow.addEventListener('click', function() {
+    startButtonNow2.addEventListener('click', function() {
         console.log("Start Button Now Clicked");
         toggleModal(); // Menampilkan modal
     });
 
-    startButtonNext.addEventListener('click', function() {
+    startButtonNext2.addEventListener('click', function() {
         console.log("Start Button Next Clicked");
         toggleModal(); // Menampilkan modal
     });
 
     // Menutup modal saat tombol "Mulai" diklik
-    btnStartLearning.addEventListener('click', function() {
+    btnStartLearning2.addEventListener('click', function() {
         toggleModal(); // Menyembunyikan modal
         alert('Silahkan, klik tombol OK dibawah ini untuk memulai penilaian!');
         window.location.href = '/page2_1'; // Arahkan ke halaman course
     });
 
     // Menutup modal saat tombol "Kembali" diklik
-    btnBack.addEventListener('click', function() {
+    btnBack2.addEventListener('click', function() {
         toggleModal(); // Menyembunyikan modal
     });
 

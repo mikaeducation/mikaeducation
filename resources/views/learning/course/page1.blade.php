@@ -69,7 +69,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Gangguan 
                                             Spektrum Autisme</h3>
@@ -96,7 +96,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Matriks 
                                             Perencanaan</h3>
@@ -119,7 +119,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 flex items-center ml-2">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Pembelajaran Terstruktur</h3>
                                     </div>
@@ -141,7 +141,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Media Visual
                                             Komunikasi Anak</h3>
@@ -208,12 +208,23 @@
                                 </svg>                                
                             </button>
                         </div>
-                        <div class="text-base flex ml-4 md:ml-8 lg:ml-12 text-blue31 font-bold">
-                            <a href="">Pengenalan</a>
+                        <div class="text-base flex ml-4 md:ml-8 lg:ml-12 text-blue31 font-bold" style="display: inline-flex; flex-wrap: wrap;">
+                            <a href="" class="flex">
+                                <span>Belajar Komunikasi Austistik dengan MIKA</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </a>
+                            <a href="/course" class="flex">
+                                <span>Pengenalan</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
                     <div class="h-full w-full mt-8 pl-8 space-y-8 overflow-y-scroll scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100" style="direction: rtl;">
-                        <div class="w-full h-60 md:h-1/6 lg:h-1/5 flex bg-black">
+                        <div class="w-full h-60 md:h-80 lg:h-96 flex bg-black">
                             <div class="w-full h-full flex justify-center items-center">
                                 <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                     <iframe 
@@ -317,7 +328,7 @@
                 </svg>                
                 Sebelumnya
             </a>
-            <a href="/page2" class="text-base flex text-blue31 font-semibold">Selanjutnya
+            <a href="/page2_0" class="text-base flex text-blue31 font-semibold">Selanjutnya
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                 </svg>

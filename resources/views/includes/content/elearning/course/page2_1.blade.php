@@ -11,13 +11,13 @@
                                 <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                             </svg>
                         </a>
-                        <a href="/course" class="flex" style="display: inline-flex; flex-wrap: wrap;">
+                        <a href="/page2_1" class="flex" style="display: inline-flex; flex-wrap: wrap;">
                             <span>Gangguan Spektrum Autisme</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                 <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                             </svg>
                         </a>
-                        <a href="/course" class="flex" style="display: inline-flex; flex-wrap: wrap;">
+                        <a href="/page2_1" class="flex" style="display: inline-flex; flex-wrap: wrap;">
                             <span>Memahami Autisme</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                 <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
@@ -62,8 +62,7 @@
                             <p>Text</p>
                         </div>
                     </div>
-                </div>
-                
+                </div>               
                 {{-- #Left List Menu (Daftar Modul Pembelajaran), only Mobile --}}
                 <div id="menuModul" class="w-full h-full hidden fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 left-0 z-50 head-shadow">
                     <div class="w-full flex justify-center items-center py-5 border-b-2 border-bluee3 relative">

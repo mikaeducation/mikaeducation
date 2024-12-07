@@ -12,11 +12,11 @@
     <body class="font-futura h-max w-full relative">
     @include('includes.components.elearning.course.header')
     
-    @include('includes.content.elearning.course.page2') {{-- Responsive content --}}
+    @include('includes.content.elearning.course.page2_1') {{-- Responsive content --}}
     <section class="w-full h-max hidden md:hidden lg:flex flex-col items-center justify-center">
         <div class="w-3/4 hidden md:flex lg:flex">
-            
-            {{-- left Content --}}
+
+            {{-- Left Content --}}
             <div id="left" class="h-full w-1/4 mr-8 sticky top-0 transition-all duration-300">
                 <div id="leftContent" class="w-full h-fit flex flex-col justify-between items-start space-y-5">
                     <div class="w-full flex justify-between items-center">
@@ -28,14 +28,14 @@
                         </button>
                     </div>
                     <div class="mt-8 w-full h-fit text-base text-blue31 font-medium space-y-1">
-                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-0 h-full bg-blue31 rounded-l-full"></div></div>
-                        <p>0% Progress selesai</p>
+                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-4 h-full bg-blue31 rounded-l-full"></div></div>
+                        <p>8% Progress selesai</p>
                     </div>
                     <div class="w-full h-fit mt-5 space-y-3">
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
                                 <div class="w-10 h-10 rounded-full border-2 border-blue31">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex gap-2 p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex gap-2 p-2 border-l- bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
                                 <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
                             </div>
@@ -73,7 +73,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Gangguan 
                                             Spektrum Autisme</h3>
@@ -100,7 +100,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Matriks 
                                             Perencanaan</h3>
@@ -123,7 +123,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Pembelajaran Terstruktur</h3>
                                     </div>
@@ -145,7 +145,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Media Visual
                                             Komunikasi Anak</h3>
@@ -171,7 +171,7 @@
                             <div class="w-1/4 flex justify-center pt-2">
                                 <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
                             </div>
-                            <div class="w-3/4 text-blue31 ">
+                            <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                 <div class="w-full h-fit pr-2">
                                     <p class="text-sm mb-2">
                                         <Span class="text-base font-bold">Evaluative Test:</Span>
@@ -199,11 +199,11 @@
                 </div>
             </div>
 
-            {{-- right Content --}}
-            <div id="right" class="w-3/4 h-max flex flex-col">
-                <div class="w-full h-full flex flex-col text-blue31">
+            {{-- Right Content --}}
+            <div id="right" class="w-3/4 flex flex-col">
+                <div class="w-full h-full flex flex-col" style="direction: ltr;">
                     <div class="flex items-center h-10">
-                        <div id="toggleRight" class="hidden">
+                        <div id="toggleRight" class="flex md:flex lg:hidden">
                             <button class="w-10 h-10 flex items-center justify-center bg-blue31 rounded-full transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110">
                                 <svg width="30" class="flex item-center justify-center" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.25 8.75H23.75" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
@@ -212,74 +212,106 @@
                                 </svg>                                
                             </button>
                         </div>
-                        <div class="text-base flex ml-12 text-blue31 font-bold">
-                            <a href="">Pengenalan</a>
-                        </div>
-                    </div>
-                    <div class="pl-10 mt-4 w-full border-l-8 border-gray-100">
-                        <div class="space-y-8">
-                            <div class="text-xl space-y-2">
-                                <h6>Penilaian Belajar</h6>
-                                <p><span class=" text-2xl font-bold">Asessmen I:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</p>
-                            </div>
-                            <div class="flex w-full h-max px-8 py-5 bg-bluee3 text-lg font-medium">
-                                <div class="w-3/5 space-y-5">
-                                    <h5>Detail Penilaian</h5>
-                                    <div class="flex gap-28">
-                                        <div class="text-lg">
-                                            <p>Batas Waktu</p>
-                                            <time datetime="PT25M" class="text-sm font-normal">Tidak terbatas</time>
-                                        </div>
-                                        <div class="text-lg">
-                                            <p>Kesempatan</p>
-                                            <time datetime="PT25M" class="text-sm font-normal">Tidak Terbatas</time>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-2/5 flex justify-end items-end">
-                                    <a href="javascript:void(0)" id="startButtonNow" class="text-white w-3/5 flex justify-end items-end text-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                                        <div class="w-full p-2 bg-blue31 rounded-xl">Mulai Sekarang</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="w-full border-4 px-8 py-5 space-y-5 text-lg border-bluee3">
-                                <h5 class="font-medium">Nilai Anda</h5>
-                                <p class="text-base whitespace-pre-line"> Anda belum menyelesaikan penilaian ini. Silahkan selesaikan terlebih dahulu untuk mengetahui skor tertinggi Anda.
-                                    Dibutuhkan nilai <span class="font-medium">nilai 80% atau lebih tinggi pada Bagian 1</span> untuk lulus.
-                                    <span class="text-xl font-medium">_ _</span>
-                                </p>
-                            </div>
-                        </div>
-                        {{-- Navigasi --}}
-                        <div class="w-full space-x-10 mt-8 flex justify-end items-center">
-                            <a href="/course" class="text-base flex text-blue31 font-semibold">
+                        <div class="text-base flex ml-4 md:ml-8 lg:ml-12 text-blue31 font-bold" style="display: inline-flex; flex-wrap: wrap;">
+                            <a href="" class="flex">
+                                <span>Belajar Komunikasi Austistik dengan MIKA</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                                    <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
-                                </svg>                
-                                Sebelumnya
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
                             </a>
-                            <a href="javascript:void(0)" id="startButtonNext" class="text-base flex text-blue31 font-semibold">Selanjutnya
+                            <a href="/course" class="flex">
+                                <span>Asessmen I</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </a>
+                            <a href="/course" class="flex">
+                                <span>Bagian I</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
                             </a>
                         </div>
                     </div>
+                    <div class="h-full w-full mt-8 pl-8 text-blue31 overflow-y-scroll scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100" style="direction: rtl;">
+                        <div class="space-y-4 border-2 border-bluee3" style="direction: ltr;">
+                            <div class="w-full h-fit flex p-2 bg-bluee3">
+                                <p class="text-base whitespace-pre-line"><span class="font-bold">Bagian 1 -</span> Pengetahuan autisme, TEACCH, Komunikasi dan MIKA 1.0
+                                    Intruksi:<span class="font-medium"> Pilihlah satu jawaban yang benar.</span>
+                                </p>
+                            </div>
+                            <div class="w-full space-y-4 pl-2 pb-2">
+                                <div class="w-full text-blue31">
+                                    <p>Text</p>                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Form dialog -->
-        <div id="modalDialog1" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>            
-            <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
-                @include('includes.components.elearning.course.dialog.startAsessmen')
-            </div>
+        {{-- Navigasi --}}
+        <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
+            <a href="" class="text-base hidden text-blue31 font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                    <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
+                </svg>                
+                Sebelumnya
+            </a>
+            <a href="/page2_2" class="p-2 px-6 rounded-xl text-base flex text-white font-semibold bg-blue31 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+                Kumpulkan
+            </a>
         </div>
     </section>
 
     @include('includes.components.elearning.footer')
     
     </body>
+
+    {{-- <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
+    <!-- Hanya fungsi untuk menginisialisasi TAOS setelah berhasil dimuat -->
+    <script>
+        function initializeTAOS() {
+            if (typeof TAOS !== 'undefined') {
+                TAOS.init();
+                console.log("TAOS initialized");
+            } else {
+                console.error("TAOS is not defined.");
+            }
+        }
+    </script> --}}
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+
+        const toggleLeftButton = document.getElementById('toggleLeft');
+        const toggleRightButton = document.getElementById('toggleRight');
+        const leftContent = document.getElementById('left');
+        const rightContent = document.getElementById('right');
+
+        // Hide left section on initial click and show toggleRight button
+        toggleLeftButton.addEventListener('click', () => {
+            leftContent.classList.add('hidden'); // Hide the left section
+            rightContent.classList.remove('w-3/4'); // Make right content full width
+            rightContent.classList.add('w-full');
+            toggleRightButton.style.display = 'block'; // Show toggleRight button
+        });
+
+        // Show left section again on toggleRight click and reset layout
+        toggleRightButton.addEventListener('click', () => {
+            leftContent.classList.remove('hidden'); // Show left section
+            rightContent.classList.remove('w-full'); // Reset right content width
+            rightContent.classList.add('w-3/4');
+            toggleRightButton.style.display = 'none'; // Hide toggleRight button
+        });
+
+    </script>
 
 </html>

@@ -52,12 +52,19 @@ Route::get('/course', function (){
     return view('learning/course/page1');
 });
 
-Route::get('/page2', function (){
-    return view('learning/course/page2');
+Route::get('/page2_0', function (){
+    return view('learning/course/page2_0');
+});
+Route::get('/page2_1', function (){
+    return view('learning/course/page2_1');
 });
 
 Route::get('/page3', function (){
     return view('learning/course/page3');
+});
+
+Route::get('/page4', function (){
+    return view('learning/course/page4');
 });
 
 
