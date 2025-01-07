@@ -59,7 +59,241 @@
                     </div>
                     <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3"  style="direction: ltr;">
                         <div class="w-full md:flex lg:flex text-blue31 text-base font-normal">
-                            <p>Text</p>
+                            <div class="w-full space-y-4 pl-2 pb-2 text-base">
+                                <div class="w-full text-blue31">
+                                    <form action="/submit-quiz" method="POST" class="space-y-4">
+                                        @csrf
+                                        <!-- Pertanyaan 1 -->
+                                        <div class="">
+                                            <h2 class="mb-2">
+                                                1. Apakah yang dimaksud dengan spektrum dalam autisme?
+                                            </h2>
+                                            @foreach([
+                                                'Setiap warna dalam Pelangi ada di dalam spektrum autisme',
+                                                'Autistik memiliki tiga gejala utama, gangguan social, kesulitan komunikasi dan munculnya persoalan perilaku',
+                                                'Pelangi membuat Autisme sulit didiagnosa dan membutuhkan bantuan medis obat-obatan untuk melakukan treatment',
+                                                'Ada banyak jenis autisme, maka penting untuk memahami apa jenis autisme yang dialami oleh anak kita',
+                                                'Setiap individu autistik memiliki karakteristik autisme berbeda-beda, maka kebutuhan belajar dan terapinya berbeda-beda'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_1" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>                            
+                                        <!-- Pertanyaan 2 -->
+                                        <div class="">
+                                            <h2 class="mb-1">
+                                                2. Andi menyukai puzzle dan ia bisa bermain puzzle selama berjam-jam. Ia juga akan marah ketika dihentikan permainan puzzlenya. Hal ini tergolong sebagai gejala autisme apa?
+                                            </h2>
+                                            @foreach([
+                                                'Penyakit karena masalah diet dan makanan yang salah/keracunan',
+                                                'Problem penyesuaian karena minat terbatas dan perilaku berulang',
+                                                'Gangguan karena pengasuhan orang tua yang kurang konsisten',
+                                                'Kesulitan belajar karena keterbatasan pemahaman',
+                                                'Persoalan perilaku agresif dan tantrum'
+                                            ] as $index => $option)
+                                            <label class="block mb-2">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_2" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 3 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                3. Berikut adalah persoalan yang menyebabkan anak autistik sulit berteman, memahami emosi orang di sekitarnya sehingga terkadang berperilaku aneh tidak seperti yang diharapkan anak seusianya, bahkan beresiko di-bully oleh teman-temannya adalah:
+                                            </h2>
+                                            @foreach([
+                                                'Kesulitan komunikasi',
+                                                'Kesulitan social',
+                                                'Kesulitan bermain',
+                                                'Kesulitan perilaku',
+                                                'Kesulitan belajar'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_3" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 4 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                4. Berikut adalah karakteristik yang perlu masuk dalam assessmen Matriks Perencanaan (planning matrix):
+                                            </h2>
+                                            @foreach([
+                                                'Kesulitan sensoris',
+                                                'Kesulitan theory of mind',
+                                                'Kesulitan central coherence',
+                                                'Kesulitan pemrosesan informasi',
+                                                'Semua benar'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_4" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 5 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                5. Dalam administrasi MIKA 1.0, perlahan-lahan, prompt atau dukungan akan dikurangi. Apakah elemen TEACCH yang menjadi dasar belajar komunikasi tersebut?
+                                            </h2>
+                                            @foreach([
+                                                'Jadwal visual',
+                                                'Struktur visual',
+                                                'Struktur lingkungan fisik',
+                                                'Stimulus belajar terstruktur',
+                                                'Sistem belajar mendukung kemandirian'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_5" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 6 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                6. Manakah yang BUKAN elemen kemampuan komunikasi?
+                                            </h2>
+                                            @foreach([
+                                                'Kemampuan Pra-sosial',
+                                                'Kemampuan Pra-komunikasi',
+                                                'Komunikasi reseptif',
+                                                'Komunikasi ekspresif',
+                                                'Kemampuan Pragmatis'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_6" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 7 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                7. Berikut adalah tahapan perkembangan komunikasi secara berturut-turut dari yang awal hingga yang tertinggi, yang terekam dalam MIKA 1.0:
+                                            </h2>
+                                            @foreach([
+                                                'Mengembangkan dialog/percakapan Menambah perbendaharaan kata; Menyusun kalimat sederhana; Menyusun kalimat kompleks',
+                                                'Menyusun kalimat kompleks; Menyusun kalimat sederhana; Menambah perbendaharaan kata; Mengembangkan dialog/percakapan',
+                                                'Menyusun kalimat sederhana; Menyusun kalimat kompleks; Mengembangkan dialog/percakapan; Menambah perbendaharaan kata',
+                                                'Menambah perbendaharaan kata; Menyusun kalimat sederhana; Menyusun kalimat kompleks; Mengembangkan dialog/percakapan',
+                                                'Semua benar'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_7" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 8 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                8. Berikut adalah yang BUKAN praktik baik belajar komunikasi yang ada dalam MIKA 1.0:
+                                            </h2>
+                                            @foreach([
+                                                'Kata yang digunakan bisa disesuaikan dengan Bahasa sehari-hari yang digunakan anak agar memudahkan pemahaman konsep kata yang dipelajari',
+                                                'Visual bisa menggunakan foto agar lebih realistis dan sesuai dengan kondisi sehari-hari anak',
+                                                'Anak perlu menguasai seluruh kata yang ada di dalam MIKA 1.0 untuk bisa disebut mampu berkomunikasi',
+                                                'Perbendaharaan kata sebaiknya dimulai dengan kata kerja yang digunakan sehari-hari karena akan membuat komunikasi anak lebih fungsional',
+                                                'Mempelajari kata-kata akan lebih mudah dan fungsional jika dikelompokkan dalam topik/konsep'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_8" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 9 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                9. Penggunaan alat bantu visual dibutuhkan dalam belajar komunikasi. MIKA 1.0 dikembangkan menggunakan high technology dalam rangka mengatasi kelemahan low tech. Berikut adalah BUKAN alasan kegunaan high tech pada MIKA 1.0:
+                                            </h2>
+                                            @foreach([
+                                                'Low tech akan memakan waktu dan energi untuk memproduksi visual',
+                                                'High tech bisa merekam data anak real time',
+                                                'Data yang direkam bisa digunakan untuk riset pengembangan teknologi belajar bagi individu autistik',
+                                                'Adminstrasi dan penyediaan stimulus menjadi terstandar',
+                                                'Meminimalisir kesalahan dalam layanan dan pendidikan'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_9" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 10 -->
+                                        <div>
+                                            <h2 class="mb-2">
+                                                10. Berikut adalah BUKAN keunggulan skoring, monitoring dan evaluasi MIKA 1.0:
+                                            </h2>
+                                            @foreach([
+                                                'Memberikan rekaman data anak',
+                                                'Mengetahui kemajuan anak',
+                                                'Mengetahui kemunduran anak',
+                                                'Menjamin perkembangan komunikasi',
+                                                'Data anak adalah dokumen hidup yang menginformasikan kebutuhan belajarnya'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_10" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Tambahkan pertanyaan lainnya di sini dengan format serupa -->                                        
+                                        <div class="space-x-10 mt-8 mr-2 flex justify-end items-center">
+                                            <button
+                                            type="submit" 
+                                            class="p-2 px-6 rounded-xl text-base flex text-white font-semibold bg-blue31 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+                                            Kumpulkan
+                                        </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>               
@@ -281,7 +515,7 @@
             </div>
         </div>
     </div>
-    <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
+    <div class="hidden w-3/4 space-x-10 mt-8 justify-end items-center">
         <a href="" class="text-base hidden text-blue31 font-semibold">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                 <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />

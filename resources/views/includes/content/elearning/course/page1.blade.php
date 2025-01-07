@@ -37,7 +37,7 @@
                         <div class="w-full h-full flex justify-center items-center">
                             <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                 <iframe 
-                                    src="https://drive.google.com/file/d/1LPAtMg-np5Zc7r0QHoaR-cYDNtb0c09-/preview" 
+                                    src="https://drive.google.com/file/d/1bbUD2O_h5uz0w3pwS6LsXjWAqzbPYeEF/preview?" 
                                     title="E-Learning Video Player" 
                                     frameborder="0" 
                                     allow="autoplay; encrypted-media;" 

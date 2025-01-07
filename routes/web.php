@@ -58,13 +58,31 @@ Route::get('/page2_0', function (){
 Route::get('/page2_1', function (){
     return view('learning/course/page2_1');
 });
+Route::get('/page2_2', function (){
+    return view('learning/course/page2_2');
+});
+Route::get('/page2_3', function (){
+    return view('learning/course/page2_3');
+});
 
 Route::get('/page3', function (){
     return view('learning/course/page3');
 });
 
 Route::get('/page4', function (){
-    return view('learning/course/page4');
+    return view('learning/course/page4_0');
+});
+Route::get('/page4_1', function (){
+    return view('learning/course/page4_1');
+});
+Route::get('/page4_2', function (){
+    return view('learning/course/page4_2');
+});
+Route::get('/page4_3', function (){
+    return view('learning/course/page4_3');
+});
+Route::get('/page4_4', function (){
+    return view('learning/course/page4_4');
 });
 
 

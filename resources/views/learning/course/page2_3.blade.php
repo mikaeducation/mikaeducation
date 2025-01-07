@@ -226,7 +226,7 @@
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Bagian I</span>
+                                <span>Bagian II</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
@@ -236,8 +236,8 @@
                     <div class="h-full w-full mt-8 pl-8 text-blue31 overflow-y-scroll scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100" style="direction: rtl;">
                         <div class="space-y-4 border-2 border-bluee3" style="direction: ltr;">
                             <div class="w-full h-fit flex p-2 bg-bluee3">
-                                <p class="text-base whitespace-pre-line"><span class="font-bold">Bagian 1 -</span> Pengetahuan autisme, TEACCH, Komunikasi dan MIKA 1.0
-                                    Intruksi:<span class="font-medium"> Pilihlah satu jawaban yang benar.</span>
+                                <p class="text-base whitespace-pre-line"><span class="font-bold">Bagian 2 -</span> Keyakinan Penggunaan MIKA 1.0
+                                    Intruksi: <span class="font-medium"> Dari skala 1-5, sejauh mana kalimat-kalimat di bawah ini sesuai menggambarkan keyakinan Anda menggunakan MIKA 1.0 untuk mendampingi anak autistik belajar komunikasi? </span>
                                 </p>
                             </div>
                             <div class="w-full space-y-4 pl-2 pb-2 text-base">
@@ -247,14 +247,14 @@
                                         <!-- Pertanyaan 1 -->
                                         <div class="">
                                             <h2 class="mb-2">
-                                                1. Apakah yang dimaksud dengan spektrum dalam autisme?
+                                                1. Saya mampu menyusun Matriks perencanaan Anak
                                             </h2>
                                             @foreach([
-                                                'Setiap warna dalam Pelangi ada di dalam spektrum autisme',
-                                                'Autistik memiliki tiga gejala utama, gangguan social, kesulitan komunikasi dan munculnya persoalan perilaku',
-                                                'Pelangi membuat Autisme sulit didiagnosa dan membutuhkan bantuan medis obat-obatan untuk melakukan treatment',
-                                                'Ada banyak jenis autisme, maka penting untuk memahami apa jenis autisme yang dialami oleh anak kita',
-                                                'Setiap individu autistik memiliki karakteristik autisme berbeda-beda, maka kebutuhan belajar dan terapinya berbeda-beda'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
@@ -265,23 +265,23 @@
                                                 {{ $option }}
                                             </label>
                                             @endforeach
-                                        </div>                            
+                                        </div>
                                         <!-- Pertanyaan 2 -->
                                         <div class="">
-                                            <h2 class="mb-1">
-                                                2. Andi menyukai puzzle dan ia bisa bermain puzzle selama berjam-jam. Ia juga akan marah ketika dihentikan permainan puzzlenya. Hal ini tergolong sebagai gejala autisme apa?
+                                            <h2 class="mb-2">
+                                                2. Mengamati dan mencatat gejala klinis anak
                                             </h2>
                                             @foreach([
-                                                'Penyakit karena masalah diet dan makanan yang salah/keracunan',
-                                                'Problem penyesuaian karena minat terbatas dan perilaku berulang',
-                                                'Gangguan karena pengasuhan orang tua yang kurang konsisten',
-                                                'Kesulitan belajar karena keterbatasan pemahaman',
-                                                'Persoalan perilaku agresif dan tantrum'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
-                                            <label class="block mb-2">
+                                            <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_2" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -289,21 +289,21 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 3 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                3. Berikut adalah persoalan yang menyebabkan anak autistik sulit berteman, memahami emosi orang di sekitarnya sehingga terkadang berperilaku aneh tidak seperti yang diharapkan anak seusianya, bahkan beresiko di-bully oleh teman-temannya adalah:
+                                                3. Mengamati dan mencatat karakteristik autisme anak
                                             </h2>
                                             @foreach([
-                                                'Kesulitan komunikasi',
-                                                'Kesulitan social',
-                                                'Kesulitan bermain',
-                                                'Kesulitan perilaku',
-                                                'Kesulitan belajar'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_3" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -311,21 +311,21 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 4 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                4. Berikut adalah karakteristik yang perlu masuk dalam assessmen Matriks Perencanaan (planning matrix):
+                                                4. Mengetahui kemampuan komunikasi reseptif anak saat ini
                                             </h2>
                                             @foreach([
-                                                'Kesulitan sensoris',
-                                                'Kesulitan theory of mind',
-                                                'Kesulitan central coherence',
-                                                'Kesulitan pemrosesan informasi',
-                                                'Semua benar'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_4" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -333,21 +333,21 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 5 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                5. Dalam administrasi MIKA 1.0, perlahan-lahan, prompt atau dukungan akan dikurangi. Apakah elemen TEACCH yang menjadi dasar belajar komunikasi tersebut?
+                                                5. Mengetahui kemampuan komunikasi ekspresif anak saat ini
                                             </h2>
                                             @foreach([
-                                                'Jadwal visual',
-                                                'Struktur visual',
-                                                'Struktur lingkungan fisik',
-                                                'Stimulus belajar terstruktur',
-                                                'Sistem belajar mendukung kemandirian'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_5" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -355,21 +355,21 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 6 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                6. Manakah yang BUKAN elemen kemampuan komunikasi?
+                                                6. Merencanakan tujuan dan proses belajar komunikasi bagi anak
                                             </h2>
                                             @foreach([
-                                                'Kemampuan Pra-sosial',
-                                                'Kemampuan Pra-komunikasi',
-                                                'Komunikasi reseptif',
-                                                'Komunikasi ekspresif',
-                                                'Kemampuan Pragmatis'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_6" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -377,21 +377,21 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 7 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                7. Berikut adalah tahapan perkembangan komunikasi secara berturut-turut dari yang awal hingga yang tertinggi, yang terekam dalam MIKA 1.0:
+                                                7. Mengevaluasi progress belajar komunikasi anak
                                             </h2>
                                             @foreach([
-                                                'Mengembangkan dialog/percakapan Menambah perbendaharaan kata; Menyusun kalimat sederhana; Menyusun kalimat kompleks',
-                                                'Menyusun kalimat kompleks; Menyusun kalimat sederhana; Menambah perbendaharaan kata; Mengembangkan dialog/percakapan',
-                                                'Menyusun kalimat sederhana; Menyusun kalimat kompleks; Mengembangkan dialog/percakapan; Menambah perbendaharaan kata',
-                                                'Menambah perbendaharaan kata; Menyusun kalimat sederhana; Menyusun kalimat kompleks; Mengembangkan dialog/percakapan',
-                                                'Semua benar'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_7" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -399,44 +399,65 @@
                                             @endforeach
                                         </div>
                                         <!-- Pertanyaan 8 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                8. Berikut adalah yang BUKAN praktik baik belajar komunikasi yang ada dalam MIKA 1.0:
+                                                8. Mengetahui kapan menghilangkan prompt agar anak lebih mampu berkomunikasi mandiri
                                             </h2>
                                             @foreach([
-                                                'Kata yang digunakan bisa disesuaikan dengan Bahasa sehari-hari yang digunakan anak agar memudahkan pemahaman konsep kata yang dipelajari',
-                                                'Visual bisa menggunakan foto agar lebih realistis dan sesuai dengan kondisi sehari-hari anak',
-                                                'Anak perlu menguasai seluruh kata yang ada di dalam MIKA 1.0 untuk bisa disebut mampu berkomunikasi',
-                                                'Perbendaharaan kata sebaiknya dimulai dengan kata kerja yang digunakan sehari-hari karena akan membuat komunikasi anak lebih fungsional',
-                                                'Mempelajari kata-kata akan lebih mudah dan fungsional jika dikelompokkan dalam topik/konsep'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_8" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 9 -->
-                                        <div>
+                                        <div class="">
                                             <h2 class="mb-2">
-                                                9. Penggunaan alat bantu visual dibutuhkan dalam belajar komunikasi. MIKA 1.0 dikembangkan menggunakan high technology dalam rangka mengatasi kelemahan low tech. Berikut adalah BUKAN alasan kegunaan high tech pada MIKA 1.0:
+                                                9. Mengetahui melakukan skoring MIKA 1.0
                                             </h2>
                                             @foreach([
-                                                'Low tech akan memakan waktu dan energi untuk memproduksi visual',
-                                                'High tech bisa merekam data anak real time',
-                                                'Data yang direkam bisa digunakan untuk riset pengembangan teknologi belajar bagi individu autistik',
-                                                'Adminstrasi dan penyediaan stimulus menjadi terstandar',
-                                                'Meminimalisir kesalahan dalam layanan dan pendidikan'
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
                                             ] as $index => $option)
                                             <label class="block mb-1">
                                                 <input 
                                                     type="radio" 
-                                                    name="question_9" 
+                                                    name="question_1" 
+                                                    value="{{ $index }}" 
+                                                    class="mr-1 ml-2">
+                                                {{ $option }}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                        <!-- Pertanyaan 10 -->
+                                        <div class="">
+                                            <h2 class="mb-2">
+                                                10. Mengidentifikasi dukungan dan bantuan yang dibutuhkan dalam proses terapi/ pendidikan anak
+                                            </h2>
+                                            @foreach([
+                                                'Sama sekali merasa tidak mampu menerapkan (1)',
+                                                'Tidak terlalu yakin mampu menerapkan (2)',
+                                                'Dicoba saja (3)',
+                                                'Cukup yakin mampu menerapkan (4)',
+                                                'Sangat yakin mampu menerapkan (5)'
+                                            ] as $index => $option)
+                                            <label class="block mb-1">
+                                                <input 
+                                                    type="radio" 
+                                                    name="question_1" 
                                                     value="{{ $index }}" 
                                                     class="mr-1 ml-2">
                                                 {{ $option }}
@@ -444,28 +465,7 @@
                                             @endforeach
                                         </div>
 
-                                        <!-- Pertanyaan 10 -->
-                                        <div>
-                                            <h2 class="mb-2">
-                                                10. Berikut adalah BUKAN keunggulan skoring, monitoring dan evaluasi MIKA 1.0:
-                                            </h2>
-                                            @foreach([
-                                                'Memberikan rekaman data anak',
-                                                'Mengetahui kemajuan anak',
-                                                'Mengetahui kemunduran anak',
-                                                'Menjamin perkembangan komunikasi',
-                                                'Data anak adalah dokumen hidup yang menginformasikan kebutuhan belajarnya'
-                                            ] as $index => $option)
-                                            <label class="block mb-1">
-                                                <input 
-                                                    type="radio" 
-                                                    name="question_10" 
-                                                    value="{{ $index }}" 
-                                                    class="mr-1 ml-2">
-                                                {{ $option }}
-                                            </label>
-                                            @endforeach
-                                        </div>
+                                        
                                         <!-- Tambahkan pertanyaan lainnya di sini dengan format serupa -->                                        
                                         <div class="space-x-10 mt-8 mr-2 flex justify-end items-center">
                                             <button

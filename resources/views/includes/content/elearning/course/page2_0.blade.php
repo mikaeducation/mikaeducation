@@ -50,7 +50,7 @@
 <div id="modalDialog1" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>            
     <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
-        @include('includes.components.elearning.course.dialog.startAsessmen')
+        @include('includes.components.elearning.course.dialog.startAsessmen2_0')
     </div>
 </div>
 

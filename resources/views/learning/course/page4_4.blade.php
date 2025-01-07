@@ -12,7 +12,7 @@
     <body class="font-futura h-max w-full relative">
     @include('includes.components.elearning.course.header')
     
-    @include('includes.content.elearning.course.page1') {{-- Responsive content --}}
+    @include('includes.content.elearning.course.page2_1') {{-- Responsive content --}}
     <section class="w-full h-max hidden md:hidden lg:flex flex-col items-center justify-center">
         <div class="w-3/4 hidden md:flex lg:flex">
 
@@ -28,13 +28,17 @@
                         </button>
                     </div>
                     <div class="mt-8 w-full h-fit text-base text-blue31 font-medium space-y-1">
-                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-0 h-full bg-blue31 rounded-l-full"></div></div>
-                        <p>0% Progress selesai</p>
+                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-10 h-full bg-blue31 rounded-l-full"></div></div>
+                        <p>23% Progress selesai</p>
                     </div>
                     <div class="w-full h-fit mt-5 space-y-3">
-                        <div class="w-full flex gap-2 p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
-                                <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-blue31">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
@@ -48,7 +52,11 @@
                         </div>
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
-                                <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-blue31">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
@@ -60,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center flex items-center gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex-col justify-center flex items-center p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="flex w-full">
                                 <div class="w-1/4 flex justify-center pt-2">
                                     <div class="w-10 h-10 rounded-full bg-blue31">
@@ -69,21 +77,47 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ml-2">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Gangguan 
                                             Spektrum Autisme</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Mehamai Autisme</h6>
+                            <div class="w-11/12 h-0.5 my-4 bg-blue31"></div>
+                            <div class="w-full h-fit gap-4 px-4 pb-4 text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3">
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Memahami Autisme:</Span>
+                                                Memahami apa itu Gangguan Spektrum Autisme
+                                            </p>
+                                            <time datetime="PT5M" class="text-sm">5 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Komunikasi Autistik</h6>
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Komunikasi Autistik:</Span>
+                                                Pra-komunikasi, Reseptif, Ekspresif, Pragmatis, Strategi Komunikasi
+                                            </p>
+                                            <time datetime="PT25M" class="text-sm">25 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +130,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ml-2">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Matriks 
                                             Perencanaan</h3>
@@ -119,7 +153,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 flex items-center ml-2">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Pembelajaran Terstruktur</h3>
                                     </div>
@@ -141,7 +175,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ml-2">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Media Visual
                                             Komunikasi Anak</h3>
@@ -216,7 +250,19 @@
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Pengenalan</span>
+                                <span>Gangguan Spektrum Autisme</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </a>
+                            <a href="/course" class="flex">
+                                <span>Komunikasi Autistik</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </a>
+                            <a href="/course" class="flex">
+                                <span>Komunikasi Pragmatis</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
@@ -224,115 +270,81 @@
                         </div>
                     </div>
                     <div class="h-full w-full mt-8 pl-8 space-y-8 overflow-y-scroll scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100" style="direction: rtl;">
-                        <div class="w-full h-60 md:h-80 lg:h-96 flex bg-black">
+                        <div class="w-full h-60 md:h-80 lg:h-96 flex bg-black" style="direction: ltr;">
                             <div class="w-full h-full flex justify-center items-center">
                                 <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                     <iframe 
-                                        src="https://drive.google.com/file/d/1bbUD2O_h5uz0w3pwS6LsXjWAqzbPYeEF/preview?"
-                                        title="Pengenalan MIKA" 
+                                        src="https://drive.google.com/file/d/1tRmqMto6JWiCVqvDuHAd3GynA5PqMmT9/preview" 
+                                        title="E-Learning Video Player" 
                                         frameborder="0" 
-                                        allow="autoplay; encrypted-media" 
+                                        allow="autoplay; encrypted-media;" 
                                         allowfullscreen 
                                         class="w-full h-full">
                                     </iframe>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full py-8 border-y-2 border-bluee3 space-y-4">
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: ltr;">
-                                <img src="{{ asset('images/member-Margaretha.jpg') }}" alt="Margaretha" class="h-48 md:h-52 lg:h-52 float-left md:float-none lg:float-none mr-4">
-                                <p class="text-justify">
-                                    <span class=" font-medium">Margaretha</span> adalah Ketua Forum Peduli Autisme Jawa Timur, 
-                                    dan seorang Dosen dan Peneliti dari Fakultas Psikologi 
-                                    Universitas Airlangga Indonesia. Sejak 2004, ia juga menjadi 
-                                    konselor anak dan remaja dalam penanganan autisme, masalah psikososial 
-                                    dan migrasi, masalah perilaku, pembentukan identitas gender, kekerasan dan trauma. 
-                                    Sebagai peneliti, fokus kajian pada Kesehatan Mental Anak dan Remaja, 
-                                    Psikopatologi Perkembangan dan Psikologi Forensik.
+                        <div class="w-full">
+                            <div class="w-full flex gap-8 h-8 border-b-2 border-bluee3 text-base font-bold text-blue31" style="direction: ltr;">
+                                <a href=""><div class="h-full w-fit px-2 border-b-2 border-blue31 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Bacaan</div></a>
+                                <a href=""><div class="h-full w-fit px-2 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Unduhan</div></a>                            
+                            </div>
+                            <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3 text-justify"  style="direction: ltr;">
+                                <p class="mt-7 p-2 bg-bluee3"><span class="font-medium">Karakteristik dan Strategi Komunikasi Autisme</span> - Strategi Komunikasi Anak dengan Autimse</p>                        
+                                <p class="mt-2 whitespace-pre-line">Hallo, kita akan melanjutkan pembahasan berikutnya, setelah mempelajari karakteristik Bahasa pragmatis pada anak autism. Dari beberapa karakterisktik komunikasi pada anak autis yang sudah dijabarkan, mereka membutuhkan strategi yang tepat untuk meningkatkan keterampilan komunikasi mereka yang penting sebagai modal untuk berinteraksi dengan orang lain. 
+                                    
+                                Seperti yang kita ketahui, komunikasi mempunyai peranan yang penting sebagai modal untuk berinteraksi. Mengembangkan keterampilan tersebut dibutuhkan pendekatan yang terstruktur, konsisten dan sesuai dengan kebutuhan masing – masing anak. Salah satu strategi intervensi yang telah terbukti efektif adalah pendekatan berbasis visual. Anak autis adalah pembelajar visual, sehingga alat bantu visual mejadi lebih efektif daripada sekedar instruksi secara verbal. Strategi ini melibatkan penggunaan gambar, symbol atau teks untuk membantu anak autis memahami dan mengekspresikan dirinya. 
+                                
+                                Ada dua kategori untuk alat bantu visual, yaitu <span class="font-medium">low technology </span>dan <span class="font-medium">high technology.</span>
+
+                                <span class="font-medium">Pertama,</span> Alat bantu visual yang  low technology adalah alat bantu visual sederhana yang tidak memerlukan perangkat elektronik dalam penggunaannya. Salah satu contohnya adalah:
+                                </p>
+                                <ul class="list-disc pl-5">
+                                    <li>Kartu visual, adalah alat bantu komunikasi yang menggunakan gambar, simbol atau teks untuk mewakili objek, Tindakan, aktifitas atau konsep tertentu. Kartu ini digunakan 
+                                        untuk membantu anak autis memahami informasi, rutinitas, atau konsep – konsep yang abstrak. 
+                                    </li>
+                                    <li>PECS ( Picture Exchange Communication System), adalah sistem komunikasi berbasis gambar yang dirancang khusus untuk anak – anak yang mengalami kesulitan berkomunikasi. 
+                                        Cara kerjanya adalah dengan cara pertukaran gambar untuk berkomunikasi, menyatakan keinginan dan berkomentar.  
+                                    </li>
+                                    <li>Papan Komunikasi ( Communication Board), adalah papan yang memuat berbagai gambar atau simbol yang memungkinkan anak menunjukkan kebutuhan atau keinginannya. 
+                                        Papan ini bisa disesuaikan berdasarkan konteks kegiatan masing – masing anak.
+                                    </li>
+                                    <li>Kartu Emosi, adalah kartu bergambar yang berisi gambar wajah dengan ekspresi yang berbeda yang bisa membantu anak mengenali emosi dan mengkomunikasikan perasaan mereka.
+                                    </li>
+                                </ul>
+
+                                <p class="whitespace-pre-line">
+                                    <span class="font-medium ">Kedua,</span>  alat bantu visual yang high technology.
+                                    <p class="pl-5 whitespace-pre-line">Adalah alat bantu visual dengan teknologi tinggi menggunakan perangkat elektronik untuk membantu anak dengan autisme berkomunikasi secara lebih efisien. Ini melibatkan teknologi canggih seperti perangkat AAC (Augmentative and Alternative Communication). AAC adalah system komunikasi yang dirancang untuk membantu anak autis berkomunikasi, seperti aplikasi atau perangkat berbicara yanag memberikan suara pada simbol yang dipilih oleh anak. 
+                                        
+                                        Contoh AAC yang high technology adalah <span class="font-medium">Proloquo2Go, TouchChat, atau GoTalk.</span> Saat anak memilih gambar atau simbol di layar, perangkat akan mengeluarkan suara yang mengucapkan kata atau frasa terkait.
+                                        
+                                        Perangkat – perangkat tersebut, yang saat ini tersedia masih menggunakan bahasa Inggris, yang tidak semua anak autis memahaminya dengan baik. Selain itu, mereka akan banyak mendengar bahasa Indoneesia dalam percakapan sehari–hari. 
+                                        
+                                        MIKA ( Media Komunikasi Visual Anak) mencoba hadir menjadi salah satu perangkat AAC yang menggunakan bahasa Indonesia, yang bisa diakses secara umum dan disebarluaskan untuk membantu para terapis, orang tua dan anak autisme mengembangkan keterampilan berbahasa dan berkomunikasi lebih efektif. 
+                                    </p>
+                                </p>
+                                <p>
                                 </p>
                             </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: rtl;">
-                                <img src="{{ asset('images/member-Ira.jpg') }}" alt="Ira" class="h-48 md:h-52 lg:h-52 float-right md:float-none lg:float-none ml-4">
-                                <p class="text-justify" style="direction: ltr;">
-                                    <span class=" font-medium">Ira Puspitasari</span> adalah Dosen dan Pengajar dari Program Studi Sistem Informasi, 
-                                    Fakultas Sains dan Teknologi, serta program studi Magister Pengembangan Sumber Daya Manusia minat 
-                                    studi Analitika Data, Universitas Airlangga. Selain itu, ia juga merupakan seorang peneliti dengan 
-                                    spesialisasi khusus sebagai IT Consultant pada perancangan dan pengembangan aplikasi belajar MIKA Education. 
-                                    Sebagai peneliti, ia memiliki fokus kajian pada bidang Consumer health informatics, data analytics, 
-                                    Specialized Enterprise Architecture, Information Systems Theory, serta telah berhasil melakukan 
-                                    berbagai publikasi artikel penelitian di Jurnal nasional terakreditasi dan internasional bereputasi.
-                                </p>
-                            </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: ltr;">
-                                <img src="{{ asset('images/member-khamida.jpg') }}" alt="Khamida" class="h-48 md:h-52 lg:h-52 float-left md:float-none lg:float-none mr-4">
-                                <p class="text-justify">
-                                    <span class=" font-medium">Nishrina Khamida</span> , berprofesi sebagai psikolog klinis, anggota forum peduli autisme jawa timur 
-                                    dan juga sebagai kepala UPTD layanan disabilitas Sidoarjo. Sejak tahun 2003 telah memiliki minat untuk praktik 
-                                    yang berkaitan anak dengan autisme, mengambil skripsi yang berhubungan dengan sensori integrasi dan 
-                                    hingga saat ini di tempat bekerja melakukan rangkaian asesmen, intervensi dan juga support system untuk anak dengan autisme.
-                                </p>
-                            </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: rtl;">
-                                <img src="{{ asset('images/member-Retno.jpeg') }}" alt="Retno" class="h-48 md:h-52 lg:h-52 float-right md:float-none lg:float-none ml-4">
-                                <p class="text-justify" style="direction: ltr;">
-                                    <span class=" font-medium">Sri Retno Yuliani</span> , adalah psikolog klinis dan juga sebagai kepala SLB Autisme River Kids Malang. 
-                                    Sejak 2001 terlibat dalam penanganan dan intervensi anak dengan autisme. Aktif sebagai anggota Forum Peduli Autisme Jawa Timur. 
-                                    Banyak terlibat sebagai pemateri seminar dan workshop manajemen autisme, penulis buku intervensi psikologi pada anak berkebutuhan khusus.
-                                </p>
-                                </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: ltr;">
-                                <img src="{{ asset('images/member-vito.jpg') }}" alt="" class="h-48 md:h-52 lg:h-52 float-left md:float-none lg:float-none mr-4">
-                                <p class="text-justify">
-                                    <span class=" font-medium">Vito Emir Muhammad</span> merupakan salah satu pengembang aplikasi belajar
-                                    MIKA 1.0 mobile yang berprofesi sebagai android programmer dan pegawai IT di salah satu 
-                                    BUMN Indonesia. Pada tahun 2020, ia menjadi salah satu tim peneliti MIKA yang bertugas membangun, 
-                                    melakukan maintenance dan pengembangan fitur baru pada aplikasi MIKA 1.0 Mobile. Selain itu, 
-                                    selama menjadi mahasiswa ia memiliki fokus dan ketertarikan pengembangan keahlian khusus pada 
-                                    bidang mobile programmer dengan penelitian skripsi terkait optimalisasi aplikasi belajar MIKA berbasis mobile.
-                                </p>
-                            </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: rtl;">
-                                <img src="{{ asset('images/member-rayhan.png') }}" alt="Rayhan" class="h-48 md:h-52 lg:h-52 float-right md:float-none lg:float-none ml-4">
-                                <p class="text-justify" style="direction: ltr;">
-                                    <span class=" font-medium">Ahmad Rayhan</span> , mahasiswa program studi Sistem Informasi, Universitas Airlangga 
-                                    dan salah satu pengembang aplikasi belajar MIKA Education. Memiliki ketertarikan di bidang Teknologi, 
-                                    sejak 2021, ia telah mempelajari dan mengembangkan fokus kemampuannya dalam bidang perancangan dan 
-                                    pengembangan Website, serta Business Analyst. Selain itu, ia memiliki pengalaman sebagai aktivis 
-                                    sosial kemasyarakatan di organisasi selama 3 tahun perkuliahan, hingga memiliki ketertarikan untuk 
-                                    mengintegrasikan kemampuan sosial dan teknis pengembangan website melalui penelitian skripsi untuk 
-                                    anak berkebutuhan khusus dengan autisme.
-                                </p>
-                            </div>
-                            <div class="w-full md:flex lg:flex text-blue31 text-base font-normal" style="direction: ltr;">
-                                <img src="{{ asset('images/member-noel.png') }}" alt="" class="h-48 md:h-52 lg:h-52 float-left md:float-none lg:float-none mr-4">
-                                <p class="text-justify">
-                                    <span class=" font-medium">Nicolas Noel Christianto</span> akrab disapa Noel, seorang mahasiswa jurusan Sistem Informasi, Universitas Airlangga 
-                                    dan salah satu pengembang aplikasi belajar MIKA Education. Memiliki ketertarikan di bidang teknologi, 
-                                    beberapa tahun telah ia lalui dengan fokus belajar dan mengembangkan keahlian dalam bidang pengembangan website, serta sedang 
-                                    mendalami bidang cybersecurity. Noel memiliki pengalaman terkait kegiatan sosial yang dilakukan melalui organisasi 
-                                    di kampus yang menjadi dasar ketertarikan untuk ikut serta dalam pengembangan aplikasi MIKA untuk optimalisasi pembelajaran 
-                                    bagi anak penyandang autisme, maupun bagi orang-orang disekitarnya yang berkeinginan mempelajari tentang autisme.
-                                </p>
+                            {{-- Navigasi --}}
+                            <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center"  style="direction: ltr;">
+                                <a href="/page4_3" class="text-base flex text-blue31 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
+                                    </svg>                
+                                    Sebelumnya
+                                </a>
+                                <a href="/page5" class="text-base flex text-blue31 font-semibold">Selanjutnya
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        {{-- Navigasi --}}
-        <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
-            <a href="" class="text-base hidden text-blue31 font-semibold">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
-                </svg>                
-                Sebelumnya
-            </a>
-            <a href="/page2_0" class="text-base flex text-blue31 font-semibold">Selanjutnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
-                </svg>
-            </a>
         </div>
     </section>
 
