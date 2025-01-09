@@ -139,8 +139,14 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Karakteristik Autistik</h6>
+                                    <div class="w-7 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 w-full">
+                                        <h6>Observasi, Pencatatan Karakteristik, Dampak dan Strategi</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +168,7 @@
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
                                     <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Pendekatan Belajar</h6>
+                                    <h6 class="ml-4">Belajar Terstruktur</h6>
                                 </div>
                             </div>
                         </div>
@@ -204,8 +210,8 @@
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
                                     <p class="text-sm mb-2">
-                                        <Span class="text-base font-bold">Evaluative Test:</Span>
-                                        Uji dan Evaluasi untuk pengguna
+                                        <Span class="text-base font-bold">Evaluasi Pembelajaran:</Span>
+                                        Uji pemahaman pengguna
                                     </p>
                                     <time datetime="PT25M" class="text-sm">25 menit</time>
                                 </div>
@@ -262,7 +268,7 @@
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Komunikasi Pragmatis</span>
+                                <span>Strategi Komunikasi Autisme</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
@@ -274,7 +280,7 @@
                             <div class="w-full h-full flex justify-center items-center">
                                 <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                     <iframe 
-                                        src="https://drive.google.com/file/d/1tRmqMto6JWiCVqvDuHAd3GynA5PqMmT9/preview" 
+                                        src="/preview" 
                                         title="E-Learning Video Player" 
                                         frameborder="0" 
                                         allow="autoplay; encrypted-media;" 

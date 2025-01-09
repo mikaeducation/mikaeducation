@@ -28,8 +28,8 @@
                         </button>
                     </div>
                     <div class="mt-8 w-full h-fit text-base text-blue31 font-medium space-y-1">
-                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-10 h-full bg-blue31 rounded-l-full"></div></div>
-                        <p>18% Progress selesai</p>
+                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="h-full w-28 bg-blue31 rounded-l-full"></div></div>
+                        <p>40% Progress selesai</p>
                     </div>
                     <div class="w-full h-fit mt-5 space-y-3">
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center flex items-center p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex-col justify-center flex items-center gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="flex w-full">
                                 <div class="w-1/4 flex justify-center pt-2">
                                     <div class="w-10 h-10 rounded-full bg-blue31">
@@ -77,44 +77,29 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Gangguan 
                                             Spektrum Autisme</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-11/12 h-0.5 my-4 bg-blue31"></div>
-                            <div class="w-full h-fit gap-4 px-4 pb-4 text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3">
-                                <div class="w-full flex gap-4">
-                                    <div class="w-fit flex justify-center">
-                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
-                                        </div>
+                            <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
+                                <div class="flex">
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
                                     </div>
-                                    <div class="w-3/4 text-blue31 ">
-                                        <div class="w-full h-fit pr-2">
-                                            <p class="text-base mb-2">
-                                                <Span class="text-base font-bold">Memahami Autisme:</Span>
-                                                Memahami apa itu Gangguan Spektrum Autisme
-                                            </p>
-                                            <time datetime="PT5M" class="text-sm">5 menit</time>
-                                        </div>
-                                    </div>
+                                    <h6 class="ml-4">Mehamai Autisme</h6>
                                 </div>
-                                <div class="w-full flex gap-4">
-                                    <div class="w-fit flex justify-center">
-                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
-                                        </div>
+                                <div class="flex">
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
                                     </div>
-                                    <div class="w-3/4 text-blue31 ">
-                                        <div class="w-full h-fit pr-2">
-                                            <p class="text-base mb-2">
-                                                <Span class="text-base font-bold">Komunikasi Autistik:</Span>
-                                                Pra-komunikasi, Reseptif, Ekspresif, Pragmatis, Strategi Komunikasi
-                                            </p>
-                                            <time datetime="PT25M" class="text-sm">25 menit</time>
-                                        </div>
-                                    </div>
+                                    <h6 class="ml-4">Komunikasi Autistik</h6>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center flex items-center gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex-col justify-center flex items-center p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="flex w-full">
                                 <div class="w-1/4 flex justify-center pt-2">
                                     <div class="w-10 h-10 rounded-full bg-blue31">
@@ -162,10 +147,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Belajar Terstruktur</h6>
+                            <div class="w-11/12 h-0.5 my-4 bg-blue31"></div>
+                            <div class="w-full h-fit gap-4 px-4 pb-4 text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3">
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Belajar Terstruktur:</Span>
+                                                Struktur Lingkungan Fisik, Alat bantu visual, jadwal visual dan Sistem Kerja
+                                            </p>
+                                            <time datetime="PT5M" class="text-sm">5 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -253,13 +250,7 @@
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Gangguan Spektrum Autisme</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
-                                </svg>
-                            </a>
-                            <a href="/course" class="flex">
-                                <span>Memahami Autisme</span>
+                                <span>Pembelajaran Terstruktur</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
@@ -271,7 +262,7 @@
                             <div class="w-full h-full flex justify-center items-center">
                                 <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                     <iframe 
-                                        src="https://drive.google.com/file/d/1tRmqMto6JWiCVqvDuHAd3GynA5PqMmT9/preview" 
+                                        src="/preview" 
                                         title="E-Learning Video Player" 
                                         frameborder="0" 
                                         allow="autoplay; encrypted-media;" 
@@ -286,57 +277,48 @@
                                 <a href=""><div class="h-full w-fit px-2 border-b-2 border-blue31 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Bacaan</div></a>
                                 <a href=""><div class="h-full w-fit px-2 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Unduhan</div></a>                            
                             </div>
-                            <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3 whitespace-pre-line text-justify"  style="direction: ltr;">
-                                <p>Salam, Saya Margaretha, tim MIKA education. Kali ini saya akan menjelaskan apa autisme dan bagaimana dampak gejalanya bisa mempengaruhi perilaku dan kemampuan belajar anak autistik. Kita juga akan mempelajari proses skrining dan diagnosa autisme, mitos, hingga ke praktik baik intervensi autisme.
-
-                                    Kita awali dengan memahami gejala autisme. Secara klinis ada 2 gejala utama: hambatan melakukan komunikasi sosial yang sering menyulitkannya berinteraksi timbal-balik di lingkungan dan munculnya perilaku minat terbatas dan berulang yang sering membuat anak autistik tampak aneh.
+                            <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3 text-justify"  style="direction: ltr;">
+                                <p class="mt-5"><span class=" whitespace-pre-line">Hallo Saya Retno, Sebelumnya kita sudah belajar tentang komunikasi pada anak autsime. Sekarang, saya akan akan memaparkan tentang pendekatan TEACCH dalam belajar komunikasi bagi anak dengan autism.  dan bagaimana Teacch membantu belajar anak berkomunikasi dan  pentingnya kemandirian serta  prompting dalam komunikasi anak autisme dengan menggunakan alat bantu visual.
                                     
-                                    Namun, selain gejala klinis, ada juga beberapa karakteristik autisme yang unik, misalkan: keunikan pemrosesan informasi, seperti: satu, persoalan theory of mind yang berdampak pada kesulitan memahami pikiran dan perasaan orang lain; dua, persoalan terkait dengan lemahnya central coherence, yang berdampak pada kesulitan memahami makna secara umum karena terlalu fokus pada detail; dan tiga, persoalan fungsi executive yang berdampak pada kesulitan mengelola perilakunya untuk berperilaku dan mencapai tujuan pembelajaran. Ketiga kemampuan pemrosesan informasi ini diperlukan sebagai dasar belajar dari lingkungan, maka hambatan pada ketiganya akan membuat anak autistik membutuhkan dukungan belajar yang disesuaikan dengan kondisi theory of mind, central coherence, dan fungsi eksekutif.
+                                    TEACCH adalah sebuah pendekatan pengajaran yang terstruktur dan berfokus pada pengembangan keterampilan serta kekuatan anak dengan autisme.  Selain itu, saya akan menjelaskan bagaimana penggunaan alat bantu visual dapat mendorong kemandirian dan teknik prompting yang efektif dalam komunikasi anak-anak dengan ASD. <span class="font-medium">Pembelajaran Terstruktur.</span> TEACCH didesain khusus untuk anak-anak dengan hambatan neurologis seperti autisme, yang sering kali mengalami kesulitan dalam komunikasi reseptif dan ekspresif, perhatian, memori, serta kemampuan mengorganisasi. Sistem ini juga berperan dalam mengorganisasi kelas atau lingkungan belajar yang ramah terhadap anak-anak dengan autisme.
                                     
-                                    Pemrosesan sensoris  juga berbeda. Beberapa anak autistik menunjukkan kepekaan berlebih pada stimulus tertentu, misalkan peka pada suara atau cahaya. Sedikit saja suara sudah terasa terlalu kuat, atau cahaya dari lampu neon tampak sangat menyilaukan bagi mereka walaupun biasa bagi yang lain. Sedangkan beberapa anak justru tampak kurang peka terhadap stimulus tertentu, misalkan tanpa suara keras, anak tidak akan memusatkan perhatiannya.
+                                    TEACCH adalah singkatan dari Treatment and Education of Autistic Children and others with Communication Handicap. Ini adalah sebuah metode pengajaran yang terstruktur, yang menekankan pada pemanfaatan kekuatan anak dengan autisme sebagai pembelajar visual. Pendekatan ini terdiri dari empat komponen utama, yaitu: Struktur lingkungan fisik, Struktur Visual, Jadwal Kegiatan, dan Sistem Kerja. 
                                     
-                                    Selain itu, karakteristik bermain mereka juga umumnya tampak berbeda. Anak autistik lebih sering bermain dalam permainan sendiri, sulit bermain dengan fantasi, seperti main dokter-dokteran, dan tidak banyak melakukan interaksi atau kontak dengan anak lain atau orang baru.
-                                    Terakhir, perkembangan keterampilan motorik mereka juga cenderung terlambat, yang mengakibatkan kesulitan pada gerakan motor kasar dan halus.
+                                    <span class="font-medium">Pertama, Struktur lingkungan fisik,</span> akan membantu  memahami dan mengantisipasi kegiatan sehari-hari secara lebih jelas. Prinsip utamanya adalah menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan lebih baik. Struktur lingkungan fisik penting untuk membantu mengajarkan komunikasi karena dengan adanya struktur fisik akan membantu mengurangi kecemasan, mendukung pemahaman visual, mendorong kemandirian dan akan meningkatkan fokus pada kegiatan yang spesifik. 
                                     
-                                    Walaupun belum ditemukan penyebab Tunggal, gejala autisme saat ini dijelaskan sebagai dampak perkembangan otak yang berbeda. Ditemukan lebih banyak pada anak laki-laki, dan bisa disertai gangguan perkembangan lain, seperti gangguan intelektual atau stress. Autisme sekarang dilihat sebagai salah satu variasi perkembangan otak manusia, atau neurodivergensi, yang menyebabkan mereka unik dalam hal kemampuan komunikasi sosial, perilaku dan pemrosesan informasi dari lingkungan. Kondisi ini akan menetap, oleh karena itu mereka akan membutuhkan dukungan sepanjang kehidupannya.
+                                    <span class="font-medium">Kedua, Struktur Visual</span>, menjadi dasar penting dalam mengembangkan komunikasi pada anak dengan autisme. Penggunaan struktur visual membantu anak ASD dalam memanfaatkan kekuatan mereka sebagai pembelajar visual. Salah satu alat bantu komunikasi yang menggunakan teknologi tinggi dan berbahasa Indonesia adalah MIKA, yang dapat menjadi media alternatif bagi anak-anak ASD untuk meningkatkan keterampilan komunikasi mereka. 
                                     
-                                    Gejala klinis dan karakteristik unik autisme ini memberikan dampak pada individu autistik. Secara sosial, mereka tampak cenderung menyendiri, sulit berinteraksi, terlebih jika menghadapi komunikasi non-verbal, seperti kontak mata dan berbagi perhatian bersama. Akibatnya, kesulitan berteman dan resiko menjadi korban bullying menjadi lebih tinggi. Sedangkan minat terbatasnya yang sering tampak aneh, karena mengulang-ulang perilaku walaupun tidak jelas manfaatnya. Mereka juga menuntut rutin atau jadwal tidak berubah, bahkan akan mengamuk jika ada perubahan tiba-tiba; inilah yang membuat mereka kesulitan menyesuaikan diri dan belajar hal baru. 
+                                    <span class="font-medium">Ketiga, Kegiatan yang terstruktur secara visual</span> termasuk jadwal visual,  instruksi visual, pengorganisasian visual, dan kejelasan visual. Jadwal visual adalah agenda kegiatan yang diinformasikan secara visual, bisa berupa gambar atau tulisan. Instruksi visual dapat berupa tulisan atau gambar yang memberikan informasi tentang tahapan-tahapan penyelesaian tugas, sedangkan pengorganisasian visual melibatkan pengaturan ruang dan barang-barang yang terorganisasi secara visual. Kejelasan visual membantu melibatkan siswa dengan informasi yang relevan untuk meningkatkan pemahaman dan kemampuan mereka.
                                     
-                                    Gejala-gejala ini mulai muncul sejak bayi. Sebagai panduan, jika anak usia 12 tahun masih belum menyahut konsisten ketika dipanggil namanya, atau tidak menunjuk obyek untuk menunjukkan minat di usia 14 bulan, atau tidak mampu bermain pura-pura pada usia 18 bulan, maka ini adalah tanda-tanda yang harus diperhatian orang tua untuk segera mendapatkan bantuan professional klinis. Selain itu, ada beberapa gejala umum yang khas muncul pada individu autistik, dari menghindari kontak mata, sulit memahami perasaan diri dan orang lain, terlambat perkembangan bahasanya, echolalia (atau mengulang kata yang didengarnya tapi tidak ditujukan untuk berkomunikasi), mudah marah atas perubahan kecil, ,inat berlebih-lebih pada suatu obyek/aktivitas, melakukan gerakan berulang-ulang (misalkan flapping, rocking, spinning), dan bereaksi berlebihan pada stimulus suara/bau/rasa/tekanan tertentu.
+                                    <span class="font-medium">Keempat, Sistem Kerja,</span> akan membantu anak autis memahami apa yang harus dilakukan, bagaimana melakukannya dan kapan tugas selesai serta apa yang harus dilakukan jika tugas sudah selesai. Sistem kerja menyediakan instruksi dan petunjuk visual yang bisa membantu mengarahkan pengerjaan tugas secara non verbal, sebagai bagian dari anak autis berkomunikasi. 
                                     
-                                    Identifikasi autisme dimulai dari skrining. Melalui observasi, wawancara dan asesmen, tenaga terlatih akan memetakan perilaku yang menjadi perhatian, gejala klinis dan karakteristik, hingga pada akhirnya Menyusun strategi belajat dan intervensi atas perilaku tersebut. Keseluruhan data akan dituangkan di dokumen Matriks Perencanaan. Tenaga terlatih bisa berasal dari Guru, Perawat, dan Ahli perilaku. Proses diagnosa juga dapat dilakukan bersamaan atau setelah skrining. Diagnosa dilakukan oleh klinisi dalam rangka menetapkan kriteria diagnosa klinis, menentukan derajat keparahan, dari ringan, sedang atau berat. Level keparahan akan menentukan seberapa banyak bantuan yang akan dibutuhkan sepanjang hidup individu autistik. Dari diagnosa dan skrining, kita bisa mengetahui gejala yang akan menjadi fokus perawatan dan intervensi terstruktur.
+                                    <span class="font-medium">Kemandirian dalam Komunikasi</span> adalah tujuan penting dalam pengajaran anak dengan autisme. Dengan menggunakan alat bantu visual, seperti gambar, simbol, atau perangkat AAC (Augmentative and Alternative Communication). Anak dapat diajarkan untuk melakukan komunikasi secara mandiri. Alat bantu visual ini memberikan dukungan yang permanen dan jelas, memungkinkan anak untuk memproses informasi secara mandiri dan berkomunikasi tanpa selalu bergantung pada orang lain. Ini dapat membantu meningkatkan rasa percaya diri anak dan mendorong keterlibatan aktif dalam interaksi sosial sehari-hari.
                                     
-                                    Perlu dipahami, bahwa autisme sebagai spektrum gangguan, artinya Tingkat dan bentuk autisme satu orang akan berbeda dengan orang autistik lainnya. Setiap individu autistik unik. Misalkan, kemampuan komunikasi, interaksi sosial, perilaku, sensoris dan intelektualitas seorang autistik akan berbeda-beda. Artinya, jika Anda mengenal  1 anak dengan autisme, maka Anda mengenal 1 anak dengan autisme. Pemahaman autisme kita atas 1 anak, tidak bisa digeneralisir untuk semua anak autistik.
+                                    <span class="font-medium">Prompt</span> atau dukungan biasa digunakan untuk mencapai respon yang diinginkan, bisa dalam bentuk. Di   digunakan untuk membantu anak autis dalam mencapai respons yang diinginkan. Dalam konteks komunikasi, prompting dapat dilakukan dengan menggunakan alat bantu visual sebagai panduan. Misalnya, ketika anak diminta untuk mengungkapkan keinginannya, orang dewasa dapat memberikan prompt berupa gambar atau simbol yang relevan. Prompting dapat dilakukan dengan berbagai tingkat bantuan, dari prompt fisik (misalnya, mengarahkan tangan anak) hingga prompt verbal (misalnya, memberikan kata kunci). Seiring waktu, prompt ini perlu dikurangi secara bertahap untuk mendorong kemandirian anak.
                                     
-                                    Namun sayangnya, sering muncul mitos yang menghambat usaha memahami kasus autisme secara individual. Misalkan menyalahkah ibu yang dingin atau vaksin sebagai penyebab autisme. Kesalahan berpikir lainnya, juga termasuk tentang perawatan, misakan obat atau diet bisa menyembuhkan autisme. Perlu dipahami, hingga saat ini, autisme adalah gangguan sepanjang masa hidup, maka tidak ada obat yang bisa menyembuhkan gejalanya Namun, bukan berarti anak autistik tidak bisa belajar. Dengan dukungan dan strategi yang tepat mereka tetap bisa berkembang.
+                                    <span class="font-medium">Mengapa Harus Visual?</span> Individu dengan autisme memerlukan waktu lebih lama dalam memproses informasi, dan informasi visual bersifat permanen sehingga memungkinkan mereka untuk memprosesnya sesuai dengan kebutuhan waktu mereka. Informasi visual juga membantu mereka memahami "apa yang harus dilakukan," mengurangi stres dan kecemasan, serta membantu dalam mengorganisasi dan meningkatkan kemandirian mereka.
                                     
-                                    Lalu pertanyaan yang muncul adalah “Bagaimana cara terbaik membantu anak autistik belajar?”
-                                    Berdasarkan review dari Roberts dan Prior, ditemukan ada 7 prinsip intervensi autisme yang efektif. Pertama, strategi layanan dan dukungan disusun secara individual. Kedua, perubahan lingkungan diarahkan menjadi sistematis dan menggunakan strategi yang umum digunakan. Ketiga, lingkungan juga perlu dibuat terstruktur rapi dan mendukung perubahan. Keempat, pusat pendidikan dan terapi perlu mengembangkan kurikulum yang mempertimbangkan gejala dan karakteristik autisme. Kelima, dukungan penting diberikan pada masa transisi, dari satu level ke level berikutnya. Keenam, perlu dikembangkan suatu pendekatan pengelolaan perilaku untuk merubah perilaku yang kurang adaptif menjadi adaptif. Dan terakhir, seluruh pendekatan harus melibatkan orang tua.
-                                    
-                                    Inilah akhir sesi pengenalan autisme. Berikutnya anda akan mengenal karakteristik komunikasi autisme secara lebih mendalam. Terima kasih.</p>                            
+                                    Demikian pemaparan saya tentang pendekatan TEACCH dalam belajar komunikasi bagi anak autis. Semoga   informasi ini dapat memberikan wawasan yang berguna dalam mendukung pendidikan dan komunikasi anak-anak dengan autis.
+                                </p>
                             </div>
-                            <div>
-
+                            {{-- Navigasi --}}
+                            <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center"  style="direction: ltr;">
+                                <a href="/page5" class="text-base flex text-blue31 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
+                                    </svg>                
+                                    Sebelumnya
+                                </a>
+                                <a href="/page7_0" class="text-base flex text-blue31 font-semibold">Selanjutnya
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        {{-- Navigasi --}}
-        <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
-            <a href="/page2_2" class="text-base text-blue31 font-semibold flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
-                </svg>                
-                Sebelumnya
-            </a>
-            <a href="/page4" class="text-base flex text-blue31 font-semibold">Selanjutnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
-                </svg>
-            </a>
         </div>
     </section>
 

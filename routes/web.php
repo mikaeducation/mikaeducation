@@ -85,5 +85,57 @@ Route::get('/page4_4', function (){
     return view('learning/course/page4_4');
 });
 
+Route::get('/page5', function (){
+    return view('learning/course/page5');
+});
+
+Route::get('/page6', function (){
+    return view('learning/course/page6');
+});
+
+Route::get('/page7_0', function (){
+    return view('learning/course/page7_0');
+});
+Route::get('/page7_1', function (){
+    return view('learning/course/page7_1');
+});
+Route::get('/page7_2_0', function (){
+    return view('learning/course/page7_2_0');
+});
+Route::get('/page7_2_1', function (){
+    return view('learning/course/page7_2_1');
+});
+Route::get('/page7_2_2', function (){
+    return view('learning/course/page7_2_2');
+});
+
+Route::get('/page8', function (){
+    return view('learning/course/page8');
+});
+
+Route::get('/page9_0', function (){
+    return view('learning/course/page9_0');
+});
+Route::get('/page9_1', function (){
+    return view('learning/course/page9_1');
+});
+Route::get('/page9_2', function (){
+    return view('learning/course/page9_2');
+});
+Route::get('/page9_3_0', function (){
+    return view('learning/course/page9_3_0');
+});
+Route::get('/page9_3_1', function (){
+    return view('learning/course/page9_3_1');
+});
+Route::get('/page9_3_2', function (){
+    return view('learning/course/page9_3_2');
+});
+Route::get('/page9_3_3', function (){
+    return view('learning/course/page9_3_3');
+});
+
+
+
 
 

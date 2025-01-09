@@ -139,8 +139,14 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Karakteristik Autistik</h6>
+                                    <div class="w-7 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 w-full">
+                                        <h6>Observasi, Pencatatan Karakteristik, Dampak dan Strategi</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +168,7 @@
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
                                     <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Pendekatan Belajar</h6>
+                                    <h6 class="ml-4">Belajar Terstruktur</h6>
                                 </div>
                             </div>
                         </div>
@@ -204,8 +210,8 @@
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
                                     <p class="text-sm mb-2">
-                                        <Span class="text-base font-bold">Evaluative Test:</Span>
-                                        Uji dan Evaluasi untuk pengguna
+                                        <Span class="text-base font-bold">Evaluasi Pembelajaran:</Span>
+                                        Uji pemahaman pengguna
                                     </p>
                                     <time datetime="PT25M" class="text-sm">25 menit</time>
                                 </div>

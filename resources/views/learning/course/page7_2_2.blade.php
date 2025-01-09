@@ -28,8 +28,8 @@
                         </button>
                     </div>
                     <div class="mt-8 w-full h-fit text-base text-blue31 font-medium space-y-1">
-                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-10 h-full bg-blue31 rounded-l-full"></div></div>
-                        <p>18% Progress selesai</p>
+                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="h-full w-40 bg-blue31 rounded-l-full"></div></div>
+                        <p>59% Progress selesai</p>
                     </div>
                     <div class="w-full h-fit mt-5 space-y-3">
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center flex items-center p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex-col justify-center flex items-center gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="flex w-full">
                                 <div class="w-1/4 flex justify-center pt-2">
                                     <div class="w-10 h-10 rounded-full bg-blue31">
@@ -77,44 +77,29 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ">
+                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Gangguan 
                                             Spektrum Autisme</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-11/12 h-0.5 my-4 bg-blue31"></div>
-                            <div class="w-full h-fit gap-4 px-4 pb-4 text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3">
-                                <div class="w-full flex gap-4">
-                                    <div class="w-fit flex justify-center">
-                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
-                                        </div>
+                            <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
+                                <div class="flex">
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
                                     </div>
-                                    <div class="w-3/4 text-blue31 ">
-                                        <div class="w-full h-fit pr-2">
-                                            <p class="text-base mb-2">
-                                                <Span class="text-base font-bold">Memahami Autisme:</Span>
-                                                Memahami apa itu Gangguan Spektrum Autisme
-                                            </p>
-                                            <time datetime="PT5M" class="text-sm">5 menit</time>
-                                        </div>
-                                    </div>
+                                    <h6 class="ml-4">Mehamai Autisme</h6>
                                 </div>
-                                <div class="w-full flex gap-4">
-                                    <div class="w-fit flex justify-center">
-                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
-                                        </div>
+                                <div class="flex">
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
                                     </div>
-                                    <div class="w-3/4 text-blue31 ">
-                                        <div class="w-full h-fit pr-2">
-                                            <p class="text-base mb-2">
-                                                <Span class="text-base font-bold">Komunikasi Autistik:</Span>
-                                                Pra-komunikasi, Reseptif, Ekspresif, Pragmatis, Strategi Komunikasi
-                                            </p>
-                                            <time datetime="PT25M" class="text-sm">25 menit</time>
-                                        </div>
-                                    </div>
+                                    <h6 class="ml-4">Komunikasi Autistik</h6>
                                 </div>
                             </div>
                         </div>
@@ -164,12 +149,16 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Belajar Terstruktur</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center flex items-center gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex-col justify-center flex items-center p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="flex w-full">
                                 <div class="w-1/4 flex justify-center pt-2">
                                     <div class="w-10 h-10 rounded-full bg-blue31">
@@ -181,22 +170,63 @@
                                 <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Media Visual
-                                            Komunikasi Anak</h3>
+                                            Komunikasi Anak
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Memulai MIKA 1.0</h6>
+                            <div class="w-11/12 h-0.5 my-4 bg-blue31"></div>
+                            <div class="w-full h-fit gap-4 px-4 pb-4 text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3">
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Memulai MIKA 1.0:</Span>
+                                                Instalasi dan registrasi MIKA 1.0 Mobile
+                                            </p>
+                                            <time datetime="PT14M" class="text-sm">14 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Administratif MIKA 1.0</h6>
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Administratif MIKA 1.0:</Span>
+                                                Alur belajar dan skoring dalam MIKA 1.0 Mobile
+                                            </p>
+                                            <time datetime="PT31M" class="text-sm">31 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
-                                    <h6 class="ml-4">Interpretasi dan Evaluasi</h6>
+                                <div class="w-full flex gap-4">
+                                    <div class="w-fit flex justify-center">
+                                        <div class="w-7 h-7 rounded-full border-2 border-blue31">
+                                        </div>
+                                    </div>
+                                    <div class="w-3/4 text-blue31 ">
+                                        <div class="w-full h-fit pr-2">
+                                            <p class="text-base mb-2">
+                                                <Span class="text-base font-bold">Evaluasi & Interpretasi:</Span>
+                                                Skoring tiap Level dan Interpretasi yang berdampak pada proses pembelajaran
+                                            </p>
+                                            <time datetime="PT15M" class="text-sm">15 menit</time>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -253,13 +283,13 @@
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Gangguan Spektrum Autisme</span>
+                                <span>Media Visual Komunikasi Anak</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
                             </a>
                             <a href="/course" class="flex">
-                                <span>Memahami Autisme</span>
+                                <span>Evaluasi & Interpretasi MIKA 1.0</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                                     <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
                                 </svg>
@@ -271,7 +301,7 @@
                             <div class="w-full h-full flex justify-center items-center">
                                 <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                     <iframe 
-                                        src="https://drive.google.com/file/d/1tRmqMto6JWiCVqvDuHAd3GynA5PqMmT9/preview" 
+                                        src="/preview" 
                                         title="E-Learning Video Player" 
                                         frameborder="0" 
                                         allow="autoplay; encrypted-media;" 
@@ -286,57 +316,88 @@
                                 <a href=""><div class="h-full w-fit px-2 border-b-2 border-blue31 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Bacaan</div></a>
                                 <a href=""><div class="h-full w-fit px-2 relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">Unduhan</div></a>                            
                             </div>
-                            <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3 whitespace-pre-line text-justify"  style="direction: ltr;">
-                                <p>Salam, Saya Margaretha, tim MIKA education. Kali ini saya akan menjelaskan apa autisme dan bagaimana dampak gejalanya bisa mempengaruhi perilaku dan kemampuan belajar anak autistik. Kita juga akan mempelajari proses skrining dan diagnosa autisme, mitos, hingga ke praktik baik intervensi autisme.
+                            <div class="w-full text-blue31 pb-4 border-b-2 border-bluee3 text-justify"  style="direction: ltr;">
+                                <p class="my-5"><span class=" whitespace-pre-line">Pada sub bahasan yang selanjutnya adalah <span class="font-medium">dampaknya pada strategi pembelajaran (peningkatan level, penyesuaian strategi belajar dan terminasi)</span>
 
-                                    Kita awali dengan memahami gejala autisme. Secara klinis ada 2 gejala utama: hambatan melakukan komunikasi sosial yang sering menyulitkannya berinteraksi timbal-balik di lingkungan dan munculnya perilaku minat terbatas dan berulang yang sering membuat anak autistik tampak aneh.
+                                    Perlu kita pahami bersama sekali lagi bahwasanya MIKA ini merupakan alat terapiutik maka kita harus melihat dan mengukur bahwasanya setelah menggunakan MIKA bagaimana dampak pada pembelajaran anak.
+                                    MIKA 1.0 dikembangkan dengan konsepsi bahwa kemampuan komunikasi dibangun oleh 2 komponen belajar komunikasi, yaitu: komunikasi instrumental dan penalaran komunikasi.<span class="font-medium">Komunikasi instrumental</span> adalah belajar kemampuan komunikasi dasar dalam mengekspresikan diri dan memahami informasi yang dialaminya sehari-hari. <span class="font-medium">Penalaran komunikasi</span> adalah belajar komunikasi yang didukung kemampuan kognitif untuk memahami berbagai hubungan antara simbol dan obyek.
+                                    <p>
+                                        Secara umum, ada 2 cara <span class="font-medium">komunikasi instrumental</span>, yaitu: ekspresif dan reseptif. 
+                                        <ul class="list-disc pl-5 pb-3">
+                                            <li> <span class="font-medium">Komunikasi ekspresif</span> adalah kemampuan menyampaikan informasi dengan menggunakan simbol komunikasi kepada orang lain.</li>
+                                            <li> <span class="font-medium">Komunikasi reseptif</span> adalah kemampuan memahami informasi yang disampaikan oleh orang lain. Keduanya perlu mampu dilakukan dengan mandiri untuk dapat melakukan komunikasi timbal balik.</li>
+                                        </ul>
+                                        Selain itu, ada 3 proses yang mendukung <span class="font-medium">penalaran komunikasi</span>, yaitu: identifikasi, diskriminasi dan generalisasi.
+                                        <ul class="list-disc pl-5">
+                                            <li><span class="font-medium">Identifikasi</span>: kemampuan anak belajar asosiasi antara simbol dan obyeknya dalam komunikasi ekspresif dan reseptif.</li>
+                                            <li><span class="font-medium">Diskriminasi</span>: kemampuan anak membedakan mana simbol (di antara beberapa simbol lain) yang paling menggambarkan obyek yang ingin dikomunikasikannya secara ekspresif dan reseptif.</li>
+                                            <li><span class="font-medium">Generalisasi</span>: kemampuan anak memahami bahwa obyek-obyek yang dihadapinya memiliki suatu konsep yang dapat digunakan sebagai payung umum pemahamannya.</li>
+                                        </ul>
+                                    </p>
+                                </p>
+                                
+                                <p>
+                                    <p class="w-full p-2 mb-3 mt-5 bg-bluee3 font-medium">Proses Belajar pada Level I dan II</p>                        
+                                    <p class="whitespace-pre-line">Proses belajar terjadi secara 2 tahap: <span class="font-medium">Tahap komunikasi instrumental</span> dan <span class="font-medium"><span class="font-medium">Identifikasi</span></span>
+                                        <span class="font-medium">Tahap I komunikasi instrumental</span> adalah belajar kemampuan komunikasi dasar ekspresif dan reseptif yang dapat dilakukan sehari-hari.                                       
+                                    </p>
+                                    <ul class="list-disc pl-5 pb-3">
+                                        <li>Terapis mencontohkan asosiasi antara obyek dan visual pada MIKA. Terapis memegang benda tepat di hadapan fokus anak dan menyentuh visual pada MIKA sambil mengucapkannya. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek. </li>
+                                        <li>Terapis mencontohkan komunikasi ekspresif, dengan menyentuh visual di MIKA lalu membantu anak mengambil obyek yang sama dengan visualnya. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek. Lalu, terapis bisa melanjutkan dengan tahap trial pada anak.</li>
+                                        <li>Terapis mencontohkan komunikasi reseptif, dengan mengambil obyek lalu menyodorkan MIKA agar anak menyentuh visual di MIKA yang sesuai dengan obyek. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek. Lalu, terapis bisa melanjutkan dengan tahap trial pada anak.</li>
+                                    </ul>
+                                    Selanjutnya, anak melakukan pendalaman dengan <span class="font-medium">Tahap II Penalaran komunikasi</span>, yaitu: identifikasi, diskriminasi dan generalisasi.
+                                    <ul class="list-disc pl-5">
+                                        <li><span class="font-medium">Identifikasi</span>: kemampuan anak belajar asosiasi antara visual di MIKA dan obyeknya; serta kemampuan menggunakan apa yang dipelajarinya dalam komunikasi ekspresif dan reseptif.</li>
+                                        <li><span class="font-medium">Diskriminasi</span>: kemampuan anak membedakan kesesuaian visual di MIKA dan obyeknya, jika disertai dengan kehadiran visual lain (distraktor) di MIKA; serta kemampuan menggunakan apa yang dipelajarinya dalam komunikasi ekspresif dan reseptif. Contohnya: dipersiapkan 2 visual di MIKA dan 1 obyek di meja. Anak diminta memilih antara 2 visual di layar MIKA yang sesuai dengan obyek yang ada di hadapannya.</li>
+                                        <li><span class="font-medium">Generalisasi</span>: kemampuan anak memahami bahwa obyek-obyek yang dihadapinya memiliki suatu konsep yang dapat digunakan sebagai payung umum pemahamannya yang tergambar dalam salah satu visual di MIKA. Contoh: dipersiapkan 2-3 obyek serumpun dan 2 visual di layar MIKA. Anak diminta memilih visual di layar MIKA yang sesuai dengan konsep umum semua obyek yang ada di hadapannya.</li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    <p class="w-full p-2 mb-3 mt-5 bg-bluee3 font-medium">Proses Belajar pada Level III</p>                        
+                                    <p>Proses belajar pada level III ini adalah anak akan belajar berkomunikasi secara terstruktur dalam membuat kalimat yang terdiri dari Subjek + Predikat Atau Kata kerja + Objek (SPO), 
+                                        serta menyusun konsep kata DM. Anak juga berlatih proses generalisasi dan perluasan kemampuan komunikasi ekspresif dan reseptif anak dengan berbagai partner komunikasi 
+                                        (orang dewasa lain dan anak sebaya).
+                                    </p>
+                                    <ul class="list-disc pl-5">
+                                        <li>Terapis memilih tema yang akan dipakai untuk digunakan, pada awalnya terapis akan mempersiapkan benda atau kegiatan yang akan digunakan selama proses MIKA. Terapis bisa memberikan contoh dalam merangkai kalimat SPO kemudian langsung ditunjukkan dengan benda atau aktivitasnya. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek.</li>
+                                        <li>Terapis mencontohkan komunikasi ekspresif, dengan menyentuh visual di MIKA sesuai dengan aturan gramatikal, dimulai dari subyek, kata kerja dan obyek atau keterangan. Lalu segera melakukan aktivitas atau mengambil benda yang sesuai. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek. Lalu, terapis bisa melanjutkan dengan tahap trial pada anak.</li>
+                                        <li>Terapis mencontohkan komunikasi reseptif, dengan melakukan aktivitas atau  mengambil benda lalu menyodorkan MIKA agar anak menyentuh visual di MIKA yang sesuai dengan aturan gramatikal, dimulai dari subyek, kata kerja dan objek atau keterangan. Pencontohan dilakukan minimal 3 kali, atau sejumlah yang dianggap perlu untuk dapat dilihat anak pada masing-masing obyek. Lalu, terapis bisa melanjutkan dengan tahap trial pada anak.</li>
+                                        <li>Pada tahap ini terapis bisa menambah tema dan kata kerja, benda, kata sifat untuk memperluas kemampuan komunikasi ekspresif maupun reseptif anak.</li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    <p class="w-full p-2 mb-3 mt-5 bg-bluee3 font-medium">Proses Belajar pada Level IV</p>                        
+                                    <p class="whitespace-pre-line">Proses belajar di level IV adalah memperluas kemampuan komunikasi di level I, II dan III. Berupa generalisasi dan perluasan dari komunikasi ekspresif dan reseptif dalam konteks percakapan (komunikasi pragmatis). 
                                     
-                                    Namun, selain gejala klinis, ada juga beberapa karakteristik autisme yang unik, misalkan: keunikan pemrosesan informasi, seperti: satu, persoalan theory of mind yang berdampak pada kesulitan memahami pikiran dan perasaan orang lain; dua, persoalan terkait dengan lemahnya central coherence, yang berdampak pada kesulitan memahami makna secara umum karena terlalu fokus pada detail; dan tiga, persoalan fungsi executive yang berdampak pada kesulitan mengelola perilakunya untuk berperilaku dan mencapai tujuan pembelajaran. Ketiga kemampuan pemrosesan informasi ini diperlukan sebagai dasar belajar dari lingkungan, maka hambatan pada ketiganya akan membuat anak autistik membutuhkan dukungan belajar yang disesuaikan dengan kondisi theory of mind, central coherence, dan fungsi eksekutif.
-                                    
-                                    Pemrosesan sensoris  juga berbeda. Beberapa anak autistik menunjukkan kepekaan berlebih pada stimulus tertentu, misalkan peka pada suara atau cahaya. Sedikit saja suara sudah terasa terlalu kuat, atau cahaya dari lampu neon tampak sangat menyilaukan bagi mereka walaupun biasa bagi yang lain. Sedangkan beberapa anak justru tampak kurang peka terhadap stimulus tertentu, misalkan tanpa suara keras, anak tidak akan memusatkan perhatiannya.
-                                    
-                                    Selain itu, karakteristik bermain mereka juga umumnya tampak berbeda. Anak autistik lebih sering bermain dalam permainan sendiri, sulit bermain dengan fantasi, seperti main dokter-dokteran, dan tidak banyak melakukan interaksi atau kontak dengan anak lain atau orang baru.
-                                    Terakhir, perkembangan keterampilan motorik mereka juga cenderung terlambat, yang mengakibatkan kesulitan pada gerakan motor kasar dan halus.
-                                    
-                                    Walaupun belum ditemukan penyebab Tunggal, gejala autisme saat ini dijelaskan sebagai dampak perkembangan otak yang berbeda. Ditemukan lebih banyak pada anak laki-laki, dan bisa disertai gangguan perkembangan lain, seperti gangguan intelektual atau stress. Autisme sekarang dilihat sebagai salah satu variasi perkembangan otak manusia, atau neurodivergensi, yang menyebabkan mereka unik dalam hal kemampuan komunikasi sosial, perilaku dan pemrosesan informasi dari lingkungan. Kondisi ini akan menetap, oleh karena itu mereka akan membutuhkan dukungan sepanjang kehidupannya.
-                                    
-                                    Gejala klinis dan karakteristik unik autisme ini memberikan dampak pada individu autistik. Secara sosial, mereka tampak cenderung menyendiri, sulit berinteraksi, terlebih jika menghadapi komunikasi non-verbal, seperti kontak mata dan berbagi perhatian bersama. Akibatnya, kesulitan berteman dan resiko menjadi korban bullying menjadi lebih tinggi. Sedangkan minat terbatasnya yang sering tampak aneh, karena mengulang-ulang perilaku walaupun tidak jelas manfaatnya. Mereka juga menuntut rutin atau jadwal tidak berubah, bahkan akan mengamuk jika ada perubahan tiba-tiba; inilah yang membuat mereka kesulitan menyesuaikan diri dan belajar hal baru. 
-                                    
-                                    Gejala-gejala ini mulai muncul sejak bayi. Sebagai panduan, jika anak usia 12 tahun masih belum menyahut konsisten ketika dipanggil namanya, atau tidak menunjuk obyek untuk menunjukkan minat di usia 14 bulan, atau tidak mampu bermain pura-pura pada usia 18 bulan, maka ini adalah tanda-tanda yang harus diperhatian orang tua untuk segera mendapatkan bantuan professional klinis. Selain itu, ada beberapa gejala umum yang khas muncul pada individu autistik, dari menghindari kontak mata, sulit memahami perasaan diri dan orang lain, terlambat perkembangan bahasanya, echolalia (atau mengulang kata yang didengarnya tapi tidak ditujukan untuk berkomunikasi), mudah marah atas perubahan kecil, ,inat berlebih-lebih pada suatu obyek/aktivitas, melakukan gerakan berulang-ulang (misalkan flapping, rocking, spinning), dan bereaksi berlebihan pada stimulus suara/bau/rasa/tekanan tertentu.
-                                    
-                                    Identifikasi autisme dimulai dari skrining. Melalui observasi, wawancara dan asesmen, tenaga terlatih akan memetakan perilaku yang menjadi perhatian, gejala klinis dan karakteristik, hingga pada akhirnya Menyusun strategi belajat dan intervensi atas perilaku tersebut. Keseluruhan data akan dituangkan di dokumen Matriks Perencanaan. Tenaga terlatih bisa berasal dari Guru, Perawat, dan Ahli perilaku. Proses diagnosa juga dapat dilakukan bersamaan atau setelah skrining. Diagnosa dilakukan oleh klinisi dalam rangka menetapkan kriteria diagnosa klinis, menentukan derajat keparahan, dari ringan, sedang atau berat. Level keparahan akan menentukan seberapa banyak bantuan yang akan dibutuhkan sepanjang hidup individu autistik. Dari diagnosa dan skrining, kita bisa mengetahui gejala yang akan menjadi fokus perawatan dan intervensi terstruktur.
-                                    
-                                    Perlu dipahami, bahwa autisme sebagai spektrum gangguan, artinya Tingkat dan bentuk autisme satu orang akan berbeda dengan orang autistik lainnya. Setiap individu autistik unik. Misalkan, kemampuan komunikasi, interaksi sosial, perilaku, sensoris dan intelektualitas seorang autistik akan berbeda-beda. Artinya, jika Anda mengenal  1 anak dengan autisme, maka Anda mengenal 1 anak dengan autisme. Pemahaman autisme kita atas 1 anak, tidak bisa digeneralisir untuk semua anak autistik.
-                                    
-                                    Namun sayangnya, sering muncul mitos yang menghambat usaha memahami kasus autisme secara individual. Misalkan menyalahkah ibu yang dingin atau vaksin sebagai penyebab autisme. Kesalahan berpikir lainnya, juga termasuk tentang perawatan, misakan obat atau diet bisa menyembuhkan autisme. Perlu dipahami, hingga saat ini, autisme adalah gangguan sepanjang masa hidup, maka tidak ada obat yang bisa menyembuhkan gejalanya Namun, bukan berarti anak autistik tidak bisa belajar. Dengan dukungan dan strategi yang tepat mereka tetap bisa berkembang.
-                                    
-                                    Lalu pertanyaan yang muncul adalah “Bagaimana cara terbaik membantu anak autistik belajar?”
-                                    Berdasarkan review dari Roberts dan Prior, ditemukan ada 7 prinsip intervensi autisme yang efektif. Pertama, strategi layanan dan dukungan disusun secara individual. Kedua, perubahan lingkungan diarahkan menjadi sistematis dan menggunakan strategi yang umum digunakan. Ketiga, lingkungan juga perlu dibuat terstruktur rapi dan mendukung perubahan. Keempat, pusat pendidikan dan terapi perlu mengembangkan kurikulum yang mempertimbangkan gejala dan karakteristik autisme. Kelima, dukungan penting diberikan pada masa transisi, dari satu level ke level berikutnya. Keenam, perlu dikembangkan suatu pendekatan pengelolaan perilaku untuk merubah perilaku yang kurang adaptif menjadi adaptif. Dan terakhir, seluruh pendekatan harus melibatkan orang tua.
-                                    
-                                    Inilah akhir sesi pengenalan autisme. Berikutnya anda akan mengenal karakteristik komunikasi autisme secara lebih mendalam. Terima kasih.</p>                            
+                                    Proses generalisasi komunikasi tingkat lanjut adalah belajar komunikasi ekspresif dan komunikasi reseptif untuk digunakan anak dalam menyampaikan maksud dan tujuannya berkomunikasi, serta memahami maksud dan tujuan orang lain berbicara; dimana keduanya dilakukan secara timbal balik. Proses belajar diawali dengan mengembangkan dialog antara anak dan terapis, namun proses generalisasinya harus juga dilihat apakah anak bisa menggunakan kemampuan komunikasi pragmatisnya pada orang dewasa lainnya dan teman sebaya. Kemampuan generalisasi komunikasi tingkat lanjut perlu dicatat oleh terapis sebagai data kualitatif.
+                                    <ul class="list-disc pl-5">
+                                        <li>Terapis memberikan pilihan dialog dengan tema yang sudah ada di  aplikasi MIKA level IV.</li>
+                                        <li>Terapis atau guru mulai membuka percakapan dengan menyodorkan tema untuk percakapan dengan anak. Anak akan memilih tema percakapan sesuai dengan tema yang diinginkan. Jika anak masih kesulitan untuk memilih tema percakapan, maka terapis akan memilih terlebih dahulu tema yang diinginkan. Sebaiknya terapis memilih yang sudah fungsional dikuasai oleh anak. Bisa cek riwayat penguasaan kosakata dan konsep kata dari MIKA level 1, 2 dan 3.</li>
+                                        <li>Jika anak bisa melakukan dialog dengan menjawab pertanyaan dan membuat pertanyaan, maka bisa dilanjutkan dengan tahap trial. Jika trial bisa dilakukan oleh anak minimal 5 (lima) kali trial dalam  tema yang sama, maka terapis bisa lanjut menuju ke tema berikutnya.</li>
+                                    </ul>
+                                    Pendalaman komunikasi di MIKA level IV, bisa dilakukan dengan memperbanyak tema-tema percakapan yang disusun sesuai dengan kebutuhan belajar anak (personalized needs). Terapis harus mengembangkan temanya melalui fungsi Customized Content. Selanjutnya, anak melakukan perluasan dialog dengan partner komunikasi lainnya (terapisatau guru atau orang tua – orang dewasa lain, lalu ke teman sebaya).
+                                </p>
+                                </p>
                             </div>
-                            <div>
-
+                            {{-- Navigasi --}}
+                            <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center"  style="direction: ltr;">
+                                <a href="/page7_2_1" class="text-base flex text-blue31 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
+                                    </svg>                
+                                    Sebelumnya
+                                </a>
+                                <a href="/page8" class="text-base flex text-blue31 font-semibold">Selanjutnya
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                                        <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        {{-- Navigasi --}}
-        <div class="w-3/4 space-x-10 mt-8 flex justify-end items-center">
-            <a href="/page2_2" class="text-base text-blue31 font-semibold flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
-                </svg>                
-                Sebelumnya
-            </a>
-            <a href="/page4" class="text-base flex text-blue31 font-semibold">Selanjutnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
-                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
-                </svg>
-            </a>
         </div>
     </section>
 

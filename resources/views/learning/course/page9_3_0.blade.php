@@ -28,8 +28,8 @@
                         </button>
                     </div>
                     <div class="mt-8 w-full h-fit text-base text-blue31 font-medium space-y-1">
-                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="w-4 h-full bg-blue31 rounded-l-full"></div></div>
-                        <p>8% Progress selesai</p>
+                        <div class="w-full h-5 rounded-full bg-bluee3 flex-col"><div class="h-full w-64 bg-blue31 rounded-l-full"></div></div>
+                        <p>90% Progress selesai</p>
                     </div>
                     <div class="w-full h-fit mt-5 space-y-3">
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
@@ -50,9 +50,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex gap-2 p-2 border-l- bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
-                                <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-blue31">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
@@ -82,11 +86,19 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Mehamai Autisme</h6>
                                 </div>
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Komunikasi Autistik</h6>
                                 </div>
                             </div>
@@ -129,7 +141,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Pembelajaran Terstruktur</h3>
                                     </div>
@@ -137,7 +149,11 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Belajar Terstruktur</h6>
                                 </div>
                             </div>
@@ -151,7 +167,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-3/4 text-blue31 ml-2 flex item-center">
+                                <div class="w-3/4 text-blue31 ">
                                     <div class="w-full h-fit pr-2">
                                         <h3 class="text-base font-bold whitespace-pre-line">Media Visual
                                             Komunikasi Anak</h3>
@@ -160,22 +176,38 @@
                             </div>
                             <div class="w-11/12 h-fit text-blue31 space-y-3 flex-col items-center justify-start border-t-2 border-bluee3 mt-2 p-4">
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Memulai MIKA 1.0</h6>
                                 </div>
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Administratif MIKA 1.0</h6>
                                 </div>
                                 <div class="flex">
-                                    <div class="w-6 h-6 rounded-full border-2 border-blue31"></div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-blue31">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h6 class="ml-4">Interpretasi dan Evaluasi</h6>
                                 </div>
                             </div>
-                        </div>
+                        </div>                     
                         <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
-                                <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-blue31">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" stroke-width="1">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="w-3/4 text-blue31 ">
                                 <div class="w-full h-fit pr-2">
@@ -187,7 +219,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex gap-2 p-2 border-l-8 border-y-2 border-r-2 border-bluee3 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
+                        <div class="w-full flex gap-2 p-2 border-l-8 bg-bluee3 border-l-blue31 transition ease-in-out delay-50 hover:-translate-x-1 hover:scale-110 cursor-pointer">
                             <div class="w-1/4 flex justify-center pt-2">
                                 <div class="w-10 h-10 rounded-full border-2 border-blue31"></div>
                             </div>
@@ -195,7 +227,7 @@
                                 <div class="w-full h-fit pr-2">
                                     <p class="text-sm mb-2">
                                         <Span class="text-base font-bold">Asessmen II:</Span>
-                                        Seputar Autisme, Metode TEACCH dan Aplikasi Belajar MIKA 1.10
+                                        Seputar Autisme, Metode TEACCH dan Aplikasi Belajar MIKA 1.0
                                     </p>
                                     <time datetime="PT25M" class="text-sm">25 menit</time>
                                 </div>
@@ -470,14 +502,13 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         
                                         <!-- Tambahkan pertanyaan lainnya di sini dengan format serupa -->                                        
                                         <div class="space-x-10 mt-8 mr-2 flex justify-end items-center">
                                             <button
                                             type="submit" 
                                             class="p-2 px-6 rounded-xl text-base flex text-white font-semibold bg-blue31 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                                            Kumpulkan
+                                            Selanjutnya
                                         </button>
                                         </div>
                                     </form>
@@ -491,14 +522,16 @@
 
         {{-- Navigasi --}}
         <div class="w-3/4 space-x-10 mt-8 hidden justify-end items-center">
-            <a href="" class="text-base hidden text-blue31 font-semibold">
+            <a href="/page2_2" class="text-base hidden text-blue31 font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                     <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
                 </svg>                
                 Sebelumnya
             </a>
-            <a href="/page2_2" class="p-2 px-6 rounded-xl text-base flex text-white font-semibold bg-blue31 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                Kumpulkan
+            <a href="/page4" class="text-base flex text-blue31 font-semibold">Selanjutnya
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                    <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+                </svg>
             </a>
         </div>
     </section>

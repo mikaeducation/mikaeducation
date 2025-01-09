@@ -3,7 +3,7 @@
     <div class="space-y-8">
         <div class="text-xl space-y-2 ">
             <h6 class="font-medium">Penilaian Belajar</h6>
-            <p><span class=" text-2xl font-bold">Asessmen I:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</p>
+            <p><span class=" text-2xl font-bold">Asessmen II:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</p>
         </div>
         <div class="flex flex-col md:flex-row w-full h-max gap-8 px-8 py-8 bg-bluee3 text-lg font-medium">
             <div class="w-full space-y-4">
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="w-full border-4 px-8 py-5 space-y-5 border-bluee3">
-            <h5 class="font-medium text-lg">Nilai Penilaian I Anda</h5>
+            <h5 class="font-medium text-lg">Nilai Penilaian II Anda</h5>
             <p class="text-base text-justify">Dibutuhkan <span class=" font-medium">nilai 80% atau lebih tinggi pada Bagian 1</span> untuk lulus.</p>
             <div class="w-full text-left text-lg">
                 <table class="w-full">
@@ -40,8 +40,8 @@
                     <tbody class="w-full">
                         <tr>
                             <td class="w-1/4 p-2" id="static-time"></td>
-                            <td class="w-1/4 p-2">70%</td>
-                            <td class="w-1/4 p-2">Belum Lulus</td>
+                            <td class="w-1/4 p-2">80%</td>
+                            <td class="w-1/4 p-2">Lulus</td>
                             <td class="w-1/4 p-2 cursor-pointer underline">Tinjau Penilaian</td>
                         </tr>
                     </tbody>
@@ -51,11 +51,11 @@
     </div>
     <div class="my-4">
         <p class="text-lg">
-            Silahkan melanjutkan asessmen dengan mengerjakan bagian <span class="font-medium">berikutnya</span> sebagai tahapan evaluasi dari program pembelajaran yang telah berlangsung. 
+            Silahkan melanjutkan asessmen dengan mengerjakan bagian <span class="font-medium">berikutnya</span> sebagai tahapan evaluasi terakhir untuk menyelesaikan program pembelajaran yang telah berlangsung. 
         </p>
     </div>
     <div class="w-full space-x-10 mt-14 flex justify-end items-center">
-        <a href="/course" class="text-base flex text-blue31 font-semibold">
+        <a href="/page9_0" class="text-base flex text-blue31 font-semibold">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                 <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
             </svg>
