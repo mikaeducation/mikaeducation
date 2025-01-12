@@ -3,10 +3,11 @@
         <div class="flex justify-center items-center h-full w-3/4">
             <div class="flex justify-center items-center mr-auto">
                 <a href="" class="flex items-center">
-                    <div class="mr-5">
-                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-8 w-8">
+                    <div class="mr-2">
+                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-10 w-10">
                     </div>
-                    <h1 class="font-bold text-3xl text-blue6a">MIKA</h1>
+                    <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-5">MIKA 
+                        EDUCATION </h1>
                 </a>
             </div>
             <div class="hidden md:flex md:items-center md:space-x-8">

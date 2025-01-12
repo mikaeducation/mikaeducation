@@ -248,7 +248,7 @@
                             </div>
                             <div class="w-full space-y-4 pl-2 pb-2 text-base">
                                 <div class="w-full text-blue31">
-                                    <form action="/submit-quiz" method="POST" class="space-y-4">
+                                    <form action="/page2_2" method="" class="space-y-4">
                                         @csrf
                                         <!-- Pertanyaan 1 -->
                                         <div class="">
@@ -426,7 +426,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 9 -->
                                         <div>
                                             <h2 class="mb-2">
@@ -449,7 +448,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 10 -->
                                         <div>
                                             <h2 class="mb-2">

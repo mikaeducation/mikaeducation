@@ -61,18 +61,23 @@
             </svg>
             Sebelumnya
         </a>
-        <a href="javascript:void(0)" id="startButtonNext" class="text-base flex text-blue31 font-semibold">Selanjutnya
+        <a href="/page9_3_0" id="startButtonNext" class="text-base flex text-blue31 font-semibold">Selanjutnya
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
                 <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
             </svg>
         </a>
+        {{-- <a href="javascript:void(0)" id="startButtonNext" class="text-base flex text-blue31 font-semibold">Selanjutnya
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#6AA4D9" viewBox="0 0 24 24">
+                <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+            </svg>
+        </a> --}}
     </div>
 </div>
 <!-- Form dialog -->
 <div id="modalDialog1" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>            
     <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
-        @include('includes.components.elearning.course.dialog.startAsessmen2_2')
+        @include('includes.components.elearning.course.dialog.startAsessmen9_2')
     </div>
 </div>
 

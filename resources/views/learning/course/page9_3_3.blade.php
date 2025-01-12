@@ -281,7 +281,7 @@
                             <div class="w-full space-y-4 pl-2 pb-2 text-base">
                                 <div class="w-full text-blue31">
                                     <p class="font-bold">C. Dampak pada kemampuan administrasi MIKA 1.0</p>
-                                    <form action="/submit-quiz" method="POST" class="space-y-4">
+                                    <form action="/preLearn_1" method="" class="space-y-4">
                                         @csrf
                                         <!-- Pertanyaan 1 -->
                                         <div class="">
@@ -305,7 +305,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 2 -->
                                         <div class="">
                                             <h2 class="mb-2">
@@ -328,7 +327,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 3 -->
                                         <div class="">
                                             <h2 class="mb-2">
@@ -351,7 +349,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 4 -->
                                         <div class="">
                                             <h2 class="mb-2">
@@ -374,7 +371,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
                                         <!-- Pertanyaan 5 -->
                                         <div class="">
                                             <h2 class="mb-2">
@@ -396,8 +392,7 @@
                                                 {{ $option }}
                                             </label>
                                             @endforeach
-                                        </div>
-                                        
+                                        </div>                                        
                                         <!-- Tambahkan pertanyaan lainnya di sini dengan format serupa -->                                        
                                         <div class="space-x-10 mt-8 mr-2 flex justify-end items-center">
                                             <button

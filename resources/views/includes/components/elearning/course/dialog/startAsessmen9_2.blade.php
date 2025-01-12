@@ -58,7 +58,7 @@
     btnStartLearning.addEventListener('click', function() {
         toggleModal(); // Menyembunyikan modal
         alert('Silahkan, klik tombol OK dibawah ini untuk memulai penilaian!');
-        window.location.href = '/page2_3'; // Arahkan ke halaman course
+        window.location.href = '/page9_1'; // Arahkan ke halaman course
     });
 
     // Menutup modal saat tombol "Kembali" diklik

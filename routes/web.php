@@ -1,19 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
 
 // MIKA-HOME 
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', function (){
     return view('loginpage');
 });
 
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/register', function (){
     return view('registerpage');
 });
 
+Route::get('/registerprofile', [ProfileController::class, 'showProfileForm']);
+Route::post('/complete-profile', [ProfileController::class, 'completeProfile'])->name('complete-profile');
+
 Route::get('/profile', function (){
     return view('components/profile');
+});
+Route::get('/index', function () {
+    return view('index');
 });
 
 // MIKA-LEARNING
@@ -28,12 +38,12 @@ Route::get('/home', function () {
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
-Route::get('/index', function () {
-    return view('index');
-});
 
 Route::get('/preLearn', function (){
     return view('learning/preLearn');
+});
+Route::get('/preLearn_1', function (){
+    return view('learning/preLearn-1');
 });
 
 Route::get('/event', function (){

@@ -13,10 +13,12 @@
             <div id="menuLearn" class="w-full h-screen hidden md:hidden lg:hidden fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow">
                 <div class="w-full flex justify-center items-center py-5 border-b-2 border-bluee3 relative">
                     <a href="/course" id="" class="flex items-center">
-                        <div class="h-8 w-8 mr-2">
+                        <div class="h-10 w-10 mr-2">
                             <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-full w-full">
                         </div>
-                        <h1 class="font-bold text-3xl text-blue6a">MIKA</h1>
+                        <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-5">MIKA
+                            EDUCATION
+                        </h1>
                     </a>
                     <button onclick="toggleMenu()" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue31 hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -35,10 +37,12 @@
             <div class="w-1 h-1/2 ml-2 bg-blue6a flex md:flex lg:hidden"></div>
             <div class="h-full flex justify-center items-center mr-auto px-4">
                 <a href="javascript:void(0)" id="startButton" class="flex items-center">
-                    <div class="h-8 w-8 mr-2">
+                    <div class="h-10 w-10 mr-2">
                         <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-full w-full">
                     </div>
-                    <h1 class="font-bold text-3xl text-blue6a">MIKA</h1>
+                    <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-5">MIKA
+                        EDUCATION
+                    </h1>
                 </a>
             </div>
             <div class="w-5/6 h-full hidden sm:hidden md:hidden lg:flex xl:flex items-center justify-center space-x-8 md:space-x-6">

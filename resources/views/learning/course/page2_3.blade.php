@@ -248,7 +248,7 @@
                             </div>
                             <div class="w-full space-y-4 pl-2 pb-2 text-base">
                                 <div class="w-full text-blue31">
-                                    <form action="/submit-quiz" method="POST" class="space-y-4">
+                                    <form action="/page3" method="" class="space-y-4">
                                         @csrf
                                         <!-- Pertanyaan 1 -->
                                         <div class="">
@@ -470,8 +470,6 @@
                                             </label>
                                             @endforeach
                                         </div>
-
-                                        
                                         <!-- Tambahkan pertanyaan lainnya di sini dengan format serupa -->                                        
                                         <div class="space-x-10 mt-8 mr-2 flex justify-end items-center">
                                             <button

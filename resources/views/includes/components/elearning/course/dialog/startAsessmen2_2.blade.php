@@ -8,6 +8,15 @@
                     </svg>
                 </div>
                 <div class="text-center">
+                    <h3 class="text-3xl font-semibold text-blue31" id="modal-title">Ulangi Penilaian?</h3>
+                    <div class="mt-4">
+                        <p class="text-medium text-blue31 whitespace-pre-line">Untuk dapat melanjutkan proses pembelajaran, Anda diharuskan untuk menjawab beberapa pertanyaan berikut sebagai penilaian dari proses pembelajaran yang akan Anda lakukan.
+
+                            Jika memerlukan bantuan lebih lanjut, <a href="https://wa.me/082156226440 " class="relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full"> hubungi tim dukungan kami disini.</a>
+                        </p>
+                    </div>
+                </div>
+                {{-- <div class="text-center">
                     <h3 class="text-3xl font-semibold text-blue31" id="modal-title">Mulai Evaluasi?</h3>
                     <div class="mt-4">
                         <p class="text-medium text-blue31 whitespace-pre-line">Bagian merupakan tahapan evaluasi program pembelajaran, kami membutuhkan penilaian Anda terkait Keyakinanan penggunaan MIKA 1.0. Semua jawaban yang Anda berikan akan tersimpan dengan baik dan terjamin kerahasiannya.
@@ -15,7 +24,7 @@
                             Jika memerlukan bantuan lebih lanjut, <a href="https://wa.me/082156226440 " class="relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full"> hubungi tim dukungan kami disini.</a>
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="bg-bluee3 w-full bg-opacity-40 px-4 py-3 flex justify-center space-x-4 sm:px-6">
@@ -58,7 +67,7 @@
     btnStartLearning.addEventListener('click', function() {
         toggleModal(); // Menyembunyikan modal
         alert('Silahkan, klik tombol OK dibawah ini untuk memulai penilaian!');
-        window.location.href = '/page2_3'; // Arahkan ke halaman course
+        window.location.href = '/page2_1'; // Arahkan ke halaman course
     });
 
     // Menutup modal saat tombol "Kembali" diklik

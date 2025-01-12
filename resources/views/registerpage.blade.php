@@ -18,10 +18,10 @@
                             <h2 class="text-5xl font-bold">Hai, Kawan!</h2>
                         </div>
                         <div class="w-full bg-red h-20 flex justify-center items-center mt-8">
-                            <p class="w-4/5 text-xl">Segera masuk dan gunakan semua fitur yang Mika sediakan, dibawah ini sekarang juga!</p>
+                            <p class="w-4/5 text-2xl">Klik tombol MASUK dibawah ini untuk kembali ke halaman login.</p>
                         </div>
                         <div class="flex items-center justify-center mt-8">
-                            <a href="/" class="border-white border-2 w-2/5 h-14 rounded-2xl font-bold text-white flex justify-center items-center">
+                            <a href="/login" class="border-white border-2 w-2/5 h-14 rounded text-2xl font-bold text-white flex justify-center items-center">
                                 MASUK
                             </a>
                         </div>
@@ -35,32 +35,36 @@
                     <div class="mt-20 md:mt-0">
                         <h2 class="text-5xl font-bold">Daftar Akun</h2>
                     </div>
-                    <div class="w-full h-16 mb-8 mt-10 flex justify-center items-center">
-                        <div class="w-1/3 h-full flex justify-center items-center">
+                    <div class="w-full h-16 mb-5 mt-8 flex justify-center items-center">
+                        <div class="w-1/3 h-full flex justify-center items-center gap-8">
                             <a href="" class="w-full h-full border-blue6a border-2 border-opacity-50 rounded-2xl flex justify-center items-center">
                                 <img src="{{ asset('images/google.png') }}" alt="">
                             </a>
-                            <a href="" class="w-full h-full border-blue6a border-2 border-opacity-50 rounded-2xl flex justify-center items-center mx-8">
-                                <img src="{{ asset('images/facebook.png') }}" alt="">
-                            </a>
                             <a href="" class="w-full h-full border-blue6a border-2 border-opacity-50 rounded-2xl flex justify-center items-center">
-                                <img src="{{ asset('images/twitter.png') }}" alt="">
+                                <img src="{{ asset('images/facebook.png') }}" alt="">
                             </a>
                         </div>
                     </div>
-                    <p>atau daftar secara manual</p>
+                    <p class="text-blue6a text-lg">atau daftar secara manual</p>
                     <div class="mt-6 flex-col items-center">
-                        <form action="">
-                            <input type="text" placeholder="Username" class="p-4 bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium text-xl placeholder-white">
-                            <input type="email" placeholder="Email" class="p-4 bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium text-xl placeholder-white mt-5">
-                            <input type="tel" placeholder="Nomor Telpon" class="p-4 bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium text-xl placeholder-white mt-5">
-                            <input type="password" placeholder="Password" class="p-4 bg-greyd9 bg-opacity-60 border-opacity-25 rounded-xl w-3/4 h-12 text-blue6a font-medium text-xl placeholder-white mt-5">
+                        <form action="{{ route('register') }}" method="POST" class="space-y-5">
+                            @csrf
+                            <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/4 h-12 text-blue6a font-medium placeholder:opacity-45 placeholder-blue6a">
+                            @error('phone')
+                                    <p class="text-blue6a text-sm">{{ $message }}</p>
+                            @enderror
+                            <input type="email" name="email" placeholder="Email" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/4 h-12 text-blue6a font-medium placeholder:opacity-45 placeholder-blue6a">
+                            @error('email')
+                                    <p class="text-blue6a text-sm">{{ $message }}</p>
+                            @enderror
+                            <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/4 h-12 text-blue6a font-medium placeholder:opacity-45 placeholder-blue6a">
+                            <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/4 h-12 text-blue6a font-medium placeholder:opacity-45 placeholder-blue6a">
                             <div class="mt-8">
-                                <a href="" class="text-blue6a">
+                                <a href="" class="text-blue6a text-lg">
                                     Lupa Password Anda?
                                 </a>
                             </div>
-                            <button class="bg-blue6a w-2/5 h-14 rounded-2xl font-bold text-white mt-6">DAFTAR</button>
+                            <button class="bg-blue6a w-2/5 h-14 rounded-2xl font-bold text-2xl text-white mt-6">Daftar</button>
                         </form>
                         <p class="block md:hidden mt-5 mb-20"> Sudah Punya Akun? Ayo segera,
                             <a href="/login" class="underline">
@@ -74,3 +78,9 @@
     </section>    
 </body>
 </html>
+
+@if(session('success'))
+<script>
+    alert("{{ session('success') }}");
+</script>
+@endif
