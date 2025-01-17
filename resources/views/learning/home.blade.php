@@ -17,7 +17,7 @@
             <div class="w-3/4 h-auto flex flex-wrap items-center">
                 <div class="flex flex-wrap items-center w-full md:w-2/3">
                     <nav class="flex flex-wrap gap-3">
-                        <a href="/home" class="text-white text-base md:text-base font-bold bg-blue6a rounded-full px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+                        <a href="/learn" class="text-white text-base md:text-base font-bold bg-blue6a rounded-full px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                             Beranda</a>
                         <a href="/preLearn" class="text-blue6a text-base md:text-base font-bold border-2 border-blue6a hover:bg-blue6a rounded-full hover:text-white px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                             Pembelajaran Saya</a>

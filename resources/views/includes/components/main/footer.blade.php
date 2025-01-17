@@ -1,11 +1,11 @@
-<footer class="w-full foot-shadow mt-14 bg-bluee3">
+<footer class="w-full foot-shadow mt-14">
     <div class="container w-3/4 mx-auto gap-0 lg:gap-8 flex flex-col lg:flex-row justify-between py-8 lg:py-12 px-6 lg:px-0">
         <div class="w-ful lg:w-fit flex justify-start items-center mb-6 lg:mb-0">
-            <div class="text-center flex flex-col items-center justify-center">
+            <a href="/" class="text-center flex flex-col items-center justify-center">
                 <img src="{{ asset('images/logo-1.png') }}" alt="" class="w-16 lg:w-full">
                 <h1 class="font-bold text-2xl lg:text-4xl text-blue6a">MIKA</h1>
                 <h6 class="font-medium text-xs lg:text-sm text-blue6a">Copyright©2024</h6>
-            </div>
+            </a>
             <div class="h-full flex md:flex lg:hidden ml-4"> {{-- Mobile --}}
                 <h1 class="font-semibold text-3xl md:text-4xl text-blue6a leading-tight">Media Visual Komunikasi Anak</h1>
             </div>
@@ -30,7 +30,7 @@
         <div class="w-full md:w-full lg:w-1/3 flex justify-start lg:justify-center items-start mb-6 md:mb-0">
             <div class="flex space-y-4">
                 <div class="text-blue6a font-medium text-left md:text-left mr-0 md:mr-4">
-                    <a href="" class="block hover:underline my-0 lg:my-0">Beranda</a>
+                    <a href="/" class="block hover:underline my-0 lg:my-0">Beranda</a>
                     <a href="" class="block hover:underline my-1 lg:my-3">Tentang Kami</a>
                     <a href="" class="block hover:underline my-1 lg:my-3">Aplikasi</a>
                     <a href="" class="block hover:underline my-1 lg:my-3">Artikel</a>
@@ -48,4 +48,4 @@
             </div>
         </div>
     </div>
-</footer> 
+</footer>

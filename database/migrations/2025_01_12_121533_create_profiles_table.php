@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('phone')->unique(); // Ganti user_id dengan phone
+            $table->foreign('phone')->references('phone')->on('users')->onDelete('cascade');
+            $table->string('username')->virtualAs('CONCAT(first_name, " ", last_name)');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('birth_place');
@@ -22,7 +24,7 @@ return new class extends Migration
             $table->string('occupation');
             $table->string('institution');
             $table->timestamps();
-        });
+        });        
     }
 
     /**
@@ -35,3 +37,18 @@ return new class extends Migration
 
     
 };
+
+// $table->string('phone')->unique();
+// $table->foreign('phone')->references('phone')->on('users')->onDelete('cascade');
+// $table->string('email')->unique();
+// $table->string('username')->virtualAs('CONCAT(first_name, " ", last_name)');
+// $table->string('first_name');
+// $table->string('last_name');
+// $table->string('birth_place');
+// $table->date('birth_date');
+// $table->string(column: 'address');
+// $table->string(column: 'gender');
+// $table->string('occupation');
+// $table->string('institution');
+// $table->string(column: 'skill');
+// $table->string(column: 'experience');

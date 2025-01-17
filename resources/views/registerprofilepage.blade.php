@@ -9,7 +9,7 @@
     @vite('public/assets/css/style.css')
 </head>
 <body>
-    <section class="w-full h-max">
+    <section class="w-full h-full">
         <div class="w-full h-full bg-bluee3">
             <div class="w-full h-36 bg-white head-shadow flex items-center justify-center">
                 <div class="flex items-center justify-center text-blue31 gap-5">
@@ -41,10 +41,10 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full h-max bg-bluee3 flex items-center justify-center mt-12 font-medium text-blue31">
+            <div class="w-full h-full bg-bluee3 flex items-center justify-center mt-12 font-medium text-blue31">
                 <div class="flex-col items-center justify-center w-1/2 h-5/6">
                     <p class="text-center font-normal whitespace-pre-line leading-8"><span class="font-bold text-3xl">Lengkapi Biodata Anda</span>
-                            Anda harus melengkapi informasi mengenai biodata Anda terlebih dahulu. 
+                            Untuk dapat melanjutkan, Anda harus melengkapi informasi mengenai biodata diri Anda terlebih dahulu. 
                     </p>
                     <div class="w-full mt-10 mb-14 flex-col items-center text-center">
                         <form action="{{ route('complete-profile') }}" method="POST" class="space-y-5 flex-col">
@@ -52,14 +52,14 @@
                             <div class="flex w-full text-start gap-6">
                                 <div class="w-1/2 space-y-1">
                                     <label>Nama Depan</label>
-                                    <input type="text" name="first_name" value="{{ old('first_name') }}" class="p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a">
+                                    <input type="text" name="first_name" value="{{ old('first_name') }}" class="p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
                                     @error('first_name')
                                         <p class="text-blue6a text-sm">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="w-1/2 space-y-1">
                                     <label>Nama Belakang</label>
-                                    <input type="text" name="last_name" value="{{ old('last_name') }}" class="p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a">
+                                    <input type="text" name="last_name" value="{{ old('last_name') }}" class="p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
                                     @error('last_name')
                                         <p class="text-blue6a text-sm">{{ $message }}</p>
                                     @enderror
@@ -68,11 +68,11 @@
                             <div class="text-start space-y-1">
                                 <label for="">Tempat dan Tanggal Lahir</label>
                                 <div class="flex space-x-6">
-                                    <input type="text" name="birth_place" value="{{ old('birth_place') }}" class="w-2/3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a"/>
+                                    <input type="text" name="birth_place" value="{{ old('birth_place') }}" class="w-2/3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31"/>
                                     @error('birth_place')
                                         <p class="text-blue6a text-sm">{{ $message }}</p>
                                     @enderror
-                                    <input type="date" name="birth_date" value="{{ old('birth_date') }}" class="w-2/4 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a"/>
+                                    <input type="date" name="birth_date" value="{{ old('birth_date') }}" class="w-2/4 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31"/>
                                     @error('birth_date')
                                         <p class="text-blue6a text-sm">{{ $message }}</p>
                                     @enderror
@@ -80,21 +80,32 @@
                             </div>
                             <div class="text-start space-y-1">
                                 <label for="">Alamat</label>
-                                <input type="text" name="address" value="{{ old('address') }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a"/>
+                                <input type="text" name="address" value="{{ old('address') }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31"/>
                                 @error('address')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="text-start space-y-1">
                                 <label for="">Pekerjaan</label>
-                                <input type="text" name="occupation" value="{{ old('occupation') }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a"/>
+                                <select name="occupation" id="occupation" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31" onchange="handleOccupationChange()">
+                                    <option value="">Pilih Pekerjaan Anda...</option>
+                                    <option value="Akademisi">Akademisi</option>
+                                    <option value="Ahli Psikolog Anak">Ahli Psikolog Anak</option>
+                                    <option value="Guru">Guru/Tenaga Pengajar</option>
+                                    <option value="Masyarakat Umum">Masyarakat Umum</option>
+                                    <option value="Terapis">Terapis/Klinis</option>
+                                    <option value="Lainnya">Lainnya...</option>
+                                </select>
                                 @error('occupation')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
+                                <div id="other-occupation" class="hidden">
+                                    <input type="text" name="other_occupation" id="other_occupation" placeholder="Tulis Pekerjaan Lainnya disini..." class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
+                                </div>
                             </div>
                             <div class="text-start space-y-1 pb-5">
                                 <label for="">Asal Instansi</label>
-                                <input type="text" name="institution" value="{{ old('institution') }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue3a"/>
+                                <input type="text" name="institution" value="{{ old('institution') }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31"/>
                                 @error('institution')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
@@ -107,8 +118,7 @@
                 </div>
             </div>
         </div>
-    </section>    
-</body>
+    </section>
 </html>
 
 @if(session('success'))
@@ -116,3 +126,17 @@
     alert("{{ session('success') }}");
 </script>
 @endif
+
+<script>
+    function handleOccupationChange() {
+        const occupationSelect = document.getElementById('occupation');
+        const otherOccupationDiv = document.getElementById('other-occupation');
+
+        if (occupationSelect.value === 'Lainnya') {
+            otherOccupationDiv.classList.remove('hidden');
+        } else {
+            otherOccupationDiv.classList.add('hidden');
+            document.getElementById('other_occupation').value = '';
+        }
+    }
+</script>

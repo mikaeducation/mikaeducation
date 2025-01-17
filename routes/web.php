@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AccountController;
+
 
 // MIKA-HOME 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', function (){
     return view('loginpage');
 });
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/register', function (){
@@ -20,24 +24,27 @@ Route::get('/registerprofile', [ProfileController::class, 'showProfileForm']);
 Route::post('/complete-profile', [ProfileController::class, 'completeProfile'])->name('complete-profile');
 
 Route::get('/profile', function (){
-    return view('components/profile');
+    return view('profile');
 });
-Route::get('/index', function () {
+Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
+    Route::get('/profile', [AccountController::class, 'show'])->name('account.show');
+    Route::post('/account', [AccountController::class, 'update'])->name('account.update');
+});
+
+
+Route::get('/', function () {
     return view('index');
 });
 
+
 // MIKA-LEARNING
-Route::get('/', function () {
+Route::get('/learn', function () {
     return view('learning/home');
 });
-Route::get('/home', function () {
-    return view('learning/home');
-});
-
-
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-
 
 Route::get('/preLearn', function (){
     return view('learning/preLearn');

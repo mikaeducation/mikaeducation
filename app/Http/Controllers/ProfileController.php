@@ -44,9 +44,9 @@ class ProfileController extends Controller
         // Ambil data pengguna yang sedang login
         $user = Auth::user();
 
-        // Simpan data profil ke tabel profiles
+        // Simpan data profil ke tabel profiles berdasarkan nomor telepon
         Profile::updateOrCreate(
-            ['user_id' => $user->id],  // Kondisi pencocokan
+            ['phone' => $user->phone], // Kondisi pencocokan berdasarkan phone
             $request->only([
                 'first_name',
                 'last_name',
@@ -59,6 +59,7 @@ class ProfileController extends Controller
         );
 
         // Arahkan ke halaman index setelah berhasil disimpan
-        return redirect('/index')->with('success', 'Profil berhasil diperbarui!');
+        return redirect('/')->with('success', 'Profil berhasil diperbarui!');
     }
+    
 }

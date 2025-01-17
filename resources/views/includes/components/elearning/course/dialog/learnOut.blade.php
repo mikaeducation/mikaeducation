@@ -45,7 +45,7 @@
         outBtn.addEventListener('click', function() {
             modal.classList.add('hidden'); // Menyembunyikan modal
                 alert('Silahkan, klik tombol OK dibawah ini untuk keluar dari halaman pembelajaran!');
-            window.location.href = '/';
+            window.location.href = '/learn';
         });
 
         // Menutup modal ketika tombol "Batal" diklik

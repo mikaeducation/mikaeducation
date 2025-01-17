@@ -20,8 +20,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * Relasi ke model Profile berdasarkan kolom 'phone'.
+     */
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(\App\Models\Profile::class, 'phone', 'phone'); //dibuat seperti ini agar nama class Profile tidak bentrok dengan namespace Symfony
     }
 }
