@@ -27,11 +27,13 @@ Route::get('/profile', function (){
     return view('profile');
 });
 Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
+Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile-update');
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [AccountController::class, 'show'])->name('account.show');
     Route::get('/profile', [AccountController::class, 'show'])->name('account.show');
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });
+Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware('auth');
 
 
 Route::get('/', function () {
