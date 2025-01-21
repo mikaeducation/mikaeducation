@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
+            // Untuk memastikan penghapusan data di tabel users
+            $table->softDeletes();
         });
     }
 

@@ -26,14 +26,14 @@
                             Pembelajaran
                         </a>
                         <a href="{{ Auth::check() ? '/profile' : '/login' }}" class="text-center">
-                            <button id="menu-btn" class="h-full flex py-2 px-4 text-blue6a text-base font-bold border-2 border-blue6a  transition rounded-full hover:bg-blue6a hover:text-white focus:outline-none">
+                            <button id="menu-btn" class="h-full flex py-1 px-4 text-center text-blue6a text-xl font-medium border-2 border-blue6a  transition rounded-full hover:bg-blue6a hover:text-white focus:outline-none">
                                 @if(Auth::check() && Auth::user()->profile)
                                     {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                                 @else
                                     <p>Masuk</p>
                                 @endif
                             </button>
-                        </a>      
+                        </a>     
                     </div>                  
                 </nav>
             </div>

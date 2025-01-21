@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;  
-  
+
 use App\Models\Profile;  
 use Illuminate\Http\Request;  
 use Illuminate\Support\Facades\Auth;  
-  
+
 class ProfileController extends Controller  
 {  
     /**  
@@ -15,7 +15,6 @@ class ProfileController extends Controller
     {  
         return view('registerprofilepage');  
     }  
-
     /**  
      * Menyimpan data profil pengguna ke tabel profiles  
      */  
@@ -40,10 +39,8 @@ class ProfileController extends Controller
             'occupation.required' => 'Pekerjaan wajib diisi.',  
             'institution.required' => 'Asal instansi wajib diisi.',  
         ]);  
-
         // Ambil data pengguna yang sedang login  
         $user = Auth::user();  
-
         // Simpan data profil ke tabel profiles berdasarkan nomor telepon  
         Profile::updateOrCreate(  
             ['phone' => $user->phone], // Kondisi pencocokan berdasarkan phone  
@@ -56,8 +53,7 @@ class ProfileController extends Controller
                 'occupation',  
                 'institution',  
             ])  
-        );  
-
+        ); 
         // Arahkan ke halaman index setelah berhasil disimpan  
         return redirect('/')->with('success', 'Profil berhasil diperbarui!');  
     }  
@@ -66,65 +62,95 @@ class ProfileController extends Controller
      * Menampilkan halaman profile  
      */  
     public function showProfile()  
-{  
-    // Ambil data pengguna yang sedang login  
-    $user = Auth::user();  
-    $profile = Profile::where('phone', $user->phone)->first();  
-  
-    // Pastikan profil ditemukan  
-    if (!$profile) {  
-        return redirect('/')->with('error', 'Profil tidak ditemukan.');  
-    }  
-  
-    // Tampilkan halaman profile dengan data profil dan user  
-    return view('profile', compact('profile', 'user'));  
-}  
-
-    /**  
-     * Mengupdate data profil pengguna  
-     */  
-    public function updateProfile(Request $request)  
     {  
-        // Validasi input form  
-        $request->validate([  
-            'gender' => 'nullable|string',  
-            'skill' => 'nullable|string',  
-            'experience' => 'nullable|string',  
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
-            'description' => 'nullable|string',  
-        ]);  
-  
         // Ambil data pengguna yang sedang login  
         $user = Auth::user();  
-  
-        // Ambil data profil pengguna  
         $profile = Profile::where('phone', $user->phone)->first();  
-  
+
         // Pastikan profil ditemukan  
         if (!$profile) {  
             return redirect('/')->with('error', 'Profil tidak ditemukan.');  
         }  
-  
-        // Update data profil  
-        $profile->update($request->only([  
-            'gender',  
-            'skill',  
-            'experience',  
-            'description',  
-        ]));  
-  
-        // Simpan gambar jika ada  
-        if ($request->hasFile('banner_image')) {    
-            $profile->banner_image = $request->file('banner_image')->store('images', 'public');    
+
+        // Tampilkan halaman profile dengan data profil dan user  
+        return view('profile', compact('profile', 'user'));  
+    }  
+
+    /**  
+     * Mengupdate data profil pengguna  
+     */  
+    public function updateProfile(Request $request)
+    {
+    // Validasi input form
+    $request->validate([
+        'first_name' => 'required|string|max:50',
+        'last_name' => 'required|string|max:50',
+        'birth_place' => 'required|string|max:50',
+        'birth_date' => 'required|date|before:today',
+        'address' => 'required|string|max:255',
+        'gender' => 'nullable|string|in:Laki-laki,Perempuan',
+        'occupation' => 'required|string|max:100',
+        'institution' => 'required|string|max:100',
+        'skill' => 'nullable|string|max:100',
+        'experience' => 'nullable|string|max:255',
+    ]);
+        // Ambil data pengguna yang sedang login  
+        $user = Auth::user();  
+        // Ambil data profil pengguna  
+        $profile = Profile::where('phone', $user->phone)->first();  
+        // Pastikan profil ditemukan    
+        if (!$profile) {  
+            return redirect('/')->with('error', 'Profil tidak ditemukan.');  
         }    
-        if ($request->hasFile('profile_image')) {    
-            $profile->profile_image = $request->file('profile_image')->store('images', 'public');    
-        }
-  
-        $profile->save();  
-  
-        // Kembali ke halaman profile setelah berhasil disimpan  
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');  
-    }    
+    // Update data profil    
+        $profile->update($request->only([  
+            'first_name',
+            'last_name',
+            'birth_place',
+            'birth_date',
+            'address',
+            'gender',
+            'occupation',
+            'institution',
+            'skill',
+            'experience',
+        ]));
+        // Kembali ke halaman profile setelah berhasil disimpan
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+    }  
+
+
+    public function updateProfileMedia(Request $request)  
+    {  
+        // Validasi input untuk gambar dan deskripsi  
+        $request->validate([  
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
+            'description' => 'nullable|string',  
+        ]);  
+        // Ambil data pengguna yang sedang login    
+        $user = Auth::user();    
+        // Ambil data profil pengguna    
+        $profile = Profile::where('phone', $user->phone)->first();    
+        // Pastikan profil ditemukan    
+        if (!$profile) {    
+            return redirect('/')->with('error', 'Profil tidak ditemukan.');    
+        }    
+        // Update deskripsi  
+        if ($request->has('description')) {  
+            $profile->description = $request->description;  
+        }  
+        // Simpan gambar jika ada    
+        if ($request->hasFile('banner_image')) {      
+            $profile->banner_image = $request->file('banner_image')->store('images', 'public');      
+        }      
+        if ($request->hasFile('profile_image')) {      
+            $profile->profile_image = $request->file('profile_image')->store('images', 'public');      
+        }  
+        $profile->save();    
+        // Kembali ke halaman profile setelah berhasil disimpan    
+        return redirect()->back()->with('success', 'Media profil berhasil diperbarui!');    
+    }
+    
+    
 }    

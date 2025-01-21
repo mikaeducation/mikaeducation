@@ -11,7 +11,6 @@ class ProfilesTableSeeder extends Seeder
     {  
         Profile::create([  
             'phone' => '082156226440',  
-            'email' => 'example@domain.com', // Menambahkan email  
             'first_name' => 'Ahmad',  
             'last_name' => 'Rayhan',  
             'birth_place' => 'Jakarta',  

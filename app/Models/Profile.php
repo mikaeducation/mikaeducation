@@ -12,7 +12,7 @@ class Profile extends Model
 
     protected $fillable = [  
         'phone',
-        'email',
+        // 'email',
         'username',
         'first_name',  
         'last_name',
@@ -21,8 +21,8 @@ class Profile extends Model
         'address',  
         'occupation',  
         'institution',  
-        'gender',  
-        'skill',  
+        'gender',
+        'skill',
         'experience',  
         'banner_image',  
         'profile_image',  

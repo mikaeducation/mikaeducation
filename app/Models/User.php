@@ -9,10 +9,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'phone',        // Tambahkan kolom 'phone' di sini

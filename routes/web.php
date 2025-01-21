@@ -28,12 +28,15 @@ Route::get('/profile', function (){
 });
 Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
 Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile-update');
+Route::put('/profile-media-update', [ProfileController::class, 'updateProfileMedia'])->name('profile-media-update');
+
+Route::post('/delete-account', [AccountController::class, 'deleteAccount'])->name('account.delete');
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [AccountController::class, 'show'])->name('account.show');
     Route::get('/profile', [AccountController::class, 'show'])->name('account.show');
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });
-Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware(middleware: 'auth');
 
 
 Route::get('/', function () {

@@ -18,7 +18,7 @@ class AuthController extends Controller
         'email' => 'required|email|unique:users,email',
         'password' => 'required|confirmed',
     ],[
-        'phone' => 'Nomor telpon wajib diisi.',
+        'phone' => 'Nomor belum diisi atau telah digunakan sebelumnya.',
         'email' => 'Email belum diisi atau telah digunakan sebelumnya.',
         'password' => 'Password wajib diisi.',
     ]);

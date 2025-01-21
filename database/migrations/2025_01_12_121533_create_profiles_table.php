@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();  
             $table->string('phone')->unique();  
             $table->foreign('phone')->references('phone')->on('users')->onDelete('cascade');  
-            $table->string('email')->nullable()->unique(); 
-            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');  
+            // $table->string('email')->nullable()->unique(); 
+            // $table->foreign('email')->references('email')->on('users')->onDelete('cascade');  
             $table->string('username')->virtualAs('CONCAT(first_name, " ", last_name)');  
             $table->string('first_name');  
             $table->string('last_name');  

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Register | Mika Education</title>
+    <title>Lengkapi Biodata | Mika Education</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,9 +99,6 @@
                                 @error('occupation')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
-                                <div id="other-occupation" class="hidden">
-                                    <input type="text" name="other_occupation" id="other_occupation" placeholder="Tulis Pekerjaan Lainnya disini..." class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
-                                </div>
                             </div>
                             <div class="text-start space-y-1 pb-5">
                                 <label for="">Asal Instansi</label>
@@ -126,17 +123,3 @@
     alert("{{ session('success') }}");
 </script>
 @endif
-
-<script>
-    function handleOccupationChange() {
-        const occupationSelect = document.getElementById('occupation');
-        const otherOccupationDiv = document.getElementById('other-occupation');
-
-        if (occupationSelect.value === 'Lainnya') {
-            otherOccupationDiv.classList.remove('hidden');
-        } else {
-            otherOccupationDiv.classList.add('hidden');
-            document.getElementById('other_occupation').value = '';
-        }
-    }
-</script>
