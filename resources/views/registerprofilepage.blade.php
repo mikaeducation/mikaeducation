@@ -107,8 +107,8 @@
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button class="bg-blue6a w-1/2 p-3 rounded font-bold text-white">SIMPAN DAN LANJUTKAN</button>
-                            <p class="font-normal">Jika memerlukan bantuan, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a></p>
+                            <button class="bg-blue31 w-1/2 p-3 rounded font-bold text-white">SIMPAN DAN LANJUTKAN</button>
+                            <p class="font-normal">Jika memerlukan bantuan lebih lanjut, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a></p>
                         </form>
                         
                     </div>                    
@@ -116,6 +116,16 @@
             </div>
         </div>
     </section>
+
+    <footer class="w-full flex flex-col items-center justify-center bg-blue31 text-white">
+        <div class="w-full bg-blue20 font-light flex items-center justify-center">
+            <div class="py-5 w-3/4 flex items-center justify-center space-x-14">
+                <p>© 2025 Media Visual Komunikasi Anak for Mikaeducation. All Rights Reserved.</p>
+                <a href="" class="underline italic underline-offset-1">Terms and Conditions</a>
+            </div>
+        </div>
+    </footer>
+    
 </html>
 
 @if(session('success'))

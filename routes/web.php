@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AccountController;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Http\Request;
 
 
 // MIKA-HOME 
@@ -12,13 +14,23 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', function (){
     return view('loginpage');
 });
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/register', function (){
     return view('registerpage');
 });
+
+// Rute untuk verifikasi email  
+Route::get('/email/verify/{id}/{hash}', function (Request $request) {  
+    // Logika verifikasi email  
+    return app('auth')->user()->markEmailAsVerified();  
+})->name('verification.verify');
+
+Route::get('/', function () {
+    return view('index');
+})->middleware(['auth', 'verified']);
 
 Route::get('/registerprofile', [ProfileController::class, 'showProfileForm']);
 Route::post('/complete-profile', [ProfileController::class, 'completeProfile'])->name('complete-profile');

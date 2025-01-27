@@ -12,29 +12,11 @@
         @include('includes.components.main.header')
         @include('includes.content.main.dropdown')
 
-        <section class="w-full h-max flex justify-center bg-bluee3">
-            <div class="w-3/4 h-full flex items-center pt-10">
-                <div class="">
-                    <div class="w-full flex flex-col lg:flex-row justify-center items-center">
-                        <div class="flex justify-center items-center w-full h-full lg:w-1/2 mb-8 lg:mb-0">
-                            <img src="{{ asset('images/ilustration.png') }}" alt="" class="w-full h-max max-w-md">
-                        </div>
-                        <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-end bg-yellow text-blue6a lg:p-2">
-                            <h1 class="font-bold text-3xl lg:text-5xl text-center lg:text-right">MIKA EDUCATION</h1>
-                            <h3 class="font-semibold text-2xl lg:text-3xl text-center lg:text-right mt-2 lg:mt-4">MEDIA VISUAL KOMUNIKASI ANAK</h3>
-                            <p class="mt-4 lg:mt-8 text-blue31 font-medium text-justify lg:text-right">
-                                Media Visual Komunikasi Anak (MIKA) adalah media edukasi dan pembelajaran khusus penanganan Anak Berkebutuhan Khusus, terutama anak dengan Spektrum Autisme dan hendaya komunikasi. Media ini dibuat dalam bentuk aplikasi perangkat lunak berbasis mobile yang mendukung belajar komunikasi dengan dukungan stimulus multi-sensoris berupa visual dan audio. Dengan pendekatan belajar visual, tercipta sebuah aplikasi bernama MIKA 1.0 yang menjadi strategi efektif dan berdaya guna dalam mendukung pendidikan inklusi di Indonesia.
-                            </p>
-                            <button class="mt-8 px-8 text-white font-medium bg-pinkee h-10 rounded-full hover:bg-blue6a">
-                                Pelajari selengkapnya...
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <Section class="w-full h-max flex justify-center items-center">
+            @include('includes.content.main.home.section1');
+        </Section>
 
-        <section class="w-full h-max flex justify-center bg-bluee3">
+        {{-- <section class="w-full h-max flex justify-center bg-bluee3">
             <div class="flex flex-col items-center  w-full h-full ">
                 <div class="h-max w-3/4 mt-10">
                     <div class="w-full flex justify-center items-center flex-wrap ">
@@ -63,9 +45,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
-        <section id="about" class="w-full h-max flex justify-center items-center bg-custom">
+        {{-- <section id="about" class="w-full h-max flex justify-center items-center bg-custom">
             <div class="xl:w-3/4 w-3/4 h-full flex-col mt-20">
                 <div class="w-full flex justify-center">
                     <div class="sm:w-1/2 h-20 bg-bluee3 mt-40 rounded-2xl flex justify-center items-center px-4 font-bold text-blue6a">
@@ -127,9 +109,9 @@
                 </div>
                 
             </div>
-        </section>
+        </section> --}}
 
-        <section class=" w-full h-max bg-custom-1 mt-10 flex flex-col items-center">
+        {{-- <section class=" w-full h-max bg-custom-1 mt-10 flex flex-col items-center">
             <div class="w-3/4 flex flex-col justify-center items-center">
                 <h1 class="font-bold text-5xl text-blue6a my-14 text-center">Aplikasi MIKA 1.0</h1>
                 <img src="{{ asset('images/tablet.png') }}" alt="">
@@ -142,9 +124,9 @@
                     <img src="{{ asset('images/playstore.png') }}" alt="" class="mt-5">
                 </a>
             </div>
-        </section>  
+        </section>   --}}
 
-        <section class=" w-full h-max bg-bluee3 mt-24 flex justify-center py-20">
+        {{-- <section class=" w-full h-max bg-bluee3 mt-24 flex justify-center py-20">
             <div class="flex flex-col items-center w-3/4 text-center ">
                 <h3 class="mb-5 md:mb-10 text-blue6a text-xl italic md:text-5xl font-semibold md:font-medium">SEGERA DATANG...</h3>
                 <h1 class="font-bold text-pinkee text-4xl md:text-8xl italic">MIKA E-Learning</h1>
@@ -154,9 +136,9 @@
                 blandit hendrerit praesent vel. Malesuada at cras convallis ultrices.</p>
                 <a href="" class="bg-pinkee font-medium flex justify-center items-center text-white w-40 h-8 rounded-full hover:bg-blue6a">selengkapnya...</a>
             </div>
-        </section> 
+        </section>  --}}
 
-        <section class=" w-full h-max flex justify-center">
+        {{-- <section class=" w-full h-max flex justify-center">
             <div class="w-3/4 mt-28">
                 <div class=" bg-blue6a rounded-3xl flex flex-col">
                     <div class="flex flex-col justify-center items-center my-10">
@@ -200,9 +182,9 @@
                         </div>
                     </div>
                 </div>
-        </section>
+        </section> --}}
 
-        <section class=" w-full h-max bg-custom-3 flex justify-center my-16">
+        {{-- <section class=" w-full h-max bg-custom-3 flex justify-center my-16">
             <div class="w-3/4 ">
                 <div class=" rounded-3xl flex flex-col mb-14">
                     <div class="flex flex-col justify-center items-center">
@@ -229,7 +211,7 @@
                         </div>
                     </div>
                 </div>
-        </section>
+        </section> --}}
 
         @include('includes.components.main.footer')      
         

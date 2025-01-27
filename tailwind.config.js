@@ -14,14 +14,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        'greyd9' : '#D9D9D9',
+        'grayd9' : '#D9D9D9',
         'bluee3' : '#E3F5FF',
         'blue6a' : '#6AA4D9',
         'blue31' : '#31587C',
+        'blue20' : '#204057',
         'pinkee' : '#EE97C0'
       },
+      backgroundImage: {
+        'main-bg': "url('/images/bg-main.png')",
+      },
       fontFamily: {
-        'futura': ['Futura', 'sans-serif'],
+        'futura': ['Futura', 'poppins'],
       },
       keyframes: {
         slideInFromLeft: {

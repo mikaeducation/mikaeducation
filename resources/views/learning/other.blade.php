@@ -9,47 +9,14 @@
         @vite('public/assets/css/style.css')
         {{-- <script>document.documentElement.classList.add('js')</script> --}}
     </head>
-    <body class="font-futura h-screen w-full relative">
+    <body class="font-futura h-max w-full relative">
 
-    @include('includes.components.elearning.header')
-        
-        <section class="w-full h-auto flex justify-center items-center">
-            <div class="w-3/4 h-auto flex flex-wrap items-center">
-                <div class="flex flex-wrap items-center w-full md:w-2/3">
-                    <nav class="flex flex-wrap gap-3">
-                        <a href="/learn" class="text-blue6a text-base md:text-base font-bold border-2 border-blue6a hover:bg-blue6a rounded-full hover:text-white px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                            Beranda</a>
-                        <a href="/preLearn" class="text-blue6a text-base md:text-base font-bold border-2 border-blue6a hover:bg-blue6a rounded-full hover:text-white px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                            Pembelajaran Saya</a>
-                        <a href="/event" class="text-blue6a text-base md:text-base font-bold border-2 border-blue6a hover:bg-blue6a rounded-full hover:text-white px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                            Kegiatan</a>
-                        <a href="/cert" class="text-blue6a text-base md:text-base font-bold border-2 border-blue6a hover:bg-blue6a rounded-full hover:text-white px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                            Sertifikasi</a>
-                        <a href="/other" class="text-white text-base md:text-base font-bold bg-blue6a rounded-full px-3 py-2 md:px-6 md:py-3 flex justify-center items-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
-                            Lainnya</a>
-                        <button id="menu-btn" class="flex items-center justify-center h-10 w-10 p-2 bg-blue6a rounded-full hover:shadow-md md:hidden">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12L5 4" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M19 20L19 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M5 20L5 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M19 12L19 4" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M12 7L12 4" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M12 20L12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="5" cy="14" r="2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="12" cy="9" r="2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="19" cy="15" r="2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </nav>
-                </div>
-                @include('includes.components.elearning.navbar')
-            </div>
-        </section>    
+    @include('includes.components.elearning.header')   
         
         <section class="w-full h-2/3 mt-8 md:mt-12 flex flex-col justify-center items-center">
             <div class="w-3/4 h-full flex flex-col text-blue31 text-justify">
                 <h1 class="text-3xl font-bold mb-2">HALAMAN SEDANG DALAM PROSES PENGEMBANGAN.</h1>
-                <P class="text-lg font-medium whitespace-pre-line">Maaf, halaman ini sementara tidak dapat diakses. Kami sedang meningkatkan layanan untuk pengalaman pengguna yang lebih baik. 
+                <P class="text-lg font-medium whitespace-pre-line">Maaf, halaman ini sementara tidak dapat diakses. Kami sedang meningkatkan layanan untuk pengalaman pengguna yang lebih baik.
                     Mohon cek kembali di kemudian hari. Terima kasih atas pengertiannya.</P>
             </div>
         </section>

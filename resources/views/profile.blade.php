@@ -15,12 +15,12 @@
     @include('includes.components.main.header')
 
         <section class="w-full h-auto flex justify-center items-center">
-            <div class="w-3/4 h-auto flex-col text-base items-center pt-12 space-y-3">
+            <div class="w-3/4 h-auto flex-col text-base items-center pt-4 space-y-3">
                 <div class="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 32 24">
                         <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
                     </svg> 
-                    <a href="/learn" class="text-blue31 font-medium text-base flex justify-center items-center underline">
+                    <a href="/" class="text-blue31 font-medium text-base flex justify-center items-center underline">
                         Kembali ke halaman Utama
                     </a>
                 </div>

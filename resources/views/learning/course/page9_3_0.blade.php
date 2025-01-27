@@ -536,7 +536,7 @@
         </div>
     </section>
 
-    @include('includes.components.elearning.footer')
+    @include('includes.components.elearning.course.footer')
     
     </body>
 
