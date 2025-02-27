@@ -19,7 +19,8 @@ export default {
         'blue6a' : '#6AA4D9',
         'blue31' : '#31587C',
         'blue20' : '#204057',
-        'pinkee' : '#EE97C0'
+        'pinkee' : '#EE97C0',
+        'yellowf4' : '#F4C867'
       },
       backgroundImage: {
         'main-bg': "url('/images/bg-main.png')",

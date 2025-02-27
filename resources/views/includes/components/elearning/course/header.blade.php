@@ -1,8 +1,9 @@
+<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
 <header class="w-full h-24 mb-8 md:mb-12 head-shadow flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full hidden md:flex lg:flex justify-center">
         <div class="flex justify-between md:justify-between lg:justify-center items-center h-full w-3/4 ">
             <div class="flex justify-center items-center mr-auto">
-                <a href="javascript:void(0)" id="startButton" class="flex items-center">
+                <a class="flex items-center">
                     <div class="h-10 w-10 mr-2">
                         <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-full w-full">
                     </div>
@@ -13,17 +14,6 @@
             </div>
             <div class="w-2/3 text-xl text-blue6a font-medium tracking-wide">
                 <nav class="flex items-center justify-end">
-                    <div class="w-5/6 hidden md:hidden lg:flex items-center justify-end md:justify-end lg:justify-start">
-                        <form action="/search" method="GET" class="w-4/5 h-12 flex justify-center items-center md:border-2 md:border-blue6a md:rounded border-2">
-                            <input name="query" required type="text" placeholder="Apa yang akan Anda pelajari?" class="w-full text-base hidden md:flex pl-2 bg-transparent focus:outline-none placeholder:opacity-0 placeholder:md:opacity-100">
-                            <button type="submit" class="p-1 mr-0 md:mr-1 rounded md:bg-blue6a flex items-center justify-center hover:border-blue31 hover:bg-blue31">
-                                <svg class="md:flex hidden" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="14.6562" cy="14.25" r="8.75" stroke="white" stroke-width="2"/>
-                                    <path d="M25.9062 25.5L22.1562 21.75" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                </svg>                                                                                  
-                            </button>
-                        </form>
-                    </div>
                     <div class="flex items-center justify-center gap-6">
                         <a href="" class="pr-5 border-r-2 flex items-center border-blue6a border-opacity-50">
                             <svg width="55" height="55" viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,9 +21,9 @@
                                 <path d="M20.2394 38.9583C20.2394 40.1621 20.4895 41.3541 20.9753 42.4663C21.461 43.5784 22.1731 44.5889 23.0707 45.4401C23.9684 46.2913 25.034 46.9666 26.2068 47.4272C27.3796 47.8879 28.6366 48.125 29.9061 48.125C31.1755 48.125 32.4325 47.8879 33.6054 47.4272C34.7782 46.9666 35.8438 46.2913 36.7415 45.4401C37.6391 44.5889 38.3511 43.5784 38.8369 42.4663C39.3227 41.3541 39.5728 40.1621 39.5728 38.9583" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
                             </svg>                                
                         </a>
-                        <div class="relative group inline-block text-left">
+                        <div class="relative group menu-container inline-block text-left">
                             <button class="flex items-center text-center focus:outline-none">
-                                <div id="menu-btn" class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
+                                <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
                                     @if(Auth::check() && Auth::user()->profile)
                                         {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                                     @else
@@ -49,20 +39,16 @@
                                     <path d="M18 9L12 15L6 9" stroke="#6AA4D9" stroke-width="2"/>
                                 </svg>
                             </button>
-                            <div class="absolute right-0 w-60 bg-white bg-opacity-0  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10">
-                                <div class="bg-white mt-7 border border-gray-200 rounded shadow-lg">
-                                    <div class="absolute top-4 right-9 transform -translate-y-1 w-8 h-8 z-10 bg-white border-t-2 border-l-2 border-gray-200 rotate-45"></div>
-                                    <ul class="py-1 z-20 relative text-blue31">
-                                        <li><a href="/profile" class="block px-4 py-2 hover:bg-bluee3">Profil</a></li>
-                                        <li><a href="/learn" class="block px-4 py-2 hover:bg-bluee3">Beranda Pembelajaran</a></li>
-                                        <li><a href="/preLearn" class="block px-4 py-2 hover:bg-bluee3">Aktivitas Belajar</a></li>
-                                        <li><a href="/other" class="block px-4 py-2 hover:bg-bluee3">Program Lainnya</a></li>
-                                        <li><a href="/" class="block px-4 py-2 hover:bg-bluee3">Halaman Utama</a></li>
+                            <div class="absolute right-0 w-[335px] bg-white bg-opacity-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10">
+                                <div class="bg-blue6a mt-5 rounded">
+                                    <div class="absolute top-4 right-11 transform -translate-y-1 w-8 h-8 z-10 bg-blue6a rotate-45"></div>
+                                    <ul class="py-1 px-1 z-20 relative text-white">
+                                        <li><a href="javascript:void(0)" id="startButton" class="block px-4 py-2 hover:text-blue6a hover:bg-white">Kembali ke Beranda pembelajaran</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>                  
+                    </div>                    
                 </nav>
             </div>
         </div>
@@ -78,7 +64,7 @@
             </a>
         </div>
         <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="flex items-center justify-center">
-            <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a  transition rounded">
+            <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a hover:border-blue31 transition rounded">
                 @if(Auth::check() && Auth::user()->profile)
                     {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                 @else
@@ -201,4 +187,19 @@
         }, { once: true });
     }
 }
+
+    document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("overlay");
+            const menuContainers = document.querySelectorAll(".menu-container");
+            
+            menuContainers.forEach(container => {
+                container.addEventListener("mouseenter", () => {
+                    overlay.classList.remove("hidden");
+                });
+
+                container.addEventListener("mouseleave", () => {
+                    overlay.classList.add("hidden");
+                });
+            });
+        });
 </script>

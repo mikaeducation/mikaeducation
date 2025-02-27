@@ -1,3 +1,4 @@
+<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
 <header class="w-full h-24 head-shadow flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full hidden md:flex lg:flex justify-center">
         <div class="flex justify-between md:justify-between lg:justify-center items-center h-full w-3/4 ">
@@ -30,9 +31,9 @@
                                 <path d="M20.2394 38.9583C20.2394 40.1621 20.4895 41.3541 20.9753 42.4663C21.461 43.5784 22.1731 44.5889 23.0707 45.4401C23.9684 46.2913 25.034 46.9666 26.2068 47.4272C27.3796 47.8879 28.6366 48.125 29.9061 48.125C31.1755 48.125 32.4325 47.8879 33.6054 47.4272C34.7782 46.9666 35.8438 46.2913 36.7415 45.4401C37.6391 44.5889 38.3511 43.5784 38.8369 42.4663C39.3227 41.3541 39.5728 40.1621 39.5728 38.9583" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
                             </svg>                                
                         </a>
-                        <div class="relative group inline-block text-left">
+                        <div class="relative group menu-container inline-block text-left">
                             <button class="flex items-center text-center focus:outline-none">
-                                <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
+                                <div class="h-full flex items-center px-3 py-1 mr-2 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
                                     @if(Auth::check() && Auth::user()->profile)
                                         {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                                     @else
@@ -44,19 +45,19 @@
                                         </p>
                                     @endif
                                 </div>
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18 9L12 15L6 9" stroke="#6AA4D9" stroke-width="2"/>
                                 </svg>
                             </button>
-                            <div class="absolute right-0 w-60 bg-white bg-opacity-0  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10">
-                                <div class="bg-white mt-7 border border-gray-200 rounded shadow-lg">
-                                    <div class="absolute top-4 right-9 transform -translate-y-1 w-8 h-8 z-10 bg-white border-t-2 border-l-2 border-gray-200 rotate-45"></div>
-                                    <ul class="py-1 z-20 relative text-blue31">
-                                        <li><a href="/profile" class="block px-4 py-2 hover:bg-bluee3">Profil</a></li>
-                                        <li><a href="/learn" class="block px-4 py-2 hover:bg-bluee3">Beranda Pembelajaran</a></li>
-                                        <li><a href="/preLearn" class="block px-4 py-2 hover:bg-bluee3">Aktivitas Belajar</a></li>
-                                        <li><a href="/other" class="block px-4 py-2 hover:bg-bluee3">Program Lainnya</a></li>
-                                        <li><a href="/" class="block px-4 py-2 hover:bg-bluee3">Halaman Utama</a></li>
+                            <div class="absolute right-0 w-72 bg-white bg-opacity-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10">
+                                <div class="bg-blue6a mt-5 rounded">
+                                    <div class="absolute top-4 right-9 transform -translate-y-1 w-8 h-8 z-10 bg-blue6a rotate-45"></div>
+                                    <ul class="py-1 px-1 z-20 relative text-white">
+                                        <li><a href="/profile" class="block px-4 py-2 hover:text-blue6a hover:bg-white">Profil Anda</a></li>
+                                        <li><a href="/learn" class="block px-4 py-2 hover:text-blue6a hover:bg-white">Beranda Pembelajaran</a></li>
+                                        <li><a href="/preLearn" class="block px-4 py-2 hover:text-blue6a hover:bg-white">Aktivitas Belajar</a></li>
+                                        <li><a href="/other" class="block px-4 py-2 hover:text-blue6a hover:bg-white">Program Lainnya</a></li>
+                                        <li><a href="/" class="block px-4 pt-2 pb-3 mt-1 bg-white text-blue6a hover:text-white hover:bg-blue31">Kembali ke Halaman Utama</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -83,7 +84,7 @@
             </svg>                                
         </a>
         <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="flex items-center justify-center">
-            <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a  transition rounded">
+            <div class="h-full flex items-center px-3 py-1 text-center text-white bg-blue6a text-2xl font-medium border-2 border-blue6a hover:border-blue31 transition rounded">
                 @if(Auth::check() && Auth::user()->profile)
                     {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                 @else
@@ -197,5 +198,20 @@
         }, { once: true });
     }
 }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const overlay = document.getElementById("overlay");
+        const menuContainers = document.querySelectorAll(".menu-container");
+        
+        menuContainers.forEach(container => {
+            container.addEventListener("mouseenter", () => {
+                overlay.classList.remove("hidden");
+            });
+
+            container.addEventListener("mouseleave", () => {
+                overlay.classList.add("hidden");
+            });
+        });
+    });
 
 </script>

@@ -1,20 +1,29 @@
+<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
 <header class="w-full h-24 head-shadow flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full hidden md:flex lg:flex justify-center">
         <div class="flex justify-between md:justify-between lg:justify-center items-center h-full w-3/4">
             <div class="flex justify-center items-center mr-auto">
                 <a href="/" class="flex items-center">
-                    <div class="mr-2">
-                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
+                    <div class="xl:mr-2 mr-1.5">
+                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="xl:h-12 h-10 xl:w-12 w-10">
                     </div>
-                    <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
-                        EDUCATION </h1>
+                    <h1 class="font-bold text-xl xl:text-2xl text-blue6a whitespace-pre-line leading-5 xl:leading-6">MIKA<br>EDUCATION </h1>
                 </a>
             </div>
-            <div class="w-2/3 text-xl text-blue6a font-medium tracking-wide">
-                <nav class="flex items-center justify-end gap-8">
-                    <a href="/" class="hidden md:hidden lg:flex hover:text-blue31 transition">Infromasi Lainnya</a>
-                    <a href="" class="hidden md:hidden lg:flex hover:text-blue31 transition">Tentang Kami</a>
-                    <div class="flex items-center justify-center gap-6">
+            <div class="w-3/4 text-lg xl:text-xl text-blue6a font-medium tracking-wide relative">
+                <nav class="flex items-center justify-end gap-6 xl:gap-8" id="nav-menu">
+                    <div class="relative group menu-container">
+                        <a href="#" class="hidden md:hidden lg:flex hover:text-blue31 transition menu-trigger">Informasi Lainnya</a>
+                        <div class="absolute right-0 w-60 bg-transparent group-hover:opacity-100 transition duration-300 invisible group-hover:visible">
+                            <div class="absolute top-4 right-10 transform -translate-y-1 w-8 h-8 z-10 bg-blue6a rotate-45"></div>
+                            <ul class="py-1 top-5 px-1 z-20 relative text-white bg-blue6a rounded ">
+                                <li><a href="/news" class="block px-4 py-2 z-50 hover:bg-white hover:text-blue6a">Berita tentang kami</a></li>
+                                <li><a href="/article" class="block px-4 py-2 hover:bg-white hover:text-blue6a">Artikel kami</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="hidden md:hidden lg:flex hover:text-blue31 transition menu-trigger">Tentang Kami</a>
+                    <div class="flex items-center justify-center">
                         <div class="pr-5 border-r-2 border-blue6a border-opacity-50">
                             <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="flex items-center text-center font-medium bg-blue6a border-2 border-blue6a hover:bg-blue31 hover:border-blue31 transition duration-300 text-white rounded px-4 py-1.5 gap-1">
                                 <svg width="24" height="24" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,9 +33,9 @@
                                 Pembelajaran
                             </a>
                         </div>
-                        <div class="relative group text-left flex">
-                            <a href="{{ Auth::check() ? '/profile' : '/login' }}" class="text-center flex items-center justify-center md:mr-5 lg:mr-0">
-                                <button id="menu-btn" class="h-full flex items-center px-3 py-1 text-center text-blue6a text-2xl font-medium border-2 border-blue6a  transition rounded">
+                        <div class="relative group text-left flex pl-5">
+                            <a href="{{ Auth::check() ? '/profile' : '/login' }}" class="text-center flex items-center justify-center md:mr-2 lg:mr-0">
+                                <button id="menu-btn" class="h-full flex items-center px-3 py-1 text-center text-blue6a text-2xl font-medium border-2 border-blue6a  transition rounded hover:border-blue31">
                                     @if(Auth::check() && Auth::user()->profile)
                                         {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                                     @else
@@ -39,12 +48,33 @@
                                     @endif
                                 </button>
                             </a>
-                            <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="pl-4 border-l-2 border-blue6a border-opacity-50 items-center hidden md:flex lg:hidden">
-                                <svg class="w-10 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                                </svg>
-                            </button>
                         </div>
+                        <div class="relative group menu-container">
+                            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center flex lg:hidden">
+                                <path d="M18 9L12 15L6 9" stroke="#6AA4D9" stroke-width="2"/>
+                            </svg>
+                            <div class="absolute right-0 top-0 pt-10 w-72 bg-white bg-opacity-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-10">
+                                <div class="bg-blue6a mt-4 rounded">
+                                    <div class="absolute top-12 right-[6px] transform -translate-y-1 w-6 h-6 z-10 bg-blue6a rotate-45"></div>
+                                    <ul class="py-1 px-1 z-20 relative text-white bg-blue6a rounded">
+                                        <!-- Menu utama dengan submenu -->
+                                        <div class="relative group/submenu">
+                                            <div class="block px-4 py-2 cursor-pointer hover:bg-white hover:text-blue6a">Informasi lainnya</div>
+                                            <div class="absolute right-full top-0 w-52 z-20 opacity-0 invisible group-hover/submenu:opacity-100 group-hover/submenu:visible transition-opacity duration-200 rounded shadow-lg">
+                                                <div class="absolute top-2.5 right-3.5 transform -translate-y-1 w-8 h-8 z-10 bg-blue6a rotate-45"></div>
+                                                <ul class="py-1 px-1 w-48 relative z-20 text-white bg-blue6a rounded">
+                                                    <div class="block hover:bg-white hover:text-blue6a"></div>
+                                                    <li><a href="/news" class="block px-4 py-2 z-50 hover:bg-white hover:text-blue6a">Berita tentang kami</a></li>
+                                                    <li><a href="/article" class="block px-4 py-2 hover:bg-white hover:text-blue6a">Artikel kami</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <li><a href="/article" class="block px-4 py-2 hover:bg-white hover:text-blue6a">Tentang kami</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>                  
                 </nav>
             </div>
@@ -57,11 +87,11 @@
                     <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
                 </div>
                 <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
-                    EDUCATION </h1>
+                    EDUCATION</h1>
             </a>
         </div>
         <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="flex items-center justify-center">
-            <div class="h-full flex items-center px-3 py-1 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
+            <div class="h-full hidden md:flex items-center px-3 py-1 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
                 @if(Auth::check() && Auth::user()->profile)
                     {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                 @else
@@ -73,8 +103,8 @@
                     </p>
                 @endif
             </div>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 9L12 15L6 9" stroke="#6AA4D9" stroke-width="2"/>
+            <svg class="w-10 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
         </button>
     </div>
@@ -176,5 +206,20 @@
         }, { once: true });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const overlay = document.getElementById("overlay");
+    const menuContainers = document.querySelectorAll(".menu-container");
+    
+    menuContainers.forEach(container => {
+        container.addEventListener("mouseenter", () => {
+            overlay.classList.remove("hidden");
+        });
+
+        container.addEventListener("mouseleave", () => {
+            overlay.classList.add("hidden");
+        });
+    });
+});
 
 </script>

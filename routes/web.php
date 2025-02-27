@@ -55,6 +55,14 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/news', function () {
+    return view('news');
+});
+
+Route::get('/article', function () {
+    return view('article');
+});
+
 
 // MIKA-LEARNING
 Route::get('/learn', function () {
