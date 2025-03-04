@@ -1,7 +1,7 @@
-<footer class="w-full mt-14 flex flex-col items-center justify-center bg-blue31 text-white">
+<footer class="w-full flex flex-col items-center justify-center bg-blue31 text-white">
     <div class="w-3/4 pb-14 pt-16 flex flex-wrap lg:flex-nowrap text-base font-light justify-between space-y-10">
         <div class="w-full lg:w-2/5 space-y-3">
-            <a href="/" class="flex items-center space-x-2">
+            <a href="/" class="flex w-fit items-center space-x-2">
                 <div class="mr-1">
                     <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-20 w-20">
                 </div>

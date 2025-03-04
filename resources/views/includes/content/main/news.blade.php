@@ -1,6 +1,6 @@
 <div class="w-full min-h-max text-blue31 flex flex-col items-center justify-center">
     <div class="w-full flex flex-col items-center justify-center py-10 space-y-4 pb-16">
-        <div class="w-32 h-1 bg-yellowf4"></div>
+        <div class="w-32 h-0.5 lg:h-1 bg-yellowf4"></div>
         <h1 class="font-bold text-4xl text-center leading-snug">Berita tentang MIKA <br> Lihat sekarang! </h1>
         <div id="newsContainer" class="w-full overflow-x-scroll py-4 scrollbar-hidden cursor-grab active:cursor-grabbing">
             <div class="flex gap-5 flex-nowrap items-center py-5">
@@ -48,11 +48,11 @@
         </div>
     </div>
     <div class="w-3/4 h-full flex flex-col lg:flex-row items-start justify-start pb-10">
-        <div class="w-full lg:w-1/2 pt-8 flex flex-col items-start justify-start gap-5">
-            <h3 class="text-3xl font-semibold text-left">
+        <div class="w-full md:w-1/2 pt-8 flex flex-col items-start justify-start gap-5">
+            <h3 class="text-2xl font-semibold text-left">
                 Mengenal lebih dekat <br> Media Visual Komunikasi Anak 
             </h3>
-            <div class="w-2/5 lg:w-3/5 flex items-center justify-between p-1.5 rounded bg-blue31 self-start">
+            <div class="w-full lg:w-3/5 flex items-center justify-between p-1.5 rounded bg-blue31 self-start">
                 <p class="text-white text-lg font-medium pl-6">Baca Selengkapnya</p>
                 <a href="https://www.liputan6.com/amp/4148073/berawal-kegelisahan-terapis-dosen-unair-kembangkan-aplikasi-untuk-anak-autis" class="px-2 py-4 lg:p-3 rounded flex items-end justify-end bg-yellowf4">
                     <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-90 lg:rotate-0">
@@ -80,7 +80,6 @@
             </div>
         </div>
     </div>
-    
 </div>
 
 <script>

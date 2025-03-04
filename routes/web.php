@@ -62,6 +62,25 @@ Route::get('/news', function () {
 Route::get('/article', function () {
     return view('article');
 });
+Route::get('/articleexplore', function () {
+    return view('includes/content/main/article/articleexplore');
+});
+Route::get('/article1', function () {
+    return view('includes/content/main/article/article1');
+});
+Route::get('/article2', function () {
+    return view('includes/content/main/article/article2');
+});
+Route::get('/article3', function () {
+    return view('includes/content/main/article/article3');
+});
+Route::get('/article4', function () {
+    return view('includes/content/main/article/article4');
+});
+
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
 
 
 // MIKA-LEARNING

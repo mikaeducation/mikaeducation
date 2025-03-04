@@ -22,7 +22,7 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="#" class="hidden md:hidden lg:flex hover:text-blue31 transition menu-trigger">Tentang Kami</a>
+                    <a href="/aboutus" class="hidden md:hidden lg:flex hover:text-blue31 transition menu-trigger">Tentang Kami</a>
                     <div class="flex items-center justify-center">
                         <div class="pr-5 border-r-2 border-blue6a border-opacity-50">
                             <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="flex items-center text-center font-medium bg-blue6a border-2 border-blue6a hover:bg-blue31 hover:border-blue31 transition duration-300 text-white rounded px-4 py-1.5 gap-1">
@@ -69,7 +69,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <li><a href="/article" class="block px-4 py-2 hover:bg-white hover:text-blue6a">Tentang kami</a></li>
+                                        <li><a href="/aboutus" class="block px-4 py-2 hover:bg-white hover:text-blue6a">Tentang kami</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -127,8 +127,18 @@
             <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Beranda</a>
             <a href="/profile" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Profil</a>
             <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Pembelajaran</a>
-            <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Informasi Lainnya</a>
-            <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Tentang Kami</a>
+            <!-- Sub-menu -->
+            <div class="w-full pb-5 border-b-2 border-bluee3">
+                <button onclick="toggleSubMenu()" class="w-full text-left hover:text-2xl">
+                    Informasi Lainnya
+                </button>
+                <div id="subMenuInfo" class="hidden pl-4 mt-4 space-y-4">
+                    <a href="/news" class="block hover:text-blue31">Berita tentang kami</a>
+                    <a href="/article" class="block hover:text-blue31">Artikel kami</a>
+                </div>
+            </div>
+    
+            <a href="/aboutus" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Tentang Kami</a>
         </nav>
     </div>
 </header>
@@ -207,19 +217,24 @@
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const overlay = document.getElementById("overlay");
-    const menuContainers = document.querySelectorAll(".menu-container");
-    
-    menuContainers.forEach(container => {
-        container.addEventListener("mouseenter", () => {
-            overlay.classList.remove("hidden");
-        });
+    document.addEventListener("DOMContentLoaded", function () {
+        const overlay = document.getElementById("overlay");
+        const menuContainers = document.querySelectorAll(".menu-container");
+        
+        menuContainers.forEach(container => {
+            container.addEventListener("mouseenter", () => {
+                overlay.classList.remove("hidden");
+            });
 
-        container.addEventListener("mouseleave", () => {
-            overlay.classList.add("hidden");
+            container.addEventListener("mouseleave", () => {
+                overlay.classList.add("hidden");
+            });
         });
     });
-});
+
+    function toggleSubMenu() {
+            let subMenu = document.getElementById("subMenuInfo");
+            subMenu.classList.toggle("hidden");
+    }
 
 </script>
