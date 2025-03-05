@@ -16,10 +16,10 @@
         </button>
     </div>
     <div class="w-full h-4/5 p-4 space-y-3 border-2 border-l-8 border-bluee3">
-        <div class="w-full h-fit flex">
-            <div class="w-4/5 flex gap-4">
-                <img src="{{ asset('images/content-1.png') }}" alt="Content Image" class="h-auto w-1/6 rounded border-2 border-blue31">
-                <table style="border-collapse: collapse; text-align: left;" class="w-full">
+        <div class="w-full h-fit md:flex md:space-y-3">
+            <div class="md:w-4/5 w-full sm:flex gap-3 md:gap-4">
+                <img src="{{ asset('images/content-1.png') }}" alt="Content Image" class="h-auto sm:w-1/6 w-full rounded border-2 object-cover border-blue31">
+                <table style="border-collapse: collapse; text-align: left;" class="w-full sm:mt-0 mt-2">
                     <tr>
                         <td>Bentuk</td>
                         <td>: Sertifikat Program Pembelajaran</td>
@@ -34,8 +34,8 @@
                     </tr>
                 </table>
             </div>
-            <div class="w-1/5 text-center flex items-center justify-end">
-                <a href="" class="text-center font-medium text-base py-2 px-10 bg-blue31 text-white rounded hover:bg-transparent hover:text-blue31 hover:border-2 hover:border-blue31">
+            <div class="md:w-1/5 w-full md:mt-0 mt-4 text-center flex items-center justify-center">
+                <a href="" class="text-center font-medium text-base w-full py-1 md:py-2 px-2 md:px-4 bg-blue31 text-white rounded hover:bg-transparent hover:text-blue31 hover:border-2 hover:border-blue31">
                     Tinjau
                 </a>
             </div>

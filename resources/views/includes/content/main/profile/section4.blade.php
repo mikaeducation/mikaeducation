@@ -47,7 +47,7 @@
                     <div class="text-sm font-normal italic mt-4 py-2">
                         <p>Akun anda terakhir diubah pada: <span class="font-medium text-xs">{{ $user->created_at->format('d-m-Y H:i') }}</span></p>
                     </div>
-                    <div class="w-full flex items-center justify-end gap-2">
+                    <div class="w-full flex items-center justify-start md:justify-end gap-2">
                         <button type="button" id="editButton" class="bg-blue31 border-2 border-blue31 text-white py-2 px-10 rounded">Edit Akun</button>
                         <button type="submit" id="saveButton" class="bg-transparent border-2 border-blue31 text-blue31 py-2 px-10 rounded hover:bg-blue31 hover:text-white transition" disabled>Simpan</button>
                     </div>
@@ -66,16 +66,16 @@
             </div>
         </div>
         <div class="w-full p-4 border-2 border-bluee3">
-            <div class="flex">
-                <div class="w-3/4 flex flex-col">
+            <div class="lg:flex w-full lg:space-y-0 space-y-3">
+                <div class="w-full lg:w-2/3 flex flex-col text-justify">
                     <h3>Hapus Akun</h3>
-                    <p class="text-sm font-normal italic">
+                    <p class="text-justify text-sm font-normal italic">
                         Proses menghapus akun, sehingga Anda tidak lagi dapat menggunakan layanan pada website ini.
                     </p>
                 </div>
-                <div class="w-1/4 flex items-center justify-end">
+                <div class="w-full lg:w-1/3 flex items-center justify-start md:justify-end">
                     <button id="delete-account-btn"
-                        class="text-center font-medium text-base py-2 px-8 bg-transparent border-2 border-blue31 text-blue31 rounded hover:bg-pinkee hover:text-blue31 hover:border-2 hover:border-pinkee transition">
+                        class="text-center font-medium text-base w-fit py-1 lg:py-2 px-6 bg-transparent border-2 border-blue31 text-blue31 rounded hover:bg-pinkee hover:text-blue31 hover:border-2 hover:border-pinkee transition">
                         Hapus Akun
                     </button>
                 </div>
@@ -83,12 +83,11 @@
             <!-- Pop-up pertama -->
             <div id="confirm-popup" class="hidden">
                 <div class="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div class="w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
+                    <div class="w-3/4 lg:w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
                         <h3 class="text-3xl font-bold pb-4 border-b-2 border-bluee3 w-full text-center">Hapus Akun Anda</h3>
-                        <p class="whitespace-pre-line text-center text-lg mt-4">Setelah akun Mika Anda dinonaktifkan, akun tersebut tidak dapat dipulihkan setelah 30 hari. Menghapus akun Mika Anda akan menyebabkan hilangnya progress data yang telah diperloeh sebelumnya.
+                        <p class="whitespace-pre-line text-justify lg:text-center text-lg mt-4">Setelah akun Mika Anda dinonaktifkan, akun tersebut tidak dapat dipulihkan setelah 30 hari. Menghapus akun Mika Anda akan menyebabkan hilangnya progress data yang telah diperloeh sebelumnya.
                             
-                            Jika Anda memerlukan informasi lebih lanjut atau bantuan,
-                            <a href="" class="underline font-medium">hubungi tim dukungan kami.</a>
+                            Jika Anda memerlukan informasi lebih lanjut atau bantuan, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a>
                         </p>
                         <div class="w-full mt-8 flex justify-end">
                             <button id="cancel-btn" class="w-1/2 px-4 py-2 bg-blue31 text-white rounded mr-2">Batalkan</button>
@@ -100,9 +99,9 @@
             <!-- Pop-up kedua -->
             <div id="input-popup" class="hidden">
                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div class="w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
+                    <div class="w-3/4 lg:w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
                         <h3 class="text-3xl font-bold pb-4 border-b-2 border-bluee3 w-full text-center">Konfirmasi Penghapusan Akun</h3>
-                        <p class="text-center mt-4">Konfirmasi penghapusan akun anda dengan mengetikkan nomor telpon yang didaftarkan, pada form konfirmasi dibawah ini.</p>
+                        <p class="text-justify lg:text-center mt-4">Konfirmasi penghapusan akun anda dengan mengetikkan nomor telpon yang didaftarkan, pada form konfirmasi dibawah ini.</p>
                         <form id="delete-account-form" method="POST" action="{{ route('account.delete') }}" class="w-full mt-4 flex flex-col items-center justify-center">
                             @csrf
                             <input type="text" name="phone" placeholder="Ketikkan nomor telepon Anda yang terdaftar disini..." required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
@@ -120,13 +119,13 @@
         <h3 class="mt-1">Keamanan Akun</h3>
         <div class="w-full p-4 border-2 border-bluee3">
             <div class="w-full flex-col space-y-4">
-                <div class="w-full flex ">
-                    <div class="w-4/5 flex flex-col">
+                <div class="w-full lg:flex space-y-3 gap-3">
+                    <div class="w-full lg:w-4/5 flex flex-col text-justify">
                         <h3>Verifikasi 2 Langkah (<span class="italic">Two-Factor Authentication/2FA</span>)</h3>
                         <p class="text-sm font-normal italic">Meningkatkan keamanan akun Anda melaui perlindungan tambahan dengan 2 langkah otentifikasi.</p>
                     </div>
-                    <div class="w-1/5 flex items-center justify-end">
-                        <button id="activate-2fa" onclick="showAuthenticator()" class="text-center font-medium text-base py-1 px-5 bg-transparent border-2 border-blue31 text-blue31 rounded hover:bg-blue31 hover:text-white transition">
+                    <div class="w-full lg:w-1/5 flex items-center justify-start md:justify-end">
+                        <button id="activate-2fa" onclick="showAuthenticator()" class="text-center font-medium text-base py-1 lg:py-2 px-6 bg-transparent border-2 border-blue31 text-blue31 rounded hover:bg-blue31 hover:text-white transition">
                             Aktifkan
                         </button>
                     </div>
