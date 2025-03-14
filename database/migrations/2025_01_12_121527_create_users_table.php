@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes(); // Untuk memastikan penghapusan data di tabel users
         });

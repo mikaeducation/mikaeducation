@@ -48,7 +48,7 @@
                         <p>Akun anda terakhir diubah pada: <span class="font-medium text-xs">{{ $user->created_at->format('d-m-Y H:i') }}</span></p>
                     </div>
                     <div class="w-full flex items-center justify-start md:justify-end gap-2">
-                        <button type="button" id="editButton" class="bg-blue31 border-2 border-blue31 text-white py-2 px-10 rounded">Edit Akun</button>
+                        <button type="button" id="editButton" class="bg-blue31 text-white py-2 px-10 hover:border-blue31 border-2 rounded">Edit Akun</button>
                         <button type="submit" id="saveButton" class="bg-transparent border-2 border-blue31 text-blue31 py-2 px-10 rounded hover:bg-blue31 hover:text-white transition" disabled>Simpan</button>
                     </div>
                 </form>
@@ -90,7 +90,7 @@
                             Jika Anda memerlukan informasi lebih lanjut atau bantuan, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a>
                         </p>
                         <div class="w-full mt-8 flex justify-end">
-                            <button id="cancel-btn" class="w-1/2 px-4 py-2 bg-blue31 text-white rounded mr-2">Batalkan</button>
+                            <button id="cancel-btn" class="w-1/2 px-4 py-2 bg-blue31 text-white rounded mr-2 hover:border-blue31 border-2">Batalkan</button>
                             <button id="proceed-btn" class="w-1/2 px-4 py-2 bg-transparent border-2 border-blue31 transition rounded hover:bg-pinkee hover:border-pinkee">Lanjutkan</button>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             @csrf
                             <input type="text" name="phone" placeholder="Ketikkan nomor telepon Anda yang terdaftar disini..." required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
                             <div class="w-full mt-4 flex justify-end">
-                                <button id="cancel-input-btn" type="button" class="w-1/2 px-4 py-2 bg-blue31 text-white rounded mr-2">Batalkan</button>
+                                <button id="cancel-input-btn" type="button" class="w-1/2 px-4 py-2 bg-blue31 text-white hover:border-blue31 border-2 rounded mr-2">Batalkan</button>
                                 <button type="submit" class="w-1/2 px-4 py-2 bg-transparent border-2 border-blue31 transition rounded hover:bg-pinkee hover:border-pinkee">Nonaktifkan Akun</button>
                             </div>
                         </form>

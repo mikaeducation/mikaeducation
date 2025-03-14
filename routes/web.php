@@ -1,15 +1,22 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Http\Request;
 
 
 // MIKA-HOME 
+
+//messages control
+Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
+
+
+//login
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', function (){
     return view('loginpage');
@@ -41,6 +48,7 @@ Route::get('/profile', function (){
 Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
 Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile-update');
 Route::put('/profile-media-update', [ProfileController::class, 'updateProfileMedia'])->name('profile-media-update');
+
 
 Route::post('/delete-account', [AccountController::class, 'deleteAccount'])->name('account.delete');
 Route::middleware(['auth'])->group(function () {

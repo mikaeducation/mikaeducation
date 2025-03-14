@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;  
 use Illuminate\Http\Request;  
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;  
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller  
 {  
@@ -51,7 +53,8 @@ class ProfileController extends Controller
                 'birth_date',  
                 'address',  
                 'occupation',  
-                'institution',  
+                'institution',
+                'institutionCity',
             ])  
         ); 
         // Arahkan ke halaman index setelah berhasil disimpan  
@@ -90,8 +93,9 @@ class ProfileController extends Controller
         'address' => 'required|string|max:255',
         'gender' => 'nullable|string|in:Laki-laki,Perempuan',
         'occupation' => 'required|string|max:100',
-        'institution' => 'required|string|max:100',
         'skill' => 'nullable|string|max:100',
+        'institution' => 'required|string|max:100',
+        'institutionCity' => 'required|string|max:100',
         'experience' => 'nullable|string|max:255',
     ]);
         // Ambil data pengguna yang sedang login  
@@ -111,8 +115,9 @@ class ProfileController extends Controller
             'address',
             'gender',
             'occupation',
-            'institution',
             'skill',
+            'institution',
+            'institutionCity',
             'experience',
         ]));
         // Kembali ke halaman profile setelah berhasil disimpan
@@ -121,36 +126,70 @@ class ProfileController extends Controller
 
 
     public function updateProfileMedia(Request $request)  
-    {  
-        // Validasi input untuk gambar dan deskripsi  
-        $request->validate([  
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
-            'description' => 'nullable|string',  
-        ]);  
-        // Ambil data pengguna yang sedang login    
-        $user = Auth::user();    
-        // Ambil data profil pengguna    
-        $profile = Profile::where('phone', $user->phone)->first();    
-        // Pastikan profil ditemukan    
-        if (!$profile) {    
-            return redirect('/')->with('error', 'Profil tidak ditemukan.');    
-        }    
-        // Update deskripsi  
-        if ($request->has('description')) {  
-            $profile->description = $request->description;  
-        }  
-        // Simpan gambar jika ada    
-        if ($request->hasFile('banner_image')) {      
-            $profile->banner_image = $request->file('banner_image')->store('images', 'public');      
-        }      
-        if ($request->hasFile('profile_image')) {      
-            $profile->profile_image = $request->file('profile_image')->store('images', 'public');      
-        }  
-        $profile->save();    
-        // Kembali ke halaman profile setelah berhasil disimpan    
-        return redirect()->back()->with('success', 'Media profil berhasil diperbarui!');    
+{  
+    // Validasi input untuk gambar dan deskripsi  
+    $request->validate([  
+        'banner_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
+        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',  
+        'description' => 'nullable|string',  
+        'delete_banner' => 'nullable|boolean', // Tambahan validasi untuk penghapusan banner
+    ]);  
+
+    // Ambil data pengguna yang sedang login    
+    $user = Auth::user();    
+    // Ambil data profil pengguna    
+    $profile = Profile::where('phone', $user->phone)->first();    
+
+    // Pastikan profil ditemukan    
+    if (!$profile) {    
+        return redirect('/')->with('error', 'Profil tidak ditemukan.');    
+    }    
+
+    // Update deskripsi  
+    if ($request->has('description')) {  
+        $profile->description = $request->description;  
+    }  
+
+    // Jika tombol hapus ditekan, hapus gambar banner dan set ke default
+    if ($request->has('delete_banner') && $request->delete_banner) {
+        if ($profile->banner_image) {
+            Storage::disk('public')->delete($profile->banner_image); // Hapus file lama
+        }
+        $profile->banner_image = null; // Set ke null (default)
     }
-    
+
+    // Simpan gambar jika ada    
+    if ($request->hasFile('banner_image')) {      
+        if ($profile->banner_image) {
+            Storage::disk('public')->delete($profile->banner_image); // Hapus file lama jika ada
+        }
+
+        $bannerImage = $request->file('banner_image');  
+        $bannerImageName = time() . '_' . $bannerImage->getClientOriginalName();  
+        $bannerPath = $bannerImage->storeAs('images/banners', $bannerImageName, 'public');  
+
+        // Simpan path ke database
+        $profile->banner_image = $bannerPath;    
+    }      
+
+    if ($request->hasFile('profile_image')) {      
+        if ($profile->profile_image) {
+            Storage::disk('public')->delete($profile->profile_image); // Hapus file lama jika ada
+        }
+
+        $profileImage = $request->file('profile_image');  
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();  
+        $profilePath = $profileImage->storeAs('images/profiles', $profileImageName, 'public');  
+
+        // Simpan path ke database
+        $profile->profile_image = $profilePath;    
+    }  
+
+    $profile->save();     
+
+    // Kembali ke halaman profile setelah berhasil disimpan    
+    return redirect()->back()->with('success', 'Media profil berhasil diperbarui!');    
+}
+
     
 }    

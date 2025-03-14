@@ -77,7 +77,6 @@
 
 <script>
     // JS untuk notifikasi
-        // Menampilkan waktu akses pertama kali halaman
         window.addEventListener("load", function () {
             const accessTime = new Date();
             const formattedTime =
@@ -97,21 +96,17 @@
 
         // Event listener untuk tombol "Baca" dan "Hapus"
         document.addEventListener("click", function (event) {
-            // Cek apakah tombol "Baca" ditekan
             if (event.target.classList.contains("read-btn")) {
                 const notification = event.target.closest(".notification");
                 const bullet = notification.querySelector(".bullet");
                 const readButton = notification.querySelector(".read-btn");
-                // Ubah bullet menjadi abu-abu
+
                 bullet.classList.remove("bg-blue31");
                 bullet.classList.add("bg-bluee3");
-                // Hilangkan tombol "Baca"
                 readButton.remove();
             }
-            // Cek apakah tombol "Hapus" ditekan
             if (event.target.classList.contains("delete-btn")) {
                 const notification = event.target.closest(".notification");
-                // Hapus elemen notifikasi
                 notification.remove();
             }
         });

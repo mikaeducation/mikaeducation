@@ -13,17 +13,18 @@ class ProfilesTableSeeder extends Seeder
             'phone' => '082156226440',  
             'first_name' => 'Ahmad',  
             'last_name' => 'Rayhan',  
-            'birth_place' => 'Jakarta',  
+            'birth_place' => 'Surabaya',  
             'birth_date' => '1990-01-01',  
-            'address' => 'Jl. Contoh No. 123, Jakarta',  
-            'gender' => 'Laki-laki', // Menambahkan gender  
+            'address' => 'Jl. Contoh No. 123, Surabaya',  
+            'gender' => 'Laki-laki',
             'occupation' => 'Software Developer',  
-            'institution' => 'Tech Corp',  
-            'skill' => 'PHP, JavaScript', // Menambahkan skill  
-            'experience' => '3-5 Tahun', // Menambahkan experience  
-            'banner_image' => 'images/samplebg.jpg', // Menambahkan banner_image  
-            'profile_image' => 'images/member-rayhan.png', // Menambahkan profile_image  
-            'description' => 'Saya seorang mahasiswa program studi sistem informasi', // Menambahkan description  
+            'institution' => 'Tech Corp',
+            'institutionCity' => 'Jakarta',  
+            'skill' => 'PHP, JavaScript',
+            'experience' => '3-5 Tahun',
+            'banner_image' => 'images/samplebg.jpg',
+            'profile_image' => 'images/member-rayhan.png',
+            'description' => 'Saya seorang mahasiswa program studi sistem informasi',
         ]);  
     }  
 }  

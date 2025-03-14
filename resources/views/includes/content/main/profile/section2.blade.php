@@ -35,7 +35,7 @@
                 </table>
             </div>
             <div class="md:w-1/5 w-full md:mt-0 mt-4 text-center flex items-center justify-center">
-                <a href="" class="text-center font-medium text-base w-full py-1 md:py-2 px-2 md:px-4 bg-blue31 text-white rounded hover:bg-transparent hover:text-blue31 hover:border-2 hover:border-blue31">
+                <a href="" class="text-center font-medium text-base w-full py-1 md:py-2 px-2 md:px-4 transition bg-blue31 text-white rounded hover:bg-transparent hover:text-blue31 hover:border-2 hover:border-blue31">
                     Tinjau
                 </a>
             </div>

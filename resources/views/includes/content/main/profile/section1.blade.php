@@ -58,29 +58,32 @@
                         <input type="text" name="occupation" id="occupation" value="{{ old('occupation', $profile->occupation) }}" class="w-full p-2 border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31">    
                     </div> 
                     <div class="space-y-1">
-                        <label>Keahlian Khusus</label>
-                        <input type="text" name="skill" value="{{ old('skill', $profile->skill) }}" class="p-2 w-full border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
+                        <label for="institution">Asal Instansi</label> <span class="italic font-light">Aktif/Saat ini</span>
+                        <input type="text" name="institution" value="{{ old('institution', $profile->institution) }}" class="w-full p-2 border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31" required/>
+                    </div>
+                    <div class="space-y-1">    
+                        <label for="experience" class="block font-medium">Durasi Pengalaman Bekerja</label>
+                        <select id="experience" name="experience" class="p-2 block w-full border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
+                            <option value="{{ old('experience', $profile->experience) }}"> {{ old('experience', $profile->experience) ??  'Pilih Durasi Pengalaman Anda...' }}</option>
+                            <option value="0">Belum Memiliki Pengalaman</option>
+                            <option value="1-2 Tahun">1 - 2 Tahun</option>
+                            <option value="3-5 Tahun">3 - 5 Tahun</option>
+                            <option value="6-10 Tahun">6 - 10 Tahun</option>
+                            <option value="11-15 Tahun">11 - 15 Tahun</option>
+                            <option value="20+ Tahun">Lebih dari 15 Tahun</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="w-full flex">
                 <div class="flex-col w-full text-start space-y-4 font-medium">
                     <div class="space-y-1">
-                        <label for="institution">Asal Instansi</label> <span class="italic font-light">Aktif/Saat ini</span>
-                        <input type="text" name="institution" value="{{ old('institution', $profile->institution) }}" class="w-full p-2 border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31" required/>
+                        <label>Keahlian Khusus</label>
+                        <input type="text" name="skill" value="{{ old('skill', $profile->skill) }}" placeholder="Tuliskan keahlian khusus Anda..." class="p-2 w-full border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
                     </div>
-                    <div class="space-y-1">    
-                        <label for="experience" class="block text-gray-700 font-medium">Durasi Pengalaman <span class="italic font-light">Hingga saat ini</span> </label>
-                        <select id="experience" name="experience" class="p-2 block w-full border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31">
-                            <option value="{{ old('experience', $profile->experience) }}">{{ old('experience', $profile->experience) ?? 'Pilih Durasi Pengalaman Anda...' }}</option>
-                            <option value="0">Belum Memiliki Pengalaman</option>
-                            <option value="1-2">1 - 2 Tahun</option>
-                            <option value="3-5">3 - 5 Tahun</option>
-                            <option value="6-10">6 - 10 Tahun</option>
-                            <option value="11-15">11 - 15 Tahun</option>
-                            <option value="16-20">16 - 20 Tahun</option>
-                            <option value="20+">Lebih dari 20 Tahun</option>
-                        </select>
+                    <div class="space-y-1">
+                        <label for="institution">Kota Asal Instansi</label> <span class="italic font-light">Aktif/Saat ini</span>
+                        <input type="text" name="institutionCity" value="{{ old('institutionCity', $profile->institutionCity) }}" placeholder="Tuliskan kota asal instansi Anda..." class="w-full p-2 border-2 border-bluee3 rounded focus:outline-none focus:ring-2 focus:ring-blue31" required/>
                     </div>
                 </div>
             </div>
@@ -88,7 +91,7 @@
     </div>
     <p class="font-normal text-justify lg:text-center">Anda dapat memperbaharui biodata diri melalui tombol edit dibawah ini. Jika memerlukan bantuan, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a></p>
     <div class="w-full mt-2 flex items-center justify-start md:justify-end font-medium">
-        <button type="button" id="editButtonBio" class="bg-blue31 py-2 px-10 rounded text-white">Edit atau Perbarui Biodata Diri</button>    
+        <button type="button" id="editButtonBio" class="bg-blue31 py-2 px-10 rounded hover:border-blue31 border-2 text-white">Edit atau Perbarui Biodata Diri</button>    
         <button type="submit" id="saveButtonBio" class="hidden bg-transparent py-2 px-10 rounded text-blue31 border-2 border-blue31 hover:bg-blue31 hover:text-white transition">Simpan Perubahan</button>    
     </div>
 </form>

@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="w-full md:w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center pr-0 xl:pr-32">
-            <div class="w-full h-full md:h-4/6 flex justify-center items-center">
+            <div class="w-full h-full md:h-4/6 flex justify-center items-center mb-16 md:mb-0">
                 <div class="w-full flex-col justify-center items-center text-center mt-16 md:mt-0 space-y-8">
                     <div class="space-y-8">
                         <h2 class="text-5xl font-bold">Daftar Akun</h2>

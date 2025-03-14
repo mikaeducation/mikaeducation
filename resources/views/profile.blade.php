@@ -31,18 +31,27 @@
                         <form id="banner_image" action="{{ route('profile-media-update') }}" method="POST" enctype="multipart/form-data">    
                             @csrf    
                             @method('PUT')    
-                            <div class="flex items-start justify-end w-full h-[150px] sm:h-[230px] md:h-[270px] lg:h-[300px]">    
-                                <label for="photo-upload" class="flex absolute items-center font-medium h-8 md:h-fit w-8 md:w-fit text-white bg-transparent opacity-50 hover:bg-blue31 hover:border-blue31 rounded border-2 md:px-2 m-4 md:m-8 gap-1 cursor-pointer">    
+                            <input type="hidden" id="delete-banner" name="delete_banner" value="0">
+                            <div class="relative flex items-start justify-end w-full h-[150px] sm:h-[230px] md:h-[270px] lg:h-[300px] px-1">    
+                                <button type="button" id="edit-banner-button" class="flex absolute items-center font-medium h-8 md:h-fit w-8 md:w-fit text-white bg-blue31 hover:border-white rounded border-2 border-blue31 xl:py-1 md:px-2 lg:px-3 m-4 md:m-8 gap-1 cursor-pointer">    
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32" fill="#fff" class="w-full h-full md:w-10 md:h-10">    
                                         <path d="M48 20h-5.5l-3.8-6.4c-.4-.6-1-1-1.7-1h-10c-.7 0-1.3.4-1.7 1l-3.8 6.4H16c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V24c0-2.2-1.8-4-4-4zM32 46c-6.1 0-11-4.9-11-11s4.9-11 11-11 11 4.9 11 11-4.9 11-11 11zm0-18a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>    
                                     </svg>    
-                                    <span class="md:block hidden">Ubah Foto Banner</span> 
-                                </label>    
+                                    <span class="md:block hidden">Edit Foto Banner</span> 
+                                </button>
+                                <div id="edit-options" class="absolute top-4 md:top-8 right-4 md:right-8 space-y-0.5 md:space-y-1.5 md:text-base text-sm hidden">  
+                                    <button type="button" id="change-banner-button" class="lg:w-28 md:w-24 w-fit flex items-center justify-center font-medium text-white bg-blue31 hover:border-white border-2 border-blue31 rounded lg:py-2 py-1 px-2 cursor-pointer">Ubah Foto</button>  
+                                    <button type="button" id="delete-banner-button" class="lg:w-28 md:w-24 w-fit flex items-center justify-center font-medium hover:text-white hover:bg-pinkee hover:border-pinkee bg-transparent border-2 border-pinkee text-pinkee rounded lg:py-1 py-0.5 md:px-2 px-5 cursor-pointer">
+                                        Hapus
+                                    </button>  
+                                </div>
                                 <input id="photo-upload" type="file" accept="image/*" class="hidden" name="banner_image" onchange="previewAndCropPhoto(event)">    
-                                <img id="photo-preview" src="{{ $profile->banner_image ? asset('storage/' . $profile->banner_image) : asset('images/samplebg.jpg') }}" alt="" class="w-full h-full object-cover rounded">    
-                                <button type="submit" id="save-banner-button" class="hidden absolute items-center font-medium text-white bg-blue31 rounded px-20 py-2.5 m-8 gap-1 cursor-pointer">Simpan</button>  
+                                <img id="photo-preview" src="{{ $profile->banner_image ? asset('storage/' . $profile->banner_image) : asset('images/samplebg.jpg') }}" alt="Banner" class="w-full h-full object-cover rounded">
+                                <div id="banner-buttons" class="absolute top-4 lg:top-8 right-4 lg:right-8 space-y-1.5 md:text-base text-sm hidden">
+                                    <button type="submit" id="save-banner-button" class="lg:w-24 md:w-20 w-fit flex items-center justify-center font-medium hover:text-white hover:bg-blue31 hover:border-blue31 border-2 rounded lg:py-2 md:py-1 py-0.5 md:px-2 px-5 cursor-pointer">Simpan</button>  
+                                </div>       
                             </div>  
-                        </form>  
+                        </form>
                         <div class="flex flex-col lg:flex-row justify-center items-center w-full lg:p-5">
                             <div class="text-lg text-blue31 flex flex-col lg:flex-row justify-center items-center w-full h-fit rounded-xl">
                                 <div class="flex flex-col lg:flex-row w-full p-0 xl:p-3 gap-5 xl:gap-8">
@@ -54,8 +63,8 @@
                                                 <div class="w-full h-full xl:h-80 relative overflow-hidden bg-bluee3 border-2 border-blue31 rounded">    
                                                     <img id="profile-image" src="{{ $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('images/profile-sample.jpg') }}" alt="Profile Image" class="object-cover w-full h-full">    
                                                 </div>
-                                                <button type="submit" id="save-profile-button" class="hidden w-full py-1 mt-1 border-2 border-blue31 rounded hover:bg-blue31 hover:text-white transition font-medium text-base">Simpan</button>  
-                                                <label for="file-input" class="flex items-center justify-center font-normal text-base py-1 mt-1 w-full bg-blue31 text-white rounded cursor-pointer">    
+                                                <button type="submit" id="save-profile-button" class="hidden w-full py-1 mt-1 border-2  border-blue31 rounded hover:bg-blue31 hover:text-white transition font-medium text-base">Simpan</button>  
+                                                <label for="file-input" class="flex items-center justify-center font-normal text-base py-1 mt-1 w-full hover:border-blue31 border-2 bg-blue31 text-white rounded cursor-pointer">    
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="32" fill="#ffff" class="hover:fill-white">    
                                                         <path d="M48 20h-5.5l-3.8-6.4c-.4-.6-1-1-1.7-1h-10c-.7 0-1.3.4-1.7 1l-3.8 6.4H16c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V24c0-2.2-1.8-4-4-4zM32 46c-6.1 0-11-4.9-11-11s4.9-11 11-11 11 4.9 11 11-4.9 11-11 11zm0-18a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>    
                                                     </svg>    
@@ -79,7 +88,7 @@
                                                     <p id="description-text" class="text-blue31 text-sm font-normal pb-2 text-justify">  
                                                         {{ old('description', $profile->description) ?? 'Anda belum memiliki deskripsi apapun.' }}  
                                                     </p>  
-                                                    <button type="button" id="edit-button" class="w-fit lg:w-full px-2 md:px-4 py-1 border-2 border-blue31 rounded hover:bg-blue31 hover:text-white font-medium text-sm xl:text-base">Tambahkan Deskripsi</button>  
+                                                    <button type="button" id="edit-button" class="w-fit lg:w-full px-2 md:px-4 py-1 border-2 border-blue31 rounded hover:bg-blue31 hover:text-white font-medium text-sm xl:text-base transition">Tambahkan Deskripsi</button>  
                                                 </div>  
                                                 <div id="textarea-container" class="hidden mt-2">  
                                                     <textarea id="description-textarea" name="description" cols="30" rows="5" placeholder="Tulis deskripsi tentang biografi Anda di sini..." class="w-full px-3 py-2 border-2 border-blue31 rounded text-sm font-normal">{{ $profile->description ?? '' }}</textarea>  
@@ -97,7 +106,7 @@
                                                 <div class="w-fit lg:w-full px-4 py-2 flex justify-center items-center cursor-pointer bg-pinkee text-white rounded transition hover:bg-blue31">  
                                                     <form action="{{ route('logout') }}" method="POST" class="w-full text-center">  
                                                         @csrf  
-                                                        <button type="submit" class="w-full">KELUAR DARI AKUN ANDA</button>  
+                                                        <button type="submit" class="w-full">KELUAR DARI AKUN</button>  
                                                     </form>  
                                                 </div>  
                                             </div>  
@@ -139,42 +148,42 @@
     
     <script>
         // JS untuk menghubah/mengatur foto banner
-        function previewAndCropPhoto(event) {    
-            const file = event.target.files[0];    
-            if (file) {    
-                const reader = new FileReader();    
-                reader.onload = function(e) {    
-                    const img = new Image();    
-                    img.src = e.target.result;    
-                    img.onload = function() {    
-                        const canvas = document.createElement('canvas');    
-                        const ctx = canvas.getContext('2d');    
-        
-                        // Set rasio agar otomatis terpotong menjadi 16x9    
-                        const targetWidth = 1024; // width    
-                        const targetHeight = 576; // height    
-                        canvas.width = targetWidth;    
-                        canvas.height = targetHeight;    
-        
-                        const scale = Math.max(targetWidth / img.width, targetHeight / img.height);    
-                        const x = (canvas.width - img.width * scale) / 2;    
-                        const y = (canvas.height - img.height * scale) / 2;    
-        
-                        ctx.fillStyle = '#fff'; // Optional: untuk set bg    
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);    
-                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);    
-        
-                        // preview    
-                        const preview = document.getElementById('photo-preview');    
-                        preview.src = canvas.toDataURL('image/jpeg');    
-        
-                        // Tampilkan tombol simpan  
-                        document.getElementById('save-banner-button').classList.remove('hidden');  
-                    };    
-                };    
-                reader.readAsDataURL(file);    
-            }    
+        document.getElementById('edit-banner-button').addEventListener('click', function() {
+        document.getElementById('edit-options').classList.remove('hidden');
+        document.getElementById('edit-banner-button').classList.add('hidden');
+    });
+
+    document.getElementById('change-banner-button').addEventListener('click', function() {
+        document.getElementById('photo-upload').click();
+    });
+
+    document.getElementById('delete-banner-button').addEventListener('click', function() {
+        if (confirm("Apakah Anda yakin ingin menghapus foto banner?")) {
+            document.getElementById('photo-preview').src = "{{ asset('images/samplebg.jpg') }}"; 
+            document.getElementById('photo-upload').value = "";
+            document.getElementById('delete-banner').value = "1"; // Set input hidden untuk menghapus
+            document.getElementById('banner_image').submit(); // Kirim form secara otomatis
         }
+    });
+
+    function previewAndCropPhoto(event) {    
+        const file = event.target.files[0];    
+        if (file) {    
+            const reader = new FileReader();    
+            reader.onload = function(e) {    
+                document.getElementById('photo-preview').src = e.target.result;    
+                document.getElementById('banner-buttons').classList.remove('hidden');  
+                document.getElementById('edit-options').classList.add('hidden');
+            };    
+            reader.readAsDataURL(file);    
+        }    
+    }
+
+    document.getElementById('banner_image').addEventListener('submit', function() {
+        document.getElementById('edit-banner-button').classList.remove('hidden');
+        document.getElementById('banner-buttons').classList.add('hidden');
+    });
+
         
 
 //JS Konten kiri

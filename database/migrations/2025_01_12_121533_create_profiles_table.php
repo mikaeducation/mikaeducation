@@ -23,14 +23,15 @@ return new class extends Migration
             $table->string('birth_place');  
             $table->date('birth_date');  
             $table->string('address');  
-            $table->string('gender')->nullable(); // Menambahkan gender  
+            $table->string('gender')->nullable();
             $table->string('occupation');  
-            $table->string('institution');  
-            $table->string('skill')->nullable(); // Menambahkan skill  
-            $table->string('experience')->nullable(); // Menambahkan experience  
-            $table->string('banner_image')->nullable(); // Menambahkan banner_image  
-            $table->string('profile_image')->nullable(); // Menambahkan profile_image  
-            $table->text('description')->nullable(); // Menambahkan description  
+            $table->string('institution');
+            $table->string('institutionCity')->nullable();  
+            $table->string('skill')->nullable();
+            $table->string('experience')->nullable(); 
+            $table->string('banner_image')->nullable();
+            $table->string('profile_image')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();  
         });          
     }  

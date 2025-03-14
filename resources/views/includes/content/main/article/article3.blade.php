@@ -50,45 +50,50 @@
                     </div>
                 </div>
                 <div class="w-3/4 flex items-center justify-center text-lg text-blue31 mt-5 lg:mt-10">
-                    <p class=" whitespace-pre-line text-justify">Apakah anda pernah merasa marah atau sedih karena merasa tidak dipahami oleh lingkungan anda? Walaupun anda telah berusaha menjelaskan maksud anda dengan cara anda, namun bahkan orang tua anda tidak memahami maksud anda. Belum lagi ditambah dengan perasaan anda sendiri tidak tahu harus menyampaikan dan dengan cara apa. Frustasi, adalah perasaan anak dengan autisme ketika tidak dapat menyampaikan maksudnya pada orang-orang di sekitarnya. Perilaku problematik mungkin yang akan kita lihat di permukaan, namun di dalamnya, ada anak yang butuh bantuan untuk dapat menjelaskan dirinya dalam suatu proses komunikasi.
+                    <div id="textContainer" class="relative overflow-hidden" style="max-height: 1080px; position: relative;">
+                        <p id="textContent" class=" whitespace-pre-line text-justify">Apakah anda pernah merasa marah atau sedih karena merasa tidak dipahami oleh lingkungan anda? Walaupun anda telah berusaha menjelaskan maksud anda dengan cara anda, namun bahkan orang tua anda tidak memahami maksud anda. Belum lagi ditambah dengan perasaan anda sendiri tidak tahu harus menyampaikan dan dengan cara apa. Frustasi, adalah perasaan anak dengan autisme ketika tidak dapat menyampaikan maksudnya pada orang-orang di sekitarnya. Perilaku problematik mungkin yang akan kita lihat di permukaan, namun di dalamnya, ada anak yang butuh bantuan untuk dapat menjelaskan dirinya dalam suatu proses komunikasi.
 
-                        Dengan kesulitan komunikasi yang dimilikinya, anak dengan autisme dalam perilaku sehari-hari tampak seperti anak nakal yang sulit diatur. Hal ini bukan terjadi karena mereka sengaja tidak patuh, namun lebih karena tidak paham apa perilaku yang diharapkan oleh orang lain atas diri mereka dan bagaimana merespon permintaan sosial dari orang-orang di sekitarnya. Mereka juga lebih memahami bahasa secara konkret, dan sulit memahami makna tersirat. Oleh karena itu, mereka perlu dibantu untuk mampu memahami proses komunikasi dengan lingkungannya. Berikut adalah beberapa hal yang dapat dilakukan untuk mendukung perkembangan kemampuan komunikasi anak dengan autisme.
-                        
-                        <span class="font-medium text-xl">Bantuan peraga visual</span>
-                        Karena anak dengan autisme memiliki kesulitan dalam memahami makna tersirat, maka semua proses komunikasi dengan anak autisme diupayakan sekonkret mungkin. Penggunaan bantuan visual (visual supports) juga akan membantu proses komunikasi ekspresif dan reseptif.
-                        Bantuan visual adalah alat-alat yang kita gunakan untuk menunjukkan apa yang kita harapkan pada anak bukan mengatakannya. Contohnya: ketika mengatakan makanan, daripada hanya mengatakannya maka anak dengan autisme diberikan suatu gambar makanan, sehingga ia bisa segera memahami bahwa sedang membicarakan makanan (lihat gambar 1). Bantuan visual dapat berupa gambar, foto, obyek benda, daftar, tulisan (kalimat instruksi) atau apapun yang membuat kita dapat menampilkan informasi secara visual.
-                        
-                        Perlu dipastikan bahwa visual atau gambar yang digunakan menunjukkan bentuk yang dilihat sehari-hari nyata oleh si anak, jadi bukan gambar asing. Jika menggunakan gambar asing maka anak akan kesulitan memahami dan menghubungkan makna gambar dan ide yang ingin disampaikan. Misalkan, jika anak memiliki piyama hijau, maka buat gambar tentang piyama hijau bukan warna lain, atau anak akan kesulitan memahami piyama warna lain karena mereka tidak pernah melihatnya. Baru setelah anak mengembangkan kemampuan generalisasi piyama dalam berbagai warna (tahapan berikutnya) kita bisa menggunakan gambar piyama dengan berbagai warna.
-                        <img src="{{ asset('images/article3content.jpg') }}" alt="" class="w-full"> <span class="font-medium text-xl">Gambar 1.</span>Bantuan visual untuk mengenalkan berbagai benda
-                        
-                        Ada banyak teknik penggunaan bantuan visual dalam mengembangkan kemampuan komunikasi anak dengan autisme, beberapa diantaranya adalah: Picture Exchange Communication System(PECS), Pragmatic Organization Dynamic Display (PODD), Aided Language Stimulation (ALS), dan Augmentative and Alternative Communication (ACC).
-                        
-                        <span class="font-medium text-xl">Membuat jadwal</span>
-                        Jika dunia sulit dipahami dan terus berubah, maka kita akan terus membutuhkan bantuan orang lain untuk menjelaskan apa yang harus kita lakukan. Kita bisa menjadi cemas karena terus mengantisipasi perubahan, takut jika ada sesuatu berjalan salah dan menimbulkan hal yang menyakitkan atau tidak enak. Anak dapat menolak melakukan berbagai hal karena tidak dapat memprediksi apa konsekuensinya atau kelanjutannya.
-                        
-                        Maka perlu dipelajari suatu pola atau keteraturan yang terjadi di dalam pengalaman sehari-harinya. Kita dapat membantu antisipasi pemahaman anak dengan membuat jadwal. Dengan jadwal, anak dengan autisme menjadi mampu memprediksi apa yang akan terjadi karena telah mempelajari apa yang akan terjadi. Hal ini juga dapat memotivasi anak untuk berperilaku dan mengelola dirinya secara lebih yakin.
-                        
-                        Namun perubahan dapat terjadi sewaktu-waktu, dan manusia harus berjuang menghadapinya. Hal inilah yang bisa menjadi menjadi persoalan bagi anak dengan autisme. Yang sering menjadi persoalan adalah ketika orang dewasa di sekitarnya memberikan tuntutan agar anak dengan autisme bisa bersikap fleksibel terhadap perubahan. Kita tidak akan meminta orang buta untuk mampu melihat; maka perlu dipahami bahwa meminta anak dengan autisme untuk bersikap fleksibel juga adalah suatu hal yang sangat menyulitkan bagi mereka. Jika anak belum mengantisipasi perubahan maka ia akan menunjukkan perilaku sulit, seperti: menolak, menangis atau marah. Sebenarnya banyak perilaku sulit anak dengan autisme bisa dihindari dengan memberikan jadwal atau perubahan jadwal sebelum terjadinya peristiwa; dengan demikan mereka tetap mampu melakukan antisipasi. Contohnya: jika akan ada tamu datang ke rumah dan menginap; maka anak perlu dibuat paham akan ada perubahan jadwal di rumah karena akan menjamu tamu dengan cara tertentu; serta perlu dijelaskan pula bahwa anak diharapkan untuk menyapa tamu dengan sederhana.  Dengan jadwal dan penjelasan perubahan jadwal maka anak menjadi mampu menyiapkan dirinya di menghadapi perubahan, sehingga tidak perlu menampilkan perilaku sulit.
-                        
-                        <span class="font-medium text-xl">Menjaga bantuan dan dukungan</span>
-                        Mengenalkan proses komunikasi pada anak dengan autisme membutuhkan usaha dan waktu. Seperti belajar bahasa baru, perlu banyak mengenal kata-kata baru, berlatih membuat kalimat dan berlatih berulang-ulang hingga mahir; seperti itulah juga proses membantu anak dengan autisme untuk berkomunikasi.
-                        
-                        Sebenarnya kita, manusia pada umumnya juga menggunakan bantuan visual untuk memudahkan pemahaman, seperti: kalender, diari, daftar, resep masakan dengan foto, dan sebagainya. Sebagian dari kita, terutama yang memiliki corak berpikir visual, akan sangat kesulitan memahami informasi jika tidak dibantu dengan bantuan visual. Bantuan visual membuat kita mudah memahami informasi sehingga pada akhirnya membuat kita merasa yakin dan memiliki kontrol atas perilaku kita. Begitupula dengan anak, jika mereka mampu memahami informasi maka mereka juga lebih mampu mengelola perilaku mereka dan lebih yakin dalam melakukan komunikasi sosial.
-                        
-                        Kesulitannya bagi orang-orang di sekeliling anak adalah kurang sabar atau kurang konsisten menggunakan bantuan visual. Jika anak dilatih menggunakan bantuan visual di tempat terapi maka sebaiknya di rumah dan di sekolah anak juga perlu dibantu komunikasinya dengan visual. Jika tidak maka anak akan mengalami kesulitan memahami proses komunikasi, karena di satu tempat dia dibantu berkomunikasi dengan bantuan visual namun di tempat lain dia diharapkan mampu paham hanya dengan instruksi kalimat saja. Kesulitan ini akan membuat anak terlihat berulah, tidak patuh atau “nakal”. Sebenarnya banyak perilaku “nakal”anak dengan autisme bisa dihadapi dengan mendukung belajar komunikasinya secara kontinyu. Anak menjadi mampu mengkomunikasikan dirinya di berbagai tempat dan berbagai orang, sehingga tidak perlu menampilkan perilaku bermasalah.
-                        
-                        <span class="font-medium text-xl">Simpulan</span>
-                        Terkait dengan keterbatasan komunikasi anak dengan autisme maka ada beberapa alat dan aktivitas yang dapat digunakan untuk melatih kemampuan komunikasi dengan mereka:
-                        Menggunakan alat bantu visual untuk berkomunikasi dengan mereka, agar konsep menjadi lebih konkret.
-                        
-                        Menyusun rutinitas aktivitas sosial sehingga mereka dapat melakukan antisipasi, hal ini penting agar mereka tahu bagaimana apa yang diharapkan dari mereka serta bagaimana cara mencapainya
-                        
-                        Menyusun jadwal kegiatan, hal ini untuk membantu mereka merencanakan dan mengetahui cara mencapai tujuannya secara berurutan
-                        Keseluruhan aktivitas pembangunan kemampuan komunikasi anak dengan autisme juga perlu dikombinasikan dengan usaha perkembangan perilakunya. Penting dipahami proses yang akan dilakukan untuk membantu komunikasi perlu dilakukan secara intensif dan dalam jangka waktu yang cukup hingga bisa dilihat perubahannya.
-                        
-                        <span class="font-medium text-xl">Referensi</span>
-                        Hands-out Workshop on Autism August 2013. Autism Association of Western Australia.                        
-                    </p>
+                            Dengan kesulitan komunikasi yang dimilikinya, anak dengan autisme dalam perilaku sehari-hari tampak seperti anak nakal yang sulit diatur. Hal ini bukan terjadi karena mereka sengaja tidak patuh, namun lebih karena tidak paham apa perilaku yang diharapkan oleh orang lain atas diri mereka dan bagaimana merespon permintaan sosial dari orang-orang di sekitarnya. Mereka juga lebih memahami bahasa secara konkret, dan sulit memahami makna tersirat. Oleh karena itu, mereka perlu dibantu untuk mampu memahami proses komunikasi dengan lingkungannya. Berikut adalah beberapa hal yang dapat dilakukan untuk mendukung perkembangan kemampuan komunikasi anak dengan autisme.
+                            
+                            <span class="font-medium text-xl">Bantuan peraga visual</span>
+                            Karena anak dengan autisme memiliki kesulitan dalam memahami makna tersirat, maka semua proses komunikasi dengan anak autisme diupayakan sekonkret mungkin. Penggunaan bantuan visual (visual supports) juga akan membantu proses komunikasi ekspresif dan reseptif.
+                            Bantuan visual adalah alat-alat yang kita gunakan untuk menunjukkan apa yang kita harapkan pada anak bukan mengatakannya. Contohnya: ketika mengatakan makanan, daripada hanya mengatakannya maka anak dengan autisme diberikan suatu gambar makanan, sehingga ia bisa segera memahami bahwa sedang membicarakan makanan (lihat gambar 1). Bantuan visual dapat berupa gambar, foto, obyek benda, daftar, tulisan (kalimat instruksi) atau apapun yang membuat kita dapat menampilkan informasi secara visual.
+                            
+                            Perlu dipastikan bahwa visual atau gambar yang digunakan menunjukkan bentuk yang dilihat sehari-hari nyata oleh si anak, jadi bukan gambar asing. Jika menggunakan gambar asing maka anak akan kesulitan memahami dan menghubungkan makna gambar dan ide yang ingin disampaikan. Misalkan, jika anak memiliki piyama hijau, maka buat gambar tentang piyama hijau bukan warna lain, atau anak akan kesulitan memahami piyama warna lain karena mereka tidak pernah melihatnya. Baru setelah anak mengembangkan kemampuan generalisasi piyama dalam berbagai warna (tahapan berikutnya) kita bisa menggunakan gambar piyama dengan berbagai warna.
+                            <img src="{{ asset('images/article3content.jpg') }}" alt="" class="w-full"> <span class="font-medium text-xl">Gambar 1.</span>Bantuan visual untuk mengenalkan berbagai benda
+                            
+                            Ada banyak teknik penggunaan bantuan visual dalam mengembangkan kemampuan komunikasi anak dengan autisme, beberapa diantaranya adalah: Picture Exchange Communication System(PECS), Pragmatic Organization Dynamic Display (PODD), Aided Language Stimulation (ALS), dan Augmentative and Alternative Communication (ACC).
+                            
+                            <span class="font-medium text-xl">Membuat jadwal</span>
+                            Jika dunia sulit dipahami dan terus berubah, maka kita akan terus membutuhkan bantuan orang lain untuk menjelaskan apa yang harus kita lakukan. Kita bisa menjadi cemas karena terus mengantisipasi perubahan, takut jika ada sesuatu berjalan salah dan menimbulkan hal yang menyakitkan atau tidak enak. Anak dapat menolak melakukan berbagai hal karena tidak dapat memprediksi apa konsekuensinya atau kelanjutannya.
+                            
+                            Maka perlu dipelajari suatu pola atau keteraturan yang terjadi di dalam pengalaman sehari-harinya. Kita dapat membantu antisipasi pemahaman anak dengan membuat jadwal. Dengan jadwal, anak dengan autisme menjadi mampu memprediksi apa yang akan terjadi karena telah mempelajari apa yang akan terjadi. Hal ini juga dapat memotivasi anak untuk berperilaku dan mengelola dirinya secara lebih yakin.
+                            
+                            Namun perubahan dapat terjadi sewaktu-waktu, dan manusia harus berjuang menghadapinya. Hal inilah yang bisa menjadi menjadi persoalan bagi anak dengan autisme. Yang sering menjadi persoalan adalah ketika orang dewasa di sekitarnya memberikan tuntutan agar anak dengan autisme bisa bersikap fleksibel terhadap perubahan. Kita tidak akan meminta orang buta untuk mampu melihat; maka perlu dipahami bahwa meminta anak dengan autisme untuk bersikap fleksibel juga adalah suatu hal yang sangat menyulitkan bagi mereka. Jika anak belum mengantisipasi perubahan maka ia akan menunjukkan perilaku sulit, seperti: menolak, menangis atau marah. Sebenarnya banyak perilaku sulit anak dengan autisme bisa dihindari dengan memberikan jadwal atau perubahan jadwal sebelum terjadinya peristiwa; dengan demikan mereka tetap mampu melakukan antisipasi. Contohnya: jika akan ada tamu datang ke rumah dan menginap; maka anak perlu dibuat paham akan ada perubahan jadwal di rumah karena akan menjamu tamu dengan cara tertentu; serta perlu dijelaskan pula bahwa anak diharapkan untuk menyapa tamu dengan sederhana.  Dengan jadwal dan penjelasan perubahan jadwal maka anak menjadi mampu menyiapkan dirinya di menghadapi perubahan, sehingga tidak perlu menampilkan perilaku sulit.
+                            
+                            <span class="font-medium text-xl">Menjaga bantuan dan dukungan</span>
+                            Mengenalkan proses komunikasi pada anak dengan autisme membutuhkan usaha dan waktu. Seperti belajar bahasa baru, perlu banyak mengenal kata-kata baru, berlatih membuat kalimat dan berlatih berulang-ulang hingga mahir; seperti itulah juga proses membantu anak dengan autisme untuk berkomunikasi.
+                            
+                            Sebenarnya kita, manusia pada umumnya juga menggunakan bantuan visual untuk memudahkan pemahaman, seperti: kalender, diari, daftar, resep masakan dengan foto, dan sebagainya. Sebagian dari kita, terutama yang memiliki corak berpikir visual, akan sangat kesulitan memahami informasi jika tidak dibantu dengan bantuan visual. Bantuan visual membuat kita mudah memahami informasi sehingga pada akhirnya membuat kita merasa yakin dan memiliki kontrol atas perilaku kita. Begitupula dengan anak, jika mereka mampu memahami informasi maka mereka juga lebih mampu mengelola perilaku mereka dan lebih yakin dalam melakukan komunikasi sosial.
+                            
+                            Kesulitannya bagi orang-orang di sekeliling anak adalah kurang sabar atau kurang konsisten menggunakan bantuan visual. Jika anak dilatih menggunakan bantuan visual di tempat terapi maka sebaiknya di rumah dan di sekolah anak juga perlu dibantu komunikasinya dengan visual. Jika tidak maka anak akan mengalami kesulitan memahami proses komunikasi, karena di satu tempat dia dibantu berkomunikasi dengan bantuan visual namun di tempat lain dia diharapkan mampu paham hanya dengan instruksi kalimat saja. Kesulitan ini akan membuat anak terlihat berulah, tidak patuh atau “nakal”. Sebenarnya banyak perilaku “nakal”anak dengan autisme bisa dihadapi dengan mendukung belajar komunikasinya secara kontinyu. Anak menjadi mampu mengkomunikasikan dirinya di berbagai tempat dan berbagai orang, sehingga tidak perlu menampilkan perilaku bermasalah.
+                            
+                            <span class="font-medium text-xl">Simpulan</span>
+                            Terkait dengan keterbatasan komunikasi anak dengan autisme maka ada beberapa alat dan aktivitas yang dapat digunakan untuk melatih kemampuan komunikasi dengan mereka:
+                            Menggunakan alat bantu visual untuk berkomunikasi dengan mereka, agar konsep menjadi lebih konkret.
+                            
+                            Menyusun rutinitas aktivitas sosial sehingga mereka dapat melakukan antisipasi, hal ini penting agar mereka tahu bagaimana apa yang diharapkan dari mereka serta bagaimana cara mencapainya
+                            
+                            Menyusun jadwal kegiatan, hal ini untuk membantu mereka merencanakan dan mengetahui cara mencapai tujuannya secara berurutan
+                            Keseluruhan aktivitas pembangunan kemampuan komunikasi anak dengan autisme juga perlu dikombinasikan dengan usaha perkembangan perilakunya. Penting dipahami proses yang akan dilakukan untuk membantu komunikasi perlu dilakukan secara intensif dan dalam jangka waktu yang cukup hingga bisa dilihat perubahannya.
+                            
+                            <span class="font-medium text-xl">Referensi</span>
+                            Hands-out Workshop on Autism August 2013. Autism Association of Western Australia.                        
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-center w-full pt-5 ">
+                    <button id="toggleButton" class="absolute z-50 px-8 py-2 bg-blue31 hover:bg-opacity-10 hover:text-blue31 text-white rounded" onclick="toggleContent()">Baca Keseluruhan Artikel...</button>
                 </div>
             </div>
         </Section>
@@ -96,3 +101,13 @@
         @include('includes.components.main.footer')      
     </body>
 </html>
+
+<script>
+    function toggleContent() {
+        var textContainer = document.getElementById("textContainer");
+        var button = document.getElementById("toggleButton");
+        
+        textContainer.style.maxHeight = "none";
+        button.style.display = "none";
+    }
+</script>
