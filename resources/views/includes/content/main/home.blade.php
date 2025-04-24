@@ -22,11 +22,11 @@
                     <div class="w-1/2 h-full flex flex-col">
                         <div class="w-full h-auto md:h-1/3 flex">
                             <div class="w-full flex items-end justify-end">
-                                <button id="section1Button" onclick="showContent('section-1')" class="h-20 md:h-24 w-full px-4 lg:px-6 rounded-t border-t-8 border-pinkee bg-white flex items-end">
-                                    <div class="flex items-end xl:w-full lg:px-4 pb-1 gap-3 lg:gap-8">
+                                <button id="section1Button" onclick="showContent('section-1')" class="h-24 sm:h-20 md:h-24 w-full px-0 sm:px-4 lg:px-6 rounded-t border-t-8 border-pinkee bg-white flex items-end">
+                                    <div class="flex items-end justify-center w-full lg:px-4 pb-1 gap-3 lg:gap-8">
                                         <img src="{{ asset('images/tablet.png') }}" alt="" class="w-32 lg:w-52 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hidden md:block">
                                         <div class="w-40 sm:w-56 text-center md:text-left mb-3 flex-col leading-5 md:pb-2 lg:pb-0 text-blue31">
-                                            <h3 class="text-base sm:text-xl md:text-2xl font-bold">MIKA 1.0</h3>
+                                            <h3 class="text-lg sm:text-xl md:text-2xl font-bold">MIKA 1.0</h3>
                                             <p class="italic text-opacity-60 text-xs sm:text-sm lg:text-base md:hidden xl:flex">aplikasi mobile</p>
                                         </div>
                                     </div>
@@ -37,12 +37,12 @@
                     <div class="w-1/2 flex flex-col justify-end items-center">
                         <div class="w-full h-auto md:h-1/3 flex items-end justify-end">
                             <div class="w-full flex items-end justify-end">
-                                <button id="section2Button" onclick="showContent('section-2')" class="h-20 md:h-24 w-full px-4 lg:px-6 rounded-t bg-blue31 flex items-end">
+                                <button id="section2Button" onclick="showContent('section-2')" class="h-24 sm:h-20 md:h-24 w-full px-4 lg:px-6 rounded-t bg-blue31 flex items-end">
                                     <div class="flex items-end w-full lg:pl-2 pb-1 md:gap-2 lg:gap-4">
                                         <img src="{{ asset('images/desktop.png') }}" alt="" class="md:w-28 lg:w-48 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hidden md:block">
                                         <div class="w-full text-center md:text-left text-blue31 mb-3 flex-col leading-3 md:pb-0 ">
-                                            <h3 class="text-base sm:text-xl md:text-2xl font-bold">MIKA EDUCATION</h3>
-                                            <p class="italic text-opacity-60 text-xs sm:text-sm lg:text-base md:hidden xl:flex">website - internet browser</p>
+                                            <h3 class="text-lg sm:text-xl md:text-2xl font-bold">MIKA EDUCATION</h3>
+                                            <p class="italic text-opacity-60 text-xs sm:text-sm lg:text-base md:hidden xl:flex">aplikasi website</p>
                                         </div>
                                     </div>
                                 </button>
@@ -63,8 +63,8 @@
                 </div>
                 <div class="w-full lg:w-1/3 text-justify">
                     <p class="lg:flex hidden">Aplikasi ini telah tersedia secara global. Dapat diunduh melalui Google Playstore dibawah ini.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.vito.mika" class="w-full flex md:justify-start justify-center">
-                        <img src="{{ asset('images/gplay.png') }}" alt="" class="w-2/5 md:w-1/5 lg:w-1/2">
+                    <a href="https://play.google.com/store/apps/details?id=com.vito.mika" class="w-full flex md:justify-start justify-start">
+                        <img src="{{ asset('images/gplay.png') }}" alt="" class="w-1/2 sm:w-1/3 md:w-1/5 lg:w-1/2">
                     </a>
                 </div>
             </div>
@@ -78,37 +78,33 @@
                     </button>
                 </div>
                 <div id="content1.1" class="w-full">
-                    <div class="w-full h-full flex items-start text-blue31 py-14">
-                        <div class="w-full h-fit ">
-                            <div class="w-full h-fit flex gap-10">
-                                <div class="lg:w-[58%] w-[100%] h-fit space-y-3">
-                                    <h2 class="text-lg lg:text-xl font-bold">Lebih dekat dengan Belajar dan Bermain bersama MIKA 1.0 </h2>
-                                    <div class="w-full h-fit flex justify-end rounded md:block lg:hidden">
-                                        <img src="{{ asset('images/content-1.png') }}" alt="MIKA 1.0" class="w-[100%] h-80 bg-blue31 px-1.5 pt-1.5 pb-4 rounded">
-                                    </div>
-                                    <p class="text-justify lg:text-lg text-base">
-                                        MIKA 1.0 adalah teknologi pendukung belajar komunikasi visual yang baru, lebih cepat, komprehensif dan sistematis sehingga dapat memberikan stimulasi pembelajaran komunikasi yang lebih baik 
-                                        karena dikembangkan berdasarkan sistem Aided Language Stimulation (ALS) dan Pragmatic Organisation Dynamic Display (PODD), dan juga bisa dikombinasikan dengan Picture Exchange Communication System (PECS). 
-                                        MIKA 1.0 dikembangkan dengan Bahasa Indonesia, namun bisa disesuaikan dengan konteks bahasa daerah dengan fitur penambahan kata dan istilah.
-                                        Belajar komunikasi yang dibantu MIKA 1.0 akan menghasilkan lebih banyak konsep kata yang dapat dipelajari (sedikitnya ada 2000 kata tersimpan di MIKA 1.0).
-                                        Seluruh proses belajar akan disimpan secara real time dan mudah diakses untuk mengevaluasi kemajuan terapi/belajar anak. Anak-anak ASD dan hendaya komunikasi dapat belajar 
-                                        hingga tingkat kemampuan komunikasi yang lebih tinggi (dari menambah perbendaharaan kata, menyusun kalimat sederhana hingga kompleks, dan mengembangkan dialog). 
-                                    </p>
+                    <div class="w-full h-fit flex items-start text-blue31 py-14">
+                        <div class="w-full h-fit">
+                            <div class="text-base lg:text-lg text-justify space-y-4">
+                                <h2 class="text-lg lg:text-xl font-bold">
+                                    Lebih dekat dengan Belajar dan Bermain bersama MIKA 1.0
+                                </h2>
+                                <div class="w-full md:w-[40%] h-full float-none md:float-right md:ml-6 lg:ml-8 bg-blue31 rounded">
+                                    <img src="{{ asset('images/content-1.png') }}" alt="MIKA 1.0"class="w-full object-cover h-48 sm:h-60 md:h-auto px-1.5 pt-1.5 pb-4 rounded" />
                                 </div>
-                                <div class="lg:w-[42%] hidden h-fit lg:flex justify-end rounded">
-                                    <img src="{{ asset('images/content-1.png') }}" alt="MIKA 1.0" class="w-[100%] h-36 lg:h-96 bg-blue31 px-1.5 pt-1.5 pb-4 rounded">
-                                </div>
+                                <p>
+                                    MIKA 1.0 adalah teknologi pendukung belajar komunikasi visual yang baru, lebih cepat, komprehensif dan sistematis sehingga dapat memberikan stimulasi pembelajaran komunikasi yang lebih baik 
+                                    karena dikembangkan berdasarkan sistem Aided Language Stimulation (ALS) dan Pragmatic Organisation Dynamic Display (PODD), dan juga bisa dikombinasikan dengan Picture Exchange Communication System (PECS). 
+                                    MIKA 1.0 dikembangkan dengan Bahasa Indonesia, namun bisa disesuaikan dengan konteks bahasa daerah dengan fitur penambahan kata dan istilah.
+                                    Belajar komunikasi yang dibantu MIKA 1.0 akan menghasilkan lebih banyak konsep kata yang dapat dipelajari (sedikitnya ada 2000 kata tersimpan di MIKA 1.0).
+                                    Seluruh proses belajar akan disimpan secara real time dan mudah diakses untuk mengevaluasi kemajuan terapi/belajar anak. Anak-anak ASD dan hendaya komunikasi dapat belajar 
+                                    hingga tingkat kemampuan komunikasi yang lebih tinggi (dari menambah perbendaharaan kata, menyusun kalimat sederhana hingga kompleks, dan mengembangkan dialog).
+                                    <br><br>
+                                    Selain itu, data yang diperoleh dari aplikasi perangkat lunak ini dapat digunakan untuk penelitian pengembangan intervensi autisme. Keterlibatan dan kontribusi anda akan bermakna dalam pengembangan intervensi pendidikan inklusi di Indonesia.                        
+                                    MIKA 1.0 juga dilaunching di Google play sehingga memudahkan dan memperluas akses di Indonesia. MIKA 1.0 bisa diutamakan digunakan oleh Terapis dan Guru dalam proses terapi, maka dibuka seluasnya akses untuk sekolah dan pusat terapi di Indonesia. 
+                                    Orang tua juga bisa mendampingi belajar anaknya dengan MIKA 1.0, namun disarankan untuk turut belajar prinsip belajar komunikasi autisme agar bisa mengadministrasi MIKA 1.0 dengan baik.
+                                </p>
                             </div>
-                            <p class="mt-4 text-justify lg:text-lg text-base">
-                                Selain itu, data yang diperoleh dari aplikasi perangkat lunak ini dapat digunakan untuk penelitian pengembangan intervensi autisme. Keterlibatan dan kontribusi anda akan bermakna dalam pengembangan intervensi pendidikan inklusi di Indonesia.                        
-                                MIKA 1.0 juga dilaunching di Google play sehingga memudahkan dan memperluas akses di Indonesia. MIKA 1.0 bisa diutamakan digunakan oleh Terapis dan Guru dalam proses terapi, maka dibuka seluasnya akses untuk sekolah dan pusat terapi di Indonesia. 
-                                Orang tua juga bisa mendampingi belajar anaknya dengan MIKA 1.0, namun disarankan untuk turut belajar prinsip belajar komunikasi autisme agar bisa mengadministrasi MIKA 1.0 dengan baik.
-                            </p>
-                        </div>                    
+                        </div>
                     </div>
                     <div class="w-full h-fit space-y-6 text-blue31">
                         <h2 class="text-xl font-bold">Dilengkapi dengan komponen utama pembelajaran</h2>
-                        <div class="w-full lg:h-96 xl:h-72 lg:flex items-start justify-center text-base md:text-lg gap-5 grid grid-cols-2">
+                        <div class="w-full lg:h-96 xl:h-72 lg:flex items-start justify-center text-base md:text-lg gap-5 grid md:grid-cols-2">
                             <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-8 gap-4">
                                 <div class="w-full h-8">
                                     <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
@@ -163,29 +159,29 @@
                     </div>
                 </div>
                 <div id="content1.2" class="w-full">
-                    <div class="w-full h-full flex flex-col text-blue31 mt-14 space-y-5 text-base lg:text-lg">
+                    <div class="w-full h-full flex flex-col text-blue31 mt-14 space-y-5 text-base lg:text-lg text-justify">
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">1</div>
-                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded"> <span class="font-bold">Pendaftaran profile anak</span>
+                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Pendaftaran profile anak</span>
                                 Terapis dapat menambahkan biodata anak untuk dapat dilakukan pembelajaran komunikasi dengan aplikasi MIKA 1.0.
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">2</div>
-                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded"> <span class="font-bold">Login tiap Terapis</span>
+                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Login tiap Terapis</span>
                                 Terapis dapat masuk ke aplikasi MIKA 1.0 untuk menggunakan fitur-fitur aplikasi MIKA 1.0.
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 h-20 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">3</div>
-                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded"> <span class="font-bold">Pengelolaan profil anak</span>
+                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Pengelolaan profil anak</span>
                                 Terapis dapat mengisi dan merubah dan profil kemampuan anak (planning matrix) yang ada di aplikasi MIKA 1.0 sesuai kebutuhan dan perkembangan anak.                            
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 h-20 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">4</div>
                             <div class="w-full pt-2 border-2 border-bluee3 border-l-0 rounded">
-                                <p class="w-full whitespace-pre-line"> <span class="font-bold">Mengadministrasi MIKA 1.0</span>
+                                <p class="w-full whitespace-pre-line pr-4"> <span class="font-bold">Mengadministrasi MIKA 1.0</span>
                                     Terapis dapat memulai terapi/belajar komunikasi sesuai dengan tahap kemampuan anak. Secara umum, proses belajar komunikasi dibagi menjadi empat (4) level:
                                 </p>
                                 <div class="lg:flex item-start justify-start gap-4 space-y-4 pr-4 pb-4">
@@ -214,13 +210,13 @@
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">5</div>
-                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded"> <span class="font-bold">Mengevaluasi keberhasilan terapi/belajar</span>
+                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Mengevaluasi keberhasilan terapi/belajar</span>
                                 Terapis dapat mengevaluasi hasil terapi komunikasi anak selama masa terapi/belajar.                            
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">6</div>
-                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded"> <span class="font-bold">Mengelola dan mengamati perkembangan anak</span>
+                            <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Mengelola dan mengamati perkembangan anak</span>
                                 Terapis dapat melihat dan merubah perkembangan anak selama terapi/belajar berlangsung.                            
                             </p>
                         </div>
@@ -240,7 +236,7 @@
                 </div>
                 <div class="w-full lg:w-1/3 text-justify lg:mt-0 mt-4">
                     <p class="lg:flex hidden pb-4">Aplikasi berbasis website ini sedang dalam tahap pengembangan dan telah memiliki versi Beta yang dapat diakses sekarang juga dibawah ini.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.vito.mika" class="bg-blue31 text-lg text-white py-3 lg:px-6 px-10 w-full rounded hover:bg-blue6a">
+                    <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="bg-blue31 text-lg text-white py-3 lg:px-6 px-10 w-full rounded hover:bg-blue6a">
                         Mulai Program Pembelajaran
                     </a>
                 </div>

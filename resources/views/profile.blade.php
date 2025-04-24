@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @vite('public/assets/css/style.css')
-        {{-- <script>document.documentElement.classList.add('js')</script> --}}
     </head>
 
     <body class="font-futura h-max w-full relative">
@@ -46,7 +45,7 @@
                                     </button>  
                                 </div>
                                 <input id="photo-upload" type="file" accept="image/*" class="hidden" name="banner_image" onchange="previewAndCropPhoto(event)">    
-                                <img id="photo-preview" src="{{ $profile->banner_image ? asset('storage/' . $profile->banner_image) : asset('images/samplebg.jpg') }}" alt="Banner" class="w-full h-full object-cover rounded">
+                                <img id="photo-preview" src="{{ $profile->banner_image ? asset($profile->banner_image) : asset('images/samplebg.jpg') }}" alt="Foto Banner" class="w-full h-full object-cover rounded bg-bluee3">
                                 <div id="banner-buttons" class="absolute top-4 lg:top-8 right-4 lg:right-8 space-y-1.5 md:text-base text-sm hidden">
                                     <button type="submit" id="save-banner-button" class="lg:w-24 md:w-20 w-fit flex items-center justify-center font-medium hover:text-white hover:bg-blue31 hover:border-blue31 border-2 rounded lg:py-2 md:py-1 py-0.5 md:px-2 px-5 cursor-pointer">Simpan</button>  
                                 </div>       
@@ -61,7 +60,7 @@
                                             @method('PUT')    
                                             <div class="w-full lg:w-5/6 h-full lg:h-fit flex flex-col items-center justify-center pr-8 lg:pr-0 pt-5 sm:pt-10 lg:pt-0 pb-5 lg:pb-0">    
                                                 <div class="w-full h-full xl:h-80 relative overflow-hidden bg-bluee3 border-2 border-blue31 rounded">    
-                                                    <img id="profile-image" src="{{ $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('images/profile-sample.jpg') }}" alt="Profile Image" class="object-cover w-full h-full">    
+                                                    <img id="profile-image" src="{{ $profile->profile_image ? asset($profile->profile_image) : asset('images/profile-sample.jpg') }}" alt="Foto Profil" class="object-cover w-full h-full">    
                                                 </div>
                                                 <button type="submit" id="save-profile-button" class="hidden w-full py-1 mt-1 border-2  border-blue31 rounded hover:bg-blue31 hover:text-white transition font-medium text-base">Simpan</button>  
                                                 <label for="file-input" class="flex items-center justify-center font-normal text-base py-1 mt-1 w-full hover:border-blue31 border-2 bg-blue31 text-white rounded cursor-pointer">    
@@ -115,7 +114,7 @@
                                     <div class="w-full lg:w-3/4 lg:mt-0 mt-4 flex bg-white rounded border-2 border-blue31">
                                         <div class="w-full px-6 lg:px-3 xl:px-6 text-sm xl:text-base flex-col">
                                             <nav class="w-full py-4 sm:py-0 sm:pt-4 md:text-base grid sm:grid-cols-4 grid-cols-2 font-semibold border-b-2 border-bluee3">
-                                                <button id="section1Button" onclick="showContent('section1')" class="pb-4 sm:pt-0 pt-4 transition border-b-4 border-blue31">Biodata Diri</button>
+                                                <button id="section1Button" onclick="showContent('section1')" class="pb-4 sm:pt-0 pt-4 transition border-b-2 border-blue31">Biodata Diri</button>
                                                 <button id="section2Button" onclick="showContent('section2')" class="pb-4 sm:pt-0 pt-4 transition">Dokumen dan Layanan</button>
                                                 <button id="section3Button" onclick="showContent('section3')" class="pb-4 sm:pt-0 pt-4 transition">Notifikasi</button>
                                                 <button id="section4Button" onclick="showContent('section4')" class="pb-4 sm:pt-0 pt-4 transition">Pengaturan Lainnya</button>
@@ -251,11 +250,11 @@
         // Menghapus border aktif dari semua tombol
         var buttons = document.querySelectorAll('nav button');
         buttons.forEach(function(button) {
-            button.classList.remove('border-b-4', 'border-blue31');
+            button.classList.remove('border-b-2', 'border-blue31');
         });
 
         // Menambahkan border aktif pada tombol yang dipilih
-        document.getElementById(id + 'Button').classList.add('border-b-4', 'border-blue31');
+        document.getElementById(id + 'Button').classList.add('border-b-2', 'border-blue31');
 
         // Menampilkan hanya section yang dipilih
         document.getElementById('section1').style.display = 'none';

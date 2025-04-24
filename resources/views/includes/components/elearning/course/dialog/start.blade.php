@@ -7,18 +7,18 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
                     </svg>
                 </div>
-                <div class="text-justify lg:text-center">
+                <div class="w-full flex flex-col items-center justify-center text-justify lg:text-center">
                     <h3 class="text-3xl font-semibold text-blue31" id="modal-title">Mulai Pembelajaran?</h3>
-                    <div class="mt-4">
-                        <p class="text-medium text-blue31 whitespace-pre-line">Anda dapat memulai program pembelajaran jika merasa yakin dengan detail pembelajaran ini.
+                    <div class="mt-4 w-11/12 flex items-center justify-center">
+                        <p class="text-lg text-blue31 whitespace-pre-line">Anda dapat memulai program pembelajaran jika merasa yakin dengan detail pembelajaran ini.
                             
-                            Jika memerlukan bantuan lebih lanjut, <a href="https://wa.me/082156226440 " class="relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full"> hubungi tim dukungan kami disini.</a>
+                            Jika memerlukan bantuan lebih lanjut, <a href="https://wa.me/082156226440 " class="relative text-blue31 font-medium underline"> hubungi tim dukungan kami disini.</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bg-bluee3 w-full bg-opacity-40 px-4 py-3 flex justify-center space-x-4 sm:px-6">
+        <div class="bg-bluee3 w-full bg-opacity-40 p-4 flex justify-center space-x-4 sm:px-6">
             <button id="cancelBtn" type="button" class="inline-flex w-1/3 justify-center rounded border-2 border-blue31 px-3 py-2 text-base font-semibold text-blue31 shadow-sm transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                 Kembali
             </button>

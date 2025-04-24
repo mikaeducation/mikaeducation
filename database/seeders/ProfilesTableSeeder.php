@@ -23,7 +23,7 @@ class ProfilesTableSeeder extends Seeder
             'skill' => 'PHP, JavaScript',
             'experience' => '3-5 Tahun',
             'banner_image' => 'images/samplebg.jpg',
-            'profile_image' => 'images/member-rayhan.png',
+            'profile_image' => 'images/profile-sample.jpg',
             'description' => 'Saya seorang mahasiswa program studi sistem informasi',
         ]);  
     }  

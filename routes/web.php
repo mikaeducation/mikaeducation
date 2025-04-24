@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ModuleController;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
 
@@ -92,11 +93,21 @@ Route::get('/aboutus', function () {
 
 
 // MIKA-LEARNING
+// web.php
+
 Route::get('/learn', function () {
     return view('learning/home');
 });
+Route::get('/learn', [ModuleController::class, 'index']);
+Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/modules', function () {
+    return view('learning/modules');
+});
+Route::get('/modules/{id}', [ModuleController::class, 'showModules'])->name('modules.show');
+
+
+
 
 Route::get('/preLearn', function (){
     return view('learning/preLearn');
@@ -134,11 +145,32 @@ Route::get('/page2_3', function (){
     return view('learning/course/page2_3');
 });
 
-Route::get('/page3', function (){
-    return view('learning/course/page3');
+Route::get('/page3_0', function (){
+    return view('learning/course/page3_0');
+});
+Route::get('/page3_1_0', function (){
+    return view('learning/course/page3_1_0');
+});
+Route::get('/page3_1_1', function (){
+    return view('learning/course/page3_1_1');
+});
+Route::get('/page3_1_2', function (){
+    return view('learning/course/page3_1_2');
+});
+Route::get('/page3_1_3', function (){
+    return view('learning/course/page3_1_3');
+});
+Route::get('/page3_1_4', function (){
+    return view('learning/course/page3_1_4');
+});
+Route::get('/page3_2', function (){
+    return view('learning/course/page3_2');
+});
+Route::get('/page3_3', function (){
+    return view('learning/course/page3_3');
 });
 
-Route::get('/page4', function (){
+Route::get('/page4_0', function (){
     return view('learning/course/page4_0');
 });
 Route::get('/page4_1', function (){
@@ -150,60 +182,56 @@ Route::get('/page4_2', function (){
 Route::get('/page4_3', function (){
     return view('learning/course/page4_3');
 });
-Route::get('/page4_4', function (){
-    return view('learning/course/page4_4');
+
+Route::get('/page5_0', function (){
+    return view('learning/course/page5_0');
+});
+Route::get('/page5_1', function (){
+    return view('learning/course/page5_1');
+});
+Route::get('/page5_2', function (){
+    return view('learning/course/page5_2');
+});
+Route::get('/page5_3', function (){
+    return view('learning/course/page5_3');
 });
 
-Route::get('/page5', function (){
-    return view('learning/course/page5');
+Route::get('/page6_0', function (){
+    return view('learning/course/page6_0');
+});
+Route::get('/page6_1_0', function (){
+    return view('learning/course/page6_1_0');
+});
+Route::get('/page6_1_1', function (){
+    return view('learning/course/page6_1_1');
+});
+Route::get('/page6_2', function (){
+    return view('learning/course/page6_2');
+});
+Route::get('/page6_3', function (){
+    return view('learning/course/page6_3');
 });
 
-Route::get('/page6', function (){
-    return view('learning/course/page6');
+
+Route::get('/page7', function (){
+    return view('learning/course/page7');
 });
 
-Route::get('/page7_0', function (){
-    return view('learning/course/page7_0');
+Route::get('/page8_0', function (){
+    return view('learning/course/page8_0');
 });
-Route::get('/page7_1', function (){
-    return view('learning/course/page7_1');
+Route::get('/page8_1', function (){
+    return view('learning/course/page8_1');
 });
-Route::get('/page7_2_0', function (){
-    return view('learning/course/page7_2_0');
+Route::get('/page8_2', function (){
+    return view('learning/course/page8_2');
 });
-Route::get('/page7_2_1', function (){
-    return view('learning/course/page7_2_1');
+Route::get('/page8_3_0', function (){
+    return view('learning/course/page8_3_0');
 });
-Route::get('/page7_2_2', function (){
-    return view('learning/course/page7_2_2');
+Route::get('/page8_3_1', function (){
+    return view('learning/course/page8_3_1');
 });
-
-Route::get('/page8', function (){
-    return view('learning/course/page8');
-});
-
-Route::get('/page9_0', function (){
-    return view('learning/course/page9_0');
-});
-Route::get('/page9_1', function (){
-    return view('learning/course/page9_1');
-});
-Route::get('/page9_2', function (){
-    return view('learning/course/page9_2');
-});
-Route::get('/page9_3_0', function (){
-    return view('learning/course/page9_3_0');
-});
-Route::get('/page9_3_1', function (){
-    return view('learning/course/page9_3_1');
-});
-Route::get('/page9_3_2', function (){
-    return view('learning/course/page9_3_2');
-});
-Route::get('/page9_3_3', function (){
-    return view('learning/course/page9_3_3');
-});
-
 
 
 

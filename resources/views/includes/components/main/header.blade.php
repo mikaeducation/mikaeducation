@@ -1,5 +1,5 @@
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
-<header class="w-full h-24 head-shadow flex justify-center items-center sticky top-0 z-50 bg-white">
+<header class="w-full h-24 content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full hidden md:flex lg:flex justify-center">
         <div class="flex justify-between md:justify-between lg:justify-center items-center h-full w-3/4">
             <div class="flex justify-center items-center mr-auto">
@@ -38,8 +38,8 @@
                                 <button id="menu-btn" class="h-full flex items-center z-50 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded hover:border-blue31">
                                     @if(Auth::check() && Auth::user()->profile)
                                         @if(Auth::user()->profile->profile_image)
-                                            <img src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}" 
-                                                alt="Profile Image" 
+                                            <img src="{{ asset( Auth::user()->profile->profile_image) }}" 
+                                                alt="Profil" 
                                                 class="w-10 h-10 object-cover">
                                         @else
                                             <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl">

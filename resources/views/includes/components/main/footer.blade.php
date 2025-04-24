@@ -1,11 +1,11 @@
-<footer class="w-full flex flex-col items-center justify-center bg-blue31 text-white">
-    <div class="w-3/4 pb-14 pt-16 flex flex-wrap lg:flex-nowrap text-base font-light justify-between space-y-10">
-        <div class="w-full lg:w-2/5 space-y-3">
-            <a href="/" class="flex w-fit items-center space-x-2">
-                <div class="mr-1">
-                    <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-20 w-20">
+<footer class="w-full h-full flex flex-col items-center justify-center bg-blue31 text-white">
+    <div class="w-3/4 h-full pb-14 pt-16 flex flex-wrap lg:flex-nowrap text-base font-light justify-between space-y-10 md:space-y-0">
+        <div class="w-full h-full lg:w-2/5 space-y-3">
+            <a href="/" class="flex w-full h-14 sm:h-20 items-center space-x-2">
+                <div class="mr-1 h-full sm:w-20 w-14">
+                    <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-full w-full">
                 </div>
-                <h1 class="font-bold text-4xl text-white whitespace-pre-line leading-none">MIKA 
+                <h1 class="font-bold text-2xl sm:text-4xl text-white whitespace-pre-line leading-none">MIKA 
                     EDUCATION </h1>
             </a>
             <p class="w-full md:w-5/6 lg:w-5/6 pt-2 text-justify leading-6 tracking-wider">MIKA Education didanai oleh Pemerintah Australia, Departemen Luar Negeri & Perdagangan Australia melalui Konsulat Jenderal Australia di Surabaya. Pendanaan tersebut diperoleh MIKA melalui Direct Aid Program Australian.</p>

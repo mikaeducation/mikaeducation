@@ -12,7 +12,7 @@
         <section class="flex flex-col md:flex-row w-full h-screen font-futura text-blue31">
             <div class="w-full md:w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center pl-0 lg:pl-20">
                 <div class="w-full h-full lg:h-4/6 flex justify-center items-center">
-                    <div class="w-full flex-col justify-center items-center text-center mt-32 md:mt-0 space-y-8">
+                    <div class="w-full flex-col justify-center items-center text-center my-12 md:mt-0 space-y-8">
                         <div class="space-y-8">
                             <h2 class="text-5xl font-bold">Masuk</h2>
                             <div class="w-full h-16 flex justify-center items-center">
@@ -34,11 +34,11 @@
                             <p class="text-lg text-blue3a">atau masukkan nomor telpon dan password Anda</p>
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
-                                <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a  rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue6a font-medium placeholder:opacity-45 placeholder-blue31">
+                                <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a  rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue31 font-medium placeholder:opacity-45 placeholder-blue31">
                                 @error('phone')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
-                                <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue6a font-medium placeholder-blue31 placeholder:opacity-45 mt-4">
+                                <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue31 font-medium placeholder-blue31 placeholder:opacity-45 mt-4">
                                 @error('password')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror

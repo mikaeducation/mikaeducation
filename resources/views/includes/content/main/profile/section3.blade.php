@@ -18,8 +18,8 @@
     <div class="w-full flex flex-col space-y-4">
         <div class="w-full px-4 md:flex rounded cursor-pointer border-2 border-bluee3 gap-4 notification">
             <div class="md:w-5/6 w-full h-fit flex items-center border-b-2 md:border-b-0 border-bluee3">
-                <div class="flex w-3 h-3 bg-blue31 rounded-full px-1 mr-2 bullet"></div>
-                <img src="{{ asset('images/profile-sample.jpg') }}" alt="" class="w-16 p-2 rounded-full">
+                <div class="flex w-1 sm:w-3 h-2 sm:h-3 bg-blue31 rounded-full px-1 mr-2 bullet"></div>
+                <img src="{{ asset('images/logo-1.png') }}" alt="" class="sm:sm:w-16 w-12  p-2 rounded-full">
                 <div class="w-full md:border-r-2 border-bluee3 flex flex-col leading-5 ml-2 space-y-2 py-2">
                     <p class="text-base md:text-lg text-justify">Anda berhasil mendapatkan sertifikat program pembelajaran.</p>
                     <p id="accessTime" class="text-xs md:text-sm"></p>
@@ -32,8 +32,8 @@
         </div>
         <div class="w-full px-4 md:flex rounded cursor-pointer border-2 border-bluee3 gap-4 notification">
             <div class="md:w-5/6 w-full h-fit flex items-center border-b-2 md:border-b-0 border-bluee3">
-                <div class="flex w-3 h-3 bg-blue31 rounded-full px-1 mr-2 bullet"></div>
-                <img src="{{ asset('images/profile-sample.jpg') }}" alt="" class="w-16 p-2 rounded-full">
+                <div class="flex w-1 sm:w-3 h-2 sm:h-3 bg-blue31 rounded-full px-1 mr-2 bullet"></div>
+                <img src="{{ asset('images/logo-1.png') }}" alt="" class="sm:w-16 w-12 p-2 rounded-full">
                 <div class="w-full md:border-r-2 border-bluee3 flex flex-col leading-5 ml-2 space-y-2 py-2">
                     <p class="text-base md:text-lg text-justify">Anda berhasil mendapatkan sertifikat program pembelajaran.</p>
                     <p id="accessTime" class="text-xs md:text-sm"></p>
@@ -46,8 +46,8 @@
         </div>
         <div class="w-full px-4 md:flex rounded cursor-pointer border-2 border-bluee3 gap-4 notification">
             <div class="md:w-5/6 w-full flex items-center border-b-2 md:border-b-0 border-bluee3">
-                <div class="flex w-3 h-3 bg-bluee3 rounded-full px-1 mr-2 bullet"></div>
-                <img src="{{ asset('images/profile-sample.jpg') }}" alt="" class="w-16 p-2 rounded-full">
+                <div class="flex w-1 sm:w-3 h-2 sm:h-3 bg-bluee3 rounded-full px-1 mr-2 bullet"></div>
+                <img src="{{ asset('images/logo-1.png') }}" alt="" class="sm:w-16 w-12 p-2 rounded-full">
                 <div class="w-full md:border-r-2 border-bluee3 flex flex-col leading-5 ml-2 space-y-2 py-2">
                     <p class="text-base md:text-lg text-justify">Anda berhasil mendapatkan sertifikat program pembelajaran.</p>
                     <p id="accessTime" class="text-xs md:text-sm"></p>
@@ -60,8 +60,8 @@
         </div>
         <div class="w-full px-4 md:flex rounded cursor-pointer border-2 border-bluee3 gap-4 notification">
             <div class="md:w-5/6 w-full flex items-center border-b-2 md:border-b-0 border-bluee3">
-                <div class="flex w-3 h-3 bg-bluee3 rounded-full px-1 mr-2 bullet"></div>
-                <img src="{{ asset('images/profile-sample.jpg') }}" alt="" class="w-16 p-2 rounded-full">
+                <div class="flex w-1 sm:w-3 h-2 sm:h-3 bg-bluee3 rounded-full px-1 mr-2 bullet"></div>
+                <img src="{{ asset('images/logo-1.png') }}" alt="" class="sm:w-16 w-12 p-2 rounded-full">
                 <div class="w-full md:border-r-2 border-bluee3 flex flex-col leading-5 ml-2 space-y-2 py-2">
                     <p class="text-base md:text-lg text-justify">Anda berhasil mendapatkan sertifikat program pembelajaran.</p>
                     <p id="accessTime" class="text-xs md:text-sm"></p>

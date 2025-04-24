@@ -1,8 +1,8 @@
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
-<header class="w-full h-24 head-shadow flex justify-center items-center sticky top-0 z-50 bg-white">
-    <div class="w-full h-full hidden md:flex lg:flex justify-center">
-        <div class="flex justify-between md:justify-between lg:justify-center items-center h-full w-3/4 ">
-            <div class="flex justify-center items-center mr-auto">
+<header class="w-full h-24 content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
+    <div class="w-full h-full flex lg:flex justify-center">
+        <div class="flex justify-between lg:justify-center items-center h-full w-3/4 ">
+            <div class="w-fit flex justify-start items-center mr-auto">
                 <a href="/" class="flex items-center">
                     <div class="mr-2">
                         <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
@@ -11,33 +11,37 @@
                         EDUCATION </h1>
                 </a>
             </div>
-            <div class="w-2/3 text-xl text-blue6a font-medium tracking-wide">
-                <nav class="flex items-center justify-end">
-                    <div class="w-5/6 hidden md:hidden lg:flex items-center justify-end md:justify-end lg:justify-start">
-                        <form action="/search" method="GET" class="w-4/5 h-11 flex justify-center items-center md:border-2 md:border-blue6a md:rounded border-2">
-                            <input name="query" required type="text" placeholder="Apa yang akan Anda pelajari?" class="w-full text-base hidden md:flex pl-2 bg-transparent focus:outline-none placeholder:opacity-0 placeholder:md:opacity-100">
-                            <button type="submit" class="mr-0 md:mr-1 rounded md:bg-blue6a flex items-center justify-center hover:border-blue31 hover:bg-blue31">
-                                <svg class="md:flex hidden" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="14.6562" cy="14.25" r="8.75" stroke="white" stroke-width="2"/>
-                                    <path d="M25.9062 25.5L22.1562 21.75" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                </svg>                                                                                  
-                            </button>
-                        </form>
+            <div class="w-2/5 xl:w-1/2 md:flex hidden items-center justify-center">
+                <div class="w-full flex flex-col items-center justify-center">
+                    <div class="h-10 flex items-center rounded border-blue6a border-2 w-full">
+                        <input type="text" id="searchInput" placeholder="Apa yang akan Anda pelajari?" 
+                            class="w-full h-full text-base px-2 py-2 text-blue31 rounded focus:outline-none">
+                        <button id="searchButton" class="w-fit h-full text-white rounded text-base md:text-xl font-medium px-1">
+                            <svg class="bg-blue6a rounded" width="31" height="31" viewBox="0 0 31 31" fill="none" 
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="14.6562" cy="14.25" r="8.75" stroke="#fff" stroke-width="2"/>
+                                <path d="M25.9062 25.5L22.1562 21.75" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            </svg> 
+                        </button>
                     </div>
+                </div>
+            </div>
+            <div class="w-1/4 text-lg text-blue6a font-medium tracking-wide">
+                <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="w-full flex items-center justify-end md:hidden">
+                    <svg class="w-10 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <nav class="md:flex hidden items-center justify-end ">
                     <div class="flex items-center justify-center">
-                        {{-- <a href="" class="flex mr-2 items-center">
-                            <svg width="50" height="50" viewBox="0 0 54 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.4167 18.8762C16.9629 14.2149 17.236 11.8842 18.4476 10.2011C19.1352 9.24595 20.025 8.45429 21.0537 7.88254C22.8664 6.875 25.213 6.875 29.9063 6.875V6.875C34.5995 6.875 36.9461 6.875 38.7588 7.88254C39.7875 8.45429 40.6773 9.24595 41.3649 10.2011C42.5765 11.8842 42.8496 14.2149 43.3958 18.8762L43.9825 23.8838C44.1935 25.6843 44.299 26.5845 44.599 27.4317C44.8991 28.2789 45.3837 29.0449 46.353 30.5768L49.7142 35.889C50.5722 37.245 51.0012 37.923 50.7161 38.4407C50.4311 38.9583 49.6288 38.9583 48.0241 38.9583H11.7884C10.1837 38.9583 9.3814 38.9583 9.09636 38.4407C8.81132 37.923 9.24032 37.245 10.0983 35.889L13.4595 30.5768C14.4288 29.0449 14.9134 28.2789 15.2135 27.4317C15.5135 26.5845 15.619 25.6843 15.83 23.8838L16.4167 18.8762Z" stroke="#6AA4D9" stroke-width="2"/>
-                                <path d="M20.2394 38.9583C20.2394 40.1621 20.4895 41.3541 20.9753 42.4663C21.461 43.5784 22.1731 44.5889 23.0707 45.4401C23.9684 46.2913 25.034 46.9666 26.2068 47.4272C27.3796 47.8879 28.6366 48.125 29.9061 48.125C31.1755 48.125 32.4325 47.8879 33.6054 47.4272C34.7782 46.9666 35.8438 46.2913 36.7415 45.4401C37.6391 44.5889 38.3511 43.5784 38.8369 42.4663C39.3227 41.3541 39.5728 40.1621 39.5728 38.9583" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
-                            </svg>                                
-                        </a> --}}
+                        {{-- {{ Auth::check() ? '/profile' : '/login' }} Login/Regis di nonaktifikan--}}
                         <div class="relative group text-left">
-                            <a href="{{ Auth::check() ? '/profile' : '/login' }}" class="text-center flex items-center justify-center md:mr-2 lg:mr-0">
+                            <a href="/profile" class="text-center flex items-center justify-center md:mr-2 lg:mr-0">
                                 <button id="menu-btn" class="h-full flex items-center z-30 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded hover:border-blue31">
                                     @if(Auth::check() && Auth::user()->profile)
                                         @if(Auth::user()->profile->profile_image)
-                                            <img src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}" 
-                                                alt="Profile Image" 
+                                            <img src="{{ asset(Auth::user()->profile->profile_image) }}" 
+                                                alt="Profil" 
                                                 class="w-10 h-10 object-cover">
                                         @else
                                             <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl">
@@ -76,28 +80,6 @@
             </div>
         </div>
     </div>
-    <div class="h-full w-3/4 py-6 flex md:hidden lg:hidden items-center justify-between">
-        <div class="flex justify-center items-center mr-auto">
-            <a href="/" class="flex items-center">
-                <div class="mr-2">
-                    <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
-                </div>
-                <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
-                    EDUCATION </h1>
-            </a>
-        </div>
-        {{-- <a href="" class="pr-5 border-r-2 mr-6 flex items-center border-blue6a border-opacity-50">
-            <svg width="55" height="55" viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.4167 18.8762C16.9629 14.2149 17.236 11.8842 18.4476 10.2011C19.1352 9.24595 20.025 8.45429 21.0537 7.88254C22.8664 6.875 25.213 6.875 29.9063 6.875V6.875C34.5995 6.875 36.9461 6.875 38.7588 7.88254C39.7875 8.45429 40.6773 9.24595 41.3649 10.2011C42.5765 11.8842 42.8496 14.2149 43.3958 18.8762L43.9825 23.8838C44.1935 25.6843 44.299 26.5845 44.599 27.4317C44.8991 28.2789 45.3837 29.0449 46.353 30.5768L49.7142 35.889C50.5722 37.245 51.0012 37.923 50.7161 38.4407C50.4311 38.9583 49.6288 38.9583 48.0241 38.9583H11.7884C10.1837 38.9583 9.3814 38.9583 9.09636 38.4407C8.81132 37.923 9.24032 37.245 10.0983 35.889L13.4595 30.5768C14.4288 29.0449 14.9134 28.2789 15.2135 27.4317C15.5135 26.5845 15.619 25.6843 15.83 23.8838L16.4167 18.8762Z" stroke="#6AA4D9" stroke-width="2"/>
-                <path d="M20.2394 38.9583C20.2394 40.1621 20.4895 41.3541 20.9753 42.4663C21.461 43.5784 22.1731 44.5889 23.0707 45.4401C23.9684 46.2913 25.034 46.9666 26.2068 47.4272C27.3796 47.8879 28.6366 48.125 29.9061 48.125C31.1755 48.125 32.4325 47.8879 33.6054 47.4272C34.7782 46.9666 35.8438 46.2913 36.7415 45.4401C37.6391 44.5889 38.3511 43.5784 38.8369 42.4663C39.3227 41.3541 39.5728 40.1621 39.5728 38.9583" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
-            </svg>                                
-        </a> --}}
-        <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="flex items-center justify-center">
-            <svg class="w-10 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    </div>
     <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden">
         <div class="w-full flex justify-start items-start py-6 border-b-2 border-bluee3 relative">
             <a href="/" class="flex items-center">
@@ -114,10 +96,10 @@
             </button>
         </div>
         <nav class="w-full flex flex-col justify-start items-start space-y-4 py-6 text-xl font-medium">
-            <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Beranda</a>
-            <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Profil Anda</a>
-            <a href="" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Aktivitas Belajar</a>
-            <a href="/" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Program Lainnya</a>
+            <a href="/learn" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Beranda</a>
+            <a href="/profile" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Profil Anda</a>
+            <a href="/preLearn" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Aktivitas Belajar</a>
+            <a href="/other" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Program Lainnya</a>
             <a href="/" class="w-full bg-blue6a text-white py-3 pl-3 rounded border-b-2 border-bluee3 hover:bg-blue31">Kembali ke Halaman Utama</a>
         </nav>
     </div>
@@ -264,6 +246,32 @@
 
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBtn = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+
+    searchBtn.addEventListener('click', function () {
+        const keyword = searchInput.value.trim();
+        if (keyword !== '') {
+            // Redirect ke halaman /learn dengan query string
+            window.location.href = `/learn?search=${encodeURIComponent(keyword)}`;
+        }
+    });
+
+    // Tekan enter = pencarian juga jalan
+    searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchBtn.click();
+        }
+    });
+});
+
+
+
+
+
     function toggleChat() {
         const chatPopup = document.getElementById("chat-popup");
         const chatIconButton = document.getElementById("chat-icon-button");

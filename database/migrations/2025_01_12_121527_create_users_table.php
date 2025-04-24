@@ -27,7 +27,10 @@ return new class extends Migration
     public function down()
 {
     Schema::table('users', function (Blueprint $table) {
+        // Menghapus constraint unique pada kolom 'phone'
+        $table->dropUnique(['phone']);
         $table->dropColumn('phone');
     });
 }
+
 };
