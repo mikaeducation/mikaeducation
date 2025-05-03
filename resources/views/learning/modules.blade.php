@@ -125,16 +125,18 @@
                                 </button>
                             </div> 
                         </div>
+                        @php
+                            $hasProgress = DB::table('progress_tracking')
+                                ->where('user_id', auth()->id())
+                                ->where('module_id', $module->id ?? 1) // Ganti sesuai konteks
+                                ->exists();
+                        @endphp
                         <div class="w-11/12 lg:w-4/5 flex items-center justify-center py-4">
-                            <a href="javascript:void(0)" id="startButton" class="text-white text-lg xl:text-xl font-medium flex items-center justify-center w-full py-2 bg-blue31 rounded">
-                            Mulai Belajar
+                            <a href="javascript:void(0)" id="startButton"
+                                class="text-white text-lg xl:text-xl font-medium flex items-center justify-center w-full py-2 bg-blue31 rounded">
+                                {{ $hasProgress ? 'Lanjutkan Belajar' : 'Mulai Belajar' }}
                             </a>
-                            <div id="modalDialog" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>            
-                                <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
-                                @include('includes.components.elearning.course.dialog.start')
-                                </div>
-                            </div>
+                            @include('includes.components.elearning.course.dialog.start')
                         </div>
                         <div id="modul-scoope" class="w-11/12 lg:w-4/5 flex flex-col items-start justify-start gap-3">
                             <h3 class="font-medium text-lg">Cakupan Pembelajaran</h3>

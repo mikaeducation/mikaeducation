@@ -13,9 +13,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('module_id');
             $table->string('module_part');
+            $table->string('page_path');
             $table->enum('status', ['not_started', 'in_progress', 'finished']);
             $table->timestamps();
-        });
+        
+            $table->foreign('progress_id')->references('progress_id')->on('progress_tracking')->onDelete('cascade');
+            $table->index(['user_id', 'module_id']); // opsional
+        });        
     }
 
     /**

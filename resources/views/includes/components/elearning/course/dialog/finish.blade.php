@@ -12,10 +12,10 @@
                             </svg>
                         </div>
                         <div class="w-full flex flex-col items-center justify-center text-justify lg:text-center">
-                            <h3 class="text-3xl font-semibold text-blue31" id="modal-title">Mulai Pembelajaran?</h3>
+                            <h3 class="text-3xl font-semibold text-blue31" id="modal-title">Selesaikan Pembelajaran?</h3>
                             <div class="mt-4 w-11/12 flex items-center justify-center">
                                 <p class="text-lg text-blue31 whitespace-pre-line">
-                                    Anda dapat memulai program pembelajaran jika merasa yakin dengan detail pembelajaran ini.
+                                    Jika telah yakin atas pembelajaran yang dilakukan, Anda bisa mengkonfirmasi untuk menyelesaikan pembelajaran. Namun, jika pembelajaran belum selesai, maka Anda dapat kembali untuk melanjutkan pembelajaran. Jika memerlukan bantuan lebih lanjut, hubungi tim dukungan kami.
                                     
                                     Jika memerlukan bantuan lebih lanjut, <a href="https://wa.me/082156226440" class="relative text-blue31 font-medium underline">hubungi tim dukungan kami disini.</a>
                                 </p>
@@ -27,10 +27,10 @@
                     <button id="cancelBtn" type="button" class="inline-flex w-1/3 justify-center rounded border-2 border-blue31 px-3 py-2 text-base font-semibold text-blue31 shadow-sm transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                         Kembali
                     </button>
-                    <form action="{{ route('start-course') }}" method="POST" class="inline-flex w-1/3 justify-center rounded bg-blue31 hover:border-2 hover:border-blue31 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
+                    <form action="" method="POST" class="inline-flex w-1/3 justify-center rounded bg-blue31 hover:border-2 hover:border-blue31 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                         @csrf
-                        <button id="startLearningBtn" type="submit" class="w-full h-full px-3 py-2">
-                            Mulai
+                        <button id="finishLearningBtn" type="submit" class="w-full h-full px-3 py-2">
+                            Selesai
                         </button>
                     </form>
                 </div>
@@ -53,7 +53,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('modalDialog');
         const startButton = document.getElementById('startButton');
         const startLearningBtn = document.getElementById('startLearningBtn');
@@ -61,59 +61,84 @@
         const loadingScreen = document.getElementById('loadingScreen');
         const typingElement = document.getElementById('typingText');
         const typingText = "Bersiap, Pembelajaran akan dimulai...!";
-
-        // Fungsi efek ketik dengan callback
-        function typeWriter(element, text, speed, callback) {
+    
+        // Function efek mengetik
+        function typeWriter(element, text, speed) {
             let i = 0;
             function typing() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(typing, speed);
-                } else if (callback) {
-                    callback(); // lanjutkan ke submit/redirect setelah selesai ketik
                 }
             }
             typing();
         }
-
-        // Tampilkan modal saat tombol awal diklik
-        startButton.addEventListener('click', function () {
+    
+        // Tampilkan modal
+        startButton.addEventListener('click', function() {
             modal.classList.remove('hidden');
         });
-
-        // Ketika klik tombol MULAI BELAJAR
-        startLearningBtn.addEventListener('click', function (e) {
-            e.preventDefault(); // Cegah form submit langsung
-
+    
+        // Ketika klik "Mulai"
+        startLearningBtn.addEventListener('click', function() {
             modal.classList.add('hidden');
+    
+            // Reset tulisan ketik dulu
             typingElement.innerHTML = '';
-
+    
+            // Tampilkan loading screen
             loadingScreen.style.display = 'flex';
             loadingScreen.classList.remove('hidden', 'fade-out');
             loadingScreen.classList.add('fade-in');
-
+    
             // Mulai efek ketik setelah sedikit delay
             setTimeout(() => {
-                typeWriter(typingElement, typingText, 50, () => {
-                    // Setelah efek ketik selesai + 1 detik, submit form
-                    setTimeout(() => {
-                        document.querySelector('form[action="{{ route('start-course') }}"]').submit();
-                    }, 1500);
-                });
+                typeWriter(typingElement, typingText, 50); // 50ms per huruf
             }, 500);
+    
+            // Setelah 5 detik (cukup waktu untuk ketik selesai), mulai fade out dan redirect
+            setTimeout(() => {
+                loadingScreen.classList.remove('fade-in');
+                loadingScreen.classList.add('fade-out');
+    
+                setTimeout(() => {
+                    window.location.href = '/course';
+                }, 500);
+            }, 4000); 
         });
-
-        // Klik batal
-        cancelBtn.addEventListener('click', function () {
+    
+        // Menutup modal kalau klik batal
+        cancelBtn.addEventListener('click', function() {
             modal.classList.add('hidden');
         });
-
-        // Klik di luar modal menutup modal
-        window.addEventListener('click', function (event) {
+    
+        // Menutup modal kalau klik area luar
+        window.addEventListener('click', function(event) {
             if (event.target === modal) {
                 modal.classList.add('hidden');
             }
         });
     });
+
+
+    
+
+    document.getElementById("startLearningBtn").addEventListener("click", function() {
+    // Efek animasi tetap berjalan
+    modal.classList.add('hidden');
+    typingElement.innerHTML = '';
+    loadingScreen.style.display = 'flex';
+    loadingScreen.classList.remove('hidden', 'fade-out');
+    loadingScreen.classList.add('fade-in');
+
+    setTimeout(() => {
+        typeWriter(typingElement, typingText, 50);
+    }, 500);
+
+    // Submit form setelah efek loading
+    setTimeout(() => {
+        document.querySelector('form[action="{{ route('start-course') }}"]').submit();
+    }, 3500);
+});
 </script>

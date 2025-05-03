@@ -1,4 +1,4 @@
-<div id="navigation" class="w-full h-14 bg-blue31 flex justify-center items-center fixed bottom-0 left-0 z-50">
+<div id="navigation" class="w-full h-14 bg-blue31 flex justify-center items-center fixed bottom-0 left-0 z-40">
     <div class="w-[95%] h-full flex items-center justify-between space-x-2 text-white font-medium lg:text-lg text-base">
         <button id="prev-btn" class="flex items-center justify-center gap-4 w-fit h-full">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24" class="flex items-center justify-center bg-white w-7 h-7 rounded-full">
@@ -43,139 +43,116 @@
         }
     }
 
+    // --- Navigasi antar halaman ---
+    function setupNavigation() {
+        const routes = [
+            "/course", // pengenalan
+            "/page2_0", "/page2_1", "/page2_2", "/page2_3", // asessmen 1
+            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3", // submodul 1
+            "/page4_0", "/page4_1", "/page4_2", "/page4_3", // submodul 2
+            "/page5_0", "/page5_1", "/page5_2", "/page5_3",// submodul 3
+            "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",// submodul 4
+            "/page7",
+            "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1",// asessmen 2
+        ];
+
+        const currentPath = window.location.pathname;
+        const currentIndex = routes.indexOf(currentPath);
+
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+
+        const modulMap = {
+            "/course": "Pengenalan",
+            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Bagian 1 (Pre-Test)", "/page2_2": "Asessmen I - Hasil Penilaian", "/page2_3": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
+            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Gangguan Spektrum Autisme - Komunikasi Autistik - Eskpresif", "/page3_1_2": "Gangguan Spektrum Autisme - Komunikasi Autistik - Reseptif", "/page3_1_3": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pragmatis", "/page3_1_4": "Gangguan Spektrum Autisme - Komunikasi Autistik - Strategi Komunikasi Autisme", "/page3_2": "Gangguan Spektrum Autisme - Rangkuman Materi", "/page3_3": "Gangguan Spektrum Autisme - Uji Pengetahuan",
+            "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", "/page4_1": "Matriks Perencanaan - Rangkuman Materi", "/page4_2": "Matriks Perencanaan - Uji Pengetahuan", "/page4_3": "Matriks Perencanaan - Latihan Berfikir",
+            "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", "/page5_1": "Pembelajaran Terstruktur - Rangkuman Materi", "/page5_2": "Pembelajaran Terstruktur - Uji Pengetahuan", "/page5_3": "Pembelajaran Terstruktur - Latihan Berfikir",
+            "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_1_1": "Media Visual Komunikasi Anak - Studi Kasus Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", "/page6_3": "Media Visual Komunikasi Anak - Rangkuman Materi",
+            "/page7": "Studi Kasus - Simulasi Penggunaan MIKA 1.0",
+            "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2": "Asessmen II - Hasil Penilaian", "/page8_3_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_3_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar",
+        };
+
+        const modulActive = document.getElementById("modul-active");
+        modulActive.innerText = modulMap[currentPath] || "-";
+
+        if (prevBtn && currentIndex === 0) {
+            prevBtn.classList.add("opacity-0", "pointer-events-none");
+        }
+
+        prevBtn?.addEventListener("click", (e) => {
+            if (!e.defaultPrevented && currentIndex > 0) {
+                window.location.href = routes[currentIndex - 1];
+            }
+        });
+
+        nextBtn?.addEventListener("click", (e) => {
+            const meta = document.querySelector('meta[name="show-asessment-dialog"]');
+            const startBtn = document.getElementById("btnMulaiAsessment");
+            const moduleId = startBtn?.dataset.moduleId;
+            const asessmentId = startBtn?.dataset.asessmentId;
+
+            if (!e.defaultPrevented && meta && moduleId && asessmentId) {
+                e.preventDefault();
+                showModalForAsessment(moduleId, asessmentId);
+            } else if (currentIndex < routes.length - 1) {
+                window.location.href = routes[currentIndex + 1];
+            }
+        });
+    }
+
+    // --- Dialog Modal Asesmen ---
+    function setupAsessmentDialog() {
+        const modal = document.getElementById("modalDialogAsessment");
+        const confirmBtn = document.getElementById("btnAsessmentConfirm");
+        const cancelBtn = document.getElementById("btnAsessmentCancel");
+        const startBtn = document.getElementById("btnMulaiAsessment");
+
+        let redirectURL = "/";
+
+        window.showModalForAsessment = function (moduleId, asessmentId) {
+            fetch("/check-asessment-status", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                },
+                body: JSON.stringify({ module_id: moduleId, asessment_id: asessmentId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "ok") {
+                    redirectURL = data.redirect_to;
+                    modal.classList.remove("hidden");
+                }
+            });
+        }
+
+        startBtn?.addEventListener("click", function () {
+            const moduleId = this.dataset.moduleId;
+            const asessmentId = this.dataset.asessmentId;
+            showModalForAsessment(moduleId, asessmentId);
+        });
+
+        confirmBtn?.addEventListener("click", function () {
+            window.location.href = redirectURL;
+        });
+
+        cancelBtn?.addEventListener("click", function () {
+            modal.classList.add("hidden");
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        adjustNavigation();
+        setupNavigation();
+        setupAsessmentDialog();
+    });
+
     window.addEventListener("scroll", adjustNavigation);
     window.addEventListener("resize", adjustNavigation);
-    document.addEventListener("DOMContentLoaded", adjustNavigation);
 
 
-
-    const routes = [
-        "/course", // pengenalan
-        "/page2_0", "/page2_1", "/page2_2", "/page2_3", // asessmen 1
-        "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3", // submodul 1
-        "/page4_0", "/page4_1", "/page4_2", "/page4_3", // submodul 2
-        "/page5_0", "/page5_1", "/page5_2", "/page5_3",// submodul 3
-        "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",// submodul 4
-        "/page7", 
-        "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1",// asessmen 2
-    ];
-
-    const currentPath = window.location.pathname;
-    const currentIndex = routes.indexOf(currentPath);
-
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
-
-    // Skema penamaan modul
-    const modulMap = {
-        "/course": "Pengenalan",
-        "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Bagian 1 (Pre-Test)", "/page2_2": "Asessmen I - Hasil Penilaian", "/page2_3": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
-        "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Gangguan Spektrum Autisme - Komunikasi Autistik - Eskpresif", "/page3_1_2": "Gangguan Spektrum Autisme - Komunikasi Autistik - Reseptif", "/page3_1_3": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pragmatis", "/page3_1_4": "Gangguan Spektrum Autisme - Komunikasi Autistik - Strategi Komunikasi Autisme", "/page3_2": "Gangguan Spektrum Autisme - Rangkuman Materi", "/page3_3": "Gangguan Spektrum Autisme - Uji Pengetahuan",
-        "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", "/page4_1": "Matriks Perencanaan - Rangkuman Materi", "/page4_2": "Matriks Perencanaan - Uji Pengetahuan", "/page4_3": "Matriks Perencanaan - Latihan Berfikir",
-        "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", "/page5_1": "Pembelajaran Terstruktur - Rangkuman Materi", "/page5_2": "Pembelajaran Terstruktur - Uji Pengetahuan", "/page5_3": "Pembelajaran Terstruktur - Latihan Berfikir",
-        "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_1_1": "Media Visual Komunikasi Anak - Studi Kasus Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", "/page6_3": "Media Visual Komunikasi Anak - Rangkuman Materi",
-        "/page7": "Praktek Belajar - Simulasi Penggunaan MIKA 1.0", 
-        "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2": "Asessmen II - Hasil Penilaian", "/page8_3_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_3_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar",
-    };
-
-    const modulActive = document.getElementById("modul-active");
-
-    // Tampilkan nama modul aktif
-    modulActive.innerText = modulMap[currentPath] || "-";
-
-    // Fungsi untuk pindah halaman
-    prevBtn?.addEventListener("click", (e) => {
-        if (!e.defaultPrevented && currentIndex > 0) {
-            window.location.href = routes[currentIndex - 1];
-        }
-    });
-
-    nextBtn?.addEventListener("click", (e) => {
-        if (!e.defaultPrevented && currentIndex < routes.length - 1) {
-            window.location.href = routes[currentIndex + 1];
-        }
-    });
-
-    // Tampilkan/Nonaktifkan tombol Prev jika halaman pertama
-    if (currentIndex === 0) {
-        prevBtn.classList.add("opacity-0", "pointer-events-none");
-    }
-
-
-
-
-//Dilaog PAGE 2_0
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById('modalDialogStart_Asessmen1');
-    const btnStartLearning = document.getElementById('btnStartLearning');
-    const btnBack = document.getElementById('btnBack');
-    const startButtonNow = document.getElementById('startButtonNow');
-    const startButtonNext = document.getElementById('startButtonNext');
-    const nextBtn = document.getElementById("next-btn");
-    const currentPath = window.location.pathname;
-
-    function toggleModal() {
-        modal.classList.toggle('hidden');
-    }
-
-    function closeModal() {
-        if (!modal.classList.contains("hidden")) {
-            modal.classList.add("hidden");
-        }
-    }
-
-    function showModal() {
-        modal.classList.remove("hidden");
-    }
-
-    // Handle "Mulai Sekarang" & "Selanjutnya" tombol dalam konten
-    if (startButtonNow) {
-        const newStartNow = startButtonNow.cloneNode(true);
-        startButtonNow.parentNode.replaceChild(newStartNow, startButtonNow);
-        newStartNow.addEventListener('click', toggleModal);
-    }
-
-    if (startButtonNext) {
-        const newStartNext = startButtonNext.cloneNode(true);
-        startButtonNext.parentNode.replaceChild(newStartNext, startButtonNext);
-        newStartNext.addEventListener('click', toggleModal);
-    }
-
-    // Handle tombol footer "Selanjutnya"
-    if (nextBtn && currentPath === "/page2_0") {
-        const newNextBtn = nextBtn.cloneNode(true);
-        nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
-        newNextBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            showModal();
-        });
-    }
-
-    // Tombol "Mulai" redirect ke page2_1
-    if (btnStartLearning) {
-        const newStartLearning = btnStartLearning.cloneNode(true);
-        btnStartLearning.parentNode.replaceChild(newStartLearning, btnStartLearning);
-        newStartLearning.addEventListener("click", function () {
-            window.location.href = "/page2_1";
-        });
-    }
-
-    // Tombol "Kembali" hanya menutup modal
-    if (btnBack) {
-        const newBtnBack = btnBack.cloneNode(true);
-        btnBack.parentNode.replaceChild(newBtnBack, btnBack);
-        newBtnBack.addEventListener("click", function () {
-            closeModal();
-        });
-    }
-
-    // Klik di luar isi modal untuk menutup
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
-});
 
 
 //Dilaog PAGE 2_1

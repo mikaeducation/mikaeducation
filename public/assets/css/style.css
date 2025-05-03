@@ -147,3 +147,41 @@
 -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
 -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
 }
+
+
+
+/* LOADER START/END COURSE */
+@keyframes kiri {
+    0% { transform: translateX(-40px); z-index: 200; }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(-40px); }
+}
+
+@keyframes kanan {
+    0% { transform: translateX(20px); }
+    50% { transform: translateX(-40px); }
+    100% { transform: translateX(20px); z-index: 200; }
+}
+
+.animate-kiri {
+    animation: kiri 1.2s infinite linear;
+}
+
+.animate-kanan {
+    animation: kanan 1.2s infinite linear;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

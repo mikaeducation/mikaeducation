@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite('public/assets/css/style.css')
         {{-- <script>document.documentElement.classList.add('js')</script> --}}
     </head>
@@ -21,9 +22,8 @@
                             <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
-                                        <video id="modul-teaser" class="w-full h-full object-fill rounded" autoplay playsinline>
-                                            <source src="{{ asset('videos/MIKA-tesear.mp4') }}" type="video/mp4">
-                                        </video>
+                                        @include('includes.content.elearning.course.video-player', 
+                                        ['src' => 'https://drive.google.com/file/d/1UJEaY0zlq5_9apQ9JMHoYuP4eHkp0K6_/view?usp=sharing'])
                                     </div>
                                 </div>
                             </div>

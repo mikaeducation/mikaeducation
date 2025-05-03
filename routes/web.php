@@ -3,11 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\AsessmentController;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
 
@@ -106,9 +109,6 @@ Route::get('/modules', function () {
 });
 Route::get('/modules/{id}', [ModuleController::class, 'showModules'])->name('modules.show');
 
-
-
-
 Route::get('/preLearn', function (){
     return view('learning/preLearn');
 });
@@ -128,111 +128,18 @@ Route::get('/other', function (){
     return view('learning/other');
 });
 
-Route::get('/course', function (){
-    return view('learning/course/page1');
-});
-
-Route::get('/page2_0', function (){
-    return view('learning/course/page2_0');
-});
-Route::get('/page2_1', function (){
-    return view('learning/course/page2_1');
-});
-Route::get('/page2_2', function (){
-    return view('learning/course/page2_2');
-});
-Route::get('/page2_3', function (){
-    return view('learning/course/page2_3');
-});
-
-Route::get('/page3_0', function (){
-    return view('learning/course/page3_0');
-});
-Route::get('/page3_1_0', function (){
-    return view('learning/course/page3_1_0');
-});
-Route::get('/page3_1_1', function (){
-    return view('learning/course/page3_1_1');
-});
-Route::get('/page3_1_2', function (){
-    return view('learning/course/page3_1_2');
-});
-Route::get('/page3_1_3', function (){
-    return view('learning/course/page3_1_3');
-});
-Route::get('/page3_1_4', function (){
-    return view('learning/course/page3_1_4');
-});
-Route::get('/page3_2', function (){
-    return view('learning/course/page3_2');
-});
-Route::get('/page3_3', function (){
-    return view('learning/course/page3_3');
-});
-
-Route::get('/page4_0', function (){
-    return view('learning/course/page4_0');
-});
-Route::get('/page4_1', function (){
-    return view('learning/course/page4_1');
-});
-Route::get('/page4_2', function (){
-    return view('learning/course/page4_2');
-});
-Route::get('/page4_3', function (){
-    return view('learning/course/page4_3');
-});
-
-Route::get('/page5_0', function (){
-    return view('learning/course/page5_0');
-});
-Route::get('/page5_1', function (){
-    return view('learning/course/page5_1');
-});
-Route::get('/page5_2', function (){
-    return view('learning/course/page5_2');
-});
-Route::get('/page5_3', function (){
-    return view('learning/course/page5_3');
-});
-
-Route::get('/page6_0', function (){
-    return view('learning/course/page6_0');
-});
-Route::get('/page6_1_0', function (){
-    return view('learning/course/page6_1_0');
-});
-Route::get('/page6_1_1', function (){
-    return view('learning/course/page6_1_1');
-});
-Route::get('/page6_2', function (){
-    return view('learning/course/page6_2');
-});
-Route::get('/page6_3', function (){
-    return view('learning/course/page6_3');
-});
 
 
-Route::get('/page7', function (){
-    return view('learning/course/page7');
-});
+// Route::post('/start-course', [CourseController::class, 'startCourse']);
+Route::get('/course', [CourseController::class, 'showCourse'])->name('course');
+Route::post('/start-course', [CourseController::class, 'startCourse'])->name('start-course');
+Route::post('/save-progress-exit', [CourseController::class, 'saveProgressOnExit'])->middleware('auth');
 
-Route::get('/page8_0', function (){
-    return view('learning/course/page8_0');
-});
-Route::get('/page8_1', function (){
-    return view('learning/course/page8_1');
-});
-Route::get('/page8_2', function (){
-    return view('learning/course/page8_2');
-});
-Route::get('/page8_3_0', function (){
-    return view('learning/course/page8_3_0');
-});
-Route::get('/page8_3_1', function (){
-    return view('learning/course/page8_3_1');
-});
+Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
+Route::middleware('auth:sanctum')->post('/track-progress', [ProgressController::class, 'trackProgress']);
+Route::middleware('auth:sanctum')->post('/update-progress', [ProgressController::class, 'updateProgress']);
 
+Route::post('/check-asessment-status', [AsessmentController::class, 'check'])->middleware('auth');
 
 

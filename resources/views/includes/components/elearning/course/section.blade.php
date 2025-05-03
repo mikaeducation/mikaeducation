@@ -13,7 +13,7 @@
                 <div class="w-full h-3 rounded-full bg-bluee3 flex-col">
                     <div class="w-[0%] h-full bg-blue31 rounded-l-full" style="width: 0%"></div>
                 </div>
-                <p>0% Progress selesai</p>
+                <p id="progress-percent">0% Progress selesai</p>
             </div>
         </div>
         <div id="main-content" class="w-full h-full px-8 pb-8 max-h-[57vh] space-y-4 overflow-y-auto transition-all duration-300 ease-in-out scrollbar-gutter-stable scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
@@ -143,7 +143,7 @@
                         class="transition-transform duration-300 ease-in-out rotate-0 mt-1">
                         <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
                         </svg>
-                        <h3 id="modul-evaluative-tittle" class="flex text-left text-xl">Uji Praktek</h3>
+                        <h3 id="modul-evaluative-tittle" class="flex text-left text-xl">Studi Kasus</h3>
                     </div>
                     <p class="submodul-num-point"></p>
                     <div class="modul-finished hidden"></div>
@@ -176,7 +176,9 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Ambil semua submodul dan atur agar tertutup secara default
+    const currentPath = window.location.pathname;
+
+    // ========== Bagian 1: Sembunyikan semua submodul secara default ==========
     const allSubmoduls = document.querySelectorAll("[id$='-points']");
     allSubmoduls.forEach(submodul => {
         submodul.style.opacity = "0";
@@ -186,46 +188,18 @@ document.addEventListener("DOMContentLoaded", function () {
         submodul.style.transition = "opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease-in-out";
     });
 
-    // Mapping URL path ke ID submodul, bisa beberapa URL per modul
+    // ========== Bagian 2: Mapping URL ke ID Submodul untuk ditampilkan ==========
     const urlToModulMapping = [
-        {
-            routes: ['/course'],
-            modulId: 'modul-introduce-points'
-        },
-        {
-            routes: ['/page2_0', '/page2_1', '/page2_2', '/page2_3'],
-            modulId: 'modul-asessmen1-points'
-        },
-        {
-            routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'],
-            modulId: 'submodul1-points'
-        },
-        {
-            routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'],
-            modulId: 'submodul2-points'
-        },
-        {
-            routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],
-            modulId: 'submodul3-points'
-        },
-        {
-            routes: ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3', '/page7'],
-            modulId: 'submodul4-points'
-        },
-        {
-            routes: ['/page7'],
-            modulId: 'modul-evaluative-points'
-        },
-        {
-            routes: ['/page8_0', '/page8_1', '/page8_2', '/page8_3_0', '/page8_3_1'],
-            modulId: 'modul-asessmen2-points'
-        }
+        { routes: ['/course'], modulId: 'modul-introduce-points' },
+        { routes: ['/page2_0', '/page2_1', '/page2_2', '/page2_3'], modulId: 'modul-asessmen1-points' },
+        { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'], modulId: 'submodul1-points' },
+        { routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'], modulId: 'submodul2-points' },
+        { routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'], modulId: 'submodul3-points' },
+        { routes: ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'], modulId: 'submodul4-points' },
+        { routes: ['/page7'], modulId: 'modul-evaluative-points' },
+        { routes: ['/page8_0', '/page8_1', '/page8_2', '/page8_3_0', '/page8_3_1'], modulId: 'modul-asessmen2-points' }
     ];
 
-    // Dapatkan path saat ini
-    const currentPath = window.location.pathname;
-
-    // Cari ID modul yang sesuai dengan path
     let targetId = '';
     urlToModulMapping.forEach(mapping => {
         if (mapping.routes.includes(currentPath)) {
@@ -233,32 +207,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Jika ditemukan, buka submodul terkait
     if (targetId) {
         const targetSubmodul = document.getElementById(targetId);
-
         if (targetSubmodul) {
             targetSubmodul.style.maxHeight = targetSubmodul.scrollHeight + "px";
             targetSubmodul.style.opacity = "1";
             targetSubmodul.style.transform = "translateY(0)";
 
-            // Cari tombol & ikon panah untuk animasi rotasi
             const parent = targetSubmodul.closest('div');
             const toggleButton = parent?.querySelector('button');
             const arrowIcon = toggleButton?.querySelector('svg');
-
             if (arrowIcon) {
                 arrowIcon.classList.add("rotate-180");
             }
         }
     }
-});
 
-
-// Mengatur Progress, Poin submodul dan ikon modul selesai
-document.addEventListener("DOMContentLoaded", function () {
-    const currentPath = window.location.pathname;
-
+    // ========== Bagian 3: Progress & Modul Finished Icon ==========
     const allPages = [
         "/course",
         "/page2_0", "/page2_1", "/page2_2", "/page2_3",
@@ -267,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "/page5_0", "/page5_1", "/page5_2", "/page5_3",
         "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",
         "/page7",
-        "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1",
+        "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1"
     ];
 
     const modulePages = {
@@ -278,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "submodul3": ["/page5_0", "/page5_1", "/page5_2", "/page5_3"],
         "submodul4": ["/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3"],
         "modul-evaluative": ["/page7"],
-        "modul-asessmen2": ["/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1"],
+        "modul-asessmen2": ["/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1"]
     };
 
     const progressWeights = {
@@ -292,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "modul-asessmen2": 10
     };
 
-    // Temukan modul saat ini
     function getCurrentModule(path) {
         for (const [modulId, pages] of Object.entries(modulePages)) {
             if (pages.includes(path)) return modulId;
@@ -302,7 +266,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const currentModul = getCurrentModule(currentPath);
     const lastModul = localStorage.getItem("lastModule");
-
     const currentIndex = allPages.indexOf(currentPath);
     if (currentIndex === -1) return;
 
@@ -323,28 +286,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         <path d="M7 13L10.2929 16.2929C10.6834 16.6834 11.3166 16.6834 11.7071 16.2929L19 9" stroke="white" stroke-width="4" stroke-linecap="round"/>
                     </svg>
                 `;
-
                 if (!finishedIcon) {
-                    // Buat elemen modul-finished
                     finishedIcon = document.createElement("div");
-                    finishedIcon.classList.add("flex"); // ganti "hidden" dengan visible
+                    finishedIcon.classList.add("flex");
                     finishedIcon.innerHTML = finishedSVG;
-
-                    
-                    // Sisipkan ke dalam button di modul
                     const button = modulElement.querySelector("button");
                     button.appendChild(finishedIcon);
                 } else {
-                        finishedIcon.classList.remove("hidden");
-                        
-                        // Tambahkan SVG kalau belum ada
-                        if (!finishedIcon.innerHTML.trim()) {
-                            finishedIcon.innerHTML = finishedSVG;
-
-                        }
+                    finishedIcon.classList.remove("hidden");
+                    if (!finishedIcon.innerHTML.trim()) {
+                        finishedIcon.innerHTML = finishedSVG;
                     }
+                }
                 if (pointCounter) pointCounter.classList.add("hidden");
-
             }
 
             targetProgress += progressWeights[modulId] || 0;
@@ -374,20 +328,61 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 20);
     }
 
-    // Tentukan apakah perlu animasi atau langsung
     if (currentModul && currentModul === lastModul) {
-        // Masih di modul yang sama → langsung tampilkan
         updateProgressDirectly(targetProgress);
     } else {
-        // Modul baru → animasi
         animateProgressTo(targetProgress);
     }
 
-    // Simpan modul sekarang ke localStorage untuk dibandingkan di halaman berikutnya
     if (currentModul) {
         localStorage.setItem("lastModule", currentModul);
     }
+
+
+    
+    const currentPagePath = window.location.pathname;
+    (async function() {
+
+    try {
+        const response = await fetch("/api/track-progress", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({ page_path: currentPagePath }),
+        });
+
+        if (!response.ok) throw new Error("Gagal fetch progress");
+        
+        const data = await response.json();
+
+        // Tampilkan ikon selesai (finishedSVG) untuk modul yang sudah selesai
+        data.completed_modules.forEach((modulId) => {
+            const modulElement = document.getElementById(modulId);
+            if (modulElement) {
+                modulElement.querySelector(".finishedSVG")?.classList.remove("hidden");
+            }
+        });
+
+        // Tampilkan progress persen jika ingin
+        if (data.percent_done !== undefined) {
+            const progressText = document.getElementById("progress-percent");
+            if (progressText) progressText.textContent = `${data.percent_done}% Selesai`;
+        }
+
+        // Optional: update h5 modul aktif
+        if (data.current_part) {
+            const modulActive = document.getElementById("modul-active");
+            if (modulActive) modulActive.textContent = data.current_part.replace(/-/g, " ");
+        }
+    } catch (err) {
+        console.error("Tracking gagal:", err);
+    }
 });
+});
+
+
 
 //Mengatur poin submodul
 document.addEventListener("DOMContentLoaded", () => {

@@ -27,6 +27,7 @@
                         </a>
                     </div>
                 </div>
+                    @include('includes.components.elearning.course.dialog.learnOut')
                 <div id="dropdown-aksesibilitas" class="absolute top-8 right-0 mt-2 w-96 bg-white content-shadows rounded hidden">
                     <div class="absolute w-full h-fit z-20 mt-4 pt-2 pb-4 bg-white content-shadows text-blue31 rounded">
                         <div class="block w-full text-left px-4 py-2 space-y-2">
@@ -89,12 +90,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div id="modalDialog" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>            
-                    <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
-                        @include('includes.components.elearning.course.dialog.learnOut')
                     </div>
                 </div>
             </nav>
