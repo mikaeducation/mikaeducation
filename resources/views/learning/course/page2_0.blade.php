@@ -8,52 +8,115 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="show-asessment-dialog" content="true">
+        <meta name="assessment-status" content="{{ $sudahMengisi ? 'done' : 'not_started' }}">
+        @if ($sudahMengisi)
+        <meta name="asessment-finished" content="true">
+        @else
+            <meta name="asessment-finished" content="false">
+        @endif
+
         @vite('public/assets/css/style.css')
-        {{-- <script>document.documentElement.classList.add('js')</script> --}}
     </head>
+
     <body class="font-futura w-full min-h-screen flex flex-col relative">
     @include('includes.components.elearning.course.header')
-    
+
     <section class="w-full flex-1 flex flex-col items-center justify-center text-blue31">
         <div class="w-full flex-grow flex items-start justify-start">
             {{-- Left Content --}}
-            <div id="left" class="w-3/4 flex-1 max-h-[100vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-white scrollbar-track-white">
-                <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
-                    <div class="h-full w-full space-y-8 pb-8 text-lg">
-                        <h3 class="text-justify"><span class="text-xl font-medium">Penilaian Pra-Belajar:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</h3>
-                        <div class="flex flex-col md:flex-row justify-between w-full h-max gap-10 md:gap-0 px-8 py-8 bg-bluee3 rounded text-lg font-medium">
-                            <div class="w-full space-y-4">
-                                <h5 class="text-xl">Detail Penilaian</h5>
-                                <div class="w-full flex gap-12 md:gap-12">
-                                    <div class="">
-                                        <p>Batas Waktu</p>
-                                        <time datetime="PT25M" class="text-base font-normal">Tidak terbatas</time>
-                                    </div>
-                                    <div class="">
-                                        <p>Kesempatan</p>
-                                        <time datetime="PT25M" class="text-base font-normal">Tidak Terbatas</time>
+            <div id="left" class="w-3/4 flex-1 max-h-[100vh] flex flex-col overflow-y-auto scrollbar">
+                <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10 gap-4">
+                    <div class="h-full w-full space-y-8 mb-10 text-lg">
+                        @if(!$sudahMengisi)
+                            {{-- Sebelum Penilaian --}}
+                            <h3 class="text-justify"><span class="text-xl font-medium">Penilaian Pra-Belajar:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</h3>
+                            <div class="flex flex-col md:flex-row justify-between w-full px-8 py-8 bg-bluee3 rounded text-lg font-medium">
+                                <div class="w-full space-y-4">
+                                    <h5 class="text-xl">Detail Penilaian</h5>
+                                    <div class="flex gap-12">
+                                        <div><p>Batas Waktu</p><time class="text-base font-normal">Tidak terbatas</time></div>
+                                        <div><p>Kesempatan</p><time class="text-base font-normal">Tidak Terbatas</time></div>
                                     </div>
                                 </div>
+                                <div class="w-full flex items-end justify-end">
+                                    <button id="btnMulaiAsessment" data-module-id="{{ $module_id }}" data-asessment-id="{{ $asessment_id }}"
+                                        class="text-white py-2 bg-blue31 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">
+                                        Mulai Sekarang
+                                    </button>
+                                </div>
                             </div>
-                            <div class="w-full flex items-end justify-start md:justify-end">
-                                <button id="btnMulaiAsessment" class="text-white py-2 bg-blue31 text-base md:text-lg rounded w-full md:w-3/4 lg:w-2/3 flex justify-center items-center text-center transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105"
-                                    data-module-id="{{ $module_id }}"
-                                    data-asessment-id="1">
-                                    {{ $sudahMengisi ? 'Ulangi Penilaian' : 'Mulai Sekarang' }}
-                                </button>
+                            <div class="w-full border-4 px-8 py-5 text-lg border-bluee3">
+                                <h5 class="text-xl font-medium">Nilai Anda</h5>
+                                <p class="text-justify">Anda belum menyelesaikan penilaian ini. Silahkan selesaikan terlebih dahulu untuk mengetahui skor Anda. Dibutuhkan <span class="font-medium">nilai 80% atau lebih tinggi</span> untuk lulus.</p>
                             </div>
-                            @include('includes.components.elearning.course.dialog.modal-asessment')
-                        </div>
-                        <div class="w-full border-4 px-8 py-5 space-y-5 text-lg border-bluee3">
-                            <h5 class="text-xl font-medium">Nilai Anda</h5>
-                            <p class="text-justify"> Anda belum menyelesaikan penilaian ini. Silahkan selesaikan terlebih dahulu untuk mengetahui skor tertinggi Anda.
-                                Dibutuhkan <span class=" font-medium">nilai 80% atau lebih tinggi pada Bagian 1</span> untuk lulus.
-                                <br><span class="text-xl font-medium">_ _</span>
-                            </p>
-                        </div>
+                        @else
+                            {{-- Setelah Penilaian --}}
+                            <h3 class="text-justify"><span class="text-xl font-medium">Hasil Penilaian Pra-Belajar:</span> Seputar Autisme, Metode pendekatan TEACCH, dan Aplikasi Belajar MIKA 1.0</h3>
+                            <div class="flex flex-col md:flex-row justify-between w-full px-8 py-8 bg-bluee3 rounded text-lg font-medium">
+                                <div class="w-full space-y-4">
+                                    <h5 class="text-xl">Detail Penilaian</h5>
+                                    <div class="flex gap-12">
+                                        <div>
+                                            <p>Batas Waktu</p>
+                                            <time class="text-base font-normal">
+                                                {{ $asessmentInfo->asessment_duration === 'limited' ? $asessmentInfo->asessment_time_limit . ' menit' : 'Tidak Terbatas' }}
+                                            </time>
+                                        </div>                                        
+                                        <div>
+                                            <p>Kesempatan</p>
+                                            <time class="text-base font-normal">
+                                                {{ $asessmentInfo->asessment_type === 'limited' ? 'Terbatas (' . $asessmentInfo->asessment_workout . 'x)' : 'Tidak Terbatas' }}
+                                            </time>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                                <div class="w-full flex items-end justify-end gap-4">
+                                    <button id="startButtonNow" type="button" class="text-blue31 text-center border-2 border-blue31 py-2 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">Ulangi Penilaian</button>
+                                    <button id="startButtonEvaluate" type="button" class="text-white text-center bg-blue31 py-2 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">Mulai Evaluasi</button>
+                                </div>
+                            </div>
+                            <div class="w-full border-4 px-8 py-5 border-bluee3 rounded">
+                                <h5 class="font-medium text-xl">Nilai Penilaian I Anda</h5>
+                                <p class="text-lg text-justify mb-5">Dibutuhkan <span class="font-medium">nilai 80% atau lebih tinggi</span> untuk lulus.</p>
+                                <table class="w-full text-lg">
+                                    <thead>
+                                        <tr class="bg-bluee3">
+                                            <th class="py-2">Waktu</th>
+                                            <th class="py-2">Nilai</th>
+                                            <th class="py-2">Status</th>
+                                            <th class="py-2">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($attempts as $attempt)
+                                            <tr class="text-center">
+                                                <td class="text-left py-1"> 
+                                                    {{ \Carbon\Carbon::parse($attempt->finished_at)->locale('id')->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
+                                                </td>
+                                                <td class="py-1">
+                                                    {{ $attempt->score }}%
+                                                </td>
+                                                <td class="py-1">
+                                                    {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
+                                                </td>
+                                                <td class="underline cursor-pointer py-1">
+                                                    <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center text-gray-500">Belum ada riwayat penilaian.</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                                <p class="text-lg text-justify mt-4">Silahkan menyelesaikan asessmen dengan melanjutkan ke bagian <span class="font-medium">Selanjutnya atau Lanjutkan Evaluasi</span> untuk menyelesaikan asesmen program pembelajaran.</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
+
             {{-- Right Content --}}
             @include('includes.components.elearning.course.section')
         </div>
@@ -61,12 +124,22 @@
 
     @include('includes.components.elearning.course.footer')
 
-
     </body>
+
+    @include('includes.components.elearning.course.dialog.modal-asessment')
+
 </html>
 
-
+@if($sudahMengisi)
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const timeCell = document.getElementById('static-time');
+        if (timeCell) {
+            const now = new Date();
+            const formatted = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
+                            now.getHours().toString().padStart(2, '0') + '.' + now.getMinutes().toString().padStart(2, '0');
+            timeCell.textContent = formatted;
+        }
+    });
 </script>
-    
-
+@endif

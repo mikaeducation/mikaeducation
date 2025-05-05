@@ -29,11 +29,11 @@
 
 <script>
     function adjustNavigation() {
-        let navigation = document.getElementById("navigation");
-        let footer = document.getElementById("footer");
-        let footerRect = footer.getBoundingClientRect();
-        let windowHeight = window.innerHeight;
-
+        const navigation = document.getElementById("navigation");
+        const footer = document.getElementById("footer");
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+    
         if (footerRect.top <= windowHeight) {
             navigation.style.position = "absolute";
             navigation.style.bottom = `${footerRect.height}px`;
@@ -42,74 +42,133 @@
             navigation.style.bottom = "0";
         }
     }
-
-    // --- Navigasi antar halaman ---
+    
+    // --- Navigasi antar halaman (kecuali page2_1 akan ditangani khusus)
     function setupNavigation() {
+        const currentPath = window.location.pathname;
+        if (currentPath === "/page2_1") return; // Page ini ditangani khusus di setupAsessmentDialog
+
         const routes = [
-            "/course", // pengenalan
-            "/page2_0", "/page2_1", "/page2_2", "/page2_3", // asessmen 1
-            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3", // submodul 1
-            "/page4_0", "/page4_1", "/page4_2", "/page4_3", // submodul 2
-            "/page5_0", "/page5_1", "/page5_2", "/page5_3",// submodul 3
-            "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",// submodul 4
+            "/course", "/page2_0", "/page2_1", "/page2_2",
+            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3",
+            "/page4_0", "/page4_1", "/page4_2", "/page4_3",
+            "/page5_0", "/page5_1", "/page5_2", "/page5_3",
+            "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",
             "/page7",
-            "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1",// asessmen 2
+            "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1",
         ];
 
-        const currentPath = window.location.pathname;
         const currentIndex = routes.indexOf(currentPath);
-
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
-
-        const modulMap = {
-            "/course": "Pengenalan",
-            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Bagian 1 (Pre-Test)", "/page2_2": "Asessmen I - Hasil Penilaian", "/page2_3": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
-            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Gangguan Spektrum Autisme - Komunikasi Autistik - Eskpresif", "/page3_1_2": "Gangguan Spektrum Autisme - Komunikasi Autistik - Reseptif", "/page3_1_3": "Gangguan Spektrum Autisme - Komunikasi Autistik - Pragmatis", "/page3_1_4": "Gangguan Spektrum Autisme - Komunikasi Autistik - Strategi Komunikasi Autisme", "/page3_2": "Gangguan Spektrum Autisme - Rangkuman Materi", "/page3_3": "Gangguan Spektrum Autisme - Uji Pengetahuan",
-            "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", "/page4_1": "Matriks Perencanaan - Rangkuman Materi", "/page4_2": "Matriks Perencanaan - Uji Pengetahuan", "/page4_3": "Matriks Perencanaan - Latihan Berfikir",
-            "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", "/page5_1": "Pembelajaran Terstruktur - Rangkuman Materi", "/page5_2": "Pembelajaran Terstruktur - Uji Pengetahuan", "/page5_3": "Pembelajaran Terstruktur - Latihan Berfikir",
-            "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_1_1": "Media Visual Komunikasi Anak - Studi Kasus Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", "/page6_3": "Media Visual Komunikasi Anak - Rangkuman Materi",
-            "/page7": "Studi Kasus - Simulasi Penggunaan MIKA 1.0",
-            "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2": "Asessmen II - Hasil Penilaian", "/page8_3_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_3_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar",
-        };
+        const startBtn = document.getElementById("btnMulaiAsessment");
 
         const modulActive = document.getElementById("modul-active");
+        const modulMap = {
+            "/course": "Pengenalan",
+            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Bagian 1 (Pre-Test)", "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
+            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Komunikasi Autistik - Ekspresif", "/page3_1_2": "Komunikasi Autistik - Reseptif", "/page3_1_3": "Komunikasi Autistik - Pragmatis", "/page3_1_4": "Strategi Komunikasi Autisme", "/page3_2": "Rangkuman Materi", "/page3_3": "Uji Pengetahuan",
+            "/page4_0": "Observasi, Karakteristik, Strategi", "/page4_1": "Rangkuman Materi", "/page4_2": "Uji Pengetahuan", "/page4_3": "Latihan Berpikir",
+            "/page5_0": "Belajar Terstruktur", "/page5_1": "Rangkuman Materi", "/page5_2": "Uji Pengetahuan", "/page5_3": "Latihan Berpikir",
+            "/page6_0": "Memulai MIKA 1.0", "/page6_1_0": "Administratif MIKA 1.0", "/page6_1_1": "Studi Kasus Admin", "/page6_2": "Evaluasi & Interpretasi", "/page6_3": "Rangkuman Materi",
+            "/page7": "Simulasi Penggunaan MIKA 1.0",
+            "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2": "Asessmen II - Hasil Penilaian", "/page8_3_0": "Evaluasi Lanjutan", "/page8_3_1": "Evaluasi Akhir"
+        };
+
         modulActive.innerText = modulMap[currentPath] || "-";
+
+        if (currentPath === "/page2_0") {
+            const status = document.querySelector('meta[name="assessment-status"]')?.content;
+            if (status === "done") {
+                modulActive.innerText = "Asessmen I - Hasil Penilaian";
+            }
+        }
 
         if (prevBtn && currentIndex === 0) {
             prevBtn.classList.add("opacity-0", "pointer-events-none");
         }
 
-        prevBtn?.addEventListener("click", (e) => {
-            if (!e.defaultPrevented && currentIndex > 0) {
-                window.location.href = routes[currentIndex - 1];
-            }
-        });
+        // Khusus prevBtn: hanya aktifkan handler jika BUKAN page2_1 atau page2_2
+        if (prevBtn && currentPath !== "/page2_1" && currentPath !== "/page2_2") {
+            prevBtn.addEventListener("click", (e) => {
+                if (!e.defaultPrevented && currentIndex > 0) {
+                    window.location.href = routes[currentIndex - 1];
+                }
+            });
+        }
 
-        nextBtn?.addEventListener("click", (e) => {
-            const meta = document.querySelector('meta[name="show-asessment-dialog"]');
-            const startBtn = document.getElementById("btnMulaiAsessment");
-            const moduleId = startBtn?.dataset.moduleId;
-            const asessmentId = startBtn?.dataset.asessmentId;
-
-            if (!e.defaultPrevented && meta && moduleId && asessmentId) {
-                e.preventDefault();
-                showModalForAsessment(moduleId, asessmentId);
+        // Handler tombol next
+        if (nextBtn) {
+            if (currentPath === "/page2_0") {
+                const isFinished = document.querySelector('meta[name="asessment-finished"]')?.content === "true";
+                if (!isFinished && startBtn) {
+                    nextBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        const moduleId = startBtn.dataset.moduleId;
+                        const asessmentId = startBtn.dataset.asessmentId;
+                        showModalForAsessment(moduleId, asessmentId);
+                    });
+                }
+            } else if (currentPath === "/page2_2") {
+                // Tangani navigasi secara manual di setupAsessmentDialog
+                nextBtn.addEventListener("click", (e) => {
+                    e.preventDefault(); // Cegah redirect langsung
+                });
             } else if (currentIndex < routes.length - 1) {
-                window.location.href = routes[currentIndex + 1];
+                nextBtn.addEventListener("click", (e) => {
+                    if (!e.defaultPrevented) {
+                        window.location.href = routes[currentIndex + 1];
+                    }
+                });
             }
-        });
+        }
     }
 
-    // --- Dialog Modal Asesmen ---
+    
+    // --- Setup dialog khusus asesmen
     function setupAsessmentDialog() {
-        const modal = document.getElementById("modalDialogAsessment");
-        const confirmBtn = document.getElementById("btnAsessmentConfirm");
-        const cancelBtn = document.getElementById("btnAsessmentCancel");
+        const page = window.location.pathname;
+        const sudahSelesai = document.querySelector('meta[name="asessment-finished"]')?.content === "true";
+
+        // --- Modal Umum
+        const modalStart = document.getElementById("modalDialogAsessment");
+        const confirmStart = document.getElementById("btnAsessmentConfirm");
+        const cancelStart = document.getElementById("btnAsessmentCancel");
+
+        const modalSubmit = document.getElementById("modalDialogSubmit_Asessmen1");
+        const confirmSubmit = document.getElementById("btnSubmitConfirm");
+        const cancelSubmit = document.getElementById("btnSubmitBack");
+
+        const modalEval = document.getElementById("modalDialogStart_Asessmen1_Eval");
+
+        // --- Pemilihan modal back
+        const modalBack = page === "/page2_0"
+            ? document.getElementById("modalDialogBack_Asessmen1_Ulangi")
+            : document.getElementById("modalDialogBack_Asessmen1");
+
         const startBtn = document.getElementById("btnMulaiAsessment");
+        const nextBtn = document.getElementById("next-btn");
+        const prevBtn = document.getElementById("prev-btn");
+        const btnTriggerSubmit = document.getElementById("btnTriggerSubmitModal");
+
+        // Tombol Modal
+        const btnStartEval = document.getElementById("startButtonEvaluate");
+        const btnStartUlang = document.getElementById("startButtonNow");
+
+        const btnStartEvalConfirm = modalEval?.querySelector("#btnStartLearning_Eval");
+        const btnBackEval = modalEval?.querySelector("#btnBack_Eval");
+
+        const confirmBack = page === "/page2_0"
+            ? modalBack?.querySelector("#btnStartLearning_Ulangi")
+            : modalBack?.querySelector("#btnConfirmBack");
+
+        const cancelBack = page === "/page2_0"
+            ? modalBack?.querySelector("#btnBack_Ulangi")
+            : modalBack?.querySelector("#btnCancelBack");
 
         let redirectURL = "/";
 
+        // --- Fungsi modal awal asesmen
         window.showModalForAsessment = function (moduleId, asessmentId) {
             fetch("/check-asessment-status", {
                 method: "POST",
@@ -123,414 +182,173 @@
             .then(data => {
                 if (data.status === "ok") {
                     redirectURL = data.redirect_to;
-                    modal.classList.remove("hidden");
+                    modalStart?.classList.remove("hidden");
                 }
             });
-        }
+        };
 
-        startBtn?.addEventListener("click", function () {
-            const moduleId = this.dataset.moduleId;
-            const asessmentId = this.dataset.asessmentId;
+        // --- Modal mulai asesmen
+        startBtn?.addEventListener("click", () => {
+            const moduleId = startBtn.dataset.moduleId;
+            const asessmentId = startBtn.dataset.asessmentId;
             showModalForAsessment(moduleId, asessmentId);
         });
 
-        confirmBtn?.addEventListener("click", function () {
+        confirmStart?.addEventListener("click", () => {
             window.location.href = redirectURL;
         });
 
-        cancelBtn?.addEventListener("click", function () {
-            modal.classList.add("hidden");
+        cancelStart?.addEventListener("click", () => {
+            modalStart?.classList.add("hidden");
         });
-    }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        adjustNavigation();
-        setupNavigation();
-        setupAsessmentDialog();
-    });
+        // --- Page2_0: selesai asesmen
+        if (page === "/page2_0" && sudahSelesai) {
+            btnStartUlang?.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalBack?.classList.remove("hidden");
+            });
 
-    window.addEventListener("scroll", adjustNavigation);
-    window.addEventListener("resize", adjustNavigation);
+            btnStartEval?.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalEval?.classList.remove("hidden");
+            });
 
+            nextBtn?.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalEval?.classList.remove("hidden");
+            });
 
+            btnBackEval?.addEventListener("click", () => {
+                modalEval?.classList.add("hidden");
+            });
 
+            btnStartEvalConfirm?.addEventListener("click", () => {
+                window.location.href = "/page2_2";
+            });
 
-//Dilaog PAGE 2_1
-document.addEventListener("DOMContentLoaded", function () {
-    const currentPath = window.location.pathname;
+            confirmBack?.addEventListener("click", () => {
+                window.location.href = "/page2_1";
+            });
 
-    if (currentPath === "/page2_1") {
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
-        const kumpulBtn = document.querySelector('button[type="submit"]');
-
-        const modalBack = document.getElementById("modalDialogBack_Asessmen1");
-        const modalSubmit = document.getElementById("modalDialogSubmit_Asessmen1");
-
-        const btnBackClose = document.getElementById("btnCancelBack");
-        const btnBackConfirm = document.getElementById("btnConfirmBack");
-        const btnSubmitBack = document.getElementById("btnSubmitBack");
-        const btnSubmitConfirm = document.getElementById("btnSubmitConfirm");
-
-        let redirectOnConfirmBack = false; // penanda agar tidak langsung redirect
-
-        function showModal(modal) {
-            if (modal) modal.classList.remove("hidden");
-        }
-
-        function closeModal(modal) {
-            if (modal) modal.classList.add("hidden");
-        }
-
-        if (prevBtn) {
-            const newPrevBtn = prevBtn.cloneNode(true);
-            prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
-            newPrevBtn.addEventListener("click", function (e) {
-                e.preventDefault(); // penting untuk cegah redirect default
-                showModal(modalBack);
+            cancelBack?.addEventListener("click", () => {
+                modalBack?.classList.add("hidden");
             });
         }
 
-        if (btnBackClose) {
-            btnBackClose.addEventListener("click", function () {
-                closeModal(modalBack);
-            });
-        }
+        // --- Page2_1: form pretest
+        if (page === "/page2_1") {
+            const form = document.getElementById("formAsessment");
 
-        if (btnBackConfirm) {
-            btnBackConfirm.addEventListener("click", function () {
+            const isFormValid = () => {
+                const radios = form.querySelectorAll("input[type='radio']");
+                const names = [...new Set([...radios].map(r => r.name))];
+                return names.every(name => form.querySelector(`input[name="${name}"]:checked`));
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (!isFormValid()) {
+                    alert("Ada pertanyaan yang belum Anda jawab.");
+                    return;
+                }
+                modalSubmit?.classList.remove("hidden");
+            };
+
+            nextBtn?.addEventListener("click", handleSubmit);
+            btnTriggerSubmit?.addEventListener("click", handleSubmit);
+
+            confirmSubmit?.addEventListener("click", () => {
+                modalSubmit?.classList.add("hidden");
+                form?.submit();
+            });
+
+            cancelSubmit?.addEventListener("click", () => {
+                modalSubmit?.classList.add("hidden");
+            });
+
+            prevBtn?.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalBack?.classList.remove("hidden");
+            });
+
+            cancelBack?.addEventListener("click", () => {
+                modalBack?.classList.add("hidden");
+            });
+
+            confirmBack?.addEventListener("click", () => {
                 window.location.href = "/page2_0";
             });
         }
 
-        if (nextBtn) {
-            const newNextBtn = nextBtn.cloneNode(true);
-            nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
-            newNextBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                showModal(modalSubmit);
-            });
-        }
+        // --- Page2_2: form evaluasi
+    if (page === "/page2_2") {
+        const formEval = document.getElementById("formEvaluation");
+        const modalSubmitEval = document.getElementById("modalDialog_Asessmen1_Finish");
+        const confirmSubmitEval = document.getElementById("btnSubmitConfirm_Finish");
+        const cancelSubmitEval = document.getElementById("btnSubmitBack_Finish");
 
-        if (kumpulBtn) {
-            const newKumpulBtn = kumpulBtn.cloneNode(true);
-            kumpulBtn.parentNode.replaceChild(newKumpulBtn, kumpulBtn);
-            newKumpulBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                showModal(modalSubmit);
-            });
-        }
+        const modalBackEval = document.getElementById("modalDialogBack_Evaluation");
+        const confirmBackEval = modalBackEval?.querySelector("#btnConfirmBack_Eval");
+        const cancelBackEval = modalBackEval?.querySelector("#btnCancelBack_Eval");
 
-        if (btnSubmitBack) {
-            btnSubmitBack.addEventListener("click", function () {
-                closeModal(modalSubmit);
-            });
-        }
+        const isFormValidEval = () => {
+            const radios = formEval.querySelectorAll("input[type='radio']");
+            const names = [...new Set([...radios].map(r => r.name))];
+            return names.every(name => formEval.querySelector(`input[name="${name}"]:checked`));
+        };
 
-        if (btnSubmitConfirm) {
-            btnSubmitConfirm.addEventListener("click", function () {
-                document.querySelector("form").submit();
-            });
-        }
-
-        window.addEventListener("click", function (event) {
-            if (event.target === modalSubmit) {
-                closeModal(modalSubmit);
+        const handleSubmitEval = (e) => {
+            e.preventDefault();
+            if (!isFormValidEval()) {
+                alert("Ada pertanyaan yang belum Anda jawab.");
+                return;
             }
-            if (event.target === modalBack) {
-                closeModal(modalBack);
-            }
+            modalSubmitEval?.classList.remove("hidden");
+        };
+
+        // Tangani tombol "Kumpulkan"
+        btnTriggerSubmit?.addEventListener("click", handleSubmitEval);
+
+        // Tangani tombol "Selanjutnya"
+        nextBtn?.addEventListener("click", handleSubmitEval);
+
+        // Konfirmasi kirim form
+        confirmSubmitEval?.addEventListener("click", () => {
+            modalSubmitEval?.classList.add("hidden");
+            formEval?.submit();
+        });
+
+        cancelSubmitEval?.addEventListener("click", () => {
+            modalSubmitEval?.classList.add("hidden");
+        });
+
+        prevBtn?.addEventListener("click", (e) => {
+            e.preventDefault();
+            modalBackEval?.classList.remove("hidden");
+        });
+
+        cancelBackEval?.addEventListener("click", () => {
+            modalBackEval?.classList.add("hidden");
+        });
+
+        confirmBackEval?.addEventListener("click", () => {
+            window.location.href = "/page2_0";
         });
     }
-});
+}
 
 
-//Dilaog PAGE 2_2
+
+    
 document.addEventListener("DOMContentLoaded", function () {
-    const path = window.location.pathname;
-
-    if (path === "/page2_2") {
-        const modalBack = document.getElementById('modalDialogBack_Asessmen1'); // Modal untuk Sebelumnya dan Ulangi Penilaian
-        const modalNext = document.getElementById('modalDialogStart_Asessmen1_Eval'); // Modal untuk Selanjutnya
-        const modalEvaluate = document.getElementById('modalDialogEvaluate'); // Modal untuk Mulai Evaluasi
-
-        const btnUlangi = document.getElementById('startButtonNow'); // Tombol Ulangi Penilaian
-        const btnPrev = document.getElementById('prev-btn'); // Tombol Sebelumnya
-        const btnNext = document.getElementById('next-btn'); // Tombol Selanjutnya
-        const btnEvaluate = document.getElementById('startButtonEvaluate'); // Tombol Mulai Evaluasi
-
-        const btnBackInModalBack = modalBack?.querySelector('#btnBack');
-        const btnGoToPage2_1 = modalBack?.querySelector('#btnStartLearning');
-
-        const btnBackInModalNext = modalNext?.querySelector('#btnBack');
-        const btnGoToPage2_3 = modalNext?.querySelector('#btnStartLearning');
-
-        const btnBackInModalEvaluate = modalEvaluate?.querySelector('#btnBack'); // Tombol Kembali di Modal Evaluasi
-        const btnGoToPage2_3FromEvaluate = modalEvaluate?.querySelector('#btnStartLearning'); // Tombol Mulai Evaluasi menuju page2_3
-
-        // Fungsi untuk menampilkan modal
-        const showModal = (modal) => {
-            modal.classList.remove("hidden");
-        };
-
-        // Fungsi untuk menutup modal
-        const closeModal = (modal) => {
-            modal.classList.add("hidden");
-        };
-
-        // Tombol "Ulangi Penilaian" (Menampilkan modalBack)
-        if (btnUlangi) {
-            const newBtnUlangi = btnUlangi.cloneNode(true);
-            btnUlangi.parentNode.replaceChild(newBtnUlangi, btnUlangi);
-            newBtnUlangi.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                showModal(modalBack); // Tampilkan modal dialog untuk "Ulangi Penilaian"
-            });
-        }
-
-        // Tombol "Sebelumnya" (Menampilkan modalBack)
-        if (btnPrev) {
-            const newBtnPrev = btnPrev.cloneNode(true);
-            btnPrev.parentNode.replaceChild(newBtnPrev, btnPrev);
-            newBtnPrev.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                showModal(modalBack); // Tampilkan modal dialog untuk "Sebelumnya"
-            });
-        }
-
-        // Tombol "Selanjutnya" (Menampilkan modalNext)
-        if (btnNext) {
-            const newBtnNext = btnNext.cloneNode(true);
-            btnNext.parentNode.replaceChild(newBtnNext, btnNext);
-            newBtnNext.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                showModal(modalNext); // Tampilkan modal dialog untuk "Selanjutnya"
-            });
-        }
-
-        // Tombol "Mulai Evaluasi" (Harus munculkan modalNext)
-        if (btnEvaluate) {
-            const newBtnEvaluate = btnEvaluate.cloneNode(true);
-            btnEvaluate.parentNode.replaceChild(newBtnEvaluate, btnEvaluate);
-            newBtnEvaluate.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                showModal(modalNext); // ← Pastikan ini yang dipakai!
-            });
-        }
-
-
-        // Tombol kembali dalam modal "Back"
-        if (btnBackInModalBack) {
-            const newBtnBackInModalBack = btnBackInModalBack.cloneNode(true);
-            btnBackInModalBack.parentNode.replaceChild(newBtnBackInModalBack, btnBackInModalBack);
-            newBtnBackInModalBack.addEventListener('click', function () {
-                closeModal(modalBack); // Menutup modal dialog
-            });
-        }
-
-        // Tombol mulai dalam modal "Back" => Page2_1
-        if (btnGoToPage2_1) {
-            const newBtnGoToPage2_1 = btnGoToPage2_1.cloneNode(true);
-            btnGoToPage2_1.parentNode.replaceChild(newBtnGoToPage2_1, btnGoToPage2_1);
-            newBtnGoToPage2_1.addEventListener('click', function () {
-                window.location.href = "/page2_1"; // Arahkan ke page2_1
-            });
-        }
-
-        // Tombol kembali dalam modal "Next"
-        if (btnBackInModalNext) {
-            const newBtnBackInModalNext = btnBackInModalNext.cloneNode(true);
-            btnBackInModalNext.parentNode.replaceChild(newBtnBackInModalNext, btnBackInModalNext);
-            newBtnBackInModalNext.addEventListener('click', function () {
-                closeModal(modalNext); // Menutup modal dialog
-            });
-        }
-
-        // Tombol mulai dalam modal "Next" => Page2_3
-        if (btnGoToPage2_3) {
-            const newBtnGoToPage2_3 = btnGoToPage2_3.cloneNode(true);
-            btnGoToPage2_3.parentNode.replaceChild(newBtnGoToPage2_3, btnGoToPage2_3);
-            newBtnGoToPage2_3.addEventListener('click', function () {
-                window.location.href = "/page2_3"; // Arahkan ke page2_3
-            });
-        }
-
-        // Tombol kembali dalam modal "Evaluate"
-        if (btnBackInModalEvaluate) {
-            const newBtnBackInModalEvaluate = btnBackInModalEvaluate.cloneNode(true);
-            btnBackInModalEvaluate.parentNode.replaceChild(newBtnBackInModalEvaluate, btnBackInModalEvaluate);
-            newBtnBackInModalEvaluate.addEventListener('click', function () {
-                closeModal(modalEvaluate); // Menutup modal dialog
-            });
-        }
-
-        // Tombol mulai dalam modal "Evaluate" => Page2_3
-        if (btnGoToPage2_3FromEvaluate) {
-            const newBtnGoToPage2_3FromEvaluate = btnGoToPage2_3FromEvaluate.cloneNode(true);
-            btnGoToPage2_3FromEvaluate.parentNode.replaceChild(newBtnGoToPage2_3FromEvaluate, btnGoToPage2_3FromEvaluate);
-            newBtnGoToPage2_3FromEvaluate.addEventListener('click', function () {
-                window.location.href = "/page2_3"; // Arahkan ke page2_3 dari modal evaluasi
-            });
-        }
-
-        // Tutup modal kalau klik di luar
-        window.addEventListener("click", function (event) {
-            if (event.target === modalBack) closeModal(modalBack);
-            if (event.target === modalNext) closeModal(modalNext);
-            if (event.target === modalEvaluate) closeModal(modalEvaluate);
-        });
-    }
+    adjustNavigation();
+    setupNavigation();
+    setupAsessmentDialog();
 });
 
-
-//Dilaog PAGE 2_3
-    document.addEventListener("DOMContentLoaded", function () {
-        const currentPath = window.location.pathname;
-        if (currentPath !== "/page2_3") return;
-
-        // Modal dan tombol
-        const modalBack = document.getElementById("modalDialogBack_Asessmen1");
-        const modalFinish = document.getElementById("modalDialog_Asessmen1_Finish");
-
-        const btnPrev = document.getElementById("prev-btn");
-        const btnNext = document.getElementById("next-btn");
-        const btnSubmit = document.getElementById("submit-btn-Asessmen1finish");
-
-        // Tombol dalam modal back
-        const btnCancelBack = document.getElementById("btnCancelBack");
-        const btnConfirmBack = document.getElementById("btnConfirmBack");
-
-        // Tombol dalam modal finish
-        const btnSubmitBack = document.getElementById("btnSubmitBack");
-        const btnSubmitConfirm = document.getElementById("btnSubmitConfirm");
-
-        // Fungsi modal
-        function showModal(modal) {
-            modal.classList.remove("hidden");
-        }
-
-        function closeModal(modal) {
-            modal.classList.add("hidden");
-        }
-
-        function bindModalButtons() {
-            // Modal Back
-            if (btnCancelBack) {
-                btnCancelBack.addEventListener("click", () => closeModal(modalBack));
-            }
-
-            if (btnConfirmBack) {
-                btnConfirmBack.addEventListener("click", () => {
-                    closeModal(modalBack);
-                    setTimeout(() => {
-                        window.location.href = "/page2_2";
-                    }, 300);
-                });
-            }
-
-            // Modal Finish
-            if (btnSubmitBack) {
-                btnSubmitBack.addEventListener("click", () => closeModal(modalFinish));
-            }
-
-            if (btnSubmitConfirm) {
-                btnSubmitConfirm.addEventListener("click", () => {
-                    closeModal(modalFinish);
-                    setTimeout(() => {
-                        window.location.href = "/page3_0";
-                    }, 300);
-                });
-            }
-        }
-
-        function replaceButtonWithModal(btn, modalToShow) {
-            if (btn) {
-                const newBtn = btn.cloneNode(true);
-                btn.parentNode.replaceChild(newBtn, btn);
-                newBtn.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    showModal(modalToShow);
-                });
-            }
-        }
-
-        // Re-bind tombol navigasi
-        replaceButtonWithModal(btnPrev, modalBack);
-        replaceButtonWithModal(btnNext, modalFinish);
-        replaceButtonWithModal(btnSubmit, modalFinish);
-
-        // Bind tombol dalam modal
-        bindModalButtons();
-    });
-
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const path = window.location.pathname;
-
-        if (path === "/page3_0") {
-            const modalBack = document.getElementById('modalDialogBack_Asessmen1'); // Modal untuk tombol "Sebelumnya"
-            const btnPrev = document.getElementById('prev-btn'); // Tombol "Sebelumnya"
-
-            const btnCancelBack = document.getElementById('btnCancelBack'); // Tombol "Lanjut Belajar"
-            const btnConfirmBack = document.getElementById('btnConfirmBack'); // Tombol "Keluar"
-
-            // Fungsi tampilkan modal
-            const showModal = (modal) => {
-                modal.classList.remove("hidden");
-            };
-
-            // Fungsi tutup modal
-            const closeModal = (modal) => {
-                modal.classList.add("hidden");
-            };
-
-            // Handler tombol "Sebelumnya"
-            if (btnPrev) {
-                const newBtnPrev = btnPrev.cloneNode(true);
-                btnPrev.parentNode.replaceChild(newBtnPrev, btnPrev);
-                newBtnPrev.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
-                    showModal(modalBack);
-                });
-            }
-
-            // Tombol "Lanjut Belajar" = hanya tutup modal
-            if (btnCancelBack) {
-                const newBtnCancel = btnCancelBack.cloneNode(true);
-                btnCancelBack.parentNode.replaceChild(newBtnCancel, btnCancelBack);
-                newBtnCancel.addEventListener('click', function () {
-                    closeModal(modalBack);
-                });
-            }
-
-            // Tombol "Keluar" = redirect ke /page2_2
-            if (btnConfirmBack) {
-                const newBtnConfirm = btnConfirmBack.cloneNode(true);
-                btnConfirmBack.parentNode.replaceChild(newBtnConfirm, btnConfirmBack);
-                newBtnConfirm.addEventListener('click', function () {
-                    window.location.href = "/page2_2";
-                });
-            }
-
-            // Tutup modal jika klik di luar kontennya
-            window.addEventListener("click", function (event) {
-                if (event.target === modalBack) {
-                    closeModal(modalBack);
-                }
-            });
-        }
-    });
-
+    
+    window.addEventListener("scroll", adjustNavigation);
+    window.addEventListener("resize", adjustNavigation);    
 
 </script>

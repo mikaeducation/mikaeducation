@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\UserAsessment;
 use App\Models\ProgressHistory;
 use App\Models\ProgressTracking;
+use App\Models\UserAsessment;
+use App\Models\QuestionBank;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
 
 
 class CourseController extends Controller
@@ -135,41 +135,66 @@ class CourseController extends Controller
 
     // 	Menampilkan halaman course dinamis berdasarkan URL
     public function showCoursePage(Request $request)
-    {
-        $page = $request->path(); // contoh: 'page2_0'
-        $currentPart = $this->getCurrentPartFromPage($page);
+{
+    $page = $request->path();
+    $currentPart = $this->getCurrentPartFromPage($page);
 
-        // Ambil progress aktif user berdasarkan current part
-        $progress = \App\Models\ProgressTracking::where('user_id', Auth::id())
-            ->where('current_part', $currentPart)
-            ->first();
+    // Ambil progress aktif user berdasarkan current part
+    $progress = ProgressTracking::where('user_id', Auth::id())
+        ->where('current_part', $currentPart)
+        ->first();
 
-        $module_id = $progress?->module_id;
-        $module = $progress?->module;
+    $module_id = $progress?->module_id;
+    $module = $progress?->module;
 
-        // Mapping halaman asesmen ke asessment_id
-        $asessmentPages = [
-            'page2_0' => 1, // pretest (Asesmen I)
-            'page2_2' => 1, // hasil pretest (untuk ulangi)
-            'page8_0' => 2, // posttest (Asesmen II)
-            // Tambahkan lainnya sesuai kebutuhan
-        ];
-        $asessment_id = $asessmentPages[$page] ?? null;
+    // Mapping halaman asesmen ke asessment_id
+    $asessmentPages = [
+        // Pretest (Asesmen I)
+        'page2_0' => 1,
+        'page2_1' => 1,
+        'page2_2' => 3,
 
-        // Cek apakah user sudah pernah mengikuti asesmen
-        $sudahMengisi = false;
-        if ($module_id && $asessment_id) {
-            $sudahMengisi = \App\Models\UserAsessment::where([
-                'user_id' => Auth::id(),
-                'module_id' => $module_id,
-                'asessment_id' => $asessment_id,
-            ])->exists();
-        }
+        // Posttest (Asesmen II)
+        'page8_0' => 2,
+        'page8_1' => 2,
+        'page8_2' => 2,
+        'page8_3_0' => 3,
+        'page8_3_1' => 3,
+    ];
+    $asessment_id = $asessmentPages[$page] ?? null;
 
-        // Simpan progres
-        $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
+    // Cek apakah user sudah pernah mengikuti asesmen
+    $sudahMengisi = false;
+    if ($module_id && $asessment_id) {
+        $sudahMengisi = UserAsessment::where([
+            'user_id' => Auth::id(),
+            'module_id' => $module_id,
+            'asessment_id' => $asessment_id,
+        ])->exists();
+    }
+
+    // Simpan progres
+    $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
+
+    // Deteksi apakah halaman ini form asesmen (butuh load $questions)
+    $formPages = ['page2_1', 'page8_1', 'page2_2', 'page8_3_0', 'page8_3_1'];
+    if (in_array($page, $formPages)) {
+        $questions = QuestionBank::where('asessment_id', $asessment_id)->get();
 
         return view('learning.course.' . $page, compact(
+            'currentPart',
+            'module',
+            'progress',
+            'module_id',
+            'asessment_id',
+            'sudahMengisi',
+            'questions'
+        ));
+    }
+
+    // Halaman page2_0 (gabungan)
+    if ($page === 'page2_0') {
+        return view('learning.course.page2_0', compact(
             'currentPart',
             'module',
             'progress',
@@ -178,6 +203,18 @@ class CourseController extends Controller
             'sudahMengisi'
         ));
     }
+
+    // Default: render halaman tanpa pertanyaan
+    return view('learning.course.' . $page, compact(
+        'currentPart',
+        'module',
+        'progress',
+        'module_id',
+        'asessment_id',
+        'sudahMengisi'
+    ));
+}
+
 
 
 
@@ -209,7 +246,7 @@ class CourseController extends Controller
         // Hitung total progres kumulatif dari seluruh modul yang sudah selesai
         $progress->percent_done = $this->calculateTotalProgress($user->id);
 
-        $progress->current_part = $currentPart;
+        $progress->current_part = $currentPart ?? 'unknown_part';
         $progress->last_visited_at = now();
         $progress->save();
 
@@ -318,7 +355,7 @@ class CourseController extends Controller
     {
         return [
             'modul-introduce' => ['/course'],
-            'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2', '/page2_3'],
+            'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2'],
             'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'],
             'submodul2' => ['/page4_0', '/page4_1', '/page4_2', '/page4_3'],
             'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],

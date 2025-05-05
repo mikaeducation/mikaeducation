@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ========== Bagian 2: Mapping URL ke ID Submodul untuk ditampilkan ==========
     const urlToModulMapping = [
         { routes: ['/course'], modulId: 'modul-introduce-points' },
-        { routes: ['/page2_0', '/page2_1', '/page2_2', '/page2_3'], modulId: 'modul-asessmen1-points' },
+        { routes: ['/page2_0', '/page2_1', '/page2_2'], modulId: 'modul-asessmen1-points' },
         { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'], modulId: 'submodul1-points' },
         { routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'], modulId: 'submodul2-points' },
         { routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'], modulId: 'submodul3-points' },
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ========== Bagian 3: Progress & Modul Finished Icon ==========
     const allPages = [
         "/course",
-        "/page2_0", "/page2_1", "/page2_2", "/page2_3",
+        "/page2_0", "/page2_1", "/page2_2",
         "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3",
         "/page4_0", "/page4_1", "/page4_2", "/page4_3",
         "/page5_0", "/page5_1", "/page5_2", "/page5_3",
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const modulePages = {
         "modul-introduce": ["/course"],
-        "modul-asessmen1": ["/page2_0", "/page2_1", "/page2_2", "/page2_3"],
+        "modul-asessmen1": ["/page2_0", "/page2_1", "/page2_2"],
         "submodul1": ["/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3"],
         "submodul2": ["/page4_0", "/page4_1", "/page4_2", "/page4_3"],
         "submodul3": ["/page5_0", "/page5_1", "/page5_2", "/page5_3"],

@@ -11,7 +11,7 @@ return new class extends Migration
             $table->id('progress_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('module_id');
-            $table->string('current_part');
+            $table->string('current_part')->nullable();
             $table->integer('percent_done')->default(0);
             $table->boolean('is_completed')->default(false);
             $table->timestamp('last_visited_at')->nullable();

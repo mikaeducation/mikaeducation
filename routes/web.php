@@ -135,6 +135,7 @@ Route::get('/course', [CourseController::class, 'showCourse'])->name('course');
 Route::post('/start-course', [CourseController::class, 'startCourse'])->name('start-course');
 Route::post('/save-progress-exit', [CourseController::class, 'saveProgressOnExit'])->middleware('auth');
 
+Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
 Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
 Route::middleware('auth:sanctum')->post('/track-progress', [ProgressController::class, 'trackProgress']);
@@ -142,4 +143,10 @@ Route::middleware('auth:sanctum')->post('/update-progress', [ProgressController:
 
 Route::post('/check-asessment-status', [AsessmentController::class, 'check'])->middleware('auth');
 
+Route::post('/asessment-submit', [AsessmentController::class, 'submit'])
+    ->name('asessment-submit')
+    ->middleware('auth');
 
+Route::post('/asessment-evaluasi-submit', [AsessmentController::class, 'submitEvaluasi'])
+    ->name('asessment-evaluasi-submit')
+    ->middleware('auth');

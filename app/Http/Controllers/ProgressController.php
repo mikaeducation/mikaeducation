@@ -12,7 +12,7 @@ class ProgressController extends Controller
 {
     protected $modulePages = [
         'modul-introduce' => ['/course'],
-        'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2', '/page2_3'],
+        'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2'],
         'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'],
         'submodul2' => ['/page4_0', '/page4_1', '/page4_2', '/page4_3'],
         'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],

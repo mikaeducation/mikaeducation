@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('username');
             $table->tinyInteger('asessment_id');
+            $table->tinyInteger('after_asessment_id')->default(1);
             $table->timestamps();
         });
     }
