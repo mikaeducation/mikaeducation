@@ -12,14 +12,6 @@
     </head>
     <body class="font-futura w-full min-h-screen flex flex-col relative">
 
-        @if(session('success'))
-        <script>console.log("✅ Success redirect: {{ session('success') }}")</script>
-        @endif
-
-        @if(session('error'))
-            <script>console.log("❌ Error saat submit: {{ session('error') }}")</script>
-        @endif
-
         @include('includes.components.elearning.course.header')
     
     <section class="w-full flex-1 flex flex-col items-center justify-center text-blue31">
@@ -40,8 +32,9 @@
                                         @csrf
                                         <input type="hidden" name="asessment_id" value="3">
                                         <input type="hidden" name="after_asessment_id" value="1"> {{-- ganti value ke 2 jika evaluasi dilakukan pasca Asessmen II --}}
+                                        <div id="user-answers" data-answers="{{ json_encode(session('user_answers')) }}"></div>
                                         @foreach($questions as $index => $question)
-                                            @if($question->question_id >= 20 && $question->question_id <= 30)
+                                            @if($question->question_id >= 21 && $question->question_id <= 30)
                                                 <div>
                                                     <div class="mb-2 flex gap-2">
                                                         <p class="asessmen1-num font-medium">{{ $index + 1 }}.</p>

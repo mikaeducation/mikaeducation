@@ -95,53 +95,47 @@ Route::get('/aboutus', function () {
 });
 
 
-// MIKA-LEARNING
-// web.php
+// E-LEARNING ROUTES
 
-Route::get('/learn', function () {
-    return view('learning/home');
-});
-Route::get('/learn', [ModuleController::class, 'index']);
-Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
-
-Route::get('/modules', function () {
-    return view('learning/modules');
-});
-Route::get('/modules/{id}', [ModuleController::class, 'showModules'])->name('modules.show');
-
-Route::get('/preLearn', function (){
-    return view('learning/preLearn');
-});
-Route::get('/preLearn_1', function (){
-    return view('learning/preLearn-1');
-});
-
-Route::get('/event', function (){
-    return view('learning/event');
-});
-
-Route::get('/cert', function (){
-    return view('learning/cert');
+//Route antar halaman atau landing page, diluar halaman kursus pembelajaran
+Route::middleware(['auth'])->group(function () {
+    Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
+    Route::get('/modules', function () {
+        return view('learning/modules');
+    });
+    Route::get('/modules/{id}', [ModuleController::class, 'showModules'])->name('modules.show');
+    
+    Route::get('/preLearn', function () {
+        return view('learning/preLearn');
+    });
+    Route::get('/preLearn_1', function () {
+        return view('learning/preLearn-1');
+    });
+    Route::get('/event', function () {
+        return view('learning/event');
+    });
+    Route::get('/cert', function () {
+        return view('learning/cert');
+    });
+    Route::get('/other', function () {
+        return view('learning/other');
+    });
 });
 
-Route::get('/other', function (){
-    return view('learning/other');
-});
-
-
-
-// Route::post('/start-course', [CourseController::class, 'startCourse']);
+// Route di dalam kursus pembelajaran
 Route::get('/course', [CourseController::class, 'showCourse'])->name('course');
 Route::post('/start-course', [CourseController::class, 'startCourse'])->name('start-course');
 Route::post('/save-progress-exit', [CourseController::class, 'saveProgressOnExit'])->middleware('auth');
 
-Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
-Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
-
 Route::middleware('auth:sanctum')->post('/track-progress', [ProgressController::class, 'trackProgress']);
 Route::middleware('auth:sanctum')->post('/update-progress', [ProgressController::class, 'updateProgress']);
 
+Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
+Route::get('/page8_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page8_0');
+Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
+
 Route::post('/check-asessment-status', [AsessmentController::class, 'check'])->middleware('auth');
+Route::post('/check-user-evaluation', [AsessmentController::class, 'checkUserEvaluation']);
 
 Route::post('/asessment-submit', [AsessmentController::class, 'submit'])
     ->name('asessment-submit')
@@ -150,3 +144,5 @@ Route::post('/asessment-submit', [AsessmentController::class, 'submit'])
 Route::post('/asessment-evaluasi-submit', [AsessmentController::class, 'submitEvaluasi'])
     ->name('asessment-evaluasi-submit')
     ->middleware('auth');
+
+

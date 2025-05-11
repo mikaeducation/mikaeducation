@@ -92,6 +92,10 @@ class CourseController extends Controller
             ->where('module_id', $moduleId)
             ->first();
 
+            if ($progress && $progress->is_completed) {
+                return redirect('/preLearn')->with('info', 'Anda telah menyelesaikan pelatihan ini.');
+            }
+
         if ($progress) {
             // Ambil halaman terakhir dikunjungi dari history
             $lastHistory = DB::table('progress_history')
@@ -99,6 +103,7 @@ class CourseController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->first();
 
+            session()->put('is_learning', true);
             if ($lastHistory && $lastHistory->page_path) {
                 return redirect($lastHistory->page_path); // Redirect ke page terakhir
             } else {
@@ -130,71 +135,102 @@ class CourseController extends Controller
             'updated_at' => now()
         ]);
 
+        session()->put('is_learning', true);
         return redirect('/course');
     }
 
+    
     // 	Menampilkan halaman course dinamis berdasarkan URL
     public function showCoursePage(Request $request)
-{
-    $page = $request->path();
-    $currentPart = $this->getCurrentPartFromPage($page);
+    {
+        $page = $request->path();
 
-    // Ambil progress aktif user berdasarkan current part
-    $progress = ProgressTracking::where('user_id', Auth::id())
-        ->where('current_part', $currentPart)
-        ->first();
+        if (!in_array($page, $this->allowedPages())) {
+            abort(404); // Hentikan akses dari URL aneh
+        }
 
-    $module_id = $progress?->module_id;
-    $module = $progress?->module;
+        if (session()->missing('is_learning') && !in_array($page, ['page2_2', 'page3_0', 'page8_2_0', 'page8_2_1'])) {
+            return redirect('/preLearn');
+        }
 
-    // Mapping halaman asesmen ke asessment_id
-    $asessmentPages = [
-        // Pretest (Asesmen I)
-        'page2_0' => 1,
-        'page2_1' => 1,
-        'page2_2' => 3,
+        $currentPart = $this->getCurrentPartFromPage($page);
 
-        // Posttest (Asesmen II)
-        'page8_0' => 2,
-        'page8_1' => 2,
-        'page8_2' => 2,
-        'page8_3_0' => 3,
-        'page8_3_1' => 3,
-    ];
-    $asessment_id = $asessmentPages[$page] ?? null;
+        if ($currentPart === null && session()->has('is_learning')) {
+            $currentPart = 'modul-asessmen1'; // atau part default berdasarkan page
+        }
 
-    // Cek apakah user sudah pernah mengikuti asesmen
-    $sudahMengisi = false;
-    if ($module_id && $asessment_id) {
-        $sudahMengisi = UserAsessment::where([
-            'user_id' => Auth::id(),
-            'module_id' => $module_id,
-            'asessment_id' => $asessment_id,
-        ])->exists();
-    }
+        // Ambil progress aktif user berdasarkan current part
+        $progress = ProgressTracking::where('user_id', Auth::id())
+            ->where('current_part', $currentPart)
+            ->first();
 
-    // Simpan progres
-    $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
+        $module_id = $progress?->module_id;
+        $module = $progress?->module;
 
-    // Deteksi apakah halaman ini form asesmen (butuh load $questions)
-    $formPages = ['page2_1', 'page8_1', 'page2_2', 'page8_3_0', 'page8_3_1'];
-    if (in_array($page, $formPages)) {
-        $questions = QuestionBank::where('asessment_id', $asessment_id)->get();
+        // Mapping halaman asesmen ke asessment_id
+        $asessmentPages = [
+            // Pretest (Asesmen I)
+            'page2_0' => 1,
+            'page2_1' => 1,
+            'page2_2' => 3,
 
+            // Posttest (Asesmen II)
+            'page8_0' => 2,
+            'page8_1' => 2,
+            'page8_2_0' => 3,
+            'page8_2_1' => 3,
+        ];
+        $asessment_id = $asessmentPages[$page] ?? null;
+
+        // Cek apakah user sudah pernah mengikuti asesmen
+        $sudahMengisi = false;
+        if ($module_id && $asessment_id) {
+            $sudahMengisi = UserAsessment::where([
+                'user_id' => Auth::id(),
+                'module_id' => $module_id,
+                'asessment_id' => $asessment_id,
+            ])->exists();
+        }
+
+        // Simpan progres
+        if ($currentPart !== null) {
+            $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
+        }
+
+        // Deteksi apakah halaman ini form asesmen (butuh load $questions)
+        $formPages = ['page2_1', 'page2_2', 'page8_1', 'page8_2_0', 'page8_2_1'];
+        if (in_array($page, $formPages)) {
+            $questions = ($page === 'page2_2')
+                ? QuestionBank::where('asessment_id', 3)
+                    ->whereBetween('question_id', [21, 30])
+                    ->get()
+                : QuestionBank::where('asessment_id', $asessment_id)->get();
+
+            return view('learning.course.' . $page, compact(
+                'currentPart',
+                'module',
+                'progress',
+                'module_id',
+                'asessment_id',
+                'sudahMengisi',
+                'questions'
+            ));
+        }
+
+        // Halaman page2_0 (gabungan)
+        if ($page === 'page2_0') {
+            return view('learning.course.page2_0', compact(
+                'currentPart',
+                'module',
+                'progress',
+                'module_id',
+                'asessment_id',
+                'sudahMengisi'
+            ));
+        }
+
+        // Default: render halaman tanpa pertanyaan
         return view('learning.course.' . $page, compact(
-            'currentPart',
-            'module',
-            'progress',
-            'module_id',
-            'asessment_id',
-            'sudahMengisi',
-            'questions'
-        ));
-    }
-
-    // Halaman page2_0 (gabungan)
-    if ($page === 'page2_0') {
-        return view('learning.course.page2_0', compact(
             'currentPart',
             'module',
             'progress',
@@ -203,19 +239,6 @@ class CourseController extends Controller
             'sudahMengisi'
         ));
     }
-
-    // Default: render halaman tanpa pertanyaan
-    return view('learning.course.' . $page, compact(
-        'currentPart',
-        'module',
-        'progress',
-        'module_id',
-        'asessment_id',
-        'sudahMengisi'
-    ));
-}
-
-
 
 
     // API endpoint yang bisa dipanggil dari JavaScript untuk mencatat progres berdasarkan path halaman saat ini
@@ -237,6 +260,25 @@ class CourseController extends Controller
             'percent_done' => $this->calculateProgress($currentPart)
         ]);
     }
+
+
+    public function saveProgressOnExit(Request $request)
+    {
+        $user = Auth::user();
+        $currentPath = $request->input('current_path');
+        $cleanPath = parse_url($currentPath, PHP_URL_PATH);
+        $currentPart = $this->getCurrentPartFromPage(ltrim($cleanPath, '/'));
+
+
+        if (!$currentPart) {
+            return response()->json(['message' => 'Halaman tidak dikenali.'], 400);
+        }
+
+        $this->trackProgressUpdate($user, $currentPart, $currentPath);
+
+        return response()->json(['message' => 'Progress disimpan saat keluar']);
+    }
+
 
     // pencatat progres dan mengupdate ProgressTracking user, menandai halaman sebelumnya yang masih in_progress jadi finished (database),
     protected function trackProgressUpdate($user, $currentPart, $currentPath)
@@ -361,26 +403,15 @@ class CourseController extends Controller
             'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],
             'submodul4' => ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'],
             'modul-evaluative' => ['/page7'],
-            'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2', '/page8_3_0', '/page8_3_1'],
+            'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'],
         ];
     }
 
-
-    public function saveProgressOnExit(Request $request)
-{
-    $user = Auth::user();
-    $currentPath = $request->input('current_path');
-    $currentPart = $this->getCurrentPartFromPage(ltrim($currentPath, '/'));
-
-    if (!$currentPart) {
-        return response()->json(['message' => 'Halaman tidak dikenali.'], 400);
+    private function allowedPages()
+    {
+        return collect($this->getModulePages())
+            ->flatten()
+            ->map(fn($path) => ltrim($path, '/')) // hapus leading slash agar cocok dengan $request->path()
+            ->toArray();
     }
-
-    $this->trackProgressUpdate($user, $currentPart, $currentPath);
-
-    return response()->json(['message' => 'Progress disimpan saat keluar']);
-}
-
-
-
 }

@@ -10,6 +10,7 @@ return new class extends Migration
         Schema::create('user_answer_asessment', function (Blueprint $table) {
             $table->id('user_answer_id');
             $table->unsignedBigInteger('attempt_id');
+            $table->foreign('attempt_id')->references('attempt_id')->on('user_asessment_attempt')->onDelete('cascade');
             $table->unsignedBigInteger('question_id');
             $table->string('user_answer');
             $table->boolean('is_correct');

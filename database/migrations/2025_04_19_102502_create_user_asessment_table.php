@@ -13,7 +13,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('username');
             $table->tinyInteger('asessment_id');
-            $table->integer('attempt_count');
+            $table->foreign('asessment_id')->references('asessment_id')->on('module_asessment')->onDelete('cascade');
+            $table->integer('attempt_count')->default(0);
+            $table->float('high_score')->default(0);            
             $table->timestamps();
         });
     }

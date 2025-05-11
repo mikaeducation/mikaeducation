@@ -15,12 +15,16 @@ class UserAsessmentAttempt extends Model
     protected $fillable = [
         'userAsessment_id',
         'attempt_number',
+        'total_questions',
+        'correct_answers',
+        'incorrect_answers',
         'score',
-        'started_at',
-        'finished_at',
+        'is_passed',
         'duration',
-        'is_passed'
+        'started_at',
+        'finished_at'
     ];
+
 
     public function userAsessment()
     {

@@ -13,7 +13,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('username');
             $table->tinyInteger('asessment_id');
+            $table->foreign('asessment_id')->references('asessment_id')->on('module_asessment')->onDelete('cascade');
             $table->tinyInteger('after_asessment_id')->default(1);
+            $table->integer('scale_1_count')->default(0);
+            $table->integer('scale_2_count')->default(0);
+            $table->integer('scale_3_count')->default(0);
+            $table->integer('scale_4_count')->default(0);
+            $table->integer('scale_5_count')->default(0);
             $table->timestamps();
         });
     }

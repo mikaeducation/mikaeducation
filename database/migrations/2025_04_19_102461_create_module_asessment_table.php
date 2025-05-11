@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up() {
         Schema::create('module_asessment', function (Blueprint $table) {
-            $table->tinyInteger('asessment_id');
+            $table->tinyInteger('asessment_id')->primary();
             $table->unsignedBigInteger('module_id');
             $table->string('asessment_title');
             $table->enum('asessment_duration', ['unlimited', 'limited']);

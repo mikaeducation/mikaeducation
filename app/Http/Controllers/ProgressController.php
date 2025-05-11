@@ -18,7 +18,7 @@ class ProgressController extends Controller
         'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],
         'submodul4' => ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'],
         'modul-evaluative' => ['/page7'],
-        'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2', '/page8_3_0', '/page8_3_1'],
+        'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'],
     ];
 
     protected $progressWeights = [
@@ -33,68 +33,68 @@ class ProgressController extends Controller
     ];
 
     public function trackProgress(Request $request)
-{
-    $userId = auth()->id();
-    $moduleId = $request->input('module_id');
-    $currentPart = $request->input('current_part');
-    $pagePath = $request->input('page_path');
+    {
+        $userId = auth()->id();
+        $moduleId = $request->input('module_id');
+        $currentPart = $request->input('current_part');
+        $pagePath = $request->input('page_path');
 
-    // Simpan history kunjungan halaman
-    ProgressHistory::updateOrCreate(
-        [
-            'user_id' => $userId,
-            'module_id' => $moduleId,
-            'page_path' => $pagePath
-        ],
-        [
-            'visited_at' => now(),
-            'module_part' => $currentPart
-        ]
-    );
-
-    $completedParts = [];
-    $percentDone = 0;
-
-    foreach ($this->modulePages as $part => $pages) {
-        $isPartCompleted = collect($pages)->every(function ($page) use ($userId, $moduleId) {
-            return ProgressHistory::where([
+        // Simpan history kunjungan halaman
+        ProgressHistory::updateOrCreate(
+            [
                 'user_id' => $userId,
                 'module_id' => $moduleId,
-                'page_path' => $page
-            ])->exists();
-        });
-        
-        if ($isPartCompleted) {
-            $completedParts[] = $part;
-            $percentDone += $this->progressWeights[$part] ?? 0;
-        } elseif ($part === $currentPart) {
-            // Stop jika part saat ini belum selesai
-            break;
-        } else {
-            break; // Stop juga jika ada part sebelumnya yang belum selesai
+                'page_path' => $pagePath
+            ],
+            [
+                'visited_at' => now(),
+                'module_part' => $currentPart
+            ]
+        );
+
+        $completedParts = [];
+        $percentDone = 0;
+
+        foreach ($this->modulePages as $part => $pages) {
+            $isPartCompleted = collect($pages)->every(function ($page) use ($userId, $moduleId) {
+                return ProgressHistory::where([
+                    'user_id' => $userId,
+                    'module_id' => $moduleId,
+                    'page_path' => $page
+                ])->exists();
+            });
+            
+            if ($isPartCompleted) {
+                $completedParts[] = $part;
+                $percentDone += $this->progressWeights[$part] ?? 0;
+            } elseif ($part === $currentPart) {
+                // Stop jika part saat ini belum selesai
+                break;
+            } else {
+                break; // Stop juga jika ada part sebelumnya yang belum selesai
+            }
         }
-    }
 
-    // Update atau buat progress
-    ProgressTracking::updateOrCreate(
-        [
-            'user_id' => $userId,
-            'module_id' => $moduleId,
-        ],
-        [
-            'current_part' => $currentPart,
+        // Update atau buat progress
+        ProgressTracking::updateOrCreate(
+            [
+                'user_id' => $userId,
+                'module_id' => $moduleId,
+            ],
+            [
+                'current_part' => $currentPart,
+                'percent_done' => $percentDone,
+                'is_completed' => ($percentDone >= 100),
+                'last_visited_at' => now(),
+            ]
+        );
+
+        return response()->json([
+            'status' => 'success',
             'percent_done' => $percentDone,
-            'is_completed' => ($percentDone >= 100),
-            'last_visited_at' => now(),
-        ]
-    );
-
-    return response()->json([
-        'status' => 'success',
-        'percent_done' => $percentDone,
-        'completed_parts' => $completedParts,
-    ]);
-}
+            'completed_parts' => $completedParts,
+        ]);
+    }
 
 
     public function updateProgress(Request $request)
@@ -236,5 +236,4 @@ class ProgressController extends Controller
 
         return min($percentDone, 100);
     }
-
 }

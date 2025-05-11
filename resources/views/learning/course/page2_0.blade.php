@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user-id" content="{{ Auth::user()->id }}">
         <meta name="show-asessment-dialog" content="true">
         <meta name="assessment-status" content="{{ $sudahMengisi ? 'done' : 'not_started' }}">
         @if ($sudahMengisi)
@@ -79,27 +80,53 @@
                                 <h5 class="font-medium text-xl">Nilai Penilaian I Anda</h5>
                                 <p class="text-lg text-justify mb-5">Dibutuhkan <span class="font-medium">nilai 80% atau lebih tinggi</span> untuk lulus.</p>
                                 <table class="w-full text-lg">
-                                    <thead>
-                                        <tr class="bg-bluee3">
-                                            <th class="py-2">Waktu</th>
-                                            <th class="py-2">Nilai</th>
-                                            <th class="py-2">Status</th>
-                                            <th class="py-2">Aksi</th>
+                                    <thead class="w-full">
+                                        <tr class="bg-bluee3 text-left">
+                                            <th class="py-2 px-4 w-1/3">
+                                                <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'time_asc' ? 'time_desc' : 'time_asc'])) }}"
+                                                    class="w-4/6 inline-flex items-center justify-start gap-1">
+                                                    Waktu
+                                                    @php $sort = request('sort'); @endphp
+                                                    @if($sort === 'time_asc' || $sort === 'time_desc' || is_null($sort))
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
+                                                                viewBox="0 0 24 24"
+                                                                class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'time_asc' ? 'rotate-180' : 'rotate-0' }}">
+                                                            <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
+                                                        </svg>
+                                                    @endif
+                                                </a>
+                                            </th>
+                                            <th class="py-2 px-4 w-1/5">
+                                                <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'score_asc' ? 'score_desc' : 'score_asc'])) }}"
+                                                    class="w-4/6 inline-flex items-center justify-start gap-1">
+                                                    Nilai
+                                                    @if($sort === 'score_asc' || $sort === 'score_desc')
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
+                                                                viewBox="0 0 24 24"
+                                                                class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'score_asc' ? 'rotate-180' : 'rotate-0' }}">
+                                                            <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
+                                                        </svg>
+                                                    @endif
+                                                </a>
+                                            </th>
+                                            <th class="py-2 px-4 w-1/5">Status</th>
+                                            <th class="py-2 px-4 w-1/5">Aksi</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
                                         @forelse ($attempts as $attempt)
-                                            <tr class="text-center">
-                                                <td class="text-left py-1"> 
+                                            <tr class="text-left">
+                                                <td class="pt-4 px-4"> 
                                                     {{ \Carbon\Carbon::parse($attempt->finished_at)->locale('id')->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
                                                 </td>
-                                                <td class="py-1">
+                                                <td class="pt-4 px-4">
                                                     {{ $attempt->score }}%
                                                 </td>
-                                                <td class="py-1">
+                                                <td class="pt-4 px-4">
                                                     {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
                                                 </td>
-                                                <td class="underline cursor-pointer py-1">
+                                                <td class="underline cursor-pointer pt-4 px-4">
                                                     <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
                                                 </td>
                                             </tr>

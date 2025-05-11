@@ -18,6 +18,11 @@ class UserEvaluate extends Model
         'username',
         'asessment_id',
         'after_asessment_id',
+        'scale_1_count',
+        'scale_2_count',
+        'scale_3_count',
+        'scale_4_count',
+        'scale_5_count',
     ];
 
     // Relasi: satu evaluasi punya banyak jawaban

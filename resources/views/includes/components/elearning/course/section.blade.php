@@ -190,14 +190,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ========== Bagian 2: Mapping URL ke ID Submodul untuk ditampilkan ==========
     const urlToModulMapping = [
-        { routes: ['/course'], modulId: 'modul-introduce-points' },
-        { routes: ['/page2_0', '/page2_1', '/page2_2'], modulId: 'modul-asessmen1-points' },
-        { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'], modulId: 'submodul1-points' },
-        { routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'], modulId: 'submodul2-points' },
-        { routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'], modulId: 'submodul3-points' },
-        { routes: ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'], modulId: 'submodul4-points' },
-        { routes: ['/page7'], modulId: 'modul-evaluative-points' },
-        { routes: ['/page8_0', '/page8_1', '/page8_2', '/page8_3_0', '/page8_3_1'], modulId: 'modul-asessmen2-points' }
+        { routes: ['/course'], 
+        modulId: 'modul-introduce-points' },
+
+        { routes: ['/page2_0', '/page2_1', '/page2_2'], 
+        modulId: 'modul-asessmen1-points' },
+
+        { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'], 
+        modulId: 'submodul1-points' },
+
+        { routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'], 
+        modulId: 'submodul2-points' },
+
+        { routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'], 
+        modulId: 'submodul3-points' },
+
+        { routes: ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'], 
+        modulId: 'submodul4-points' },
+
+        { routes: ['/page7'], 
+        modulId: 'modul-evaluative-points' },
+
+        { routes: ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'], 
+        modulId: 'modul-asessmen2-points' }
     ];
 
     let targetId = '';
@@ -232,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "/page5_0", "/page5_1", "/page5_2", "/page5_3",
         "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",
         "/page7",
-        "/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1"
+        "/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1"
     ];
 
     const modulePages = {
@@ -243,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "submodul3": ["/page5_0", "/page5_1", "/page5_2", "/page5_3"],
         "submodul4": ["/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3"],
         "modul-evaluative": ["/page7"],
-        "modul-asessmen2": ["/page8_0", "/page8_1", "/page8_2", "/page8_3_0", "/page8_3_1"]
+        "modul-asessmen2": ["/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1"]
     };
 
     const progressWeights = {
@@ -337,12 +352,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentModul) {
         localStorage.setItem("lastModule", currentModul);
     }
-
-
     
     const currentPagePath = window.location.pathname;
-    (async function() {
 
+    (async function() {
     try {
         const response = await fetch("/api/track-progress", {
             method: "POST",

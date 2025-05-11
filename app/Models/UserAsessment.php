@@ -17,7 +17,8 @@ class UserAsessment extends Model
         'module_id',
         'username',
         'asessment_id',
-        'attempt_count'
+        'attempt_count',
+        'high_score'
     ];
 
     public function attempts()
