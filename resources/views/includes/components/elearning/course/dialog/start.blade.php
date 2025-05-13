@@ -29,6 +29,7 @@
                     </button>
                     <form action="{{ route('start-course') }}" method="POST" class="inline-flex w-1/3 justify-center rounded bg-blue31 hover:border-2 hover:border-blue31 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110">
                         @csrf
+                        <input type="hidden" name="module_id" value="{{ $module->module_id }}">
                         <button id="startLearningBtn" type="submit" class="w-full h-full px-3 py-2">
                             Mulai
                         </button>

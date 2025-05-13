@@ -7,7 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="user-id" content="{{ Auth::user()->id }}">
+        <meta name="progress-id" content="{{ session('progress_id') }}">
+        <meta name="user-id" content="{{ Auth::id() }}">
         <meta name="show-asessment-dialog" content="true">
         <meta name="assessment-status" content="{{ $sudahMengisi ? 'done' : 'not_started' }}">
         @if ($sudahMengisi)

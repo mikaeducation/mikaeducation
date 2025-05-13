@@ -3,7 +3,7 @@
     <div class="w-full h-full flex lg:flex justify-center">
         <div class="flex justify-between lg:justify-center items-center h-full w-3/4 ">
             <div class="w-fit flex justify-start items-center mr-auto">
-                <a href="/" class="flex items-center">
+                <a href="/learn" class="flex items-center">
                     <div class="mr-2">
                         <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
                     </div>

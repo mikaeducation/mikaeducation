@@ -21,30 +21,31 @@ class AccountController extends Controller
 
     // Update informasi akun
     public function update(Request $request)
-{
-    $user = auth()->user(); // Mendapatkan data user yang sedang login
+    {
+        $user = auth()->user(); // Mendapatkan data user yang sedang login
 
-    // Validasi input
-    $request->validate([
-        'phone' => 'required|string|max:15',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'password' => 'nullable|min:8|confirmed', // 'confirmed' memeriksa kesesuaian dengan 'password_confirmation'
-    ]);
+        // Validasi input
+        $request->validate([
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8|confirmed', // 'confirmed' memeriksa kesesuaian dengan 'password_confirmation'
+        ]);
 
-    // Update data user
-    $data = [
-        'phone' => $request->phone,
-        'email' => $request->email,
-    ];
+        // Update data user
+        $data = [
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ];
 
-    // Jika ada input password, update password-nya
-    if ($request->password) {
-        $user->password = bcrypt($request->password); // Hash password baru
+        // Jika ada input password, update password-nya
+        if ($request->password) {
+            $user->password = bcrypt($request->password); // Hash password baru
+        }
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Akun berhasil diperbarui.');
     }
-    $user->save();
-
-    return redirect()->back()->with('success', 'Akun berhasil diperbarui.');
-}
     // Fungsi untuk menghapus akun
     public function deleteAccount(Request $request)
     {
@@ -59,6 +60,7 @@ class AccountController extends Controller
         }
         // Hapus akun user
         $user->delete();
+        
         return redirect('/')->with('success', 'Akun berhasil dihapus.');
     }
 }

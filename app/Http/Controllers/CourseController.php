@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\QuestionBank;
+use App\Models\UserAsessment;
 use App\Models\ProgressHistory;
 use App\Models\ProgressTracking;
-use App\Models\UserAsessment;
-use App\Models\QuestionBank;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -24,16 +25,27 @@ class CourseController extends Controller
     public function showCourse()
     {
         $user = Auth::user();
-        $progress = ProgressTracking::firstOrCreate(
-            ['user_id' => $user->id],
-            [
-                'module_id' => 1,
+        $moduleId = 1;
+
+        $progress = ProgressTracking::where('user_id', $user->id)
+            ->where('module_id', $moduleId)
+            ->latest('created_at')
+            ->first();
+
+            if (!$progress) {
+            $attempt = ProgressTracking::where('user_id', $user->id)->where('module_id', $moduleId)->count() + 1;
+            $progress = ProgressTracking::create([
+                'user_id' => $user->id,
+                'module_id' => $moduleId,
+                'attempt_number' => $attempt,
                 'current_part' => 'modul-introduce',
                 'percent_done' => 0,
                 'is_completed' => false,
                 'last_visited_at' => now(),
-            ]
-        );
+            ]);
+        }
+
+        session(['progress_id' => $progress->progress_id, 'module_id' => $moduleId]);
 
         $currentPart = $progress->current_part;
         $module = $this->getModuleByPart($currentPart);
@@ -42,7 +54,7 @@ class CourseController extends Controller
         // Catat progress history untuk halaman pertama
         $this->trackProgressUpdate($user, $currentPart, '/course');
 
-        $existingIntroFinish = ProgressHistory::where('user_id', $user->id)
+        $existingIntroFinish = ProgressHistory::where('progress_id', $progress->progress_id)
             ->where('module_part', 'modul-introduce')
             ->where('status', 'finished')
             ->first();
@@ -52,29 +64,24 @@ class CourseController extends Controller
             ProgressHistory::create([
                 'progress_id' => $progress->progress_id,
                 'user_id' => $user->id,
-                'module_id' => 1,
+                'module_id' => $moduleId,
                 'module_part' => 'modul-introduce',
                 'page_path' => '/course',
                 'status' => 'finished',
             ]);
 
             // Hitung ulang total progress
-            $progress->percent_done = $this->calculateTotalProgress($user->id);
+            $progress->percent_done = $this->calculateTotalProgressByProgressId($progress->progress_id);
             $progress->save();
         }
 
         if ($progress->started && $currentPart !== 'modul-introduce') {
-            $lastPage = ProgressHistory::where('user_id', $user->id)
+            $lastPage = ProgressHistory::where('progress_id', $progress->progress_id)
                 ->where('module_part', $currentPart)
                 ->latest('created_at')
                 ->value('page_path');
         
-            // Optional: validasi apakah lastPage memang termasuk dalam route yang dikenal
-            if ($lastPage && in_array($lastPage, config('app.allowed_pages'))) {
-                return redirect($lastPage);
-            }
-        
-            return redirect('/course');
+            return $lastPage ? redirect($lastPage) : redirect('/course');
         }
 
         return view('learning.course.page1', compact('progress', 'started', 'currentPart', 'module'));
@@ -84,58 +91,91 @@ class CourseController extends Controller
     public function startCourse(Request $request)
     {
         $user = auth()->user();
-        $moduleId = 1; // Sesuaikan jika dynamic
+        $moduleId = $request->input('module_id', 1);
 
-        // Cek apakah user sudah punya progress
-        $progress = DB::table('progress_tracking')
-            ->where('user_id', $user->id)
+        $module = DB::table('modules')->where('module_id', $moduleId)->first();
+            if (!$module) {
+                return redirect()->back()->with('error', 'Modul tidak ditemukan.');
+            }
+        
+        // Ambil progress terakhir
+        $latestProgress = ProgressTracking::where('user_id', $user->id)
             ->where('module_id', $moduleId)
+            ->latest('created_at')
             ->first();
 
-            if ($progress && $progress->is_completed) {
-                return redirect('/preLearn')->with('info', 'Anda telah menyelesaikan pelatihan ini.');
-            }
+        // === Case: modul tidak bisa diulang dan sudah selesai ===
+        if ($latestProgress && $latestProgress->is_completed && !$module->module_type) {
+            return redirect('/preLearn')->with('info', 'Anda telah menyelesaikan pelatihan ini dan tidak dapat mengulanginya.');
+        }
 
-        if ($progress) {
-            // Ambil halaman terakhir dikunjungi dari history
-            $lastHistory = DB::table('progress_history')
-                ->where('progress_id', $progress->progress_id)
+        // === Case: masih ada progress aktif (belum selesai) ===
+        if ($latestProgress && !$latestProgress->is_completed) {
+            $lastHistory = ProgressHistory::where('progress_id', $latestProgress->progress_id)
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            session()->put('is_learning', true);
+            session()->put([
+                            'is_learning' => true,
+                            'progress_id' => $latestProgress->progress_id,
+                            'module_id' => $moduleId
+                        ]);
+
             if ($lastHistory && $lastHistory->page_path) {
-                return redirect($lastHistory->page_path); // Redirect ke page terakhir
-            } else {
-                return redirect('/course'); // Default fallback
+                $lastPath = $lastHistory->page_path;
+
+                // Redirect khusus agar akses ke halaman form evaluasi atau penilaian tidak langsung
+                $redirectMap = [
+                    '/page2_1'    => '/page2_0?asessment_id=1',
+                    '/page2_2'    => '/page2_0?asessment_id=1',
+                    '/page8_1'    => '/page8_0?asessment_id=2',
+                    '/page8_2_0'  => '/page8_0?asessment_id=2',
+                    '/page8_2_1'  => '/page8_0?asessment_id=2',
+                ];
+
+                if (array_key_exists($lastPath, $redirectMap)) {
+                    return redirect($redirectMap[$lastPath]);
+                }
+
+                // Default redirect ke path terakhir jika tidak termasuk pengecualian
+                return redirect($lastPath);
             }
         }
 
-        // Jika belum ada progress, buat data awal
-        $progressId = DB::table('progress_tracking')->insertGetId([
+        Log::info("User {$user->id} memulai ulang modul {$moduleId} (Belajar Lagi)");
+
+        // === Case: belajar ulang / baru ===
+        $newAttempt = ProgressTracking::where('user_id', $user->id)
+            ->where('module_id', $moduleId)
+            ->count() + 1;
+
+        $progressId = ProgressTracking::insertGetId([
             'user_id' => $user->id,
             'module_id' => $moduleId,
+            'attempt_number' => $newAttempt,
             'current_part' => 'modul-introduce',
             'percent_done' => 0,
             'is_completed' => false,
             'last_visited_at' => now(),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
 
-        // Simpan ke history
-        DB::table('progress_history')->insert([
+        ProgressHistory::create([
             'progress_id' => $progressId,
             'user_id' => $user->id,
             'module_id' => $moduleId,
             'module_part' => 'modul-introduce',
-            'page_path' => '/course', // Asumsikan ini halaman awal
+            'page_path' => '/course',
             'status' => 'in_progress',
-            'created_at' => now(),
-            'updated_at' => now()
         ]);
 
-        session()->put('is_learning', true);
+        session()->put([
+            'is_learning' => true,
+            'progress_id' => $progressId,
+            'module_id' => $moduleId
+        ]);
+
         return redirect('/course');
     }
 
@@ -144,37 +184,39 @@ class CourseController extends Controller
     public function showCoursePage(Request $request)
     {
         $page = $request->path();
-
-        if (!in_array($page, $this->allowedPages())) {
-            abort(404); // Hentikan akses dari URL aneh
+        if (($page === 'page2_0' && !$request->has('asessment_id'))) {
+            return redirect('/page2_0?asessment_id=1');
         }
+
+        if (($page === 'page8_0' && !$request->has('asessment_id'))) {
+            return redirect('/page8_0?asessment_id=2');
+        }
+
+        if (!in_array($page, $this->allowedPages())) abort(404);
 
         if (session()->missing('is_learning') && !in_array($page, ['page2_2', 'page3_0', 'page8_2_0', 'page8_2_1'])) {
             return redirect('/preLearn');
         }
 
-        $currentPart = $this->getCurrentPartFromPage($page);
-
-        if ($currentPart === null && session()->has('is_learning')) {
-            $currentPart = 'modul-asessmen1'; // atau part default berdasarkan page
+        $progressId = session('progress_id');
+        $progress = ProgressTracking::find($progressId);
+        
+        if (!$progress || $progress->user_id !== Auth::id()) {
+            return redirect('/course')->with('error', 'Akses tidak sah. Silakan mulai ulang.');
         }
 
         // Ambil progress aktif user berdasarkan current part
-        $progress = ProgressTracking::where('user_id', Auth::id())
-            ->where('current_part', $currentPart)
-            ->first();
-
-        $module_id = $progress?->module_id;
-        $module = $progress?->module;
+        $currentPart = $this->getCurrentPartFromPage($page) ?? 'modul-asessmen1';
+        $module_id = $progress->module_id;
+        $module = $progress->module;
 
         // Mapping halaman asesmen ke asessment_id
         $asessmentPages = [
-            // Pretest (Asesmen I)
+            // Pretest (Asesmen I) dan Evaluation I
             'page2_0' => 1,
             'page2_1' => 1,
             'page2_2' => 3,
-
-            // Posttest (Asesmen II)
+            // Posttest (Asesmen II) dan Evaluation II
             'page8_0' => 2,
             'page8_1' => 2,
             'page8_2_0' => 3,
@@ -184,26 +226,22 @@ class CourseController extends Controller
 
         // Cek apakah user sudah pernah mengikuti asesmen
         $sudahMengisi = false;
-        if ($module_id && $asessment_id) {
+        if ($asessment_id) {
             $sudahMengisi = UserAsessment::where([
-                'user_id' => Auth::id(),
-                'module_id' => $module_id,
+                'progress_id' => $progress->progress_id,
                 'asessment_id' => $asessment_id,
             ])->exists();
         }
 
         // Simpan progres
-        if ($currentPart !== null) {
-            $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
-        }
+        $this->trackProgressUpdate(Auth::user(), $currentPart, '/' . $page);
 
         // Deteksi apakah halaman ini form asesmen (butuh load $questions)
         $formPages = ['page2_1', 'page2_2', 'page8_1', 'page8_2_0', 'page8_2_1'];
         if (in_array($page, $formPages)) {
             $questions = ($page === 'page2_2')
                 ? QuestionBank::where('asessment_id', 3)
-                    ->whereBetween('question_id', [21, 30])
-                    ->get()
+                    ->whereBetween('question_id', [21, 30])->get()
                 : QuestionBank::where('asessment_id', $asessment_id)->get();
 
             return view('learning.course.' . $page, compact(
@@ -283,12 +321,14 @@ class CourseController extends Controller
     // pencatat progres dan mengupdate ProgressTracking user, menandai halaman sebelumnya yang masih in_progress jadi finished (database),
     protected function trackProgressUpdate($user, $currentPart, $currentPath)
     {
-        $progress = ProgressTracking::firstOrNew(['user_id' => $user->id]);
+        $progress = ProgressTracking::find(session('progress_id'));
+        if ($progress->user_id !== Auth::id()) {
+            return redirect('/course')->with('error', 'Akses tidak sah. Silakan mulai ulang.');
+        }
 
         // Hitung total progres kumulatif dari seluruh modul yang sudah selesai
-        $progress->percent_done = $this->calculateTotalProgress($user->id);
-
-        $progress->current_part = $currentPart ?? 'unknown_part';
+        $progress->percent_done = $this->calculateTotalProgressByProgressId($progress->progress_id);
+        $progress->current_part = $currentPart;
         $progress->last_visited_at = now();
         $progress->save();
 
@@ -307,7 +347,7 @@ class CourseController extends Controller
         // [Tambahan solusi] Jika user saat ini berada di modul selain 'modul-introduce',
         // tapi tidak ada record 'finished' untuk modul-introduce, buat secara manual.
         if ($currentPart !== 'modul-introduce') {
-            $hasIntroFinished = ProgressHistory::where('user_id', $user->id)
+            $hasIntroFinished = ProgressHistory::where('progress_id', $progress->progress_id)
                 ->where('module_part', 'modul-introduce')
                 ->where('status', 'finished')
                 ->exists();
@@ -316,7 +356,7 @@ class CourseController extends Controller
                 ProgressHistory::create([
                     'progress_id' => $progress->progress_id,
                     'user_id' => $user->id,
-                    'module_id' => 1, // pastikan modul_id untuk modul-introduce benar
+                    'module_id' => $progress->module_id,
                     'module_part' => 'modul-introduce',
                     'page_path' => '/course',
                     'status' => 'finished',
@@ -325,7 +365,7 @@ class CourseController extends Controller
         }
 
         // Cek apakah halaman ini sudah pernah disimpan
-        $existing = ProgressHistory::where('user_id', $user->id)
+        $existing = ProgressHistory::where('progress_id', $progress->progress_id)
             ->where('page_path', $currentPath)
             ->first();
 
@@ -342,8 +382,36 @@ class CourseController extends Controller
     }
 
 
-    //Menghitung total persentase progres berdasarkan part yang sudah finished
-    protected function calculateTotalProgress($userId)
+    // //Menghitung total persentase progres berdasarkan part yang sudah finished
+    // protected function calculateTotalProgress($progressId)
+    // {
+    //     $weights = [
+    //         'modul-introduce' => 5,
+    //         'modul-asessmen1' => 10,
+    //         'submodul1' => 15,
+    //         'submodul2' => 15,
+    //         'submodul3' => 15,
+    //         'submodul4' => 15,
+    //         'modul-evaluative' => 15,
+    //         'modul-asessmen2' => 10,
+    //     ];
+
+    //     // Ambil semua part yang sudah 'finished' dari history
+    //     $finishedParts = ProgressHistory::where('progress_id', $progressId)
+    //         ->where('status', 'finished')
+    //         ->pluck('module_part')
+    //         ->unique();
+
+    //     // Jumlahkan bobotnya
+    //     $total = 0;
+    //     foreach ($finishedParts as $part) {
+    //         $total += $weights[$part] ?? 0;
+    //     }
+
+    //     return $total;
+    // }
+
+    protected function calculateTotalProgressByProgressId($progressId)
     {
         $weights = [
             'modul-introduce' => 5,
@@ -356,13 +424,11 @@ class CourseController extends Controller
             'modul-asessmen2' => 10,
         ];
 
-        // Ambil semua part yang sudah 'finished' dari history
-        $finishedParts = ProgressHistory::where('user_id', $userId)
+        $finishedParts = ProgressHistory::where('progress_id', $progressId)
             ->where('status', 'finished')
             ->pluck('module_part')
             ->unique();
 
-        // Jumlahkan bobotnya
         $total = 0;
         foreach ($finishedParts as $part) {
             $total += $weights[$part] ?? 0;
@@ -370,7 +436,6 @@ class CourseController extends Controller
 
         return $total;
     }
-    
 
     /**
      * Dapatkan modul berdasarkan halaman
@@ -398,10 +463,10 @@ class CourseController extends Controller
         return [
             'modul-introduce' => ['/course'],
             'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2'],
-            'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'],
-            'submodul2' => ['/page4_0', '/page4_1', '/page4_2', '/page4_3'],
-            'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],
-            'submodul4' => ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'],
+            'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4'], // '/page3_2', '/page3_3'
+            'submodul2' => ['/page4_0'], // '/page4_1', '/page4_2', '/page4_3'
+            'submodul3' => ['/page5_0'], // '/page5_1', '/page5_2', '/page5_3' 
+            'submodul4' => ['/page6_0', '/page6_1_0', '/page6_2'], // '/page6_1_1', '/page6_3'
             'modul-evaluative' => ['/page7'],
             'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'],
         ];

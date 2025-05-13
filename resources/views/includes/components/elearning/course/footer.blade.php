@@ -50,10 +50,10 @@
 
         const routes = [
             "/course", "/page2_0", "/page2_1", "/page2_2",
-            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3",
-            "/page4_0", "/page4_1", "/page4_2", "/page4_3",
-            "/page5_0", "/page5_1", "/page5_2", "/page5_3",
-            "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",
+            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", // "/page3_2", "/page3_3",
+            "/page4_0", // "/page4_1", "/page4_2", "/page4_3",
+            "/page5_0", // "/page5_1", "/page5_2", "/page5_3",
+            "/page6_0", "/page6_1_0", "/page6_2", //  "/page6_1_1", "/page6_3",
             "/page7",
             "/page8_0", "/page8_1","/page8_2_0", "/page8_2_1",
         ];
@@ -66,12 +66,12 @@
         const modulActive = document.getElementById("modul-active");
         const modulMap = {
             "/course": "Pengenalan",
-            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Bagian 1 (Pre-Test)", "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
-            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Komunikasi Autistik - Ekspresif", "/page3_1_2": "Komunikasi Autistik - Reseptif", "/page3_1_3": "Komunikasi Autistik - Pragmatis", "/page3_1_4": "Strategi Komunikasi Autisme", "/page3_2": "Rangkuman Materi", "/page3_3": "Uji Pengetahuan",
-            "/page4_0": "Observasi, Karakteristik, Strategi", "/page4_1": "Rangkuman Materi", "/page4_2": "Uji Pengetahuan", "/page4_3": "Latihan Berpikir",
-            "/page5_0": "Belajar Terstruktur", "/page5_1": "Rangkuman Materi", "/page5_2": "Uji Pengetahuan", "/page5_3": "Latihan Berpikir",
-            "/page6_0": "Memulai MIKA 1.0", "/page6_1_0": "Administratif MIKA 1.0", "/page6_1_1": "Studi Kasus Admin", "/page6_2": "Evaluasi & Interpretasi", "/page6_3": "Rangkuman Materi",
-            "/page7": "Simulasi Penggunaan MIKA 1.0",
+            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Penilaian Pra-Belajar - Bagian I: Pre-Test", "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
+            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Komunikasi Autistik - Ekspresif", "/page3_1_2": "Komunikasi Autistik - Reseptif", "/page3_1_3": "Komunikasi Autistik - Pragmatis", "/page3_1_4": "Strategi Komunikasi Autisme", // "/page3_2": "Rangkuman Materi", "/page3_3": "Uji Pengetahuan",
+            "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", // "/page4_1": "Rangkuman Materi", "/page4_2": "Uji Pengetahuan", "/page4_3": "Latihan Berpikir",
+            "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", // "/page5_1": "Rangkuman Materi", "/page5_2": "Uji Pengetahuan", "/page5_3": "Latihan Berpikir",
+            "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", // "/page6_1_1": "Studi Kasus Admin", "/page6_3": "Rangkuman Materi",
+            "/page7": "Studi Kasus - Simulasi Penggunaan MIKA 1.0",
             "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_2_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar"
         };
 
@@ -308,7 +308,7 @@
             const handleSubmit = (e) => {
                 e.preventDefault();
                 if (!isFormValid()) {
-                    alert("Ada pertanyaan yang belum Anda jawab.");
+                    alert("Ada pertanyaan yang belum terjawab, silahkan periksa kembali jawaban Anda untuk dapat melanjutkan.");
                     return;
                 }
                 modalSubmit?.classList.remove("hidden");
@@ -397,7 +397,7 @@
 
                 const isValid = page === "/page2_2" ? validatePage2_2() : validatePage8_2_1();
                 if (!isValid) {
-                    alert("Ada pertanyaan yang belum Anda jawab.");
+                    alert("Ada pertanyaan yang belum terjawab, silahkan periksa kembali jawaban Anda untuk dapat melanjutkan.");
                     return;
                 }
                 modalSubmitEval?.classList.remove("hidden");
@@ -454,7 +454,7 @@
                     });
 
                     if (!isFormValidEval()) {
-                        alert("Tolong jawab semua pertanyaan sebelum melanjutkan.");
+                        alert("Ada pertanyaan yang belum terjawab, silahkan periksa kembali jawaban Anda untuk dapat melanjutkan.");
                         return;
                     }
 
@@ -510,6 +510,8 @@
                     appendHiddenInputs();
                     modalSubmitEval?.classList.add("hidden");
 
+                    sessionStorage.setItem("fromEvaluation", "true");
+
                     const form = document.getElementById(formMap[page]);
                     const event = new Event('submit', { bubbles: true, cancelable: true });
                     form.dispatchEvent(event);
@@ -541,6 +543,7 @@
         // --- Page2_0 dan Page8_0: pasca penilaian dan evaluasi, mengecek apakah pengguna sudah mengerjakan penilaian dan evaluasi
         if (page === "/page2_0" || page === "/page8_0") {
             const userId = document.querySelector('meta[name="user-id"]').content;  // Ambil user_id dari meta tag
+            const progressId = document.querySelector('meta[name="progress-id"]')?.content ?? null;
             const assessmentId = 3;
             const afterAssessmentId = (page === "/page2_0") ? 1 : 2;
 
@@ -551,7 +554,10 @@
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
                 },
-                body: JSON.stringify({ user_id: userId, after_asessment_id: afterAssessmentId })
+                body: JSON.stringify({ 
+                    user_id: userId, 
+                    progress_id: progressId,
+                    after_asessment_id: afterAssessmentId })
             })
             .then(response => response.json())
             .then(data => {

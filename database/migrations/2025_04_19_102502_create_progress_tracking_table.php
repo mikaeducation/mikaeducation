@@ -11,13 +11,13 @@ return new class extends Migration
             $table->id('progress_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('module_id');
+            $table->unsignedInteger('attempt_number')->default(1);
             $table->string('current_part')->nullable();
             $table->integer('percent_done')->default(0);
             $table->boolean('is_completed')->default(false);
             $table->timestamp('last_visited_at')->nullable();
             $table->timestamps();
         
-            $table->unique(['user_id', 'module_id']);
             $table->index(['user_id', 'module_id']); // opsional, meningkatkan performa query
         });
     }

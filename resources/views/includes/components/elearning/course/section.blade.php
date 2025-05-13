@@ -69,8 +69,8 @@
                     <div id="submodul1-points" class="w-full font-normal pl-3 text-base text-justify">
                         <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Mehami Autisme:</span> Memahami apa itu Autisme Spektrum Disorder</p>
                         <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Komunikasi Autistik:</span> Karakteristik pra komunikasi, ekspresif, reseptif, pragmatis dan strategi komunikasi</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Gangguan Spektrum Autisme</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Uji Pengetahuan:</span> Gangguan Spektrum Autisme</p>
+                        {{-- <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Gangguan Spektrum Autisme</p>
+                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Uji Pengetahuan:</span> Gangguan Spektrum Autisme</p> --}}
                     </div>
                 </div>
                 <div id="submodul2" data-modul="submodul2" class="modul w-full h-fit gap-4 font-medium flex flex-col items-center justify-between rounded">
@@ -88,9 +88,9 @@
                     </button>
                     <div id="submodul2-points" class="w-full font-normal pl-3 text-base text-justify">
                         <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Observasi, Pencatatan Karakteristik, Dampak dan Strategi:</span> Komunikasi, Interaksi Sosial, Perilaku, Bermain, Pemrosesan Informasi, Sensoris dan Motorik</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Matriks Perencanaan</p>
+                        {{-- <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Matriks Perencanaan</p>
                         <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Uji Pengetahuan:</span> Matriks Perencanaan</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Latihan Berfikir:</span> Matriks Perencanaan</p>
+                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Latihan Berfikir:</span> Matriks Perencanaan</p> --}}
                     </div>
                 </div>
                 <div id="submodul3" data-modul="submodul3" class="modul w-full h-fit gap-4 font-medium flex flex-col items-center justify-between rounded">
@@ -108,9 +108,9 @@
                     </button>
                     <div id="submodul3-points" class="w-full font-normal pl-3 text-base text-justify">
                         <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Belajar Terstruktur:</span> Struktur Lingkungan Fisik, Alat bantu visual, jadwal visual dan Sistem Kerja</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Pembelajaran Terstruktur</p>
+                        {{-- <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Pembelajaran Terstruktur</p>
                         <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Uji Pengetahuan:</span> Pembelajaran Terstruktur</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Latihan Berfikir:</span> Pembelajaran Terstruktur</p>
+                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Latihan Berfikir:</span> Pembelajaran Terstruktur</p> --}}
                     </div>
                 </div>
                 <div id="submodul4" data-modul="submodul4" class="modul w-full h-fit gap-4 font-medium flex flex-col items-center justify-between rounded">
@@ -129,9 +129,9 @@
                     <div id="submodul4-points" class="w-full font-normal pl-3 text-base text-justify">
                         <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Memulai MIKA 1.0:</span> Instalasi dan registrasi MIKA 1.0 Mobile</p>
                         <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Administratif MIKA 1.0:</span> Alur belajar dan skoring dalam MIKA 1.0 Mobile</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Studi Kasus:</span> Administrasi MIKA1.0</p>
+                        {{-- <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Studi Kasus:</span> Administrasi MIKA1.0</p> --}}
                         <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Evaluasi & Interpretasi:</span> Skoring tiap Level dan Interpretasi yang berdampak pada proses pembelajaran</p>
-                        <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Media Visual Komunikasi Anak</p>
+                        {{-- <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Rangkuman Materi:</span> Media Visual Komunikasi Anak</p> --}}
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                     <div class="modul-finished hidden"></div>
                 </button>
                 <div id="modul-asessmen2-points" class="w-full font-normal pl-3 text-base text-justify">
-                    <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Asessmen II:</span> Uji dan evaluasi akhir untuk pengembang</p>
+                    <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Post-Test :</span> Uji dan evaluasi akhir untuk pengembang</p>
                     <p class="submodul-point w-full border-l-2 pl-6 py-2 border-blue31"><span class="font-medium">Evaluasi:</span> Keyakinan Penggunaan MIKA 1.0 & Kepuasan Penggunaan MIKA Education sebagai sumber belajar</p>
                 </div>
             </div>
@@ -175,6 +175,96 @@
 </section>
 
 <script>
+
+const submodulPointPages = {
+    "introduce": [
+        ["/course"]
+    ],
+    "asessmen1": [
+        ["/page2_1"],
+        ["/page2_2"]
+    ],
+    "submodul1": [
+        ["/page3_0"],
+        ["/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4"]
+    ],
+    "submodul2": [
+        ["/page4_0"] // tambahkan lainnya jika aktif
+    ],
+    "submodul3": [
+        ["/page5_0"]
+    ],
+    "submodul4": [
+        ["/page6_0"],
+        ["/page6_1_0"],
+        ["/page6_2"]
+    ],
+    "evaluative": [
+        ["/page7"]
+    ],
+    "asessmen2": [
+        ["/page8_1"],
+        ["/page8_2_0", "/page8_2_1"]
+    ]
+};
+
+const finishedSVG = `
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 13C0 5.8203 5.8203 0 13 0C20.1797 0 26 5.8203 26 13C26 20.1797 20.1797 26 13 26C5.8203 26 0 20.1797 0 13Z" fill="#10B981"/>
+        <path d="M7 13L10.2929 16.2929C10.6834 16.6834 11.3166 16.6834 11.7071 16.2929L19 9" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    `;
+
+
+//Mengatur poin submodul
+async function updateSubmodulProgress() {
+    const finishedPages = await fetch('/api/progress-history')
+        .then(res => res.json())
+        .then(data => data.finished_pages || [])
+        .catch(() => []);
+
+    document.querySelectorAll('.modul').forEach(modul => {
+        const modulId = modul.getAttribute('data-modul');
+        const pointGroups = submodulPointPages[modulId];
+        const counter = modul.querySelector('.submodul-num-point');
+        const finishedIcon = modul.querySelector('.modul-finished');
+        console.log(`Modul ID: ${modulId}, Ada di Mapping: ${!!pointGroups}, Ada Counter: ${!!counter}`);
+
+        if (!pointGroups || !counter) return;
+
+        let completedCount = 0;
+
+        pointGroups.forEach(group => {
+            const allPagesFinished = group.every(page => {
+                // perlakuan khusus untuk page2_0 dan page8_0 → dihitung hanya jika penilaiannya sudah selesai
+                if (page === "/page2_0") {
+                    return finishedPages.includes("/page2_1");
+                }
+                if (page === "/page8_0") {
+                    return finishedPages.includes("/page8_1");
+                }
+                return finishedPages.includes(page);
+            });
+
+            if (allPagesFinished) completedCount++;
+        });
+
+        const totalPoints = pointGroups.length;
+
+        if (completedCount >= totalPoints) {
+    if (counter) {
+        counter.innerHTML = finishedSVG;
+        counter.classList.remove('hidden');
+    }
+} else {
+    counter.textContent = `${completedCount}/${totalPoints}`;
+    counter.classList.remove('hidden');
+}
+
+    });
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const currentPath = window.location.pathname;
 
@@ -196,16 +286,16 @@ document.addEventListener("DOMContentLoaded", function () {
         { routes: ['/page2_0', '/page2_1', '/page2_2'], 
         modulId: 'modul-asessmen1-points' },
 
-        { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'], 
+        { routes: ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4'], // '/page3_2', '/page3_3' 
         modulId: 'submodul1-points' },
 
-        { routes: ['/page4_0', '/page4_1', '/page4_2', '/page4_3'], 
+        { routes: ['/page4_0'], // '/page4_1', '/page4_2', '/page4_3' 
         modulId: 'submodul2-points' },
 
-        { routes: ['/page5_0', '/page5_1', '/page5_2', '/page5_3'], 
+        { routes: ['/page5_0'], // '/page5_1', '/page5_2', '/page5_3' 
         modulId: 'submodul3-points' },
 
-        { routes: ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'], 
+        { routes: ['/page6_0', '/page6_1_0', '/page6_2',], // '/page6_1_1', '/page6_3'
         modulId: 'submodul4-points' },
 
         { routes: ['/page7'], 
@@ -242,10 +332,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const allPages = [
         "/course",
         "/page2_0", "/page2_1", "/page2_2",
-        "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3",
-        "/page4_0", "/page4_1", "/page4_2", "/page4_3",
-        "/page5_0", "/page5_1", "/page5_2", "/page5_3",
-        "/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3",
+        "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", // "/page3_2", "/page3_3",
+        "/page4_0", // "/page4_1", "/page4_2", "/page4_3",
+        "/page5_0", // "/page5_1", "/page5_2", "/page5_3",
+        "/page6_0", "/page6_1_0", "/page6_2", // "/page6_1_1", "/page6_3",
         "/page7",
         "/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1"
     ];
@@ -253,10 +343,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const modulePages = {
         "modul-introduce": ["/course"],
         "modul-asessmen1": ["/page2_0", "/page2_1", "/page2_2"],
-        "submodul1": ["/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", "/page3_2", "/page3_3"],
-        "submodul2": ["/page4_0", "/page4_1", "/page4_2", "/page4_3"],
-        "submodul3": ["/page5_0", "/page5_1", "/page5_2", "/page5_3"],
-        "submodul4": ["/page6_0", "/page6_1_0", "/page6_1_1", "/page6_2", "/page6_3"],
+        "submodul1": ["/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4"], // "/page3_2", "/page3_3"
+        "submodul2": ["/page4_0"], // "/page4_1", "/page4_2", "/page4_3"
+        "submodul3": ["/page5_0"], // "/page5_1", "/page5_2", "/page5_3"
+        "submodul4": ["/page6_0", "/page6_1_0", "/page6_2"], // "/page6_1_1", "/page6_3"
         "modul-evaluative": ["/page7"],
         "modul-asessmen2": ["/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1"]
     };
@@ -291,31 +381,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const lastIndex = allPages.indexOf(lastPage);
 
         if (currentIndex > lastIndex) {
-            const modulElement = document.getElementById(modulId);
-            if (modulElement) {
-                let finishedIcon = modulElement.querySelector(".modul-finished");
-                const pointCounter = modulElement.querySelector(".submodul-num-point");
-                const finishedSVG = `
-                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 13C0 5.8203 5.8203 0 13 0C20.1797 0 26 5.8203 26 13C26 20.1797 20.1797 26 13 26C5.8203 26 0 20.1797 0 13Z" fill="#10B981"/>
-                        <path d="M7 13L10.2929 16.2929C10.6834 16.6834 11.3166 16.6834 11.7071 16.2929L19 9" stroke="white" stroke-width="4" stroke-linecap="round"/>
-                    </svg>
-                `;
-                if (!finishedIcon) {
-                    finishedIcon = document.createElement("div");
-                    finishedIcon.classList.add("flex");
-                    finishedIcon.innerHTML = finishedSVG;
-                    const button = modulElement.querySelector("button");
-                    button.appendChild(finishedIcon);
-                } else {
-                    finishedIcon.classList.remove("hidden");
-                    if (!finishedIcon.innerHTML.trim()) {
-                        finishedIcon.innerHTML = finishedSVG;
-                    }
-                }
-                if (pointCounter) pointCounter.classList.add("hidden");
-            }
-
             targetProgress += progressWeights[modulId] || 0;
         }
     }
@@ -352,67 +417,53 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentModul) {
         localStorage.setItem("lastModule", currentModul);
     }
+
+    // Panggil pembaruan submodul point progress
+    updateSubmodulProgress();
     
     const currentPagePath = window.location.pathname;
-
     (async function() {
-    try {
-        const response = await fetch("/api/track-progress", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-            },
-            body: JSON.stringify({ page_path: currentPagePath }),
-        });
+        try {
+            const response = await fetch("/api/track-progress", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                },
+                body: JSON.stringify({ page_path: currentPagePath }),
+            });
 
-        if (!response.ok) throw new Error("Gagal fetch progress");
-        
-        const data = await response.json();
+            if (!response.ok) throw new Error("Gagal fetch progress");
+            
+            const data = await response.json();
 
-        // Tampilkan ikon selesai (finishedSVG) untuk modul yang sudah selesai
-        data.completed_modules.forEach((modulId) => {
-            const modulElement = document.getElementById(modulId);
-            if (modulElement) {
-                modulElement.querySelector(".finishedSVG")?.classList.remove("hidden");
+            // Tampilkan ikon selesai (finishedSVG) untuk modul yang sudah selesai
+            data.completed_modules.forEach((modulId) => {
+                const modulElement = document.getElementById(modulId);
+                if (modulElement) {
+                    modulElement.querySelector(".finishedSVG")?.classList.remove("hidden");
+                }
+            });
+
+            // Tampilkan progress persen jika ingin
+            if (data.percent_done !== undefined) {
+                const progressText = document.getElementById("progress-percent");
+                if (progressText) progressText.textContent = `${data.percent_done}% Selesai`;
             }
-        });
 
-        // Tampilkan progress persen jika ingin
-        if (data.percent_done !== undefined) {
-            const progressText = document.getElementById("progress-percent");
-            if (progressText) progressText.textContent = `${data.percent_done}% Selesai`;
-        }
-
-        // Optional: update h5 modul aktif
-        if (data.current_part) {
-            const modulActive = document.getElementById("modul-active");
-            if (modulActive) modulActive.textContent = data.current_part.replace(/-/g, " ");
-        }
-    } catch (err) {
-        console.error("Tracking gagal:", err);
-    }
-});
-});
-
-
-
-//Mengatur poin submodul
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.modul').forEach(modul => {
-        const submodulPoints = modul.querySelectorAll('.submodul-point');
-        const progress = 0; // ganti dengan nilai dinamis kalau perlu
-        const counter = modul.querySelector('.submodul-num-point');
-
-        if (counter && submodulPoints) {
-        counter.textContent = `${progress}/${submodulPoints.length}`;
+            // Optional: update h5 modul aktif
+            if (data.current_part) {
+                const modulActive = document.getElementById("modul-active");
+                if (modulActive) modulActive.textContent = data.current_part.replace(/-/g, " ");
+            }
+        } catch (err) {
+            console.error("Tracking gagal:", err);
         }
     });
 });
 
 
-
-// Fungsi toggle modul manual jika diklik/ buka tutup ikon panah di judul modul
+    // Fungsi toggle modul manual jika diklik/ buka tutup ikon panah di judul modul
     function toggleSubmodul(submodulId, button) {
         const submodul = document.getElementById(submodulId);
         const icon = button.querySelector("svg");
@@ -433,90 +484,89 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-
     document.addEventListener("DOMContentLoaded", function () {
-    const toggleBtn = document.getElementById("toggle-btn");
-    const courseBar = document.getElementById("course-bar");
-    const title = document.getElementById("title");
-    const progressSection = document.getElementById("progress-section");
-    const mainContent = document.getElementById("main-content");
-    const iconArrow = document.getElementById("icon-arrow");
-    const leftContent = document.getElementById("left");
+        const toggleBtn = document.getElementById("toggle-btn");
+        const courseBar = document.getElementById("course-bar");
+        const title = document.getElementById("title");
+        const progressSection = document.getElementById("progress-section");
+        const mainContent = document.getElementById("main-content");
+        const iconArrow = document.getElementById("icon-arrow");
+        const leftContent = document.getElementById("left");
 
-    function updateVisibility() {
-        if (window.innerWidth < 1024) { // Mulai dari md ke bawah
-            courseBar.classList.add("w-10");
-            courseBar.classList.remove("w-[40%]", "lg:w-1/3", "xl:w-1/4", "right-10");
-            title.classList.add("opacity-0");
-            progressSection.classList.add("opacity-0");
-            mainContent.classList.add("opacity-0");
-            iconArrow.classList.remove("rotate-180");
-            iconArrow.classList.add("rotate-0");
-            toggleBtn.classList.remove("rounded-full");
-            toggleBtn.classList.add("rounded-l-full", "pr-3", "pl-1");
-            courseBar.classList.remove("bg-[#fbfbfb]");
-            courseBar.classList.add("bg-white");
-            leftContent.classList.remove("w-3/4");
-            leftContent.classList.add("w-full");
-            leftContent.classList.remove("overflow-y-scroll", "max-h-[97vh]", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
-        } else {
-            courseBar.classList.remove("w-10");
-            courseBar.classList.add("w-[40%]", "lg:w-1/3", "xl:w-1/4", "right-10");
-            title.classList.remove("opacity-0");
-            progressSection.classList.remove("opacity-0");
-            mainContent.classList.remove("opacity-0");
-            iconArrow.classList.add("rotate-180");
-            iconArrow.classList.remove("rotate-0");
-            toggleBtn.classList.remove("rounded-l-full", "pr-3", "pl-1");
-            toggleBtn.classList.add("rounded-full");
-            courseBar.classList.remove("bg-white");
-            courseBar.classList.add("bg-[#fbfbfb]");
-            leftContent.classList.remove("w-full");
-            leftContent.classList.add("w-3/4");
-            leftContent.classList.add("overflow-y-scroll", "max-h-[97vh]", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
+        function updateVisibility() {
+            if (window.innerWidth < 1024) { // Mulai dari md ke bawah
+                courseBar.classList.add("w-10");
+                courseBar.classList.remove("w-[40%]", "lg:w-1/3", "xl:w-1/4", "right-10");
+                title.classList.add("opacity-0");
+                progressSection.classList.add("opacity-0");
+                mainContent.classList.add("opacity-0");
+                iconArrow.classList.remove("rotate-180");
+                iconArrow.classList.add("rotate-0");
+                toggleBtn.classList.remove("rounded-full");
+                toggleBtn.classList.add("rounded-l-full", "pr-3", "pl-1");
+                courseBar.classList.remove("bg-[#fbfbfb]");
+                courseBar.classList.add("bg-white");
+                leftContent.classList.remove("w-3/4");
+                leftContent.classList.add("w-full");
+                leftContent.classList.remove("overflow-y-scroll", "max-h-[97vh]", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
+            } else {
+                courseBar.classList.remove("w-10");
+                courseBar.classList.add("w-[40%]", "lg:w-1/3", "xl:w-1/4", "right-10");
+                title.classList.remove("opacity-0");
+                progressSection.classList.remove("opacity-0");
+                mainContent.classList.remove("opacity-0");
+                iconArrow.classList.add("rotate-180");
+                iconArrow.classList.remove("rotate-0");
+                toggleBtn.classList.remove("rounded-l-full", "pr-3", "pl-1");
+                toggleBtn.classList.add("rounded-full");
+                courseBar.classList.remove("bg-white");
+                courseBar.classList.add("bg-[#fbfbfb]");
+                leftContent.classList.remove("w-full");
+                leftContent.classList.add("w-3/4");
+                leftContent.classList.add("overflow-y-scroll", "max-h-[97vh]", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
+            }
         }
-    }
 
-    toggleBtn.addEventListener("click", function () {
-        if (courseBar.classList.contains("w-10")) {
-            // Buka course-bar (slide ke kiri)
-            courseBar.classList.remove("w-10");
-            courseBar.classList.add("w-[40%]", "lg:w-1/3", "xl:w-1/4");
-            title.classList.remove("opacity-0");
-            progressSection.classList.remove("opacity-0");
-            mainContent.classList.remove("opacity-0");
-            iconArrow.classList.remove("rotate-0");
-            iconArrow.classList.add("rotate-180");
-            toggleBtn.classList.remove("rounded-l-full", "pr-3", "pl-1");
-            toggleBtn.classList.add("rounded-full");
-            courseBar.classList.remove("bg-white");
-            courseBar.classList.add("bg-[#fbfbfb]");
-            leftContent.classList.remove("w-full");
-            leftContent.classList.add("w-3/4");
-            leftContent.classList.add("overflow-y-scroll", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
-        } else {
-            // Tutup course-bar (slide ke kanan)
-            courseBar.classList.add("w-10");
-            courseBar.classList.remove("w-[40%]", "lg:w-1/3", "xl:w-1/4");
-            title.classList.add("opacity-0");
-            progressSection.classList.add("opacity-0");
-            mainContent.classList.add("opacity-0");
-            iconArrow.classList.add("rotate-0");
-            iconArrow.classList.remove("rotate-180");
-            toggleBtn.classList.remove("rounded-full");
-            toggleBtn.classList.add("rounded-l-full", "pr-3", "pl-1");
-            courseBar.classList.remove("bg-[#fbfbfb]");
-            courseBar.classList.add("bg-white");
-            leftContent.classList.remove("w-3/4");
-            leftContent.classList.add("w-full");
-            leftContent.classList.remove("overflow-y-scroll", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
-        }
-    });
+        toggleBtn.addEventListener("click", function () {
+            if (courseBar.classList.contains("w-10")) {
+                // Buka course-bar (slide ke kiri)
+                courseBar.classList.remove("w-10");
+                courseBar.classList.add("w-[40%]", "lg:w-1/3", "xl:w-1/4");
+                title.classList.remove("opacity-0");
+                progressSection.classList.remove("opacity-0");
+                mainContent.classList.remove("opacity-0");
+                iconArrow.classList.remove("rotate-0");
+                iconArrow.classList.add("rotate-180");
+                toggleBtn.classList.remove("rounded-l-full", "pr-3", "pl-1");
+                toggleBtn.classList.add("rounded-full");
+                courseBar.classList.remove("bg-white");
+                courseBar.classList.add("bg-[#fbfbfb]");
+                leftContent.classList.remove("w-full");
+                leftContent.classList.add("w-3/4");
+                leftContent.classList.add("overflow-y-scroll", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
+            } else {
+                // Tutup course-bar (slide ke kanan)
+                courseBar.classList.add("w-10");
+                courseBar.classList.remove("w-[40%]", "lg:w-1/3", "xl:w-1/4");
+                title.classList.add("opacity-0");
+                progressSection.classList.add("opacity-0");
+                mainContent.classList.add("opacity-0");
+                iconArrow.classList.add("rotate-0");
+                iconArrow.classList.remove("rotate-180");
+                toggleBtn.classList.remove("rounded-full");
+                toggleBtn.classList.add("rounded-l-full", "pr-3", "pl-1");
+                courseBar.classList.remove("bg-[#fbfbfb]");
+                courseBar.classList.add("bg-white");
+                leftContent.classList.remove("w-3/4");
+                leftContent.classList.add("w-full");
+                leftContent.classList.remove("overflow-y-scroll", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
+            }
+        });
 
     // Jalankan saat halaman dimuat dan saat layar diubah ukurannya
     updateVisibility();
     window.addEventListener("resize", updateVisibility);
+
 });
 
 </script>

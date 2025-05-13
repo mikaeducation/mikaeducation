@@ -11,10 +11,19 @@ return new class extends Migration
             $table->id('userEvaluate_id');
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('progress_id');
+            $table->foreign('progress_id')
+                    ->references('progress_id')
+                    ->on('progress_tracking')
+                    ->onDelete('cascade');
             $table->string('username');
             $table->tinyInteger('asessment_id');
-            $table->foreign('asessment_id')->references('asessment_id')->on('module_asessment')->onDelete('cascade');
+            $table->foreign('asessment_id')
+                    ->references('asessment_id')
+                    ->on('module_asessment')
+                    ->onDelete('cascade');
             $table->tinyInteger('after_asessment_id')->default(1);
+            $table->integer('answer_evaluate_count')->default(0);
             $table->integer('scale_1_count')->default(0);
             $table->integer('scale_2_count')->default(0);
             $table->integer('scale_3_count')->default(0);
@@ -24,9 +33,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('user_evaluate');

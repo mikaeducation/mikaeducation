@@ -15,9 +15,11 @@ class UserEvaluate extends Model
     protected $fillable = [
         'user_id',
         'module_id',
+        'progress_id',
         'username',
         'asessment_id',
         'after_asessment_id',
+        'answer_evaluate_count',
         'scale_1_count',
         'scale_2_count',
         'scale_3_count',
@@ -35,5 +37,10 @@ class UserEvaluate extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function progress()
+    {
+        return $this->belongsTo(ProgressTracking::class, 'progress_id', 'progress_id');
     }
 }

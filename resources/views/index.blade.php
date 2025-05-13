@@ -8,6 +8,20 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @vite('public/assets/css/style.css')
     </head>
+    
+    @if(Auth::check())
+    <script>
+        const currentUserId = "{{ Auth::id() }}";
+
+        if (!sessionStorage.getItem("initializedForUser") || sessionStorage.getItem("user_id") !== currentUserId) {
+            sessionStorage.clear();
+            sessionStorage.setItem("initializedForUser", true);
+            sessionStorage.setItem("user_id", currentUserId);
+            console.log("sessionStorage dibersihkan karena login user baru.");
+        }
+    </script>
+    @endif
+
     <body class="font-futura h-max w-full relative">
         @include('includes.components.main.header')
 

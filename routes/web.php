@@ -126,6 +126,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/course', [CourseController::class, 'showCourse'])->name('course');
 Route::post('/start-course', [CourseController::class, 'startCourse'])->name('start-course');
 Route::post('/save-progress-exit', [CourseController::class, 'saveProgressOnExit'])->middleware('auth');
+Route::get('/api/progress-history', [ProgressController::class, 'getFinishedPages']);
 
 Route::middleware('auth:sanctum')->post('/track-progress', [ProgressController::class, 'trackProgress']);
 Route::middleware('auth:sanctum')->post('/update-progress', [ProgressController::class, 'updateProgress']);
@@ -144,5 +145,7 @@ Route::post('/asessment-submit', [AsessmentController::class, 'submit'])
 Route::post('/asessment-evaluasi-submit', [AsessmentController::class, 'submitEvaluasi'])
     ->name('asessment-evaluasi-submit')
     ->middleware('auth');
+
+Route::post('/submit-review', [ModuleController::class, 'store'])->name('module.review.submit');
 
 

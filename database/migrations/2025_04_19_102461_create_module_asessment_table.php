@@ -14,7 +14,7 @@ return new class extends Migration
             $table->enum('asessment_duration', ['unlimited', 'limited']);
             $table->integer('asessment_time_limit')->nullable();
             $table->enum('asessment_type', ['repeatable', 'limited']);
-            $table->integer('asessment_workout');
+            $table->integer('asessment_workout')->default(0);
             $table->float('asessment_average')->nullable();
             $table->float('asessmentValue_max')->nullable();
             $table->float('asessmentValue_min')->nullable();

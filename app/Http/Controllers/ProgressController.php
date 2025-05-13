@@ -13,10 +13,10 @@ class ProgressController extends Controller
     protected $modulePages = [
         'modul-introduce' => ['/course'],
         'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2'],
-        'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4', '/page3_2', '/page3_3'],
-        'submodul2' => ['/page4_0', '/page4_1', '/page4_2', '/page4_3'],
-        'submodul3' => ['/page5_0', '/page5_1', '/page5_2', '/page5_3'],
-        'submodul4' => ['/page6_0', '/page6_1_0', '/page6_1_1', '/page6_2', '/page6_3'],
+        'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4'], // '/page3_2', '/page3_3'
+        'submodul2' => ['/page4_0'], // '/page4_1', '/page4_2', '/page4_3'
+        'submodul3' => ['/page5_0'], //  '/page5_1', '/page5_2', '/page5_3'
+        'submodul4' => ['/page6_0', '/page6_1_0', '/page6_2'], //  '/page6_1_1', '/page6_3'
         'modul-evaluative' => ['/page7'],
         'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'],
     ];
@@ -148,6 +148,26 @@ class ProgressController extends Controller
         }
 
         return response()->json(['message' => 'Progress updated successfully']);
+    }
+
+
+    public function getFinishedPages()
+    {
+        $userId = Auth::id();
+        $progress = ProgressTracking::where('user_id', $userId)
+            ->orderByDesc('created_at')
+            ->first();
+
+        if (!$progress) {
+            return response()->json(['finished_pages' => []]);
+        }
+
+        $pages = ProgressHistory::where('progress_id', $progress->progress_id)
+            ->where('status', 'finished')
+            ->pluck('page_path')
+            ->toArray();
+
+        return response()->json(['finished_pages' => $pages]);
     }
 
 

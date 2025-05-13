@@ -126,18 +126,47 @@
                             </div> 
                         </div>
                         @php
-                            $hasProgress = DB::table('progress_tracking')
+                            $progress = DB::table('progress_tracking')
                                 ->where('user_id', auth()->id())
-                                ->where('module_id', $module->id ?? 1) // Ganti sesuai konteks
-                                ->exists();
+                                ->where('module_id', $module->module_id)
+                                ->latest('created_at')
+                                ->first();
+
+                            $moduleRepeatable = $module->module_type;
+                            $buttonLabel = null;
+                            $buttonLink = null;
+
+                            if (!$progress) {
+                                $buttonLabel = 'Mulai Belajar';
+                                $buttonLink = 'startButton';
+                            } elseif ($progress->is_completed && $moduleRepeatable) {
+                                $buttonLabel = 'Belajar Lagi';
+                                $buttonLink = 'startButton';
+                            } elseif (!$progress->is_completed) {
+                                $buttonLabel = 'Lanjutkan Belajar';
+                                $buttonLink = 'startButton';
+                            } elseif ($progress->is_completed && !$moduleRepeatable) {
+                                $buttonLabel = 'Lihat Riwayat Belajar';
+                                $buttonLink = url('/preLearn'); // ⬅️ diarahkan ke preLearn
+                            }
                         @endphp
-                        <div class="w-11/12 lg:w-4/5 flex items-center justify-center py-4">
-                            <a href="javascript:void(0)" id="startButton"
-                                class="text-white text-lg xl:text-xl font-medium flex items-center justify-center w-full py-2 bg-blue31 rounded">
-                                {{ $hasProgress ? 'Lanjutkan Belajar' : 'Mulai Belajar' }}
-                            </a>
-                            @include('includes.components.elearning.course.dialog.start')
-                        </div>
+
+                        @if ($buttonLabel)
+                            <div class="w-11/12 lg:w-4/5 flex items-center justify-center py-4">
+                                @if ($buttonLink === 'startButton')
+                                    <a href="javascript:void(0)" id="startButton"
+                                        class="text-white text-lg xl:text-xl font-medium flex items-center justify-center w-full py-2 bg-blue31 rounded">
+                                        {{ $buttonLabel }}
+                                    </a>
+                                    @include('includes.components.elearning.course.dialog.start')
+                                @else
+                                    <a href="{{ $buttonLink }}"
+                                        class="text-white text-lg xl:text-xl font-medium flex items-center justify-center w-full py-2 bg-gray-600 rounded hover:bg-gray-700 transition">
+                                        {{ $buttonLabel }}
+                                    </a>
+                                @endif
+                            </div>
+                        @endif
                         <div id="modul-scoope" class="w-11/12 lg:w-4/5 flex flex-col items-start justify-start gap-3">
                             <h3 class="font-medium text-lg">Cakupan Pembelajaran</h3>
                             <div class="flex flex-col items-start justify-start gap-4 lg:gap-2">

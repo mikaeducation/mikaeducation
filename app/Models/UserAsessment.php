@@ -16,6 +16,7 @@ class UserAsessment extends Model
         'user_id',
         'module_id',
         'username',
+        'progress_id',
         'asessment_id',
         'attempt_count',
         'high_score'
@@ -24,5 +25,10 @@ class UserAsessment extends Model
     public function attempts()
     {
         return $this->hasMany(UserAsessmentAttempt::class, 'userAsessment_id');
+    }
+
+    public function progress()
+    {
+        return $this->belongsTo(ProgressTracking::class, 'progress_id', 'progress_id');
     }
 }

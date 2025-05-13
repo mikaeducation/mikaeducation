@@ -219,7 +219,7 @@
                         <div class="text-center pb-4 space-y-4 text-blue31">
                             <h3 class="text-3xl font-semibold ">Kumpulkan Evaluasi??</h3>
                             <p class="mt-2">
-                                Jika telah yakin dengan jawaban yang diberikan, Anda dapat mengumpulkan dan melanjutkan untuk ke bagian pembelajaran selanjutnya.
+                                Jika telah yakin dengan jawaban yang diberikan, Anda dapat mengumpulkan untuk menyelesaikan pembelajaran yang telah dilakukan.
                                 <br><br> Jika memerlukan bantuan lebih lanjut,<a href="https://wa.me/082156226440 " class="relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full"> hubungi tim dukungan kami disini.</a>
                             </p>
                         </div>
@@ -266,6 +266,20 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Loading Screen -->
+<div id="loadingScreen" style="display: none" class="fixed inset-0 flex flex-col items-center justify-center z-[50]">
+    <div class="fixed w-full inset-0 bg-black bg-opacity-90 transition-opacity" aria-hidden="true"></div>            
+    <div class="relative w-fit h-fit flex items-center justify-center flex-col gap-4">
+        <h1 id="typingText" class="text-white text-2xl font-medium mb-4"></h1> <!-- kosong dulu, nanti diisi efek ketik -->
+        <div class="relative">
+            <span class="absolute w-4 h-4 bg-red-500 rounded-full animate-kiri"></span>
+            <span class="absolute w-4 h-4 bg-yellow-400 rounded-full left-1/2 transform -translate-x-1/2 z-10"></span>
+            <span class="absolute w-4 h-4 bg-green-400 rounded-full animate-kanan"></span>
         </div>
     </div>
 </div>

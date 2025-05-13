@@ -155,7 +155,71 @@
     </section>
 
     @include('includes.components.elearning.footer')
+    
     </body>
+
+    @include('includes.components.elearning.course.dialog.ratingLearn')
+    @include('includes.components.elearning.course.dialog.modal-asessment')
+
 </html>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fromEval = sessionStorage.getItem("fromEvaluation");
+        const ratingModal = document.getElementById("rating-learn");
+        const mainContent = document.getElementById("main-content");
+        const screen = document.getElementById("loadingScreen");
+        const typingText = document.getElementById("typingText");
+        const message = "Anda berhasil menyelesaikan pembelajaran. Silahkan mengisi ulasan dan rating pembelajaran berikut...";
+        const speed = 40;
+
+        if (fromEval === "true") {
+            sessionStorage.removeItem("fromEvaluation");
+
+            if (mainContent) mainContent.classList.add("hidden");
+
+            setTimeout(() => {
+                let duration = 3000;
+
+                if (typeof showLoadingScreen === "function") {
+                    duration = showLoadingScreen(message, speed); // Dapatkan estimasi durasi ketik
+                } else {
+                    if (screen && typingText) {
+                        screen.style.display = "flex";
+                        typingText.innerHTML = message;
+                    }
+                }
+
+                // Setelah typing selesai, jalankan fade-out (500ms)
+                setTimeout(() => {
+                    if (screen) {
+                        screen.classList.remove("fade-in");
+                        screen.classList.add("fade-out");
+                    }
+
+                    // Setelah fade-out selesai, sembunyikan dan munculkan rating
+                    setTimeout(() => {
+                        if (screen) {
+                            screen.classList.add("hidden");
+                            screen.style.display = "none";
+                        }
+                        if (ratingModal) {
+                            ratingModal.classList.remove("hidden");
+                        }
+                    }, 2000); // waktu fade-out
+
+                }, duration);
+            }, 0);
+        }
+
+        document.getElementById("rating-submit-btn")?.addEventListener("click", () => {
+            ratingModal?.classList.add("hidden");
+            mainContent?.classList.remove("hidden");
+        });
+    });
+</script>
+
+
 
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Module; // pastikan model Module sudah ada
+use App\Models\Module;
+use App\Models\ModuleReview;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 
@@ -62,4 +64,26 @@ class ModuleController extends Controller
 
         return view('learning.modules', compact('module'));
     }
+
+
+    public function store(Request $request)
+        {
+            $request->validate([
+                'rating' => 'required|numeric|min:1|max:5',
+                'review' => 'nullable|string|max:300',
+                'module_id' => 'required|integer'
+            ]);
+
+            ModuleReview::create([
+                'user_id' => Auth::id(),
+                'username' => Auth::user()->profile->username ?? Auth::user()->name,
+                'module_id' => $request->module_id,
+                'user_rating' => $request->rating,
+                'comment_review' => $request->review,
+            ]);
+
+            return redirect('/preLearn')->with('success', 'Terima kasih atas ulasan Anda!');
+        }
+
+
 }

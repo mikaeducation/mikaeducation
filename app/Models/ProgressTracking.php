@@ -38,5 +38,14 @@ class ProgressTracking extends Model
         // Pastikan foreign key di tabel progress_history merujuk ke progress_id di progress_tracking
         return $this->hasMany(ProgressHistory::class, 'progress_id', 'progress_id');
     }
+    public function userAsessments()
+    {
+        return $this->hasMany(UserAsessment::class, 'progress_id', 'progress_id');
+    }
+
+    public function userEvaluates()
+    {
+        return $this->hasMany(UserEvaluate::class, 'progress_id', 'progress_id');
+    }
 }
 
