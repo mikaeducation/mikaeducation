@@ -74,11 +74,18 @@
     
                     if (response.ok) {
                         const data = await response.json();
-    
-                        // Jika respons berhasil, arahkan ke halaman /learn
+
                         modal.classList.add('hidden');
-                        alert('Silahkan klik OK untuk keluar dari pembelajaran.');
-                        window.location.href = "/learn";
+
+                        // [MODIFIKASI FIX]
+                        sessionStorage.removeItem("canAccessCourse");
+                        sessionStorage.removeItem("currentModuleId");
+
+                        // Tambahkan sedikit delay agar DOM settle dan modal tertutup
+                        setTimeout(() => {
+                            const moduleId = sessionStorage.getItem("currentModuleId") || 1;
+                            window.location.replace(`/modules/${moduleId}`);
+                        }, 100);
                     } else {
                         console.error("Gagal menyimpan progress. Kode status:", response.status);
                         alert("Gagal menyimpan progress. Silakan coba lagi.");

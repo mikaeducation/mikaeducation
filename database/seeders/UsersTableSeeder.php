@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         ], [
             'email' => 'example@domain.com',
             'password' => Hash::make('password123'), // Menggunakan hashing bcrypt
+            'terms_accepted' => true,
         ]);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ModulesTableSeeder;
 use Database\Seeders\ProfilesTableSeeder;
+use Database\Seeders\QuestionBankTableSeeder;
 use Database\Seeders\ModuleReviewsTableSeeder;
 use Database\Seeders\ModuleSubjectsTableSeeder;
 use Database\Seeders\ModuleAsessmentsTableSeeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ModuleSubjectsTableSeeder::class,
             SubModuleSubjectsTableSeeder::class,
             ModuleAsessmentsTableSeeder::class,
+            QuestionBankTableSeeder::class,
             ModuleReviewsTableSeeder::class
         ]);
     }

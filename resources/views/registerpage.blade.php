@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('public/assets/css/style.css')
 </head>
-<body>
+<body class="font-futura h-max w-full relative">
     <section class="flex flex-col md:flex-row w-full h-screen font-futura text-blue31">
         <div class="w-1/2 h-full lg:pr-10 xl:pr-36 my-20 md:my-0 hidden md:hidden lg:flex">
             <div class="w-full h-full flex justify-center items-center">
@@ -53,21 +53,32 @@
                             @csrf
                             <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31">
                             @error('phone')
-                            <p class="text-sm">{{ $message }}</p>
+                                <p class="text-sm">{{ $message }}</p>
                             @enderror
+
                             <input type="email" name="email" placeholder="Email" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
                             @error('email')
-                            <p class="text-sm">{{ $message }}</p>
+                                <p class="text-sm">{{ $message }}</p>
                             @enderror
+
                             <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
+                            @error('password')
+                                <p class="text-sm text-blue31">{{ $message }}</p> <!-- Pesan validasi untuk password -->
+                            @enderror
+
                             <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
+                            @error('password_confirmation')
+                                <p class="text-sm text-blue31">{{ $message }}</p> <!-- Pesan validasi untuk konfirmasi password -->
+                            @enderror
+
                             <div class="mt-4 w-3/4 flex items-start lg:item-center xl:items-center justify-center">
                                 <input id="terms-checkbox" type="checkbox" class="w-5">
                                 <label for="terms-checkbox">
-                                    Saya setuju dengan <a href="" class="underline italic underline-offset-1">Syarat dan Ketentuan</a> Akun MIIKA Education.
+                                    Saya setuju dengan <a href="#" class="showTermsDialog underline italic underline-offset-1">Syarat dan Ketentuan</a> Akun MIIKA Education.
                                 </label>
                             </div>
                             <p id="error-message" class="text-blue31 text-sm mt-2 hidden">Anda belum menyetujui syarat dan ketentuan yang berlaku.</p>
+                            
                             <button type="button" id="submit-button" class="bg-blue31 w-1/2 py-3 px-6 rounded font-bold text-2xl text-white mt-5">
                                 DAFTAR
                             </button>
@@ -79,8 +90,12 @@
                 </div>
             </div>
         </div>
-    </section>    
+    </section>
+
+    @include('includes.content.main.termsCondition')
+
 </body>
+
 </html>
 
 @if(session('success'))
@@ -89,18 +104,4 @@
 </script>
 @endif
 
-<script>
-    const checkbox = document.getElementById('terms-checkbox');
-    const submitButton = document.getElementById('submit-button');
-    const errorMessage = document.getElementById('error-message');
-    const form = document.getElementById('register-form');
 
-    submitButton.addEventListener('click', function () {
-        if (!checkbox.checked) {
-            errorMessage.classList.remove('hidden'); // Tampilkan pesan error
-        } else {
-            errorMessage.classList.add('hidden'); // Sembunyikan pesan error
-            form.submit(); // Kirim form jika checkbox dicentang
-        }
-    });
-</script>

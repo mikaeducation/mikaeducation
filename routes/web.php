@@ -46,23 +46,6 @@ Route::get('/', function () {
 Route::get('/registerprofile', [ProfileController::class, 'showProfileForm']);
 Route::post('/complete-profile', [ProfileController::class, 'completeProfile'])->name('complete-profile');
 
-Route::get('/profile', function (){
-    return view('profile');
-});
-Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
-Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile-update');
-Route::put('/profile-media-update', [ProfileController::class, 'updateProfileMedia'])->name('profile-media-update');
-
-
-Route::post('/delete-account', [AccountController::class, 'deleteAccount'])->name('account.delete');
-Route::middleware(['auth'])->group(function () {
-    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
-    Route::get('/profile', [AccountController::class, 'show'])->name('account.show');
-    Route::post('/account', [AccountController::class, 'update'])->name('account.update');
-});
-Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware(middleware: 'auth');
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -94,9 +77,22 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', function (){return view('profile');});
+    Route::put('/profile/update', [ProfileController::class, 'completeProfile'])->name('profile-update');
+    Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile-update');
+    Route::put('/profile-media-update', [ProfileController::class, 'updateProfileMedia'])->name('profile-media-update');
+    Route::post('/profile/notification/read/{id}', [ProfileController::class, 'markNotificationRead'])->name('notification.read');
+
+    Route::post('/delete-account', [AccountController::class, 'deleteAccount'])->name('account.delete');
+    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
+    Route::get('/profile', [AccountController::class, 'show'])->name('account.show');
+    Route::post('/account', [AccountController::class, 'update'])->name('account.update');
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->middleware(middleware: 'auth');
+});
+
 
 // E-LEARNING ROUTES
-
 //Route antar halaman atau landing page, diluar halaman kursus pembelajaran
 Route::middleware(['auth'])->group(function () {
     Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
@@ -108,6 +104,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/preLearn', function () {
         return view('learning/preLearn');
     });
+    Route::get('/preLearn', [ProgressController::class, 'showPreLearn'])->name('preLearn');
+
     Route::get('/preLearn_1', function () {
         return view('learning/preLearn-1');
     });

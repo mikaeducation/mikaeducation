@@ -26,7 +26,7 @@
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                         @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://drive.google.com/file/d/1nf88UoDzofToD6c0W6bFI2FXmik_oHRm/view?usp=sharing'])
+                                        ['src' => ''])
                                     </div>
                                 </div>
                             </div>

@@ -18,9 +18,10 @@
             dikelola Departemen Luar Negeri & Perdagangan Australia melalui Konsulat Jenderal Australia di Surabaya. Pendanaan tersebut diperoleh MIKA melalui Direct Aid Program Australian.
         </p>
         <p><span class="text-2xl font-medium">Apa yang kami lakukan?</span>
-            <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a imperdiet lacus, ut gravida sem. Phasellus quis lacus turpis. In nec malesuada ante. Donec eget nisl rhoncus, 
-            egestas quam et, placerat justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            In a imperdiet lacus, ut gravida sem. Phasellus quis lacus turpis. In nec malesuada ante. Donec eget nisl rhoncus, egestas quam et, placerat justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+            <br> MIKA merupakan platform yang bergerak di bidang kesehatan terutama untuk pengembangan komunikasi individu autistik dan/atau individu dengan hambatan komunikasi. 
+            Kami berusaha membawa perubahan untuk penanganan disabilitas di Indonesia dengan dukungan dari berbagai pihak diantaranya: Australian Aid yang dinaungi oleh Department of Foreign Affair Australia, 
+            Universitas Airlangga, Forum Peduli Autisme Jawa Timur (FPAJT), UPTD Layanan Disabilitas Sidoarjo, serta River Kids Malang. MIKA dibangun dengan tujuan memberikan individu dengan 
+            disabilitas kesempatan yang sama dengan individu normal baik dalam aktivitas sehari-hari maupun dunia profesional.
         </p>
         <p><span class="text-2xl font-medium">Apa saja layanan kami?</span>
             <br> Kami mengembangkan 2 layanan khusus, yaitu MIKA 1.0 dan MIKA Education yang menjadi upaya kami dalam mendukung pendidikan inklusi dan proses belajar komunikasi anak dengan autisme dan hambatan komunikasi di Indonesia, meliputi:

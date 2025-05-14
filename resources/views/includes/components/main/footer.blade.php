@@ -34,7 +34,9 @@
     <div class="w-full bg-blue20 font-light text-xs md:text-sm lg:text-base flex items-center justify-center">
         <div class="py-5 w-3/4 flex items-center justify-center space-x-3 md:space-x-7 lg:space-x-14">
             <p>© 2025 Media Visual Komunikasi Anak for Mikaeducation. All Rights Reserved.</p>
-            <a href="" class="underline italic underline-offset-1">Terms and Conditions</a>
+            <a href="#" class="showTermsDialog underline italic underline-offset-1">Terms and Conditions</a>
         </div>
     </div>
 </footer>
+
+@include('includes.content.main.termsCondition')

@@ -96,6 +96,12 @@
                                     <option value="Terapis">Terapis/Klinis</option>
                                     <option value="Lainnya">Lainnya...</option>
                                 </select>
+                                <div id="customOccupationWrapper" class="pt-2 hidden">
+                                    <label for="custom_occupation">Tuliskan Pekerjaan Anda</label>
+                                    <input type="text" name="custom_occupation" id="custom_occupation" 
+                                        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue31" 
+                                        placeholder="Masukkan pekerjaan Anda di sini...">
+                                </div>
                                 @error('occupation')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
@@ -121,11 +127,9 @@
         <div class="w-full bg-blue20 font-light flex items-center justify-center">
             <div class="py-5 w-3/4 flex items-center justify-center space-x-14">
                 <p>© 2025 Media Visual Komunikasi Anak for Mikaeducation. All Rights Reserved.</p>
-                <a href="" class="underline italic underline-offset-1">Terms and Conditions</a>
             </div>
         </div>
     </footer>
-    
 </html>
 
 @if(session('success'))
@@ -133,3 +137,18 @@
     alert("{{ session('success') }}");
 </script>
 @endif
+
+<script>
+    function handleOccupationChange() {
+        const occupationSelect = document.getElementById('occupation');
+        const customInputWrapper = document.getElementById('customOccupationWrapper');
+
+        if (occupationSelect.value === 'Lainnya') {
+            customInputWrapper.classList.remove('hidden');
+        } else {
+            customInputWrapper.classList.add('hidden');
+            // Kosongkan input jika tidak dipilih
+            document.getElementById('custom_occupation').value = '';
+        }
+    }
+</script>

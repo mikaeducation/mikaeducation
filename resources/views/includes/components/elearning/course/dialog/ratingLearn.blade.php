@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Tambahkan event pada input, bukan label
         input.addEventListener('change', () => {
             // Reset semua label
-            labels.forEach(l => l.classList.remove('bg-[#31587C]'));
+            labels.forEach(l => l.classList.remove('bg-blue-100]'));
 
             // Highlight label yang dipilih
-            label.classList.add('bg-[#31587C]');
+            label.classList.add('bg-blue-100');
         });
     });
 

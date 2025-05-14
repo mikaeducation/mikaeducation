@@ -106,7 +106,7 @@ class CourseController extends Controller
 
         // === Case: modul tidak bisa diulang dan sudah selesai ===
         if ($latestProgress && $latestProgress->is_completed && !$module->module_type) {
-            return redirect('/preLearn')->with('info', 'Anda telah menyelesaikan pelatihan ini dan tidak dapat mengulanginya.');
+            return redirect('/preLearn')->with('info', 'Anda telah menyelesaikan pembelejaran ini dan tidak dapat mengulanginya.');
         }
 
         // === Case: masih ada progress aktif (belum selesai) ===

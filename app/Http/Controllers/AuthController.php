@@ -18,9 +18,13 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
         ],[
-            'phone' => 'Nomor belum diisi atau telah digunakan sebelumnya.',
-            'email' => 'Email belum diisi atau telah digunakan sebelumnya.',
-            'password' => 'Password wajib diisi.',
+            'phone.required' => 'Nomor belum diisi.', // Jika nomor tidak diisi
+            'phone.unique' => 'Nomor telah digunakan sebelumnya.', // Jika nomor sudah terdaftar
+            'email.required' => 'Email belum diisi.', // Jika email tidak diisi
+            'email.email' => 'Email tidak valid.', // Jika format email tidak valid
+            'email.unique' => 'Email telah digunakan sebelumnya.', // Jika email sudah terdaftar
+            'password.required' => 'Password wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
         $user = User::create([
@@ -29,6 +33,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
             //  'password' => Hash::make($request->password), // membuat lebih aman lagi
             // 'password' => $request->password, // membuat password terlihat di database
+            'terms_accepted' => true,
         ]);
 
         return redirect('/login')->with('success', 'Registrasi berhasil!');

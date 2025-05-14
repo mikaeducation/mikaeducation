@@ -87,6 +87,10 @@
         startLearningBtn.addEventListener('click', function (e) {
             e.preventDefault(); // Cegah form submit langsung
 
+            // Simpan flag agar halaman pembelajaran bisa diakses
+            sessionStorage.setItem("canAccessCourse", "true");
+            sessionStorage.setItem("currentModuleId", "{{ $module->module_id }}");
+
             modal.classList.add('hidden');
             typingElement.innerHTML = '';
 

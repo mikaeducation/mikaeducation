@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProgressTracking;
 use App\Models\ProgressHistory;
+use App\Models\Module;
 use Carbon\Carbon;
 
 class ProgressController extends Controller
@@ -169,6 +170,36 @@ class ProgressController extends Controller
 
         return response()->json(['finished_pages' => $pages]);
     }
+
+    public function showPreLearn()
+    {
+        $userId = Auth::id();
+
+        // Ambil seluruh progress pengguna (untuk recapCard)
+        $allProgress = ProgressTracking::with('module')
+            ->where('user_id', $userId)
+            ->latest('created_at')
+            ->get();
+
+        // Ambil progress terakhir (untuk kartu atas)
+        $progress = $allProgress->first();
+
+        // Ambil modul terkait dari progress terakhir
+        $module = $progress ? Module::where('module_id', $progress->module_id)->first() : null;
+
+        // Status tambahan
+        $hasProgress = $allProgress->isNotEmpty();
+        $hasCompleted = $allProgress->contains(fn($p) => $p->is_completed);
+
+        return view('learning.preLearn', compact(
+            'progress',      // untuk learn-userResult
+            'module',        // untuk learn-userResult
+            'allProgress',   // untuk recapCard
+            'hasProgress',   // untuk kondisi activityRecap
+            'hasCompleted'   // untuk kondisi activityMessage
+        ));
+    }
+
 
 
     private function getModulePartByPagePath($pagePath)

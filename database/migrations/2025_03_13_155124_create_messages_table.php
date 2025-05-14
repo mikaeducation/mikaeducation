@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->text('chat2')->nullable(); // Chat kedua
             $table->text('respon')->nullable(); // Respon admin
             $table->timestamps();
-
         });
     }
 

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->timestamps();
+            $table->boolean('terms_accepted')->nullable()->default(null);
             $table->softDeletes(); // Untuk memastikan penghapusan data di tabel users
+            $table->timestamps();
         });
     }
 
@@ -26,11 +27,7 @@ return new class extends Migration
      */
     public function down()
 {
-    Schema::table('users', function (Blueprint $table) {
-        // Menghapus constraint unique pada kolom 'phone'
-        $table->dropUnique(['phone']);
-        $table->dropColumn('phone');
-    });
+    Schema::dropIfExists('users');
 }
 
 };

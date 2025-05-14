@@ -285,6 +285,9 @@ class AsessmentController extends Controller
                     ->where('user_id', $user->id)
                     ->where('module_id', $moduleId)
                     ->update(['is_completed' => true]);
+
+                    app(\App\Http\Controllers\ProfileController::class)->storeLearningLog($user->id, $moduleId);
+                
                 session()->forget('is_learning');
             }
 

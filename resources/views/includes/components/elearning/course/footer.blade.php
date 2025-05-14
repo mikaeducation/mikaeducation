@@ -42,6 +42,24 @@
             navigation.style.bottom = "0";
         }
     }
+
+    // Deteksi Tombol Back/Forward Browser]
+    document.addEventListener("DOMContentLoaded", function () {
+        const protectedRoutes = [
+            "/course", "/page2_0", "/page2_1", "/page2_2", "/page3_0",
+            "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4",
+            "/page4_0", "/page5_0", "/page6_0", "/page6_1_0", "/page6_2",
+            "/page6_3", "/page7", "/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1"
+        ];
+
+        const currentPath = window.location.pathname;
+        const accessAllowed = sessionStorage.getItem("canAccessCourse");
+
+        if (protectedRoutes.includes(currentPath) && !accessAllowed) {
+            const moduleId = sessionStorage.getItem("currentModuleId") || 1;
+            window.location.replace(`/modules/${moduleId}`);
+        }
+    });
     
     // --- Navigasi antar halaman (kecuali page2_1 akan ditangani khusus)
     function setupNavigation() {
@@ -513,8 +531,21 @@
                     sessionStorage.setItem("fromEvaluation", "true");
 
                     const form = document.getElementById(formMap[page]);
-                    const event = new Event('submit', { bubbles: true, cancelable: true });
-                    form.dispatchEvent(event);
+                    
+                    form.addEventListener("submit", function (e) {
+                        // Tambahan proteksi agar tidak trigger 2x
+                        if (form.dataset.submitted) return;
+                        form.dataset.submitted = "true";
+
+                        // [MODIFIKASI PROTEKSI SELESAI BELAJAR]
+                        sessionStorage.removeItem("canAccessCourse");
+                        sessionStorage.removeItem("currentModuleId");
+
+                        // Tampilkan loading (opsional) lalu redirect
+                        setTimeout(() => {
+                            window.location.replace("/preLearn");
+                        }, 1000); // beri waktu 1 detik agar server menerima POST
+                    }); form.submit();
                 });
 
                 cancelSubmitEval?.addEventListener("click", () => {

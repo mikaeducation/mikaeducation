@@ -6,6 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user-id" content="{{ Auth::id() }}">
         @vite('public/assets/css/style.css')
     </head>
 
@@ -31,7 +33,7 @@
                             @csrf    
                             @method('PUT')    
                             <input type="hidden" id="delete-banner" name="delete_banner" value="0">
-                            <div class="relative flex items-start justify-end w-full h-[150px] sm:h-[230px] md:h-[270px] lg:h-[300px] px-1">    
+                            <div class="relative flex items-start justify-end w-full h-[150px] sm:h-[230px] md:h-[270px] lg:h-[300px] px-1 pt-1">    
                                 <button type="button" id="edit-banner-button" class="flex absolute items-center font-medium h-8 md:h-fit w-8 md:w-fit text-white bg-blue31 hover:border-white rounded border-2 border-blue31 xl:py-1 md:px-2 lg:px-3 m-4 md:m-8 gap-1 cursor-pointer">    
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32" fill="#fff" class="w-full h-full md:w-10 md:h-10">    
                                         <path d="M48 20h-5.5l-3.8-6.4c-.4-.6-1-1-1.7-1h-10c-.7 0-1.3.4-1.7 1l-3.8 6.4H16c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V24c0-2.2-1.8-4-4-4zM32 46c-6.1 0-11-4.9-11-11s4.9-11 11-11 11 4.9 11 11-4.9 11-11 11zm0-18a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>    
@@ -45,7 +47,7 @@
                                     </button>  
                                 </div>
                                 <input id="photo-upload" type="file" accept="image/*" class="hidden" name="banner_image" onchange="previewAndCropPhoto(event)">    
-                                <img id="photo-preview" src="{{ $profile->banner_image ? asset($profile->banner_image) : asset('images/samplebg.jpg') }}" alt="Foto Banner" class="w-full h-full object-cover rounded bg-bluee3">
+                                <img id="photo-preview" src="{{ $profile->banner_image ? asset($profile->banner_image) : asset('images/samplebg.jpg') }}" alt="Foto Banner" class="w-full h-full object-cover rounded text-blue31 bg-bluee3">
                                 <div id="banner-buttons" class="absolute top-4 lg:top-8 right-4 lg:right-8 space-y-1.5 md:text-base text-sm hidden">
                                     <button type="submit" id="save-banner-button" class="lg:w-24 md:w-20 w-fit flex items-center justify-center font-medium hover:text-white hover:bg-blue31 hover:border-blue31 border-2 rounded lg:py-2 md:py-1 py-0.5 md:px-2 px-5 cursor-pointer">Simpan</button>  
                                 </div>       
@@ -73,7 +75,7 @@
                                                 <p class="text-xs underline italic mt-1 text-justify">Keterangan: format file yang didukung: JPG, PNG, JPEG. pastikan wajah terlihat dengan jelas.</p>    
                                             </div>    
                                         </form>                                        
-                                        <div class="w-full lg:w-5/6 h-full lg:h-fit pt-0 md:pt-6 lg:pt-0 font-medium space-y-4">  
+                                        <div class="w-full lg:w-5/6 h-full lg:h-fit pt-0 md:pt-6 lg:pt-0 font-medium space-y-6">  
                                             <div class="border-b-2 border-bluee3 pb-5">  
                                                 <h1 id="username" class="text-lg sm:text-xl xl:text-2xl font-extrabold">{{ old('username', $profile->username) }}</h1>  
                                                 <h5 id="occupation" class="text-base sm:text-lg xl:text-xl">{{ old('occupation', $profile->occupation) }}</h5>  
@@ -96,27 +98,37 @@
                                             </form>   
                                             <div class="pb-8 lg:pt-0 pt-3 border-b-2 border-bluee3 space-y-2 text-sm font-normal">  
                                                 <h5 class="font-semibold text-sm sm:text-base">Capaian Pembelajaran</h5>  
-                                                <div>  
-                                                    <img src="{{ asset('images/content-1.png') }}" alt="" class="xl:w-16 lg:w-12 w-10 lg:h-12 xl:h-16 h-10 rounded-full border-2 md:border-4 border-blue31 cursor-pointer">  
-                                                    <a href="/learn" class="underline text-sm md:text-base">Selengkapnya...</a>  
-                                                </div>  
+                                                <div class="flex flex-col gap-2">  
+                                                    <div id="recapLearn" class="flex gap-2">
+                                                        @if ($completedModules->isNotEmpty())
+                                                            @foreach ($completedModules as $mod)
+                                                                <img src="{{ asset($mod->module_publisher_banner) }}" 
+                                                                    alt="Banner {{ $mod->module_title ?? '' }}" 
+                                                                    class="xl:w-16 lg:w-12 w-10 lg:h-12 xl:h-16 h-10 rounded-full border-2 md:border-4 border-blue31 cursor-pointer">
+                                                            @endforeach
+                                                        @else
+                                                            <p class="text-blue31 text-sm font-normal text-justify">Belum ada capaian, Anda belum menyelesaikan pembelajaran apapun.</p>
+                                                        @endif
+                                                    </div>
+                                                    <a href="/preLearn" class="underline text-sm md:text-base">Selengkapnya...</a>  
+                                                </div> 
                                             </div>  
-                                            <div class="pt-1 md:pt-3 text-xs sm:text-sm xl:text-base font-medium lg:font-bold flex justify-start md:justify-end">  
+                                            <div class="pt-1 md:pt-0 text-xs sm:text-sm xl:text-base font-medium lg:font-bold flex justify-start md:justify-end">  
                                                 <div class="w-fit lg:w-full px-4 py-2 flex justify-center items-center cursor-pointer bg-pinkee text-white rounded transition hover:bg-blue31">  
-                                                    <form action="{{ route('logout') }}" method="POST" class="w-full text-center">  
-                                                        @csrf  
-                                                        <button type="submit" class="w-full">KELUAR DARI AKUN</button>  
-                                                    </form>  
+                                                    <button id="openLogoutModalBtn" type="button" class="w-full" data-bs-toggle="modal" data-bs-target="#modalDialog">
+                                                        KELUAR DARI AKUN
+                                                    </button>
+                                                    @include('includes.content.main.profile.signOut-dialog')
                                                 </div>  
                                             </div>  
                                         </div>  
                                     </div>  
                                     <div class="w-full lg:w-3/4 lg:mt-0 mt-4 flex bg-white rounded border-2 border-blue31">
                                         <div class="w-full px-6 lg:px-3 xl:px-6 text-sm xl:text-base flex-col">
-                                            <nav class="w-full py-4 sm:py-0 sm:pt-4 md:text-base grid sm:grid-cols-4 grid-cols-2 font-semibold border-b-2 border-bluee3">
+                                            <nav class="w-full py-4 sm:py-0 sm:pt-4 text-base lg:text-lg grid sm:grid-cols-4 grid-cols-2 font-medium border-b-2 border-bluee3">
                                                 <button id="section1Button" onclick="showContent('section1')" class="pb-4 sm:pt-0 pt-4 transition border-b-2 border-blue31">Biodata Diri</button>
-                                                <button id="section2Button" onclick="showContent('section2')" class="pb-4 sm:pt-0 pt-4 transition">Dokumen dan Layanan</button>
-                                                <button id="section3Button" onclick="showContent('section3')" class="pb-4 sm:pt-0 pt-4 transition">Notifikasi</button>
+                                                <button id="section2Button" onclick="showContent('section2')" class="pb-4 sm:pt-0 pt-4 transition">Dokumen ({{ $completedDocs->count() }})</button>
+                                                <button id="section3Button" onclick="showContent('section3')" class="pb-4 sm:pt-0 pt-4 transition">Notifikasi ({{ $notifications->filter(fn($n) => isset($n->user_id) && !$n->is_read)->count() }})</button>
                                                 <button id="section4Button" onclick="showContent('section4')" class="pb-4 sm:pt-0 pt-4 transition">Pengaturan Lainnya</button>
                                             </nav>
                                             <div id="section1" class="w-full hidden lg:flex items-center justify-center py-8">
