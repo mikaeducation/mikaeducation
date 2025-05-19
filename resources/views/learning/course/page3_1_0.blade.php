@@ -22,7 +22,7 @@
                             <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     @include('includes.content.elearning.course.video-player', 
-                                        ['src' => ''])
+                                        ['src' => 'https://drive.google.com/file/d/1Q-xUVtznKK2mKjZpWKvFE3-U3W31m-25/view?usp=sharing'])
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">

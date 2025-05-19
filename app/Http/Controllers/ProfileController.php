@@ -293,59 +293,56 @@ class ProfileController extends Controller
 
 
         $user = User::find($userId);
-if (!$user) {
-    Log::debug("User not found with id: {$userId}");
-    return;
-}
+        if (!$user) {
+            Log::debug("User not found with id: {$userId}");
+            return;
+        }
 
-// Ambil pesan admin yang sudah direspon
-$adminMessages = Message::where('phone', $user->phone)
-    ->whereNotNull('respon') // Pastikan respon ada
-    ->get();
+        // Ambil pesan admin yang sudah direspon
+        $adminMessages = Message::where('phone', $user->phone)
+            ->whereNotNull('respon') // Pastikan respon ada
+            ->get();
 
-Log::debug("Found " . $adminMessages->count() . " admin responses for user: {$user->id}");
+        Log::debug("Found " . $adminMessages->count() . " admin responses for user: {$user->id}");
 
-foreach ($adminMessages as $msg) {
-    // Gabungkan pesan yang diajukan dengan respon admin
-    $text_log = 'Pesan yang Anda ajukan: ';
-    $text_log .= $msg->chat1 ? '(1) ' . $msg->chat1 : ''; 
-    $text_log .= $msg->chat2 ? ' (2) ' . $msg->chat2 : '';
-    $text_log .= ' Respon atas Pesan Anda: ' . Str::limit($msg->respon, 100);
+        foreach ($adminMessages as $msg) {
+            // Gabungkan pesan yang diajukan dengan respon admin
+            $text_log = 'Pesan yang Anda ajukan: ';
+            $text_log .= $msg->chat1 ? '(1) ' . $msg->chat1 : ''; 
+            $text_log .= $msg->chat2 ? ' (2) ' . $msg->chat2 : '';
+            $text_log .= ' Respon atas Pesan Anda: ' . Str::limit($msg->respon, 100);
 
-    Log::debug("Prepared text_log: {$text_log}");
+            Log::debug("Prepared text_log: {$text_log}");
 
-    // Simpan log admin jika belum ada
-    $existingLog = UserLog::where('user_id', $user->id)
-        ->where('log_type', 'admin')
-        ->where('related_id', $msg->id) // Ensure only one log per admin message
-        ->exists();
+            // Simpan log admin jika belum ada
+            $existingLog = UserLog::where('user_id', $user->id)
+                ->where('log_type', 'admin')
+                ->where('related_id', $msg->id) // Ensure only one log per admin message
+                ->exists();
 
-    if (!$existingLog) {
-        Log::debug("Creating user_log for admin message with ID: {$msg->id}");
+            if (!$existingLog) {
+                Log::debug("Creating user_log for admin message with ID: {$msg->id}");
 
-        UserLog::firstOrCreate(
-            [
-                'user_id' => $user->id,
-                'log_type' => 'admin',
-                'related_id' => $msg->id, // Menyimpan ID pesan
-                'module_id' => null, // NULL untuk pesan admin
-            ],
-            [
-                'text_log' => $text_log,
-                'is_read' => false, // Tandai sebagai belum dibaca
-                'created_at' => $msg->updated_at,
-                'updated_at' => $msg->updated_at,
-            ]
-        );
+                UserLog::firstOrCreate(
+                    [
+                        'user_id' => $user->id,
+                        'log_type' => 'admin',
+                        'related_id' => $msg->id, // Menyimpan ID pesan
+                        'module_id' => null, // NULL untuk pesan admin
+                    ],
+                    [
+                        'text_log' => $text_log,
+                        'is_read' => false, // Tandai sebagai belum dibaca
+                        'created_at' => $msg->updated_at,
+                        'updated_at' => $msg->updated_at,
+                    ]
+                );
 
-        Log::debug("User log for admin response created successfully.");
-    } else {
-        Log::debug("User log for admin response already exists, skipping creation.");
-    }
-}
-
-
-
+                Log::debug("User log for admin response created successfully.");
+            } else {
+                Log::debug("User log for admin response already exists, skipping creation.");
+            }
+        }
     }
 
 

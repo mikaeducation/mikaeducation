@@ -43,7 +43,7 @@
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
                                 <div class="mt-4 md:mt-4"> Lupa Password Anda?
-                                    <a href="" class="underline italic underline-offset-1">Klik disini</a>
+                                    <a href="#" class="showChangePWDialog underline italic underline-offset-1">Klik disini</a>
                                 </div>
                                 <button class="bg-blue31 w-2/5 py-3 px-6 rounded font-bold text-2xl text-white mt-5 md:mt-5">MASUK</button>
                             </form>
@@ -75,6 +75,8 @@
             </div>
         </section>    
     </body>
+
+        @include('includes.content.main.changePassword')
 </html>
 
 @if(session('success'))

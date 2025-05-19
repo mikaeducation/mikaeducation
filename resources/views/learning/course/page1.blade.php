@@ -24,9 +24,9 @@
                             <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
-                                        @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://drive.google.com/file/d/1Q-xUVtznKK2mKjZpWKvFE3-U3W31m-25/preview'])
-                                    </div>
+                                    @include('includes.content.elearning.course.video-player', 
+                                    ['src' => 'https://youtu.be/_rY3FOnPibc'])
+                                </div>
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
