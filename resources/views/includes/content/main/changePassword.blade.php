@@ -1,4 +1,4 @@
-<div id="modalDialog" class="modal fade relative z-50 w-3/4 md:w-0" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+<div id="modalDialog" class="modal fade hidden relative z-50 w-3/4 md:w-0" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="fixed w-full inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true"></div>            
     <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
         <div class="flex w-full h-full min-h-screen items-center justify-center p-4 text-center sm:p-0">

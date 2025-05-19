@@ -14,37 +14,38 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+        return view('registerpage'); // pakai view buatan kamu
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => 'required|unique:users,phone',
+            'email' => 'required|email|unique:users,email',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'phone.required' => 'Nomor belum diisi.',
+            'phone.unique' => 'Nomor telah digunakan sebelumnya.',
+            'email.required' => 'Email belum diisi.',
+            'email.email' => 'Email tidak valid.',
+            'email.unique' => 'Email telah digunakan sebelumnya.',
+            'password.required' => 'Password wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'terms_accepted' => true,
         ]);
 
-        event(new Registered($user));
+        event(new Registered($user)); // mengirim email verifikasi
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect('/email/verify'); // Breeze akan arahkan ke verifikasi
     }
 }
