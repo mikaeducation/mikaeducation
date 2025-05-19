@@ -1,58 +1,21 @@
-<x-mail::message>
-{{-- Greeting --}}
-@if (! empty($greeting))
-# {{ $greeting }}
-@else
-@if ($level === 'error')
-# @lang('Whoops!')
-@else
-# @lang('Hello!')
-@endif
-@endif
+<x-mail::message class="text-justify">
 
-{{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
+# Halo Sahabat MIKA,
 
-@endforeach
+Terima kasih telah mendaftar di MIKA Education!
 
-{{-- Action Button --}}
-@isset($actionText)
-<?php
-    $color = match ($level) {
-        'success', 'error' => $level,
-        default => 'primary',
-    };
-?>
-<x-mail::button :url="$actionUrl" :color="$color">
-{{ $actionText }}
+Silakan klik tombol di bawah ini untuk memverifikasi email yang didaftarkan untuk aktivasi akun Anda, kemudian melakukan proses Login/Masuk ke dalam website:
+
+<x-mail::button :url="$actionUrl" class="p-2">
+Verifikasi Akun Anda
 </x-mail::button>
-@endisset
 
-{{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
+Atau anda juga bisa mengakses link dibawah ini.
+[{{ $actionUrl }}]({{ $actionUrl }})
 
-@endforeach
+Namun, jika Anda tidak merasa membuat akun di MIKA Education, maka abaikan pesan dari email ini.
 
-{{-- Salutation --}}
-@if (! empty($salutation))
-{{ $salutation }}
-@else
-@lang('Regards'),<br>
-{{ config('app.name') }}
-@endif
+Terima kasih,<br>
+Tim Pengembang MIKA Education
 
-{{-- Subcopy --}}
-@isset($actionText)
-<x-slot:subcopy>
-@lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
-    [
-        'actionText' => $actionText,
-    ]
-) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
-</x-slot:subcopy>
-@endisset
 </x-mail::message>

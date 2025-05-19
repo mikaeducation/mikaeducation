@@ -49,8 +49,40 @@
                     </div>
                     <div class="flex flex-col items-center space-y-4 text-lg">
                         <p class="w-2/3">atau Anda dapat memasukkan nomor telpon, email dan password untuk mendaftarkan akun Anda.</p>
-                            @include('includes.content.main.termsCondition')
+                            <form id="register-form" action="{{ route('register') }}" method="POST" class="flex flex-col items-center w-full">
+                            @csrf
+                            <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31">
+                            @error('phone')
+                                <p class="text-sm">{{ $message }}</p>
+                            @enderror
 
+                            <input type="email" name="email" placeholder="Email" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
+                            @error('email')
+                                <p class="text-sm">{{ $message }}</p>
+                            @enderror
+
+                            <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
+                            @error('password')
+                                <p class="text-sm text-blue31">{{ $message }}</p> <!-- Pesan validasi untuk password -->
+                            @enderror
+
+                            <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31 mt-4">
+                            @error('password_confirmation')
+                                <p class="text-sm text-blue31">{{ $message }}</p> <!-- Pesan validasi untuk konfirmasi password -->
+                            @enderror
+
+                            <div class="mt-4 w-3/4 flex items-start lg:item-center xl:items-center justify-center">
+                                <input id="terms-checkbox" type="checkbox" class="w-5">
+                                <label for="terms-checkbox">
+                                    Saya setuju dengan <a href="#" class="showTermsDialog underline italic underline-offset-1">Syarat dan Ketentuan</a> Akun MIIKA Education.
+                                </label>
+                            </div>
+                            <p id="error-message" class="text-blue31 text-sm mt-2 hidden">Anda belum menyetujui syarat dan ketentuan yang berlaku.</p>
+                            
+                            <button type="button" id="submit-button" class="bg-blue31 w-1/2 py-3 px-6 rounded font-bold text-2xl text-white mt-5">
+                                DAFTAR
+                            </button>
+                        </form>
                         <p class="block md:hidden mt-5 mb-20"> Sudah Punya Akun? Ayo segera masuk,
                             <a href="/login" class="underline italic underline-offset-1">Disini.</a>
                         </p>

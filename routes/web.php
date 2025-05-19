@@ -14,7 +14,31 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\AsessmentController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
 
+
+
+Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) {
+    $user = User::findOrFail($id);
+
+    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        return redirect('/register')->withErrors(['message' => 'Link verifikasi tidak valid atau telah kadaluarsa.']);
+    }
+
+    if (! $user->hasVerifiedEmail()) {
+        $user->markEmailAsVerified();
+    }
+
+    return redirect('/login')->with('status', 'Email berhasil diverifikasi. Silakan login.');
+})->middleware('signed')->name('verification.verify');
+
+Route::get('/login', function () {
+    return view('auth.loginpage');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.registerpage');
+})->name('register');
 /*
 |--------------------------------------------------------------------------
 | HALAMAN BERANDA / HALAMAN UTAMA
@@ -68,7 +92,6 @@ Route::middleware(['auth'])->group(function () {
 */
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
     Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
     Route::get('/modules', fn() => view('learning/modules'));
     Route::get('/modules/{id}', [ModuleController::class, 'showModules'])->name('modules.show');

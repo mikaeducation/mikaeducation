@@ -12,7 +12,7 @@
                     </button>
                 </div>
                 <div class="w-full h-[70%] text-blue31 pr-5 gap-4 flex flex-col gtext-justify overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-white">
-                    <p class="text-justify">Konfirmasi lupa password akun anda dengan mengetikkan email yang didaftarkan, pada form konfirmasi dibawah ini.</p>
+                    <p class="text-justify">Konfirmasi lupa password akun anda dengan mengetikkan nomor telepon yang didaftarkan, pada form konfirmasi dibawah ini.</p>
                     <form id="delete-account-form" method="POST" action="{{ route('account.delete') }}" class="w-full gap-8 flex flex-col items-center justify-center">
                         @csrf
                         <input type="text" name="phone" placeholder="Ketikkan nomor telepon Anda yang terdaftar disini..." required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -15,30 +17,47 @@ class AuthenticatedSessionController extends Controller
      * Display the login view.
      */
     public function create()
-    {
-        return view('loginpage'); // Gunakan tampilan login kamu
+{
+    Log::debug('Auth::check()', ['value' => Auth::check()]);
+    Log::debug('Auth::user()', ['user' => Auth::user()]);
+
+    if (Auth::check()) {
+        return redirect('/');
     }
+
+    return view('auth.loginpage');
+}
+
 
     public function store(Request $request)
-    {
-        $credentials = $request->only('phone', 'password');
+{
+    $credentials = $request->only('phone', 'password');
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
+    if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        $request->session()->regenerate();
 
-            $user = Auth::user();
+        $user = Auth::user();
 
-            if ($user->profile) {
-                return redirect()->intended('/');
-            } else {
-                return redirect('/registerprofile');
-            }
+        if (! $user->hasVerifiedEmail()) {
+            Auth::logout();
+            return redirect()->route('login')->withErrors([
+                'email' => 'Akun Anda belum diverifikasi. Silakan cek email Anda.',
+            ]);
         }
 
-        return back()->withErrors([
-            'phone' => 'Nomor telepon atau password salah.',
-        ]);
+        $hasProfile = Profile::where('phone', $user->phone)->exists();
+
+        if (! $hasProfile) {
+            return redirect('/registerprofile');
+        }
+
+        return redirect()->intended('/');
     }
+
+    return back()->withErrors([
+        'phone' => 'Nomor telepon atau password salah.',
+    ]);
+}
 
     public function destroy(Request $request)
     {
@@ -50,6 +69,4 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/')->with('success', 'Anda telah berhasil keluar dari akun Anda.');
     }
-
-
 }

@@ -27,12 +27,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
+
 Route::middleware('auth')->group(function () {
-    // Bisa gunakan yang ini jika pakai controller Breeze
     Route::get('/verify-email', EmailVerificationPromptController::class)->name('verification.notice');
-    Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-        ->middleware(['signed', 'throttle:6,1'])
-        ->name('verification.verify');
     Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')
         ->name('verification.send');

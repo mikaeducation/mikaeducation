@@ -16,7 +16,11 @@ class RegisteredUserController extends Controller
 {
     public function create()
     {
-        return view('registerpage'); // pakai view buatan kamu
+        if (Auth::check()) {
+            return redirect('/');
+        }
+
+        return view('auth.registerpage');
     }
 
     public function store(Request $request)
@@ -44,8 +48,14 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user)); // mengirim email verifikasi
 
-        Auth::login($user);
+        return response()->make(
+            '<script>
+                alert("Akun berhasil didaftarkan. Silakan cek email Anda untuk proses aktivasi akun terlebih dahulu, baru setelah itu Anda dapat melakukan Login.");
+                window.location.href = "/login";
+            </script>',
+            200,
+            ['Content-Type' => 'text/html']
+        );
 
-        return redirect('/email/verify'); // Breeze akan arahkan ke verifikasi
     }
 }

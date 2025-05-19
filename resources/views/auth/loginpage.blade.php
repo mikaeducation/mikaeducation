@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @vite('public/assets/css/style.css')
     </head>
+    
     <body>
         <section class="flex flex-col md:flex-row w-full h-screen font-futura text-blue31">
             <div class="w-full md:w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center pl-0 lg:pl-20">
@@ -32,6 +33,11 @@
                         </div>
                         <div class="flex-col items-center space-y-4">
                             <p class="text-lg text-blue3a">atau masukkan nomor telpon dan password Anda</p>
+                            @if (session('status'))
+                                <div class="w-full mb-4 font-medium text-lg lg:text-xl text-blue31 bg-bluee3 border border-blue6a p-3 rounded">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a  rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue31 font-medium placeholder:opacity-45 placeholder-blue31">
@@ -78,9 +84,3 @@
 
         @include('includes.content.main.changePassword')
 </html>
-
-@if(session('success'))
-<script>
-    alert("{{ session('success') }}");
-</script>
-@endif
