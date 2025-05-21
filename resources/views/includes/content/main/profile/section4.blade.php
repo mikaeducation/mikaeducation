@@ -30,7 +30,7 @@
                         <div id="passwordFields" class="hidden space-y-4">
                             <div class="w-full flex items-center">
                                 <label for="password" class="w-1/3 block text-base font-medium mb-1">Kata Sandi Baru</label>
-                                <input type="password" id="password" name="password" placeholder="Tambahkan kata sandri baru Anda" class="w-2/3 pl-2">
+                                <input type="password" id="password" name="password" placeholder="Tambahkan kata sandi baru Anda" class="w-2/3 pl-2">
                                     @error('password_confirmation')
                                         <p class="text-blue6a text-sm">{{ $message }}</p>
                                     @enderror

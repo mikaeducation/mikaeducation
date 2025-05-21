@@ -9,7 +9,7 @@
                     EDUCATION </h1>
             </a>
             <p class="w-full md:w-5/6 lg:w-5/6 pt-2 text-justify leading-6 tracking-wider">MIKA Education didanai oleh Pemerintah Australia, Departemen Luar Negeri & Perdagangan Australia melalui Konsulat Jenderal Australia di Surabaya. Pendanaan tersebut diperoleh MIKA melalui Direct Aid Program Australian.</p>
-            <img src="{{ asset('images/aid.png') }}" alt="Australian Direct Aid Program" class="h-14">
+            <img src="{{ asset('images/aid.png') }}" alt="Australian Direct Aid Program" class="h-14 hidden">
         </div>
         <div class="w-full md:w-1/2 lg:w-2/6">
             <div class="w-full h-60 md:w-3/4 lg:w-3/4 md:h-1/2 lg:h-1/2">
