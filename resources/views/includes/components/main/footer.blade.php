@@ -39,4 +39,4 @@
     </div>
 </footer>
 
-@include('includes.content.main.termsCondition')
+@include('includes.components.main.dialog.terms-condition')

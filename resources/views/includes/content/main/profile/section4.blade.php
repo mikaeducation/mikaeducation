@@ -3,66 +3,61 @@
         <h3 class="mt-1">Pengaturan Akun</h3>
         <div class="w-full p-4 border-2 border-bluee3">
             <div class="w-full">
+                @if (session('status'))
+                    <div class="bg-bluee3 text-blue31 px-4 py-2 mb-4 rounded">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="bg-bluee3 text-blue31 px-4 py-2 mb-4 rounded">
+                        <ul class="list-disc pl-4">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('account.update') }}" method="POST" class="w-full" id="accountForm">
                     @csrf
                     <div class="w-full space-y-4">
                         <div class="w-full flex items-center">
                             <label for="phone" class="w-1/3 block text-base font-medium mb-1">Nomor Telepon</label>
                             <input type="text" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" class="w-2/3 p-2" readonly>
-                            @error('phone')
-                                <p class="text-blue6a text-sm">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div class="w-full flex items-center">
                             <label for="email" class="w-1/3 block text-base font-medium mb-1">Email</label>
                             <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" class="w-2/3 pl-2" readonly>
-                            @error('email')
-                                <p class="text-blue6a text-sm">{{ $message }}</p>
-                            @enderror
                         </div>
-                        {{-- Kata sandi lama/yg terncamtum di database saat read saja, menghilang saat edit --}}
-                        <div id="passwordFields1" class="w-full flex items-center">
-                            <label for="password" class="w-1/3 block text-base font-medium mb-1">Kata Sandi</label>
-                            <input type="password" id="password" name="password" placeholder="{{ str_repeat('*', strlen($user->password)) }}" 
-                                class="w-2/3 pl-2" readonly>
+                        {{-- Password (readonly, default view) --}}
+                        <div id="passwordDisplay" class="w-full flex items-center">
+                            <label class="w-1/3 block text-base font-medium mb-1">Kata Sandi</label>
+                            <input type="password" value="{{ str_repeat('*', 10) }}" class="w-2/3 pl-2" readonly>
                         </div>
-                        {{-- Kata Sandi baru muncul saat Edit --}}
+                        {{-- Password editable (hidden by default) --}}
                         <div id="passwordFields" class="hidden space-y-4">
                             <div class="w-full flex items-center">
-                                <label for="password" class="w-1/3 block text-base font-medium mb-1">Kata Sandi Baru</label>
-                                <input type="password" id="password" name="password" placeholder="Tambahkan kata sandri baru Anda" class="w-2/3 pl-2">
-                                    @error('password_confirmation')
-                                        <p class="text-blue6a text-sm">{{ $message }}</p>
-                                    @enderror
+                                <label class="w-1/3 block text-base font-medium mb-1">Kata Sandi Lama</label>
+                                <input type="password" name="current_password" class="w-2/3 pl-2" placeholder="Masukkan kata sandi lama Anda...">
                             </div>
                             <div class="w-full flex items-center">
-                                <label for="password_confirmation" class="w-1/3 block text-base font-medium mb-1">Konfirmasi Kata Sandi Baru</label>
-                                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi kata sandi baru Anda" class="w-2/3 pl-2">
-                                @error('password_confirmation')
-                                    <p class="text-blue6a text-sm">{{ $message }}</p>
-                                @enderror
+                                <label class="w-1/3 block text-base font-medium mb-1">Kata Sandi Baru</label>
+                                <input type="password" name="new_password" class="w-2/3 pl-2" placeholder="Tambahkan kata sandi baru Anda...">
+                            </div>
+                            <div class="w-full flex items-center">
+                                <label class="w-1/3 block text-base font-medium mb-1">Konfirmasi Kata Sandi Baru</label>
+                                <input type="password" name="new_password_confirmation" class="w-2/3 pl-2" placeholder="Konfirmasi kata sandi baru Anda...">
                             </div>
                         </div>
                     </div>
                     <div class="text-sm font-normal italic mt-4 py-2">
-                        <p>Akun anda terakhir diubah pada: <span class="font-medium text-xs">{{ $user->created_at->format('d-m-Y H:i') }}</span></p>
+                        <p>Akun anda terakhir diubah pada: <span class="font-medium text-xs">{{ $user->updated_at->format('d-m-Y H:i') }}</span></p>
                     </div>
-                    <div class="w-full flex items-center justify-start md:justify-end gap-2">
-                        <button type="button" id="editButton" class="bg-blue31 text-white py-2 px-10 hover:border-blue31 border-2 rounded">Edit Akun</button>
-                        <button type="submit" id="saveButton" class="bg-transparent border-2 border-blue31 text-blue31 py-2 px-10 rounded hover:bg-blue31 hover:text-white transition" disabled>Simpan</button>
+                    <div class="w-full flex items-center justify-start md:justify-end gap-2 mt-4">
+                        <button type="button" id="editButton" class="bg-blue31 text-white py-2 px-10 border-2 rounded hover:border-blue31">Edit Akun</button>
+                        <button type="button" id="togglePassword" class="bg-transparent border-2 border-blue31 text-blue31 py-2 px-10 rounded hover:bg-blue31 hover:text-white transition hidden">Ubah Kata Sandi</button>
+                        <button type="submit" id="saveButton" class="bg-blue31 text-white py-2 px-10 border-2 rounded hidden">Simpan</button>
                     </div>
                 </form>
-                <!-- Pop-Up Notification -->
-                <div id="successPopup" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex-col items-center justify-center">
-                    <div class="bg-white w-1/3 h-1/3 rounded shadow-md text-center flex flex-col items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1" fill="none"></circle>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
-                        </svg>
-                        <p class="font-medium text-xl">Informasi akun Anda berhasil diubah.</p>
-                        <button id="closePopupButton" class="mt-4 w-1/3 bg-blue31 border-2 border-blue31 text-white py-2 px-4 rounded hover:bg-transparent hover:border-2 hover:border-blue31 hover:text-blue31">Tutup</button>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="w-full p-4 border-2 border-bluee3">
@@ -101,11 +96,25 @@
                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div class="w-3/4 lg:w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
                         <h3 class="text-3xl font-bold pb-4 border-b-2 border-bluee3 w-full text-center">Konfirmasi Penghapusan Akun</h3>
-                        <p class="text-justify lg:text-center mt-4">Konfirmasi penghapusan akun anda dengan mengetikkan nomor telpon yang didaftarkan, pada form konfirmasi dibawah ini.</p>
+                        <p class="text-justify lg:text-center text-lg mt-4">Konfirmasi penghapusan akun anda dengan mengetikkan nomor telpon dan password yang didaftarkan, pada form dibawah ini. Setelah itu, <span class="underline">silahkan cek Email Anda</span> untuk memverifikasi penghapusan akun Anda dengan baik.</p>
+                        @if (session('status'))
+                            <div class="mt-4 text-pinkee font-semibold">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <form id="delete-account-form" method="POST" action="{{ route('account.delete') }}" class="w-full mt-4 flex flex-col items-center justify-center">
                             @csrf
-                            <input type="text" name="phone" placeholder="Ketikkan nomor telepon Anda yang terdaftar disini..." required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
-                            <div class="w-full mt-4 flex justify-end">
+                            <input type="text" name="phone" placeholder="Nomor Telepon Anda" value="{{ old('phone') }}"
+                                required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
+                            @error('phone')
+                                <div class="text-blu31 text-sm mt-1 w-full text-left">{{ $message }}</div>
+                            @enderror
+                            <input type="password" name="password" placeholder="Password Anda"
+                                required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
+                            @error('password')
+                                <div class="text-blue31 text-sm mt-1 w-full text-left">{{ $message }}</div>
+                            @enderror                            
+                            <div class="w-full mt-8 flex justify-end">
                                 <button id="cancel-input-btn" type="button" class="w-1/2 px-4 py-2 bg-blue31 text-white hover:border-blue31 border-2 rounded mr-2">Batalkan</button>
                                 <button type="submit" class="w-1/2 px-4 py-2 bg-transparent border-2 border-blue31 transition rounded hover:bg-pinkee hover:border-pinkee">Nonaktifkan Akun</button>
                             </div>
@@ -168,49 +177,50 @@
     //JS untuk pengaturan akun
         document.addEventListener("DOMContentLoaded", () => {
             const form = document.getElementById('accountForm');
-            const inputs = form.querySelectorAll('input');
-            const editButton = document.getElementById('editButton');
-            const saveButton = document.getElementById('saveButton');
-            const passwordFields1 = document.getElementById('passwordFields1');
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
+            const passwordDisplay = document.getElementById('passwordDisplay');
             const passwordFields = document.getElementById('passwordFields');
-            // Pop-up elemen
-            const successPopup = document.getElementById('successPopup');
-            const closePopupButton = document.getElementById('closePopupButton');
-            // Klik tombol Edit
+
+            const editButton = document.getElementById('editButton');
+            const togglePassword = document.getElementById('togglePassword');
+            const saveButton = document.getElementById('saveButton');
+
+            let passwordEditMode = false;
+
             editButton.addEventListener('click', () => {
-                // Ubah semua input menjadi editable
-                inputs.forEach(input => input.removeAttribute('readonly'));
-                // Sembunyikan password lama dan tampilkan password baru
-                passwordFields1.classList.add('hidden');
-                passwordFields.classList.remove('hidden');
-                // Tampilkan tombol Simpan dan sembunyikan tombol Edit
-                saveButton.style.display = 'inline-block';
-                editButton.style.display = 'none';
+                // Aktifkan input phone & email
+                phoneInput.removeAttribute('readonly');
+                emailInput.removeAttribute('readonly');
+
+                // Tampilkan tombol ubah password & simpan
+                togglePassword.classList.remove('hidden');
+                saveButton.classList.remove('hidden');
+                editButton.classList.add('hidden');
             });
-            // Submit form untuk menyimpan data
-            form.addEventListener('submit', (e) => {
-                e.preventDefault(); // Mencegah form refresh default
-                // Simulasi proses simpan data (gunakan AJAX atau metode lain untuk menyimpan ke server)
-                setTimeout(() => {
-                    // Tampilkan pop-up sukses
-                    successPopup.classList.remove('hidden');
-                    successPopup.classList.add('flex');
-                    // Reset tampilan form setelah simpan
-                    inputs.forEach(input => input.setAttribute('readonly', true));
-                    passwordFields1.classList.remove('hidden');
+
+            togglePassword.addEventListener('click', () => {
+                passwordEditMode = !passwordEditMode;
+
+                if (passwordEditMode) {
+                    // Sembunyikan tampilan password readonly
+                    passwordDisplay.classList.add('hidden');
+
+                    // Tampilkan input pengubahan password
+                    passwordFields.classList.remove('hidden');
+                    togglePassword.textContent = 'Batalkan Ubah Sandi';
+                } else {
+                    // Kembalikan tampilan readonly jika batal
+                    passwordDisplay.classList.remove('hidden');
                     passwordFields.classList.add('hidden');
-                    // Sembunyikan tombol Simpan dan tampilkan tombol Edit
-                    saveButton.style.display = 'none';
-                    editButton.style.display = 'inline-block';
-                }, 500); // Simulasi waktu proses penyimpanan
+                    togglePassword.textContent = 'Ubah Kata Sandi';
+                }
             });
-            // Tutup pop-up saat tombol ditutup diklik
-            closePopupButton.addEventListener('click', () => {
-                successPopup.classList.add('hidden');
-                successPopup.classList.remove('flex');
+
+            // Opsional: validasi sebelum kirim bisa ditambahkan di sini
+            form.addEventListener('submit', (e) => {
+                // Kamu bisa validasi manual di sini juga jika mau
             });
-            // Inisialisasi tampilan awal tombol Simpan (tersembunyi)
-            saveButton.style.display = 'none';
         });
 
             // Hapus Akun

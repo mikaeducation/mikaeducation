@@ -118,7 +118,7 @@
                                                     <button id="openLogoutModalBtn" type="button" class="w-full" data-bs-toggle="modal" data-bs-target="#modalDialog">
                                                         KELUAR DARI AKUN
                                                     </button>
-                                                    @include('includes.content.main.profile.signOut-dialog')
+                                                    @include('includes.components.main.dialog.sign-out-account')
                                                 </div>  
                                             </div>  
                                         </div>  
@@ -134,10 +134,10 @@
                                             <div id="section1" class="w-full hidden lg:flex items-center justify-center py-8">
                                                 @include('includes.content.main.profile.section1')
                                             </div>
-                                            <div id="section2" class="w-full flex items-center justify-center py-8"  style="display: none">
+                                            <div id="section2" class="w-full h-[90%] flex items-center justify-center py-4"  style="display: none">
                                                 @include('includes.content.main.profile.section2')
                                             </div>
-                                            <div id="section3" class="w-full flex items-center justify-center py-8"  style="display: none">
+                                            <div id="section3" class="w-full h-[90%] flex items-center justify-center py-4"  style="display: none">
                                                 @include('includes.content.main.profile.section3')
                                             </div>
                                             <div id="section4" class="w-full flex items-center justify-center py-8"  style="display: none">

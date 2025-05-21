@@ -1,4 +1,4 @@
-<div class="font-medium space-y-2">
+<div class="font-medium space-y-2 h-full overflow-y-auto">
     <div class="w-full flex items-center justify-between mb-4">
         <h3>Semua Notifikasi ({{ $notifications->filter(fn($n) => isset($n->user_id) && !$n->is_read)->count() }})</h3>
         <button id="" class="flex items-center justify-center p-1 border-2 border-blue31 rounded-full">
@@ -34,6 +34,8 @@
                     $text .= $notif->chat1 ? "(1) " . $notif->chat1 : "";
                     $text .= $notif->chat2 ? "; (2) " . $notif->chat2 : " ";
                     $text .= ". \nRespon atas Pesan Anda: " . $notif->text_log;
+                } elseif ($type === 'account') {
+                    $text = $notif->text_log;
                 }
             @endphp
             <div data-id="{{ $isLog ? $notif->id : '' }}" data-type="{{ $type }}" class="notification w-full px-4 md:flex rounded cursor-pointer border-2 border-bluee3 gap-4">
@@ -94,5 +96,4 @@
             });
         }
     });
-
 </script>

@@ -23,7 +23,7 @@
         </div>
 
         <Section class="w-full h-max flex justify-center items-center flex-col mb-10 md:mb-0">
-            @include('includes.content.main.aboutus')
+            @include('includes.content.main.about-us')
         </Section>
 
         @include('includes.components.main.footer')      

@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
+use App\Mail\ResetPasswordVerification;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
 
 class PasswordResetLinkController extends Controller
 {
@@ -23,22 +30,40 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'phone' => 'required|string',
         ]);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email')
+        $user = User::where('phone', $request->phone)->first();
+
+        if (!$user) {
+            return back()
+                ->withErrors(['phone' => 'Nomor telepon tidak ditemukan.'])
+                ->with('status', 'Gagal mengirim email reset password karena nomor telepon tidak ditemukan.');
+        }
+
+        // Buat token reset dan simpan ke table password_resets (default Laravel)
+        $token = Str::random(64);
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $user->email],
+            [
+                'email' => $user->email,
+                'token' => bcrypt($token),
+                'created_at' => Carbon::now(),
+            ]
         );
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                        ->withErrors(['email' => __($status)]);
+        // Buat URL reset password
+        $resetUrl = route('password.reset', [
+            'token' => $token,
+            'email' => $user->email
+        ]);
+
+        // Kirim email manual pakai template kustom
+        Mail::to($user->email)->send(new ResetPasswordVerification($resetUrl, $user));
+
+        return back()->with('status', 'Kami telah mengirimkan email untuk mereset password Anda.');
     }
 }

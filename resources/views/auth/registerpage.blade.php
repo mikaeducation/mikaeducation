@@ -49,7 +49,7 @@
                     </div>
                     <div class="flex flex-col items-center space-y-4 text-lg">
                         <p class="w-2/3">atau Anda dapat memasukkan nomor telpon, email dan password untuk mendaftarkan akun Anda.</p>
-                            <form id="register-form" action="{{ route('register') }}" method="POST" class="flex flex-col items-center w-full">
+                        <form id="register-form" action="{{ route('register') }}" method="POST" class="flex flex-col items-center w-full">
                             @csrf
                             <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-4/6 py-2 font-medium placeholder:opacity-45 placeholder-blue31">
                             @error('phone')
@@ -86,13 +86,18 @@
                         <p class="block md:hidden mt-5 mb-20"> Sudah Punya Akun? Ayo segera masuk,
                             <a href="/login" class="underline italic underline-offset-1">Disini.</a>
                         </p>
+                        <p  id="reactivate-notice" class="text-lg hidden">
+                            Anda terdeteksi pernah memiliki Akun, namun telah non-aktif pasca penghapusan Akun. 
+                            <a href="#" id="showReactivationModal" class="underline"> <br> Lakukan Aktivasi akun Anda disini</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    @include('includes.content.main.termsCondition')
+    @include('includes.components.main.dialog.terms-condition')
+    @include('includes.components.main.dialog.reactivation-account')
 
 </body>
 
@@ -103,5 +108,17 @@
     alert("{{ session('success') }}");
 </script>
 @endif
+
+@if (session('reactivate'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const notice = document.getElementById('reactivate-notice');
+            if (notice) {
+                notice.classList.remove('hidden');
+            }
+        });
+    </script>
+@endif
+
 
 

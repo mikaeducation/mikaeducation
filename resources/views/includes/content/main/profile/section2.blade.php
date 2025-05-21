@@ -1,4 +1,4 @@
-<div class="font-medium space-y-2">
+<div class="font-medium space-y-2 h-full overflow-y-auto">
     <div class="w-full flex items-center justify-between mb-4">
         <h3>Semua Dokumen ({{ $completedDocs->count() }})</h3>
         <button id="" class="flex items-center justify-center p-1 border-2 border-blue31 rounded-full">

@@ -34,8 +34,13 @@
                         <div class="flex-col items-center space-y-4">
                             <p class="text-lg text-blue3a">atau masukkan nomor telpon dan password Anda</p>
                             @if (session('status'))
-                                <div class="w-full mb-4 font-medium text-lg lg:text-xl text-blue31 bg-bluee3 border border-blue6a p-3 rounded">
+                                <div class="w-full mb-4 font-medium text-lg lg:text-xl text-center text-blue31 bg-bluee3 border border-blue6a p-3 rounded">
                                     {{ session('status') }}
+                                </div>
+                            @endif
+                            @if ($errors->has('token'))
+                                <div class="w-full mb-4 font-medium text-lg lg:text-xl text-pinkee text-center bg-bluee3 border border-blue6a p-3 rounded">
+                                    {{ $errors->first('token') }}
                                 </div>
                             @endif
                             <form action="{{ route('login') }}" method="POST">
@@ -82,5 +87,5 @@
         </section>    
     </body>
 
-        @include('includes.content.main.changePassword')
+        @include('includes.components.main.dialog.change-password')
 </html>

@@ -31,6 +31,9 @@ Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) 
 
     return redirect('/login')->with('status', 'Email berhasil diverifikasi. Silakan login.');
 })->middleware('signed')->name('verification.verify');
+Route::get('/reactivate-account', [RegisteredUserController::class, 'showReactivationForm'])->name('reactivate.form');
+Route::post('/reactivate-account', [RegisteredUserController::class, 'reactivate'])->name('reactivate.submit');
+Route::get('/reactivate/verify/{token}', [RegisteredUserController::class, 'verifyReactivation'])->name('reactivate.verify');
 
 Route::get('/login', function () {
     return view('auth.loginpage');
@@ -55,7 +58,7 @@ Route::get('/article1', fn() => view('includes/content/main/article/article1'));
 Route::get('/article2', fn() => view('includes/content/main/article/article2'));
 Route::get('/article3', fn() => view('includes/content/main/article/article3'));
 Route::get('/article4', fn() => view('includes/content/main/article/article4'));
-Route::get('/aboutus', fn() => view('aboutus'));
+Route::get('/aboutus', fn() => view('about-us'));
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/notification/read/{id}', [ProfileController::class, 'markNotificationRead'])->name('notification.read');
 
     Route::post('/delete-account', [AccountController::class, 'deleteAccount'])->name('account.delete');
+    Route::get('/verify-delete-account/{token}', [AccountController::class, 'verifyDeletion']);
     Route::get('/account', [AccountController::class, 'show'])->name('account.show');
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });

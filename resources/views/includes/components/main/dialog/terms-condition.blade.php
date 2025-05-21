@@ -11,7 +11,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="w-full h-[70%] text-blue31 pr-5 flex flex-col gap-5 text-justify  overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-white">
+                <div class="w-full h-[70%] border-b-2 border-bluee3 text-blue31 pr-5 flex flex-col gap-5 text-justify  overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-white">
                     <h5 class="text-2xl font-normal text-left">Penggunaan situs secara umum <br> Terakhir direvisi: <span class="text-xl">16 Mei 2025</span></h5>
                     <p class="text-lg">
                         MIKA Education merupakan sebuah layanan pembelajaran daring berbasis micro-credential yang menyediakan materi edukatif seputar autisme yang merupakan bagian dari MIKA. Dengan mengakses atau menggunakan layanan kami, Anda setuju untuk terikat dengan Syarat dan Ketentuan berikut ini.
