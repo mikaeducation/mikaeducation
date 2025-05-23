@@ -19,24 +19,26 @@
                 <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                     <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
                         <div class="h-full w-full space-y-8">
-                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
+                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[575px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                         @include('includes.content.elearning.course.video-player', 
-                                        ['src' => ''])
+                                        ['src' => 'https://youtu.be/Rkn7mAThE8c'])
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
                                 <div class="w-full flex flex-col text-justify">
                                     <p><p class="p-2 bg-bluee3 mb-2"><span class="font-medium">Karakteristik Reseptif</span> - Komunikasii Reseptif Anak dengan Autimse</p>                        
-                                        Sub bahasan kita yang ketiga terkait dengan komunikasi adalah adalah komunikasi reseptif.
-                                        <br><br>Komunikasi reseptif merupakan kemampuan komunikasi dengan menggunakan visual seperti memahami gambar, 
+                                        Salam kembali lagi dengan saya Mida. 
+                                        <br><br> Kita akan membahas Komunikasi Reseptif
+                                        <br>Komunikasi reseptif merupakan kemampuan komunikasi dengan menggunakan visual seperti memahami gambar, 
                                         foto, instruksi. Memahami sesuatu yang ditanyakan dan cara menjawab dengan ya/tidak, menjawab pertanyaan konsep siapa, apa, kapan, Dimana, 
                                         kenapa dan bagaimana dan juga memahami suatu konsep nomor, bentuk, emosi dan juga lainnya. Kemampuan reseptif ini yaitu bereaksi terhadap nama, 
                                         memahami label/nama untuk benda umum/orang, mengikuti perintah sederhana seperti duduk, jauhi, kemampuan dalam menjawab pertanyaan dasar dan mampu untuk memecahkan masalah. 
-                                        <br><br>Pada kemampuan ini anak dengan autism kesulitan untuk memahami pertanyaan yang bervariasi, kesulitan memahami suatu konsep, Bahasa abstrak seperti pribahasa, 
-                                        idiom, majas, padan kata maupun lawan kata.
+                                        <br><br>Pada kemampuan ini, anak autistik kesulitan untuk memahami pertanyaan yang bervariasi. Kesulitan memahami suatu konsep bahasa abstrak seperti peribahasa, idiom, majas, padan kata, atau sinonim, maupun lawan kata atau antonim untuk membantu komunikasi reseptif pada anak autistik bisa menggunakan alat bantu visual.
+                                        <br><br>Baik terima kasih. Kita sudah membahas komunikasi reseptif, berikutnya kita akan belajar tentang Komunikasi Pragmatis.
+                                        <br>Terima kasih. Selamat belajar.
                                     </p>
                                 </div>
                             </div>

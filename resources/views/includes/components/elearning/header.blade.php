@@ -191,8 +191,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-fit bg-blue31 text-white text-justify px-3 py-1 rounded hover:shadow-lg text-sm">
-                                <button onclick="toggleChatAdmin()" class="flex items-center gap-2">
+                            <div class="w-fit text-white text-justify flex flex-col gap-2 pt-2">
+                                <button onclick="toggleChatAdmin()" class="flex items-center gap-2 bg-blue31 px-3 py-1 rounded hover:shadow-lg text-sm">
                                     <svg width="30" height="33" viewBox="0 0 51 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M41.9997 43.207C42.5894 43.0841 42.9398 42.47 42.6921 41.921C41.4893 39.2549 39.3122 36.9098 36.4141 35.1801C33.1395 33.2258 29.1273 32.1665 24.9998 32.1665C20.8723 32.1665 16.8601 33.2258 13.5855 35.1801C10.6874 36.9097 8.51031 39.2549 7.30749 41.921C7.05981 42.47 7.4102 43.0841 7.99981 43.207L16.8389 45.0491C22.2217 46.1709 27.7779 46.1709 33.1606 45.0491L41.9997 43.207Z" fill="white"/>
                                         <circle cx="25.0007" cy="19.6667" r="10.4167" fill="white"/>
@@ -200,8 +200,12 @@
                                         <path d="M35.375 10.4165L41.625 10.4165" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M35.375 14.5835H38.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>                                        
-                                    <p class="font-medium">Chat dengan Kami...</p>
+                                    <p class="font-medium">Kirim Pesan kepada Kami...</p>
                                 </button>
+                                <a href="https://wa.me/082156226440" class="h-fit flex items-center justify-start gap-3 font-medium bg-blue31 px-3 py-2 rounded hover:shadow-lg text-sm">
+                                    <img src="https://img.icons8.com/pastel-glyph/128/FFFFFF/whatsapp--v2.png" alt="signing-a-document" class="h-7"/>                                
+                                    atau Hubungi via WhatsApp...
+                                </a>
                             </div>
                         </div>
                     </div>

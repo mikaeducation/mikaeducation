@@ -27,7 +27,7 @@
                         </a>
                     </div>
                 </div>
-                    @include('includes.components.elearning.course.dialog.learnOut')
+                    @include('includes.components.elearning.course.dialog.learn-out')
                 <div id="dropdown-aksesibilitas" class="absolute top-8 right-0 mt-2 w-96 bg-white content-shadows rounded hidden">
                     <div class="absolute w-full h-fit z-20 mt-4 pt-2 pb-4 bg-white content-shadows text-blue31 rounded">
                         <div class="block w-full text-left px-4 py-2 space-y-2">

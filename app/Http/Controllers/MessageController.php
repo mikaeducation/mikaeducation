@@ -29,8 +29,7 @@ class MessageController extends Controller
                                     </svg>
                                     <p>Pesan Anda dibatasi sementara</p>
                                 </div>
-                                <p>Kami telah menerima seluruh pesan yang Anda ajukan sebelumnya. Kami akan segera memberikan respon dan mengirimkan jawabannya pada notifikasi Anda. Setelah itu anda dapat mengirimkan pesan kembali. <br> <br> Jika Anda memerlukan bantuan segera, Anda dapat <a href="https://wa.me/082156226440" target="_blank" class="font-medium underline">menghubungi tim dukungan kami disini</a> untuk respon dan jawaban yang lebih cepat.</p>
-                            </div>'
+                            <p>Kami telah menerima seluruh pesan yang Anda ajukan sebelumnya. <span class="font-medium">Silahkan tunggu dalam 2x24 jam dan Kami akan mengirimkan respon dan jawabannya pada notifikasi Anda.</span> Setelah itu anda dapat mengirimkan pesan kembali. <br> <br> Jika Anda memerlukan bantuan segera, Anda dapat <a href="https://wa.me/082156226440" target="_blank" class="font-medium underline">menghubungi tim dukungan kami via WhatsApp disini</a> untuk respon dan jawaban yang lebih cepat.</p>                            </div>'
                 ], 403);
         } elseif ($message->chat1) {
             $message->chat2 = $request->message;
@@ -54,7 +53,9 @@ class MessageController extends Controller
         'responseMessage' => $responseMessage,
         'user' => [
             'name' => $user->profile->first_name ?? $user->name, // Jika tidak ada first_name, gunakan name
-            'profile_image' => $user->profile->profile_image ? asset('storage/' . $user->profile->profile_image) : null
+            'profile_image' => $user->profile && $user->profile->profile_image
+                ? asset($user->profile->profile_image)
+                : null
         ]
     ]);
     

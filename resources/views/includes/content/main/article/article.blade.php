@@ -56,15 +56,15 @@
                 <img src="{{ asset('images/article3.png') }}" alt="" class="w-full h-[300px] object-cover">
                 <h3 class="font-medium">Perkembangan Kemampuan Komunikasi pada Anak dengan Autisme</h3>
             </div>
-            <p class="text-lg">oleh Margaretha <span class="pl-2 text-sm font-normal italic opacity-55">03/03/2022</span> </p>
+            <p class="text-lg">oleh Margaretha <span class="pl-2 text-sm font-normal italic opacity-55">03/03/2022</span></p>
         </a>
         <!-- exc -->
         <a href="/article4" class="w-full lg:w-1/3 md:w-1/2 flex-shrink-0 h-[380px] md:h-[430px] p-2 flex flex-col items-start justify-between hover:bg-gray-100 hover:rounded">
             <div class="space-y-2 w-full">
-                <img src="{{ asset('images/peakpx.png') }}" alt="" class="w-full h-[300px] object-cover">
+                <img src="{{ asset('images/profile-sample.jpg') }}" alt="" class="w-full h-[300px] object-cover">
                 <h3 class="font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
             </div>
-            <p class="text-lg">oleh Penulis</p>
+            <p class="text-lg">Publisher <span class="pl-2 text-sm font-normal italic opacity-55">dd/mm/yyyy</span> </p>
         </a>
     </div>
     <button id="scrollRight" class="absolute flex items-center justify-center h-5/6 right-0 pr-2">

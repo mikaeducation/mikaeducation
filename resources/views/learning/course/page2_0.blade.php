@@ -37,7 +37,7 @@
                                     <h5 class="text-xl">Detail Penilaian</h5>
                                     <div class="flex gap-12">
                                         <div><p>Batas Waktu</p><time class="text-base font-normal">Tidak terbatas</time></div>
-                                        <div><p>Kesempatan</p><time class="text-base font-normal">Tidak Terbatas</time></div>
+                                        <div><p>Kesempatan</p><time class="text-base font-normal">Terbatas/Tidak Bisa Diulang</time></div>
                                     </div>
                                 </div>
                                 <div class="w-full flex items-end justify-end">
@@ -67,13 +67,13 @@
                                         <div>
                                             <p>Kesempatan</p>
                                             <time class="text-base font-normal">
-                                                {{ $asessmentInfo->asessment_type === 'limited' ? 'Terbatas (' . $asessmentInfo->asessment_workout . 'x)' : 'Tidak Terbatas' }}
+                                                {{ $asessmentInfo->asessment_type === 'limited' ? 'Terbatas (' . $asessmentInfo->asessment_workout . 'x)' : 'Terbatas/Tidak Bisa Diulang' }}
                                             </time>
                                         </div>                                    
                                     </div>
                                 </div>
                                 <div class="w-full flex items-end justify-end gap-4">
-                                    <button id="startButtonNow" type="button" class="text-blue31 text-center border-2 border-blue31 py-2 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">Ulangi Penilaian</button>
+                                    <button id="startButtonNow" type="button" class="hidden text-blue31 text-center border-2 border-blue31 py-2 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">Ulangi Penilaian</button>
                                     <button id="startButtonEvaluate" type="button" class="text-white text-center bg-blue31 py-2 rounded w-full md:w-3/4 transition hover:-translate-y-1 hover:scale-105">Mulai Evaluasi</button>
                                 </div>
                             </div>
@@ -110,11 +110,9 @@
                                                     @endif
                                                 </a>
                                             </th>
-                                            <th class="py-2 px-4 w-1/5">Status</th>
                                             <th class="py-2 px-4 w-1/5">Aksi</th>
                                         </tr>
                                     </thead>
-                                    
                                     <tbody>
                                         @forelse ($attempts as $attempt)
                                             <tr class="text-left">
@@ -123,9 +121,6 @@
                                                 </td>
                                                 <td class="pt-4 px-4">
                                                     {{ $attempt->score }}%
-                                                </td>
-                                                <td class="pt-4 px-4">
-                                                    {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
                                                 </td>
                                                 <td class="underline cursor-pointer pt-4 px-4">
                                                     <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}

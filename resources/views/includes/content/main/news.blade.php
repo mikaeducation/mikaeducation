@@ -75,7 +75,7 @@
             <div class="flex items-center w-full h-16 gap-4 mt-4">
                 <img src="{{ asset('images/member-Margaretha.jpg') }}" alt="" class="h-full w-16 object-cover object-top border-2 border-blue31 rounded-full">
                 <p class="text-lg font-medium">
-                    Margaretha, S.Psi., P.G.Dip.Psych. <span class="text-sm opacity-60 italic pl-2">04-01-2020</span> 
+                    Margaretha, S.Psi, P.G.Dip.Psych, G.Cert.Ed, M.Sc, Ph.D<span class="text-sm opacity-60 italic pl-2">04-01-2020</span> 
                 </p>
             </div>
         </div>

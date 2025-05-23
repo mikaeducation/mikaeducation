@@ -17,35 +17,35 @@
                     {{-- masuk ke atribut user_rating --}}
                     <div class="rating-icons w-full h-fit gap-8 flex justify-center items-center text-center my-4">
                         <div id="rating-1" class="w-fit h-full flex flex-col items-center justify-start space-y-1" data-rating="1">
-                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
+                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 hover:bg-blue31 transition-colors duration-200 flex items-center justify-center cursor-pointer">
                                 <input id="rating_input_1" type="radio" name="rating" value="1" class="hidden" />
                                 😔
                             </label>
                             Buruk
                         </div>
                         <div id="rating-2" class="w-fit h-full flex flex-col items-center justify-start space-y-1" data-rating="2">
-                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
+                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 hover:bg-blue31 transition-colors duration-200 flex items-center justify-center cursor-pointer">
                                 <input id="rating_input_2" type="radio" name="rating" value="2" class="hidden" />
                                 😕
                             </label>
                             Kurang
                         </div>
                         <div id="rating-3" class="w-fit h-full flex flex-col items-center justify-start space-y-1" data-rating="3">
-                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
+                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 hover:bg-blue31 transition-colors duration-200 flex items-center justify-center cursor-pointer">
                                 <input id="rating_input_3" type="radio" name="rating" value="3" class="hidden" />
                                 😐
                             </label>
                             Cukup
                         </div>
                         <div id="rating-4" class="w-fit h-full flex flex-col items-center justify-start space-y-1" data-rating="4">
-                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
+                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 hover:bg-blue31 transition-colors duration-200 flex items-center justify-center cursor-pointer">
                                 <input id="rating_input_4" type="radio" name="rating" value="4" class="hidden" />
                                 🙂
                             </label>
                             Baik
                         </div>
                         <div id="rating-5" class="w-fit h-full flex flex-col items-center justify-start space-y-1" data-rating="5">
-                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 flex items-center justify-center cursor-pointer">
+                            <label class="rating-label h-14 w-14 text-3xl rounded-full bg-gray-100 hover:bg-blue31 transition-colors duration-200 flex items-center justify-center cursor-pointer">
                                 <input id="rating_input_5" type="radio" name="rating" value="5" class="hidden" />
                                 😁
                             </label>
@@ -68,43 +68,48 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const labels = document.querySelectorAll('.rating-label');
+    document.addEventListener("DOMContentLoaded", function () {
+        const labels = document.querySelectorAll('.rating-label');
 
-    labels.forEach(label => {
-        const input = label.querySelector('input[type="radio"]');
+        labels.forEach(label => {
+            const input = label.querySelector('input[type="radio"]');
 
-        // Tambahkan event pada input, bukan label
-        input.addEventListener('change', () => {
-            // Reset semua label
-            labels.forEach(l => l.classList.remove('bg-blue-100]'));
+            // Event saat input (radio) berubah (dipilih)
+            input.addEventListener('change', () => {
+                // Reset semua label: hapus bg-blue31 dan kembalikan ke gray
+                labels.forEach(l => {
+                    l.classList.remove('bg-blue31');
+                    l.classList.add('bg-gray-100');
+                });
 
-            // Highlight label yang dipilih
-            label.classList.add('bg-blue-100');
+                // Set label yang dipilih menjadi bg-blue31
+                label.classList.remove('bg-gray-100');
+                label.classList.add('bg-blue31');
+            });
         });
+
+        // Batas karakter textarea
+        const textarea = document.querySelector('textarea');
+        const charCount = document.getElementById('charCount');
+        const maxChars = 300;
+        if (textarea && charCount) {
+            textarea.setAttribute('maxlength', maxChars);
+            textarea.addEventListener('input', () => {
+                charCount.textContent = `${textarea.value.length}/${maxChars}`;
+            });
+        }
+
+        // Validasi saat submit
+        const form = document.querySelector('form[action="{{ route('module.review.submit') }}"]');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                const selected = document.querySelector('input[name="rating"]:checked');
+                if (!selected) {
+                    e.preventDefault();
+                    alert("Pilih rating terlebih dahulu!");
+                }
+            });
+        }
     });
-
-    // Batas karakter textarea
-    const textarea = document.querySelector('textarea');
-    const charCount = document.getElementById('charCount');
-    const maxChars = 300;
-    if (textarea && charCount) {
-        textarea.setAttribute('maxlength', maxChars);
-        textarea.addEventListener('input', () => {
-            charCount.textContent = `${textarea.value.length}/${maxChars}`;
-        });
-    }
-
-    // Validasi saat submit
-    const form = document.querySelector('#rating-learn form');
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            const selected = document.querySelector('input[name="rating"]:checked');
-            if (!selected) {
-                e.preventDefault();
-                alert("Pilih rating terlebih dahulu!");
-            }
-        });
-    }
-});
 </script>
+

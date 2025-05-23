@@ -22,11 +22,11 @@
                 <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                     <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
                         <div class="h-full w-full space-y-8">
-                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
+                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[575px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                         @include('includes.content.elearning.course.video-player', 
-                                        ['src' => ''])
+                                        ['src' => 'https://youtu.be/ccrxRKAULlw'])
                                     </div>
                                 </div>
                             </div>

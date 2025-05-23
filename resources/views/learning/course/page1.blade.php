@@ -21,16 +21,32 @@
                 <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                     <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
                         <div class="h-full w-full space-y-8">
-                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
+                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[575px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
-                                    @include('includes.content.elearning.course.video-player', 
-                                    ['src' => 'https://youtu.be/_rY3FOnPibc'])
-                                </div>
+                                        @include('includes.content.elearning.course.video-player', 
+                                        ['src' => 'https://youtu.be/_rY3FOnPibc'])
+                                    </div>
                                 </div>
                             </div>
-                            <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
-                                <div class="w-full md:flex lg:flex">
+                            <div class="w-full pb-8 border-y-2 border-bluee3 space-y-4 text-lg">
+                                <div class="w-full md:flex lg:flex text-justify pb-4">
+                                    <p>
+                                        <br>Salam, Saya Margaretha. Selamat datang di MIKA Education, sebuah website belajar yang memberikan informasi tentang Spektrum Autisme dan Media Visual Komunikasi Anak (MIKA) sebagai aplikasi belajar komunikasi bagi anak autistik dan anak dengan hambatan belajar komunikasi.
+                                        <br><br>MIKA sebagai aplikasi belajar menjadi salah satu pilihan belajar komunikasi visual karena menggunakan teknologi tinggi. Dengan pendekatan terstandar, MIKA memberikan rangsang belajar multimedia (berupa gambar, suara, dan tulisan). MIKA juga merekam data kemajuan anak secara real-time, dan mudah diakses untuk mengevaluasi kemajuan terapi atau belajar komunikasi anak.
+                                        <br><br>MIKA dikembangkan dengan prinsip belajar terstruktur dari Treatment and Education of Autistic and Communication Handicapped Children (TEACCH). Dengan MIKA, anak bisa mempelajari lebih dari 2000 kata. Kata-kata tersebut akan digunakan untuk membangun komunikasi fungsional, dimulai dengan memperbanyak perbendaharaan kata, menyusun kalimat sederhana hingga kalimat kompleks, dan membuat dialog.
+                                        <br><br>Materi MIKA disusun dengan Bahasa Indonesia, namun isi materi belajar bisa dipersonalisasi dengan konteks bahasa daerah atau bahasa yang familiar digunakan di rumah melalui fitur penambahan kata dan istilah.
+                                        <br><br>MIKA juga akan dilaunching di Google Play, sehingga memudahkan dan memperluas akses di seluruh Indonesia. MIKA diutamakan untuk digunakan oleh terapis dan guru dalam proses terapi, oleh karena itu dibuka akses seluas-luasnya untuk sekolah dan pusat terapi di Indonesia.
+                                        <br><br>Orang tua juga bisa mendampingi anaknya belajar dengan MIKA. Namun disarankan untuk turut belajar dan menerapkan prinsip belajar komunikasi autisme agar dapat mengadministrasi MIKA dengan baik.
+                                        <br><br>Dengan website MIKA Education, semua orang bisa belajar menggunakan MIKA secara fleksibel, karena dapat diakses dari manapun secara online, dan pembelajar bisa menentukan kapan dan seberapa cepat proses belajarnya sendiri.
+                                        <br><br>Dalam modul belajar ini, Anda akan bertemu dengan rekan-rekan pengembang MIKA lainnya, yaitu: Ira Puspitasari, Nishrina Khamida, dan Sri Retno Yuliani. Kami akan menjelaskan apa itu autisme, karakteristik dan strategi belajar komunikasi dengan TEACCH, administrasi dan skoring MIKA, serta interpretasi dan evaluasi proses belajar komunikasi anak.
+                                        <br><br>Dalam kegiatan belajar ini, kami akan mengajak Anda melakukan bacaan, latihan, dan analisis kasus untuk membantu memahami bagaimana penerapan MIKA yang optimal bagi anak.
+                                        <br><br>Harapannya, setelah Anda menyelesaikan modul belajar ini, Anda mampu menggunakan MIKA untuk mendampingi proses belajar komunikasi anak dengan benar.
+                                        <br>Kami berharap Anda dapat menikmati pengalaman belajar bersama MIKA Education. <br>
+                                    </p>
+                                </div>
+                                <p class="p-2 bg-bluee3 font-medium">Mari Mengenal lebih dekat dengan personil tim MIKA 1.0</p>
+                                <div class="w-full md:flex lg:flex pt-6">
                                     <img src="{{ asset('images/member-Margaretha.jpg') }}" alt="Margaretha" class="h-48 md:h-52 lg:h-52 float-left md:float-none lg:float-none mr-4">
                                     <p class="text-justify">
                                         <span class=" font-medium">Margaretha</span> adalah Ketua Forum Peduli Autisme Jawa Timur, 

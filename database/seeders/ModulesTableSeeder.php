@@ -33,7 +33,7 @@ class ModulesTableSeeder extends Seeder
                 'module_type' => true,  // true untuk tipe berulang, false untuk tidak berulang
                 'module_rating' => 4.8, //Sementara ada isinya, nanti akan bergantung pada table lain/yang mengatur reviews dan rating dari pengguna
                 'module_status' => true,  // true untuk Tersedia, false jika tidak tersedia/berarti tidak ditampilkan
-                'module_certificate' => 'images/samplebg.jpg',
+                'module_certificate' => 'images/sample-sertificate.png',
                 'module_teaser' => 'videos/MIKA-tesear.mp4',
                 'module_introduce' => true, //True jika ada pengenalan, false jika tidak ada
                 'module_asessment' => true,  // True jika modul ini ada penilaian, false jika tidak ada penilaian

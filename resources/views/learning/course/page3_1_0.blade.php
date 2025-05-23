@@ -19,28 +19,28 @@
                 <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                     <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
                         <div class="h-full w-full space-y-8">
-                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[550px] flex bg-black rounded">
+                            <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[575px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://drive.google.com/file/d/1Q-xUVtznKK2mKjZpWKvFE3-U3W31m-25/view?usp=sharing'])
+                                        ['src' => 'https://youtu.be/_JFk3scDQYU'])
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
                                 <div class="w-full flex flex-col text-justify">
-                                    <p class="">Hallo bertemu dengan saya lagi, Mida. Di video sebelumnya saya telah membahas apa itu matriks perencanaan yang kita gunakan dalam memahami gambaran utuh bagaimana karakteristik anak dengan autisme. Nah, sekarang waktunya kita membahas salah satu karakteristik besar autisme yaitu komunikasi.
-                                        <br><br>Komunikasi merupakan proses penyampaian dan penerimaan informasi dengan dua cara, yang pertama adalah linguistic yaitu Bahasa lisan/tertulis dan yang kedua adalah non linguistic yaitu menggunakan Bahasa tubuh, ekspresi wajah, Gerakan tubuh, gambar atau symbol. Pada konteks komunikasi ini secara umum, kita memahaminya bahwasanya komunikasi ini merupakan sebuah pesan yang disampaikan oleh pembawa pesan dan bisa diterima oleh penerima pesan dan pesan tersebut bisa dipahami dan diterima dengan tepat. Kita akan membahas lima sub bahasan dalam karakteristik komunikasi pada individu autis, yaitu :
+                                    <p class="">Salam bertemu lagi dengan saya Mida
+                                        <br><br>Sekarang waktunya kita membahas salah satu karakteristik besar autisme yaitu komunikasi. Apa saja sih karakteristiknya?
                                         <br>1. Pra Komunikasi
                                         <br>2. Komunikasi Reseptif
                                         <br>3. Komunikasi Ekspresif
                                         <br>4. Pragmatisme 
                                         <br>5. Strategi (alat bantu visual)
                                         <br><br> <p class="w-full p-2 mb-2 bg-bluee3"><span class="font-medium">Karakteristik Pra Komunikasi</span> - Keterampilan dasar Anak dengan Autimse</p>       
-                                        Kemampuan pra komunikasi meliputi keterampilan dasar yang harus dikuasai sebelum mereka dapat berkomunikasi secara efektif. Ketrampilan dasar ini meliputi:
-                                        <ul class="list-disc pl-5">
-                                            <li>Kontak mata, melakukan perhatian bersama-melihat ke arah orang lain, menunjuk dan berbagi kesenangan, kemampuan imitasi/meniru, menunjuk, meraih perhatian dan juga melakukan peniruan.</li>
-                                            <li>Anak dengan autism memiliki kelemahan dalam melakukan kemampuan perhatian bersama, saat berkomunikasi kesulitan untuk melihat orang lain dan lebih banyak melihat ke arah lain. Selain itu juga kesulitan dalam menggunakan dan memahami gestur yang sesuai serta memiliki keterbatasan dalam fungsi komunikasi.</li>
-                                            <li>Dampak yang muncul ini salah satunya, ketika anak kesulitan dalam melakukan kemampuan pra komunikasi ini adalah orang lain bisa saja menganggap anak kurang sopan karena saat diajak berbicara anak melihat ke arah lain. Hal lain yang menjadi perhatian adalah anak akan tertuju pada satu benda saja dan akan kesulitan untuk merespon dengan tepat ketika orang berkomunikasi dengan menggunakan gestur.</li>
-                                        </ul>
+                                        Komunikasi merupakan proses penyampaian dan penerimaan informasi dengan 2 cara, yang pertama adalah linguistik yaitu bahasa lisan atau tertulis dan yang kedua adalah non linguistik yaitu menggunakan bahasa tubuh, ekspresi wajah, gerakan tubuh, gambar maupun simbol.
+                                        <br><br>Pada konteks umum kita memahaminya. Komunikasi merupakan sebuah pesan yang disampaikan oleh pembawa pesan dan bisa diterima oleh penerima pesan dan pesan tersebut bisa dipahami dan diterima dengan tepat. Kita akan membahas 5 sub-bahasan dalam karakteristik komunikasi pada anak autistik yang pertama, kemampuan pra-komunikasi yang meliputi keterampilan dasar yang harus dikuasai sebelum mereka dapat berkomunikasi secara efektif.
+                                        <br><br>Keterampilan dasar ini meliputi kontak mata. Melakukan perhatian bersama melihat ke arah orang lain, menunjuk dan berbagi kesenangan. Kemampuan imitasi atau meniru, menunjuk meraih perhatian dan juga melakukan peniruan. Anak autistik memiliki kelemahan dalam melakukan kemampuan perhatian bersama. Saat berkomunikasi kesulitan untuk melihat orang lain dan lebih banyak melihat ke arah lain. Selain itu juga kesulitan dalam menggunakan dan memahami gestur yang sesuai serta memiliki keterbatasan dalam fungsi komunikasi.
+                                        <br><br>Dampak yang muncul di antaranya ketika anak kesulitan dalam melakukan pra komunikasi adalah orang lain bisa saja menganggap anak kurang sopan karena saat diajak berbicara, anak melihat ke arah lain. Hal lain yang menjadi perhatian anak adalah akan tertuju pada satu benda saja dan akan kesulitan merespon balik dengan tepat ketika orang berkomunikasi menggunakan gesture.
+                                        <br><br>Baik, kita telah belajar tentang Pra Komunikasi, berikutnya kita akan belajar tentang Komunikasi Ekspresif.
+                                        <br>Selamat belajar…..
                                     </p>
                                 </div>
                             </div>

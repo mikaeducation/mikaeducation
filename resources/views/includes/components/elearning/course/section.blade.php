@@ -149,7 +149,7 @@
                     <div class="modul-finished hidden"></div>
                 </button>
                 <div id="modul-evaluative-points" class="w-full font-normal pl-3 text-base text-justify">
-                    <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Simulasi:</span> Penggunaan MIKA 1.0</p>
+                    <p class="submodul-point w-full border-l-2 pl-6 border-blue31"><span class="font-medium">Latihan Mandiri:</span> Penerapan Hasil Pembelajaran dalam Kasus tertentu</p>
                 </div>
             </div>
             <div id="modul-asessmen2" data-modul="asessmen2" class="modul w-full h-fit gap-4 font-medium flex flex-col items-center justify-between rounded">

@@ -189,7 +189,7 @@
     
     </body>
 
-    @include('includes.components.elearning.course.dialog.ratingLearn')
+    @include('includes.components.elearning.course.dialog.rating-learn')
     @include('includes.components.elearning.course.dialog.modal-asessment')
 
 </html>
