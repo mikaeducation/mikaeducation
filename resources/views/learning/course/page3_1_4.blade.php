@@ -23,13 +23,13 @@
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                         @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://youtu.be/VwOp0dnvChc'])
+                                        ['src' => 'https://s3-id-jkt-1.kilatstorage.id/belajar-komunikasi-autistik/modul-3e.mp4'])
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
                                 <div class="w-full flex flex-col text-justify">
-                                    <p><p class="p-2 bg-bluee3 mb-2"><span class="font-medium">Karakteristik  dan Strategi Komunikasi Autisme</span> - Komunikasi  dan Strategi Komunikasi Anak dengan Autimse</p>                   
+                                    <p><p class="p-2 bg-bluee3 mb-2"><span class="font-medium">Karakteristik dan Strategi Komunikasi Autisme</span> - Komunikasi  dan Strategi Komunikasi Anak dengan Autimse</p>                   
                                         Salam, kita akan melanjutkan pembahasan berikutnya, setelah mempelajari karakteristik komunikasi pragmatis pada anak autistik. Dari beberapa karakteristik komunikasi pada anak autistik yang sudah dijabarkan, mereka membutuhkan strategi yang tepat untuk meningkatkan keterampilan komunikasi mereka yang penting sebagai modal untuk berinteraksi dengan orang lain. 
                                         <br><br>Seperti yang kita ketahui, komunikasi mempunyai peranan yang penting sebagai modal untuk berinteraksi. Mengembangkan keterampilan tersebut dibutuhkan pendekatan yang terstruktur, konsisten dan sesuai dengan kebutuhan masing – masing anak. Salah satu strategi intervensi yang telah terbukti efektif adalah pendekatan berbasis visual. Anak autistik adalah pembelajar visual, sehingga alat bantu visual menjadi lebih efektif daripada sekedar instruksi secara verbal. Strategi ini melibatkan penggunaan gambar, simbol atau teks untuk membantu anak autistik memahami dan mengekspresikan dirinya. 
                                         <br><br>Ada dua kategori untuk alat bantu visual, yaitu low technology dan high technology. 

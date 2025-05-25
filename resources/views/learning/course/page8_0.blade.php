@@ -111,7 +111,7 @@
                                                 </a>
                                             </th>
                                             <th class="py-2 px-4 w-1/5">Status</th>
-                                            <th class="py-2 px-4 w-1/5">Aksi</th>
+                                            <th class="hidden py-2 px-4 w-1/5">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -126,7 +126,7 @@
                                                 <td class="pt-4 px-4">
                                                     {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
                                                 </td>
-                                                <td class="underline cursor-pointer pt-4 px-4">
+                                                <td class="hidden underline cursor-pointer pt-4 px-4">
                                                     <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
                                                 </td>
                                             </tr>
@@ -147,6 +147,11 @@
             {{-- Right Content --}}
             @include('includes.components.elearning.course.section')
         </div>
+
+        <script>
+            window.userIsPassed = {{ $attempts->contains('is_passed', 1) ? 'true' : 'false' }};
+        </script>
+
     </section>
 
     @include('includes.components.elearning.course.footer')

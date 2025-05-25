@@ -10,21 +10,21 @@ class ProfilesTableSeeder extends Seeder
     public function run()  
     {  
         Profile::create([  
-            'phone' => '082156226440',  
-            'first_name' => 'Ahmad',  
-            'last_name' => 'Rayhan',  
+            'phone' => '085141177976',  
+            'first_name' => 'User',  
+            'last_name' => 'Admin',  
             'birth_place' => 'Surabaya',  
             'birth_date' => '1990-01-01',  
-            'address' => 'Jl. Contoh No. 123, Surabaya',  
-            'gender' => 'Laki-laki',
-            'occupation' => 'Software Developer',  
-            'institution' => 'Tech Corp',
-            'institutionCity' => 'Jakarta',  
-            'skill' => 'PHP, JavaScript',
+            'address' => 'Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya, Jawa Timur 60115',  
+            'gender' => 'Laki-aki',
+            'occupation' => 'Pengembang Website',  
+            'institution' => 'Media Visual Komunikasi Anak',
+            'institutionCity' => 'Surabaya',  
+            'skill' => 'Pembelajaran, Komunikasi Visual',
             'experience' => '3-5 Tahun',
             'banner_image' => 'images/samplebg.jpg',
             'profile_image' => 'images/profile-sample.jpg',
-            'description' => 'Saya seorang mahasiswa program studi sistem informasi',
+            'description' => 'Saya adalah sebuah platform inklusi visual yang mendukung upaya optimalisasi proses belajar dan mengajar komunikasi anak dengan autisme dan hambatan komunikasi.',
         ]);  
     }  
 }  

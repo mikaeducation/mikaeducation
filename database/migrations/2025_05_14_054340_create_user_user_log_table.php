@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_log', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('log_type', ['progress', 'certificate', 'admin']);
+            $table->enum('log_type', ['progress', 'certificate', 'admin', 'account']);
             $table->unsignedBigInteger('module_id')->nullable();
             $table->unsignedBigInteger('related_id')->nullable();
             $table->text('text_log');

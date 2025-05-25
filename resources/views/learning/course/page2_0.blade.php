@@ -110,7 +110,7 @@
                                                     @endif
                                                 </a>
                                             </th>
-                                            <th class="py-2 px-4 w-1/5">Aksi</th>
+                                            <th class="hidden py-2 px-4 w-1/5">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -122,7 +122,7 @@
                                                 <td class="pt-4 px-4">
                                                     {{ $attempt->score }}%
                                                 </td>
-                                                <td class="underline cursor-pointer pt-4 px-4">
+                                                <td class="hidden underline cursor-pointer pt-4 px-4">
                                                     <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
                                                 </td>
                                             </tr>

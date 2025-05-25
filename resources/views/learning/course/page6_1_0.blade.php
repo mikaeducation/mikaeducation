@@ -23,7 +23,7 @@
                                 <div class="w-full h-full flex justify-center items-center">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center">
                                         @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://youtu.be/glpDKlFQ-rQ'])
+                                        ['src' => 'https://s3-id-jkt-1.kilatstorage.id/belajar-komunikasi-autistik/modul-6-administrasi-dan-skoring.mp4'])
                                     </div>
                                 </div>
                             </div>

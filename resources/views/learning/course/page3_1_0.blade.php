@@ -22,7 +22,7 @@
                             <div class="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[575px] flex bg-black rounded">
                                 <div class="w-full h-full flex justify-center items-center">
                                     @include('includes.content.elearning.course.video-player', 
-                                        ['src' => 'https://youtu.be/_JFk3scDQYU'])
+                                        ['src' => 'https://s3-id-jkt-1.kilatstorage.id/belajar-komunikasi-autistik/modul-3a.mp4'])
                                 </div>
                             </div>
                             <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">

@@ -10,7 +10,10 @@ return new class extends Migration {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('phone')->unique();  // FK dari tabel users
-            $table->foreign('phone')->references('phone')->on('users')->onDelete('cascade');
+            $table->foreign('phone')
+                ->references('phone')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->text('chat1')->nullable(); // Chat pertama
             $table->text('chat2')->nullable(); // Chat kedua
             $table->text('respon')->nullable(); // Respon admin

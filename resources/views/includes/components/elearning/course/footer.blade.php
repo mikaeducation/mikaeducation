@@ -277,15 +277,48 @@
                 }
             });
 
-            btnStartEval?.addEventListener("click", (e) => {
-                e.preventDefault();
-                modalEval?.classList.remove("hidden");
-            });
+            if (page === "/page8_0") {
+                // Validasi berdasarkan kelulusan
+                function checkPassedThenContinue(callback) {
+                    const isPassed = window.userIsPassed === true || window.userIsPassed === "true";
 
-            nextBtn?.addEventListener("click", (e) => {
-                e.preventDefault();
-                modalEval?.classList.remove("hidden");
-            });
+                    if (isPassed) {
+                        callback();
+                    } else {
+                        alert("Anda belum lulus penilaian. Silahkan Ulangi Penilaian terlebih dahulu untuk bisa melanjutkan.");
+                    }
+                }
+
+                btnStartEval?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    checkPassedThenContinue(() => {
+                        modalEval?.classList.remove("hidden");
+                    });
+                });
+
+                nextBtn?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    checkPassedThenContinue(() => {
+                        modalEval?.classList.remove("hidden");
+                    });
+                });
+
+                confirmBack?.addEventListener("click", () => {
+                    window.location.href = "/page8_1";
+                });
+
+            } else {
+                // Untuk page2_0 tetap tanpa validasi is_passed
+                btnStartEval?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modalEval?.classList.remove("hidden");
+                });
+
+                nextBtn?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modalEval?.classList.remove("hidden");
+                });
+            }
 
             btnBackEval?.addEventListener("click", () => {
                 modalEval?.classList.add("hidden");
@@ -299,12 +332,6 @@
                     window.location.href = "/page8_2_0";
                 }
             });
-
-            if (page === "/page8_0") {
-                confirmBack?.addEventListener("click", () => {
-                    window.location.href = "/page8_1";
-                });
-            }
 
             cancelBack?.addEventListener("click", () => {
                 modalBack?.classList.add("hidden");
