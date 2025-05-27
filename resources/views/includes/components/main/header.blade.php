@@ -99,7 +99,7 @@
                     EDUCATION</h1>
             </a>
         </div>
-        <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="flex items-center justify-center">
+        <button id="menuLearn-toggle-btn" class="flex items-center justify-center">
             <div class="h-full hidden md:flex items-center px-3 py-1 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded">
                 @if(Auth::check() && Auth::user()->profile)
                     {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
@@ -117,7 +117,7 @@
             </svg>
         </button>
     </div>
-    <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden">
+    <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden translate-x-full opacity-0 transition-transform duration-300 ease-in-out">
         <div class="w-full flex justify-start items-start py-6 border-b-2 border-bluee3 relative">
             <a href="/" class="flex items-center">
                 <div class="mr-2">
@@ -126,7 +126,7 @@
                 <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
                     EDUCATION </h1>
             </a>
-            <button onclick="toggleMenu()" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue31 hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
+            <button id="menuLearn-close-btn" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue31 hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -138,7 +138,7 @@
             <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Pembelajaran</a>
             <!-- Sub-menu -->
             <div class="w-full pb-5 border-b-2 border-bluee3">
-                <button onclick="toggleSubMenu()" class="w-full text-left hover:text-2xl">
+                <button id="btnToggleSubMenu" class="w-full text-left hover:text-2xl">
                     Informasi Lainnya
                 </button>
                 <div id="subMenuInfo" class="hidden pl-4 mt-4 space-y-4">
@@ -146,7 +146,6 @@
                     <a href="/article" class="block hover:text-blue31">Artikel kami</a>
                 </div>
             </div>
-    
             <a href="/aboutus" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Tentang Kami</a>
         </nav>
     </div>
@@ -351,7 +350,6 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log("DATA USER FULL:", data.user);
             if (data.error) {
                 let warningMessage = document.createElement("div");
                 warningMessage.classList.add("w-full", "bg-white", "rounded", "text-justify", "text-sm", "text-blue31", "p-3");
@@ -419,46 +417,52 @@
 });
 
 
-
-
-    function toggleMenu() {
+document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById('menuLearn');
-    if (menu.classList.contains('hidden')) {
-        // Tampilkan menu dengan animasi slide-in
+    const btnOpen = document.getElementById('menuLearn-toggle-btn');
+    const btnClose = document.getElementById('menuLearn-close-btn');
+    const btnToggleSubMenu = document.getElementById('btnToggleSubMenu');
+    const subMenu = document.getElementById('subMenuInfo');
+
+    if (!menu || !btnOpen || !btnClose) {
+        console.error("Elemen penting tidak ditemukan!");
+        return;
+    }
+
+    // Handler transitionend harus didefinisikan sekali saja
+    function onTransitionEnd() {
+        menu.classList.add('hidden');
+        menu.removeEventListener('transitionend', onTransitionEnd);
+    }
+
+    function openMenu() {
         menu.classList.remove('hidden');
-        menu.classList.remove('animate-slideOut');
-        menu.classList.add('animate-slideIn');
-    } else {
-        // Sembunyikan menu dengan animasi slide-out
-        menu.classList.remove('animate-slideIn');
-        menu.classList.add('animate-slideOut');
-        // Tunggu animasi selesai, lalu tambahkan kelas 'hidden'
-        menu.addEventListener('animationend', () => {
-            if (menu.classList.contains('animate-slideOut')) {
-                menu.classList.add('hidden');
-            }
-        }, { once: true });
+        setTimeout(() => {
+            menu.classList.remove('translate-x-full', 'opacity-0');
+            menu.classList.add('translate-x-0', 'opacity-100');
+        }, 10);
     }
-}
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const overlay = document.getElementById("overlay");
-        const menuContainers = document.querySelectorAll(".menu-container");
-        
-        menuContainers.forEach(container => {
-            container.addEventListener("mouseenter", () => {
-                overlay.classList.remove("hidden");
-            });
+    function closeMenu() {
+        menu.classList.remove('translate-x-0', 'opacity-100');
+        menu.classList.add('translate-x-full', 'opacity-0');
 
-            container.addEventListener("mouseleave", () => {
-                overlay.classList.add("hidden");
-            });
+        // Pasang listener dengan fungsi yang sudah didefinisikan di luar
+        menu.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    btnOpen.addEventListener('click', openMenu);
+    btnClose.addEventListener('click', closeMenu);
+
+    if (btnToggleSubMenu && subMenu) {
+        btnToggleSubMenu.addEventListener('click', () => {
+            subMenu.classList.toggle('hidden');
         });
-    });
-
-    function toggleSubMenu() {
-            let subMenu = document.getElementById("subMenuInfo");
-            subMenu.classList.toggle("hidden");
+    } else {
+        if (!btnToggleSubMenu) console.warn('Tombol btnToggleSubMenu tidak ditemukan');
+        if (!subMenu) console.warn('Elemen subMenuInfo tidak ditemukan');
     }
+});
+
 
 </script>

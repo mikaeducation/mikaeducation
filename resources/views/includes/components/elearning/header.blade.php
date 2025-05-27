@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="w-1/4 text-lg text-blue6a font-medium tracking-wide">
-                <button onclick="toggleMenu()" id="menuLearn-toggle-btn" class="w-full flex items-center justify-end md:hidden">
+                <button id="menuLearn-toggle-btn" class="w-full flex items-center justify-end md:hidden">
                     <svg class="w-10 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden">
+    <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden translate-x-full opacity-0 transition-transform duration-300 ease-in-out">
         <div class="w-full flex justify-start items-start py-6 border-b-2 border-bluee3 relative">
             <a href="/" class="flex items-center">
                 <div class="mr-2">
@@ -89,7 +89,7 @@
                 <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
                     EDUCATION </h1>
             </a>
-            <button onclick="toggleMenu()" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue6a hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
+            <button id="menuLearn-close-btn" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue6a hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" troke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -405,39 +405,50 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-    function toggleMenu() {
+document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById('menuLearn');
-    if (menu.classList.contains('hidden')) {
-        // Tampilkan menu dengan animasi slide-in
-        menu.classList.remove('hidden');
-        menu.classList.remove('animate-slideOut');
-        menu.classList.add('animate-slideIn');
-    } else {
-        // Sembunyikan menu dengan animasi slide-out
-        menu.classList.remove('animate-slideIn');
-        menu.classList.add('animate-slideOut');
-        // Tunggu animasi selesai, lalu tambahkan kelas 'hidden'
-        menu.addEventListener('animationend', () => {
-            if (menu.classList.contains('animate-slideOut')) {
-                menu.classList.add('hidden');
-            }
-        }, { once: true });
+    const btnOpen = document.getElementById('menuLearn-toggle-btn');  // tombol buka menu
+    const btnClose = document.getElementById('menuLearn-close-btn'); // tombol tutup menu (ikon silang)
+
+    if (!menu) {
+        console.error("#menuLearn tidak ditemukan!");
+        return;
     }
-}
+    if (!btnOpen) {
+        console.error("#menuLearn-toggle-btn tidak ditemukan!");
+        return;
+    }
+    if (!btnClose) {
+        console.error("#menuLearn-close-btn tidak ditemukan!");
+        return;
+    }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const overlay = document.getElementById("overlay");
-        const menuContainers = document.querySelectorAll(".menu-container");
-        
-        menuContainers.forEach(container => {
-            container.addEventListener("mouseenter", () => {
-                overlay.classList.remove("hidden");
-            });
+    // Definisikan handler satu kali agar bisa dipasang dan dilepas dengan benar
+    function onTransitionEnd() {
+        menu.classList.add('hidden');
+        menu.removeEventListener('transitionend', onTransitionEnd);
+    }
 
-            container.addEventListener("mouseleave", () => {
-                overlay.classList.add("hidden");
-            });
-        });
-    });
+    function openMenu() {
+        menu.classList.remove('hidden');
+        setTimeout(() => {
+            menu.classList.remove('translate-x-full', 'opacity-0');
+            menu.classList.add('translate-x-0', 'opacity-100');
+        }, 10);
+    }
+
+    function closeMenu() {
+        menu.classList.remove('translate-x-0', 'opacity-100');
+        menu.classList.add('translate-x-full', 'opacity-0');
+        menu.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    // Pasang event listener tombol buka menu
+    btnOpen.addEventListener('click', openMenu);
+
+    // Pasang event listener tombol tutup menu
+    btnClose.addEventListener('click', closeMenu);
+});
+
 
 </script>
