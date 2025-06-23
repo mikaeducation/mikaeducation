@@ -17,20 +17,24 @@ class VerifyEmailController extends Controller
         $userId = $request->route('id');
         $user = User::findOrFail($userId);
 
-        // Pastikan email cocok (keamanan tambahan)
+        // Verifikasi hash email
         if (! hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
             abort(403, 'Link verifikasi tidak valid.');
         }
 
-        // Cek apakah sudah diverifikasi
+        // Kalau sudah diverifikasi sebelumnya
         if ($user->hasVerifiedEmail()) {
             return redirect('/login')->with('status', 'Email Anda sudah diverifikasi. Silakan login.');
         }
 
-        // Tandai sebagai diverifikasi
+        // Tandai email sebagai diverifikasi
         $user->markEmailAsVerified();
         event(new Verified($user));
 
-        return redirect('/login')->with('status', 'Email berhasil diverifikasi! Silakan login.');
+        // Login otomatis setelah verifikasi
+        Auth::login($user);
+
+        // Redirect langsung ke halaman pengisian biodata
+        return redirect('/registerprofile')->with('status', 'Email berhasil diverifikasi! Silakan lengkapi biodata Anda.');
     }
 }

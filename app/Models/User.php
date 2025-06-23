@@ -20,10 +20,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
-        'phone',        // Tambahkan kolom 'phone' di sini
-        'email',        // Kolom lainnya
+        'phone',
+        'email',
         'password',
         'terms_accepted',
+        'is_profile_completed',
     ];
 
     /**

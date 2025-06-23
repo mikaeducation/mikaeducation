@@ -126,7 +126,11 @@ class ProfileController extends Controller
                 'institution' => $data['institution'],
                 'institutionCity' => $data['institutionCity'] ?? null,
             ]
-        ); 
+        );
+
+        /** @var \App\Models\User $user */
+        $user->update(['is_profile_completed' => true]);
+        
         // Arahkan ke halaman index setelah berhasil disimpan  
         return redirect('/')->with('success', 'Profil berhasil diperbarui!');  
     }  

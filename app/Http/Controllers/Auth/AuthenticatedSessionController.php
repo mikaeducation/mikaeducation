@@ -38,11 +38,16 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+        /** @var \App\Models\User $user */
         if (! $user->hasVerifiedEmail()) {
             Auth::logout();
             return redirect()->route('login')->withErrors([
                 'email' => 'Akun Anda belum diverifikasi. Silakan cek email Anda.',
             ]);
+        }
+
+        if (! $user->is_profile_completed) {
+            return redirect('/registerprofile');
         }
 
         $hasProfile = Profile::where('phone', $user->phone)->exists();

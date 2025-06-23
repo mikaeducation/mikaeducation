@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ModuleController;
@@ -13,24 +13,25 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\AsessmentController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Models\User;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 
 Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) {
     $user = User::findOrFail($id);
-
     if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/register')->withErrors(['message' => 'Link verifikasi tidak valid atau telah kadaluarsa.']);
     }
-
     if (! $user->hasVerifiedEmail()) {
         $user->markEmailAsVerified();
     }
-
-    return redirect('/login')->with('status', 'Email berhasil diverifikasi. Silakan login.');
-})->middleware('signed')->name('verification.verify');
+    // Login otomatis
+    Auth::login($user);
+    // Redirect ke form melengkapi biodata
+    return redirect('/registerprofile')->with('status', 'Email berhasil diverifikasi. Silakan lengkapi biodata Anda.');
+})->middleware(['signed'])->name('verification.verify');
 Route::get('/reactivate-account', [RegisteredUserController::class, 'showReactivationForm'])->name('reactivate.form');
 Route::post('/reactivate-account', [RegisteredUserController::class, 'reactivate'])->name('reactivate.submit');
 Route::get('/reactivate/verify/{token}', [RegisteredUserController::class, 'verifyReactivation'])->name('reactivate.verify');
@@ -47,7 +48,14 @@ Route::get('/register', function () {
 | HALAMAN BERANDA / HALAMAN UTAMA
 |--------------------------------------------------------------------------
 */
+
+
+
 Route::get('/', function () {
+    $user = Auth::user();
+    if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
+        return redirect('/registerprofile');
+    }
     return view('index');
 });
 

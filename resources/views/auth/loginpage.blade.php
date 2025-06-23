@@ -43,16 +43,24 @@
                                     {{ $errors->first('token') }}
                                 </div>
                             @endif
-                            <form action="{{ route('login') }}" method="POST">
+                            <form action="{{ route('login') }}" method="POST" class="flex flex-col justify-center items-center">
                                 @csrf
                                 <input type="tel" name="phone" placeholder="Nomor Telpon" class="p-4 text-xl border border-blue6a  rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue31 font-medium placeholder:opacity-45 placeholder-blue31">
                                 @error('phone')
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
-                                <input type="password" name="password" placeholder="Password" class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-3/5 py-2 text-blue31 font-medium placeholder-blue31 placeholder:opacity-45 mt-4">
-                                @error('password')
-                                    <p class="text-blue6a text-sm">{{ $message }}</p>
-                                @enderror
+                                <div class="relative w-3/5 mt-4">
+                                    <input type="password" id="password" name="password" placeholder="Password"
+                                        class="p-4 text-xl border border-blue6a rounded focus:outline-none focus:ring-2 focus:ring-blue3a w-full py-2 text-blue31 font-medium placeholder-blue31 placeholder:opacity-45 pr-12">
+                                    <img id="togglePassword" 
+                                        src="https://img.icons8.com/?size=100&id=9zUvP8zNJKkh&format=png&color=000000"
+                                        class="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                        onclick="togglePasswordVisibility()" 
+                                        alt="Toggle Password">
+                                    @error('password')
+                                        <p class="text-blue6a text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <div class="mt-4 md:mt-4"> Lupa Password Anda?
                                     <a href="#" class="showChangePWDialog underline italic underline-offset-1">Klik disini</a>
                                 </div>
@@ -89,3 +97,21 @@
 
         @include('includes.components.main.dialog.change-password')
 </html>
+
+<script>
+    function togglePasswordVisibility() {
+        const input = document.getElementById("password");
+        const icon = document.getElementById("togglePassword");
+
+        const eyeOpen = "https://img.icons8.com/?size=100&id=9zUvP8zNJKkh&format=png&color=000000"; // open eye
+        const eyeClosed = "https://img.icons8.com/?size=100&id=33916&format=png&color=000000"; // eye off
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.src = eyeClosed;
+        } else {
+            input.type = "password";
+            icon.src = eyeOpen;
+        }
+    }
+</script>

@@ -20,8 +20,8 @@
                         <h1 class="flex items-center justify-center text-center whitespace-pre-line">Daftarkan
                             Akun</h1>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 72 24" stroke-width="2" stroke="currentColor" class="w-24 h-6 text-blue6a">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h72m0 0l-6-6m6 6l-6 6" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 24" stroke-width="2" stroke="currentColor" class="w-fit h-6 text-blue6a">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h25m0 0l-6-6m6 6l-6 6" />
                     </svg>
                     <div class="w-auto h-24 flex-grow items-center justify-center">
                         <div class="flex items-center justify-center">
@@ -30,8 +30,8 @@
                         <h1 class="flex items-center justify-center text-center whitespace-pre-line">Lengkapi
                             Biodata</h1>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 72 24" stroke-width="2" stroke="currentColor" class="w-24 h-6 text-blue6a">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h72m0 0l-6-6m6 6l-6 6" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 24" stroke-width="2" stroke="currentColor" class="w-fit h-6 text-blue6a">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h25m0 0l-6-6m6 6l-6 6" />
                     </svg>
                     <div class="w-auto h-24 flex-grow items-center justify-center">
                         <div class="flex items-center justify-center">
@@ -113,7 +113,7 @@
                                     <p class="text-blue6a text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button class="bg-blue31 w-1/2 p-3 rounded font-bold text-white">SIMPAN DAN LANJUTKAN</button>
+                            <button class="bg-blue31 w-1/2 p-3 rounded font-bold text-white text-xs xs:text-base">SIMPAN DAN LANJUTKAN</button>
                             <p class="font-normal">Jika memerlukan bantuan lebih lanjut, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a></p>
                         </form>
                         

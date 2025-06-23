@@ -45,5 +45,6 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'verified' => EnsureEmailIsVerified::class,
         'profile' => EnsureProfileCompleted::class,
+        'profile.completed' => EnsureProfileCompleted::class,
     ];
 }

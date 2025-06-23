@@ -77,7 +77,7 @@
                                 @endphp
                         
                                 <div id="{{ $submodulId }}" class="w-full h-fit mt-2 p-6 gap-4 flex flex-col items-center justify-start content-shadows rounded">
-                                    <button onclick="toggleSubmodul('{{ $pointsId }}', this)" class="w-full flex items-center justify-between font-medium text-lg">
+                                    <button onclick="toggleSubmodul('{{ $pointsId }}', this)" class="w-full flex items-center justify-between font-medium text-lg text-left">
                                         <h3 id="{{ $titleId }}">Materi {{ $index + 1 }}: {{ $subject->submodule_title }}</h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24"
                                             class="transition-transform duration-300 ease-in-out rotate-0">

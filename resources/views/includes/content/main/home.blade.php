@@ -1,6 +1,6 @@
 <div class="w-full min-h-max text-white">
     <div class="w-full min-h-max flex items-center flex-col">
-        <div class="w-full lg:h-[510px] h-[250px] overflow-hidden">
+        <div class="w-full lg:h-[520px] h-[250px] overflow-hidden">
             <div id="slider" class="w-full h-full flex transition-transform duration-1000 ease-in-out">
                 <img src="{{ asset('images/bg1.jpg') }}" alt="" class="w-full h-full flex-shrink-0 object-cover object-top">
                 <img src="{{ asset('images/bg2.jpeg') }}" alt="" class="w-full h-full flex-shrink-0 object-cover">
@@ -10,11 +10,15 @@
         </div>
         <div class="w-full pt-10 bg-blue31 flex items-center justify-center flex-col gap-5 md:gap-5 lg:gap-16">
             <div class="h-full w-3/4 flex flex-col items-start justify-center space-y-2">
-                <h1 class="w-full text-xl md:text-2xl lg:text-4xl font-bold text-start lg:text-left pb-1">
+                <h1 class="w-full text-xl md:text-2xl lg:text-4xl font-bold text-start lg:text-left pb-1 italic">
                     Media Visual Komunikasi Anak - Seperti apa?
                 </h1>
-                <p class="text-justify text-base md:text-lg lg:text-xl pb-2 text-bluee3">
-                    Media Visual Komunikasi Anak, atau disebut MIKA adalah media edukasi dan pembelajaran khusus penanganan Anak Berkebutuhan Khusus, terutama anak dengan Spektrum Autisme dan hendaya komunikasi. Media ini dibuat dalam bentuk aplikasi perangkat lunak berbasis mobile bernama MIKA 1.0 sebagai teknologi terapi dengan dukungan stimulus multi-sensoris berupa visual dan audio, serta dukungan sumber belajar berbasis website bernama MIKA Education yang menjadi strategi efektif dan berdaya guna dalam mendukung pendidikan inklusi di Indonesia.
+                <p class="text-justify text-base md:text-lg lg:text-xl text-bluee3">
+                    Media Visual Komunikasi Anak, atau disebut MIKA adalah media edukasi dan pembelajaran khusus penanganan Anak Berkebutuhan Khusus, terutama anak dengan Spektrum Autisme dan hendaya komunikasi. 
+                    Media ini dibuat dalam bentuk aplikasi perangkat lunak berbasis mobile bernama MIKA 1.0 sebagai teknologi terapi dengan dukungan stimulus multi-sensoris berupa visual dan audio, 
+                    serta dukungan sumber belajar berbasis website bernama MIKA Education yang menjadi strategi efektif dan berdaya guna dalam mendukung pendidikan inklusi di Indonesia.
+                    Berikut informasi mengenai ketersedian 2 Layanan MIKA tersebut:
+                    <span class="text-base italic opacity-50">*silahkan klik/pilih gambar dari salah satu layanan yang ingin Anda telusuri, dibawah ini</span>
                 </p>
             </div>
             <div class="w-full h-fit flex flex-col md:flex-row items-center justify-center">
@@ -55,35 +59,27 @@
 
         <div id="section-1" class="w-3/4 flex items-center justify-center py-4 px-0">
             <div class="w-full flex flex-col lg:flex-row items-start justify-start gap-0 lg:gap-11 text-base lg:text-lg text-blue31">
-                <div class="w-full lg:w-2/3 text-justify lg:pr-12 pb-3 border-r-0 lg:border-r-2 border-bluee3">
+                <div class="w-full lg:w-[52%] text-justify lg:pr-12 pb-3 border-r-0 lg:border-r-2 border-bluee3">
                     <p>
                         MIKA 1.0 merupakan sebuah aplikasi perangkat lunak yang dikembangkan untuk mendukung pembelajaran komunikasi visual baru lebih cepat, lebih komprehensif dan sistematis. Aplikasi ini diharapkan mampu memberikan simulasi lebih baik untuk pembelajaran komunikasi pada Anak Berkebetuhan Khusus, khususnya Autism Spectrum Disorder (ASD).
                         <span class="lg:hidden">Aplikasi ini telah tersedia secara global dan dapat diunduh melalui Google Playstore dibawah ini.</span>
                     </p>
                 </div>
-                <div class="w-full lg:w-1/3 text-justify">
-                    <p class="lg:flex hidden">Aplikasi ini telah tersedia secara global. Dapat diunduh melalui Google Playstore dibawah ini.</p>
+                <div class="w-full lg:w-[48%] text-justify space-y-3">
+                    <p class="lg:flex hidden">Aplikasi mobile ini telah tersedia secara global. Dapat diunduh melalui Tablet - Android pada Google Playstore dibawah ini.</p>
                     <a href="https://play.google.com/store/apps/details?id=com.vito.mika" class="w-full flex md:justify-start justify-start">
-                        <img src="{{ asset('images/gplay.png') }}" alt="" class="w-1/2 sm:w-1/3 md:w-1/5 lg:w-1/2">
+                        <img src="{{ asset('images/gplay.png') }}" alt="" class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/4">
                     </a>
                 </div>
             </div>
-            <div class="w-full h-fit flex flex-col items-start justify-start mt-20">
-                <div class="w-full py-4 px-4 lg:px-8 gap-2 md:gap-4 flex bg-blue31 rounded">
-                    <button id="content1" class="w-1/2 p-1.5 rounded bg-white text-blue31">
-                        <h3 class="text-lg font-medium">Mengapa harus MIKA 1.0?</h3>
-                    </button>
-                    <button id="content2" class="w-1/2 p-1.5 rounded bg-transparent text-white">
-                        <h3 class="text-lg font-medium">Bagaimana cara kerja MIKA 1.0?</h3>
-                    </button>
-                </div>
-                <div id="content1.1" class="w-full">
-                    <div class="w-full h-fit flex items-start text-blue31 py-14">
+            <div class="w-full h-fit flex flex-col items-start justify-start mt-14">
+                <div id="" class="w-full">
+                    <div class="w-full h-fit flex items-start text-blue31 pb-14">
                         <div class="w-full h-fit">
-                            <div id="textContainer" class="max-h-[590px] sm:max-h-[620px] md:max-h-[390px] text-base lg:text-lg text-justify space-y-4 relative overflow-hidden ">
-                                <h2 class="text-lg lg:text-xl font-bold">
-                                    Lebih dekat dengan Belajar dan Bermain bersama MIKA 1.0
-                                </h2>
+                            <div id="textContainer" class="max-h-[590px] sm:max-h-[650px] md:max-h-[400px] text-base lg:text-lg text-justify space-y-4 relative overflow-hidden ">
+                                <h1 class="w-full italic text-xl md:text-2xl lg:text-3xl font-bold text-start lg:text-left text-blue31">
+                                    Mengapa harus MIKA 1.0?
+                                </h1>
                                 <div class="w-full md:w-[40%] h-full float-none md:float-right md:ml-6 lg:ml-8 bg-blue31 rounded">
                                     <img src="{{ asset('images/content-1.png') }}" alt="MIKA 1.0"class="w-full object-cover h-48 sm:h-60 md:h-auto px-1.5 pt-1.5 pb-4 rounded" />
                                 </div>
@@ -106,7 +102,7 @@
                         </div>
                     </div>
                     <div class="w-full h-fit space-y-6 text-blue31">
-                        <h2 class="text-xl font-bold">Dilengkapi dengan komponen utama pembelajaran</h2>
+                        <h2 class="text-xl font-medium">Dilengkapi dengan komponen utama pembelajaran</h2>
                         <div class="w-full lg:h-96 xl:h-72 lg:flex items-start justify-center text-base md:text-lg gap-5 grid md:grid-cols-2">
                             <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
                                 <div class="w-full flex items-center justify-center h-14">
@@ -143,8 +139,11 @@
                         </div>
                     </div>
                 </div>
-                <div id="content1.2" class="w-full">
-                    <div class="w-full h-full flex flex-col text-blue31 mt-14 space-y-5 text-base lg:text-lg text-justify">
+                <div id="" class="w-full lg:pt-20 pt-16">
+                    <h1 class="w-full italic text-xl md:text-2xl lg:text-3xl font-bold text-start lg:text-left text-blue31">
+                        Bagaimana cara kerja MIKA 1.0?
+                    </h1>
+                    <div class="w-full h-full flex flex-col text-blue31 mt-8 space-y-5 text-base lg:text-lg text-justify">
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">1</div>
                             <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Pendaftaran profile anak</span>
@@ -212,15 +211,15 @@
         
         <div id="section-2" class="w-3/4 flex items-center justify-center py-4 px-0">
             <div class="w-full flex flex-col lg:flex-row items-start justify-start gap-0 lg:gap-11 text-base lg:text-lg text-blue31">
-                <div class="w-full lg:w-2/3 text-justify lg:pr-12 pb-3 border-r-0 lg:border-r-2 border-bluee3">
+                <div class="w-full lg:w-[52%] text-justify lg:pr-12 pb-3 border-r-0 lg:border-r-2 border-bluee3">
                     <p>
                         MIKA Education merupakan platform belajar online untuk memahami Autisme, karakteristik belajar komunikasi pada individu autistik, strategi asesmen matriks perencanaan, metode intervensi TEACCH, serta administrasi, skoring dan interpretasi MIKA dalam mendampingi belajar komunikasi. 
                         MIKA education dibentuk sebagai kelanjutan pengembangan MIKA 1.0 dan menjadi suatu model komprehensif belajar menggunakan teknologi, yang mengkombinasikan aplikasi belajar (MIKA 1.0) dan website sumber belajar (MIKA Education).                    
                         <span class="lg:hidden">Aplikasi berbasis website ini sedang dalam tahap pengembangan dan telah memiliki versi Beta yang dapat diakses sekarang juga dibawah ini.</span>
                     </p>
                 </div>
-                <div class="w-full lg:w-1/3 text-justify lg:mt-0 mt-4">
-                    <p class="lg:flex hidden pb-4">Aplikasi berbasis website ini sedang dalam tahap pengembangan dan telah memiliki versi Alpha yang dapat diakses sekarang juga, dibawah ini.</p>
+                <div class="w-full lg:w-[48%] text-justify lg:mt-0 mt-4">
+                    <p class="lg:flex hidden pb-8">Aplikasi berbasis website ini sedang dalam tahap pengembangan dan telah memiliki versi Alpha yang dapat diakses sekarang juga, dibawah ini.</p>
                     <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="bg-blue31 text-lg text-white py-3 lg:px-6 px-10 w-full rounded hover:bg-blue6a">
                         Mulai Program Pembelajaran
                     </a>
@@ -240,7 +239,7 @@
                 <img src="{{ asset('images/uner.png') }}" alt="" class="w-28 sm:w-fit lg:h-32">
             </div>
             <div class="flex items-center justify-center bg-white w-full lg:w-40 h-28 sm:h-28 md:h-32 lg:h-40 rounded">
-                <img src="{{ asset('images/uptd-sdj.png') }}" alt="" class="w-28 sm:w-full lg:h-32">
+                <img src="{{ asset('images/uptd-sdj.png') }}" alt="" class="w-28 sm:w-[80%] lg:h-32">
             </div>
             <div class="flex items-center justify-center bg-white w-full lg:w-40 h-28 sm:h-28 md:h-32 lg:h-40 rounded">
                 <img src="{{ asset('images/river.png') }}" alt="" class="rounded-full w-24 lg:w-32 lg:h-32">
@@ -313,8 +312,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         const btnContent1 = document.getElementById("content1");
         const btnContent2 = document.getElementById("content2");
-        const content1 = document.getElementById("content1.1");
-        const content2 = document.getElementById("content1.2");
 
         // Fungsi untuk menampilkan konten dan mengubah style tombol
         function showContent(activeBtn, inactiveBtn, activeContent, inactiveContent) {

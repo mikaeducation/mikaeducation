@@ -27,8 +27,26 @@
                         @csrf
                         <input type="hidden" name="token" id="resetToken">
                         <input type="hidden" name="email" id="resetEmail">
-                        <input type="password" name="password" placeholder="Ketikkan password baru Anda yang disini..." required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
-                        <input type="password" name="password_confirmation" placeholder="Konfirmasi password baru Anda yang disini..." required class="border-2 mt-4 px-4 py-2 w-full rounded border-blue31" />
+                        <div class="relative mt-2">
+                            <input type="password" id="reset_password" name="password" required
+                                placeholder="Ketikkan password baru Anda yang disini..."
+                                class="border-2 px-4 py-2 w-full rounded border-blue31 pr-12">
+                            <img id="toggleResetPassword"
+                                src="https://img.icons8.com/?size=100&id=9zUvP8zNJKkh&format=png&color=000000"
+                                class="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                onclick="togglePasswordVisibility('reset_password', 'toggleResetPassword')"
+                                alt="Toggle Password">
+                        </div>
+                        <div class="relative mt-4">
+                            <input type="password" id="reset_password_confirmation" name="password_confirmation" required
+                                placeholder="Konfirmasi password baru Anda yang disini..."
+                                class="border-2 px-4 py-2 w-full rounded border-blue31 pr-12">
+                            <img id="toggleResetPasswordConfirmation"
+                                src="https://img.icons8.com/?size=100&id=9zUvP8zNJKkh&format=png&color=000000"
+                                class="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                onclick="togglePasswordVisibility('reset_password_confirmation', 'toggleResetPasswordConfirmation')"
+                                alt="Toggle Password">
+                        </div>
                         <div class="w-full gap-4 mt-6 flex justify-between border-t-2 border-bluee3 pt-5">
                             <button type="button" onclick="toggleResetToPhone()" class="w-1/2 px-4 py-2 bg-transparent border-2 border-blue31 transition rounded hover:bg-blue31 hover:border-blue31 hover:text-white">Kembali</button>
                             <button type="submit" class="w-1/2 px-4 py-2 bg-blue31 text-white hover:border-blue31 border-2 rounded">Konfirmasi</button>
@@ -82,4 +100,21 @@
             formReset.classList.add('hidden');
         });
     });
+
+
+    function togglePasswordVisibility(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        const eyeOpen = "https://img.icons8.com/?size=100&id=9zUvP8zNJKkh&format=png&color=000000"; // mata terbuka
+        const eyeClosed = "https://img.icons8.com/?size=100&id=33916&format=png&color=000000";     // mata tertutup
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.src = eyeClosed;
+        } else {
+            input.type = "password";
+            icon.src = eyeOpen;
+        }
+    }
 </script>

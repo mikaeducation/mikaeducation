@@ -1,5 +1,5 @@
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
-<header class="w-full h-24 content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
+<header class="w-full h-[90px] content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full flex lg:flex justify-center">
         <div class="flex justify-between lg:justify-center items-center h-full w-3/4 ">
             <div class="w-fit flex justify-start items-center mr-auto">
@@ -42,7 +42,7 @@
                                         @if(Auth::user()->profile->profile_image)
                                             <img src="{{ asset(Auth::user()->profile->profile_image) }}" 
                                                 alt="Profil" 
-                                                class="w-10 h-10 object-cover">
+                                                class="w-10 h-10 object-cover object-top">
                                         @else
                                             <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl">
                                                 {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
@@ -82,25 +82,90 @@
     </div>
     <div id="menuLearn" class="w-full h-screen py-2 px-12 fixed flex-col justify-start items-center bg-white text-blue6a font-bold top-0 z-40 head-shadow hidden translate-x-full opacity-0 transition-transform duration-300 ease-in-out">
         <div class="w-full flex justify-start items-start py-6 border-b-2 border-bluee3 relative">
-            <a href="/" class="flex items-center">
-                <div class="mr-2">
-                    <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
-                </div>
-                <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
-                    EDUCATION </h1>
+            <a href="{{ Auth::check() ? '/profile' : '/login' }}" class="w-full text-center flex items-center justify-start gap-4 md:mr-2 lg:mr-0">
+                <button id="menu-btn" class="h-full w-[18%] flex items-center z-50 text-center text-blue6a text-2xl font-medium transition rounded-full hover:border-blue31">
+                    @if(Auth::check() && Auth::user()->profile)
+                        @if(Auth::user()->profile->profile_image)
+                            <img src="{{ asset( Auth::user()->profile->profile_image) }}" 
+                                alt="Profil" 
+                                class="w-14 h-14 object-cover object-top rounded-full border-2 border-blue6a">
+                        @else
+                            <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl">
+                                {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
+                            </span>
+                        @endif
+                    @else
+                        <p title="Masuk/Daftar Akun" class="px-3 h-10 text-base flex items-center tracking-normal gap-2">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.7628 19.9054C20.3157 19.7902 20.6449 19.2117 20.3702 18.7183C19.7646 17.6307 18.8106 16.6749 17.5902 15.9465C16.0184 15.0085 14.0925 14.5 12.1113 14.5C10.1301 14.5 8.20425 15.0085 6.63245 15.9465C5.41202 16.6749 4.45799 17.6307 3.85241 18.7183C3.57771 19.2117 3.90695 19.7902 4.45976 19.9054C9.50657 20.9572 14.716 20.9572 19.7628 19.9054Z" fill="#6AA4D9"/>
+                                <circle cx="12.1113" cy="8.5" r="5" fill="#6AA4D9"/>
+                            </svg>
+                            Masuk/Daftar                              
+                        </p>
+                    @endif
+                </button>
+                @if(Auth::check() && Auth::user()->profile)
+                    <p class="w-[82%] text-2xl text-blue6a font-medium text-left mr-16 flex flex-col items-start justify-start">
+                        {{ Auth::user()->profile->first_name }} {{ Auth::user()->profile->last_name }}
+                        <br><span class="text-base font-normal text-grayd9">{{ Auth::user()->profile->occupation }}, {{ Auth::user()->profile->institution }}</span>
+                    </p>
+                @endif
             </a>
-            <button id="menuLearn-close-btn" class="absolute right-5 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue6a hover:text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
+            <button id="menuLearn-close-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 h-10 w-10 flex justify-center items-center text-blue6a hover:border-2 hover:rounded-full hover:border-blue6a focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" troke="#6AA4D9" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
-        <nav class="w-full flex flex-col justify-start items-start space-y-4 py-6 text-xl font-medium">
-            <a href="/learn" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Beranda</a>
-            <a href="/profile" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Profil Anda</a>
-            <a href="/preLearn" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Aktivitas Belajar</a>
-            <a href="/other" class="w-full pb-5 border-b-2 border-bluee3 hover:text-2xl">Program Lainnya</a>
-            <a href="/" class="w-full bg-blue6a text-white py-3 pl-3 rounded border-b-2 border-bluee3 hover:bg-blue31">Kembali ke Halaman Utama</a>
+        <nav class="w-full flex flex-col justify-start items-start space-y-4 py-6 text-lg font-medium">
+            @php $isLearn = request()->is('learn') @endphp
+            <a href="/learn" class="w-full p-2 px-5 hover:text-xl flex justify-between items-center {{ $isLearn ? 'bg-bluee3 rounded-xl' : '' }}">
+                <div class="flex items-center justify-start gap-3 h-fit w-full">
+                    <svg width="24" height="24" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-7 w-fit">
+                        <path d="M4.65625 13.4583H7.625C8.93668 13.4583 10 14.5216 10 15.8333V8.51041C10 6.31431 10 5.21626 9.45275 4.43923C9.25441 4.15761 9.00905 3.91224 8.72742 3.7139C7.9504 3.16666 6.85235 3.16666 4.65625 3.16666C3.92422 3.16666 3.5582 3.16666 3.29919 3.34907C3.20532 3.41519 3.12353 3.49697 3.05742 3.59085C2.875 3.84986 2.875 4.21587 2.875 4.94791V11.6771C2.875 12.4091 2.875 12.7751 3.05742 13.0341C3.12353 13.128 3.20532 13.2098 3.29919 13.2759C3.5582 13.4583 3.92422 13.4583 4.65625 13.4583Z" stroke="#6AA4D9" stroke-width="2"/>
+                        <path d="M15.3438 13.4583H12.375C11.0633 13.4583 10 14.5216 10 15.8333V8.51041C10 6.31431 10 5.21626 10.5472 4.43923C10.7456 4.15761 10.991 3.91224 11.2726 3.7139C12.0496 3.16666 13.1477 3.16666 15.3438 3.16666C16.0758 3.16666 16.4418 3.16666 16.7008 3.34907C16.7947 3.41519 16.8765 3.49697 16.9426 3.59085C17.125 3.84986 17.125 4.21587 17.125 4.94791V11.6771C17.125 12.4091 17.125 12.7751 16.9426 13.0341C16.8765 13.128 16.7947 13.2098 16.7008 13.2759C16.4418 13.4583 16.0758 13.4583 15.3438 13.4583Z" stroke="#6AA4D9" stroke-width="2"/>
+                    </svg>
+                    Beranda Pembelajaran
+                </div>
+                @if($isLearn) → @endif
+            </a>
+            @php $isActivity = request()->is('preLearn') @endphp
+            <a href="/preLearn" class="w-full p-2 px-5 hover:text-xl flex justify-between items-center {{ $isActivity ? 'bg-bluee3 rounded-xl' : '' }}">
+                <div class="flex items-center justify-start gap-4 h-fit w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24" fill="#6AA4D9"  class="h-6 w-fit">
+                        <path d="M 2 3 L 2 18 C 2 19.64497 3.3550302 21 5 21 L 19 21 C 20.64497 21 22 19.64497 22 18 L 22 7 L 20 7 L 20 18 C 20 18.56503 19.56503 19 19 19 C 18.43497 19 18 18.56503 18 18 L 18 3 L 2 3 z M 4 5 L 16 5 L 16 18 C 16 18.388348 16.278986 18.657986 16.416016 19 L 5 19 C 4.4349698 19 4 18.56503 4 18 L 4 5 z M 6 7 L 6 10 L 14 10 L 14 7 L 6 7 z M 6 12 L 6 14 L 14 14 L 14 12 L 6 12 z M 6 16 L 6 18 L 14 18 L 14 16 L 6 16 z"></path>
+                    </svg>
+                    Aktivitas Belajar
+                </div>
+                @if($isActivity) → @endif
+            </a>
+            @php $isOther = request()->is('other') @endphp
+            <a href="/other" class="w-full p-2 px-5 hover:text-xl flex justify-between items-center {{ $isOther ? 'bg-bluee3 rounded-xl' : '' }}">
+                <div class="flex items-center justify-start gap-4 h-fit w-full">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-fit">
+                        <path d="M11.25 8.75L16.25 8.75" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M11.25 18.75L15 18.75" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M11.25 13.75L18.75 13.75" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M23.75 13.75V9.75C23.75 6.92157 23.75 5.50736 22.8713 4.62868C21.9926 3.75 20.5784 3.75 17.75 3.75H12.25C9.42157 3.75 8.00736 3.75 7.12868 4.62868C6.25 5.50736 6.25 6.92157 6.25 9.75V20.25C6.25 23.0784 6.25 24.4926 7.12868 25.3713C8.00736 26.25 9.42157 26.25 12.25 26.25H15" stroke="#6AA4D9" stroke-width="2"/>
+                        <circle cx="21.875" cy="21.875" r="3.125" stroke="#6AA4D9" stroke-width="2"/>
+                        <path d="M26.25 26.25L24.375 24.375" stroke="#6AA4D9" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Program Lainnya
+                </div>
+                @if($isOther) → @endif
+            </a>
+            
+            @php $isHome = request()->is('/') @endphp
+            <a href="/" class="w-full p-2 px-5 hover:text-xl flex justify-between items-center text-blue31 {{ $isHome ? 'bg-bluee3 rounded-xl' : '' }}">
+                <div class="flex items-center justify-start gap-3 h-fit w-full">
+                    <svg width="24" height="24" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-7 w-fit">
+                        <path d="M4.65625 13.4583H7.625C8.93668 13.4583 10 14.5216 10 15.8333V8.51041C10 6.31431 10 5.21626 9.45275 4.43923C9.25441 4.15761 9.00905 3.91224 8.72742 3.7139C7.9504 3.16666 6.85235 3.16666 4.65625 3.16666C3.92422 3.16666 3.5582 3.16666 3.29919 3.34907C3.20532 3.41519 3.12353 3.49697 3.05742 3.59085C2.875 3.84986 2.875 4.21587 2.875 4.94791V11.6771C2.875 12.4091 2.875 12.7751 3.05742 13.0341C3.12353 13.128 3.20532 13.2098 3.29919 13.2759C3.5582 13.4583 3.92422 13.4583 4.65625 13.4583Z" stroke="#31587C" stroke-width="2"/>
+                        <path d="M15.3438 13.4583H12.375C11.0633 13.4583 10 14.5216 10 15.8333V8.51041C10 6.31431 10 5.21626 10.5472 4.43923C10.7456 4.15761 10.991 3.91224 11.2726 3.7139C12.0496 3.16666 13.1477 3.16666 15.3438 3.16666C16.0758 3.16666 16.4418 3.16666 16.7008 3.34907C16.7947 3.41519 16.8765 3.49697 16.9426 3.59085C17.125 3.84986 17.125 4.21587 17.125 4.94791V11.6771C17.125 12.4091 17.125 12.7751 16.9426 13.0341C16.8765 13.128 16.7947 13.2098 16.7008 13.2759C16.4418 13.4583 16.0758 13.4583 15.3438 13.4583Z" stroke="#31587C" stroke-width="2"/>
+                    </svg>
+                    Kembali ke Beranda Utama
+                </div>
+                @if($isHome) → @endif
+            </a>
         </nav>
     </div>
 </header>
@@ -202,7 +267,7 @@
                                         </svg>                                        
                                     <p class="font-medium">Kirim Pesan kepada Kami...</p>
                                 </button>
-                                <a href="https://wa.me/082156226440" class="h-fit flex items-center justify-start gap-3 font-medium bg-blue31 px-3 py-2 rounded hover:shadow-lg text-sm">
+                                <a href="https://wa.me/085141177976" class="h-fit flex items-center justify-start gap-3 font-medium bg-blue31 px-3 py-2 rounded hover:shadow-lg text-sm">
                                     <img src="https://img.icons8.com/pastel-glyph/128/FFFFFF/whatsapp--v2.png" alt="signing-a-document" class="h-7"/>                                
                                     atau Hubungi via WhatsApp...
                                 </a>

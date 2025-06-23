@@ -116,7 +116,7 @@
                                     <tbody>
                                         @forelse ($attempts as $attempt)
                                             <tr class="text-left">
-                                                <td class="pt-4 px-4"> 
+                                                <td class="pt-4 px-4 text-base sm:text-lg"> 
                                                     {{ \Carbon\Carbon::parse($attempt->finished_at)->locale('id')->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
                                                 </td>
                                                 <td class="pt-4 px-4">

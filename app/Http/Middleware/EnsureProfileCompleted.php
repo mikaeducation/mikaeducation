@@ -39,12 +39,17 @@ class EnsureProfileCompleted
             }
         }
 
-        // Cek apakah user sudah punya profil berdasarkan phone
-        $hasProfile = Profile::where('phone', $user->phone)->exists();
-
-        // Jika belum punya profile, redirect ke /registerprofile
-        if (! $hasProfile) {
-            return redirect('/registerprofile');
+        // Ambil profil berdasarkan phone
+        $profile = Profile::where('phone', $user->phone)->first();
+        // Jika belum punya profil atau ada field penting yang belum diisi, arahkan untuk lengkapi
+        if (
+            ! $profile ||
+            empty($profile->first_name) ||
+            empty($profile->last_name) ||
+            empty($profile->birth_place) ||
+            empty($profile->birth_date)
+        ) {
+            return redirect('/registerprofile')->with('warning', 'Silakan lengkapi biodata Anda terlebih dahulu.');
         }
 
         // Jika sudah punya profile, lanjutkan akses
