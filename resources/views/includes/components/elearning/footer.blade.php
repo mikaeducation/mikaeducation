@@ -20,7 +20,7 @@
             <p class="w-full whitespace-pre-line font-light tracking-wider pt-4"><span class="font-medium">Alamat</span>: Jl. Dr. Ir. H. Soekarno, Mulyorejo,
                 Kec. Mulyorejo, Surabaya, Jawa Timur 60115
                 <span class="font-medium">Email</span>: mikaunivairlangga@gmail.com
-                <span class="font-medium">Whatsapp</span>: +62 123-456-789
+                <span class="font-medium">Whatsapp</span>: +62 851-4117-7976
             </p>
         </div>
         <div class="w-full md:w-1/2 lg:w-1/5 md:pl-16 lg:pl-0 flex flex-col font-medium tracking-wider space-y-3">

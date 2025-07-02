@@ -139,6 +139,13 @@
 @endif
 
 <script>
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Browser sedang menampilkan halaman dari cache/back history
+            window.location.href = '/';
+        }
+    });
+
     function handleOccupationChange() {
         const occupationSelect = document.getElementById('occupation');
         const customInputWrapper = document.getElementById('customOccupationWrapper');

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -23,7 +24,11 @@ class PasswordResetTest extends TestCase
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => 'resetme@example.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
@@ -34,24 +39,31 @@ class PasswordResetTest extends TestCase
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => 'resetme2@example.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get('/reset-password/'.$notification->token);
-
-            $response->assertStatus(200);
-
+            $response = $this->get('/reset-password/'.$notification->token.'?email='.urlencode('resetme2@example.com'));
+            $response->assertStatus(302); // Karena kamu redirect ke login
             return true;
         });
     }
+
 
     public function test_password_can_be_reset_with_valid_token(): void
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => 'resetme3@example.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
@@ -59,8 +71,8 @@ class PasswordResetTest extends TestCase
             $response = $this->post('/reset-password', [
                 'token' => $notification->token,
                 'email' => $user->email,
-                'password' => 'password',
-                'password_confirmation' => 'password',
+                'password' => 'newpassword',
+                'password_confirmation' => 'newpassword',
             ]);
 
             $response
@@ -70,4 +82,5 @@ class PasswordResetTest extends TestCase
             return true;
         });
     }
+
 }

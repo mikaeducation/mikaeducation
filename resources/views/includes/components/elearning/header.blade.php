@@ -1,14 +1,13 @@
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
-<header class="w-full h-[90px] content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
+<header class="w-full h-[80px] content-shadows flex justify-center items-center sticky top-0 z-50 bg-white">
     <div class="w-full h-full flex lg:flex justify-center">
         <div class="flex justify-between lg:justify-center items-center h-full w-3/4 ">
             <div class="w-fit flex justify-start items-center mr-auto">
                 <a href="/learn" class="flex items-center">
                     <div class="mr-2">
-                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
+                        <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="xl:h-10 h-8 xl:w-10 w-8">
                     </div>
-                    <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
-                        EDUCATION </h1>
+                    <h1 class="font-bold text-lg xl:text-xl text-blue6a whitespace-pre-line leading-4 xl:leading-5">MIKA<br>EDUCATION </h1>
                 </a>
             </div>
             <div class="w-2/5 xl:w-1/2 md:flex hidden items-center justify-center">
@@ -44,7 +43,7 @@
                                                 alt="Profil" 
                                                 class="w-10 h-10 object-cover object-top">
                                         @else
-                                            <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl">
+                                            <span class="flex items-center justify-center px-3 xl:px-4 py-0 xl:py-0.5 text-blue6a font-normal text-3xl">
                                                 {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
                                             </span>
                                         @endif

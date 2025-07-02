@@ -18,6 +18,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Carbon;
 
 class ProfileController extends Controller
 {
@@ -64,6 +65,8 @@ class ProfileController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        Log::debug('Trying to delete user:', ['id' => $user->id]);
 
         return Redirect::to('/');
     }
@@ -236,8 +239,14 @@ class ProfileController extends Controller
             'text_log' => 'Anda telah memperbarui data profil Anda.',
             'is_read' => false,
         ]);
+
+        // Misalnya di ProfileController::updateProfile
+        Log::debug('Request data:', $request->all());
+        Log::debug('Validated data:', $request->validated());
+        Log::debug('Profile after update:', $profile->toArray());
+
         // Kembali ke halaman profile setelah berhasil disimpan
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+        return redirect('/profile')->with('success', 'Profil berhasil diperbarui!');
     }  
 
 

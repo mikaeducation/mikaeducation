@@ -18,7 +18,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
-
+/*
+|--------------------------------------------------------------------------
+| Verifikasi Email dan Aktivasi Ulang Akun
+|--------------------------------------------------------------------------
+*/
 Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) {
     $user = User::findOrFail($id);
     if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
@@ -26,16 +30,24 @@ Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) 
     }
     if (! $user->hasVerifiedEmail()) {
         $user->markEmailAsVerified();
+        event(new \Illuminate\Auth\Events\Verified($user));
     }
     // Login otomatis
     Auth::login($user);
     // Redirect ke form melengkapi biodata
     return redirect('/registerprofile')->with('status', 'Email berhasil diverifikasi. Silakan lengkapi biodata Anda.');
 })->middleware(['signed'])->name('verification.verify');
+
 Route::get('/reactivate-account', [RegisteredUserController::class, 'showReactivationForm'])->name('reactivate.form');
 Route::post('/reactivate-account', [RegisteredUserController::class, 'reactivate'])->name('reactivate.submit');
 Route::get('/reactivate/verify/{token}', [RegisteredUserController::class, 'verifyReactivation'])->name('reactivate.verify');
 
+
+/*
+|--------------------------------------------------------------------------
+| Halaman Login, Register & RegisterProfile
+|--------------------------------------------------------------------------
+*/
 Route::get('/login', function () {
     return view('auth.loginpage');
 })->name('login');
@@ -43,14 +55,34 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.registerpage');
 })->name('register');
+
+Route::get('/registerprofile', function () {
+    $user = Auth::user();
+
+    // Jika belum login, arahkan ke login
+    if (!$user) {
+        return redirect('/login');
+    }
+
+    // Jika profil sudah ada, redirect ke halaman utama
+    if (\App\Models\Profile::where('phone', $user->phone)->exists()) {
+        return redirect('/')->with('message', 'Biodata sudah lengkap.');
+    }
+
+    // Tampilkan halaman registerprofile dengan header no-cache
+    return response()
+        ->view('auth.registerprofile')
+        ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->header('Pragma', 'no-cache');
+})->middleware('auth')->name('registerprofile');
+
+
+
 /*
 |--------------------------------------------------------------------------
-| HALAMAN BERANDA / HALAMAN UTAMA
+| HALAMAN BERANDA / HALAMAN UTAMA + BAGIAN UTAMA LAINNYA
 |--------------------------------------------------------------------------
 */
-
-
-
 Route::get('/', function () {
     $user = Auth::user();
     if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
@@ -68,6 +100,8 @@ Route::get('/article3', fn() => view('includes/content/main/article/article3'));
 Route::get('/article4', fn() => view('includes/content/main/article/article4'));
 Route::get('/aboutus', fn() => view('about-us'));
 
+
+
 /*
 |--------------------------------------------------------------------------
 | FITUR PESAN
@@ -76,12 +110,13 @@ Route::get('/aboutus', fn() => view('about-us'));
 
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | HALAMAN PROFILE & ACCOUNT
 |--------------------------------------------------------------------------
 */
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/registerprofile', [ProfileController::class, 'showProfileForm']);
     Route::post('/complete-profile', [ProfileController::class, 'completeProfile'])->name('complete-profile');
@@ -97,12 +132,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });
 
+
+
 /*
 |--------------------------------------------------------------------------
-| E-LEARNING DAN COURSE
+| BAGIAN E-LEARNING & COURSE
 |--------------------------------------------------------------------------
 */
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/learn', [ModuleController::class, 'index'])->name('modules.index');
     Route::get('/modules', fn() => view('learning/modules'));

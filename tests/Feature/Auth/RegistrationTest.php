@@ -18,14 +18,31 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
+        // Ganti data yang dikirim agar sesuai dengan form registrasi dan tabel Anda
         $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        'phone' => '081234567890',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'terms_accepted' => true,
+    ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        
+        // Asumsikan setelah registrasi, user diarahkan ke 'dashboard'
+        // Ganti 'dashboard' jika nama route Anda berbeda
+        $response->assertRedirect(route('auth.verify-email'));
+
+        // Tambahkan validasi untuk memastikan data tersimpan di kedua tabel
+        $this->assertDatabaseHas('users', [
+            'email' => 'test@example.com',
+            'phone' => '081234567890',
+        ]);
+
+        $this->assertDatabaseHas('profiles', [
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'phone' => '081234567890',
+        ]);
     }
 }
