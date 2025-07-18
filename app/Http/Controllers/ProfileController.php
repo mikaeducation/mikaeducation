@@ -1,28 +1,82 @@
 <?php
 
-namespace App\Http\Controllers;  
+namespace App\Http\Controllers;
+
+use App\Http\Requests\ProfileUpdateRequest;
 
 use App\Models\User;
 use App\Models\Message;
 use App\Models\Profile;
 use App\Models\UserLog;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;  
 use App\Models\ProgressTracking;
-use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;  
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Routing\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Support\Carbon;
 
+class ProfileController extends Controller
+{
+    /**
+     * Display the user's profile form.
+     */
+    public function edit(Request $request): View
+    {
+        return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
 
-class ProfileController extends Controller  
-{  
+    /**
+     * Update the user's profile information.
+     */
+    public function update(ProfileUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    /**
+     * Delete the user's account.
+     */
+    public function destroy(Request $request): RedirectResponse
+    {
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        Log::debug('Trying to delete user:', ['id' => $user->id]);
+
+        return Redirect::to('/');
+    }
+
     /**  
      * Menampilkan form untuk mengisi profil  
      */  
     public function showProfileForm()  
     {  
-        return view('registerprofilepage');  
+        return view('register-profile');  
     }  
     /**  
      * Menyimpan data profil pengguna ke tabel profiles  
@@ -75,7 +129,11 @@ class ProfileController extends Controller
                 'institution' => $data['institution'],
                 'institutionCity' => $data['institutionCity'] ?? null,
             ]
-        ); 
+        );
+
+        /** @var \App\Models\User $user */
+        $user->update(['is_profile_completed' => true]);
+        
         // Arahkan ke halaman index setelah berhasil disimpan  
         return redirect('/')->with('success', 'Profil berhasil diperbarui!');  
     }  
@@ -174,8 +232,21 @@ class ProfileController extends Controller
             'institutionCity' => $data['institutionCity'],
             'experience' => $data['experience'] ?? null,
         ]);
+
+        UserLog::create([
+            'user_id' => $user->id,
+            'log_type' => 'account',
+            'text_log' => 'Anda telah memperbarui data profil Anda.',
+            'is_read' => false,
+        ]);
+
+        // Misalnya di ProfileController::updateProfile
+        Log::debug('Request data:', $request->all());
+        Log::debug('Validated data:', $request->validated());
+        Log::debug('Profile after update:', $profile->toArray());
+
         // Kembali ke halaman profile setelah berhasil disimpan
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+        return redirect('/profile')->with('success', 'Profil berhasil diperbarui!');
     }  
 
 
@@ -198,17 +269,21 @@ class ProfileController extends Controller
             return redirect('/')->with('error', 'Profil tidak ditemukan.');    
         }    
 
+        $changes = [];
+
         // Update deskripsi  
         if ($request->has('description')) {  
-            $profile->description = $request->description;  
+            $profile->description = $request->description;
+            $changes[] = 'Deskripsi';
         }  
 
         // Jika tombol hapus ditekan, hapus gambar banner dan set ke default
         if ($request->has('delete_banner') && $request->delete_banner) {
             if ($profile->banner_image) {
-                Storage::disk('public')->delete($profile->banner_image); // Hapus file lama
+                Storage::disk('public')->delete($profile->banner_image);
+                $profile->banner_image = null;
+                $changes[] = 'Penghapusan banner';
             }
-            $profile->banner_image = null; // Set ke null (default)
         }
 
         // Simpan gambar jika ada    
@@ -220,9 +295,9 @@ class ProfileController extends Controller
             $bannerImage = $request->file('banner_image');  
             $bannerImageName = time() . '_' . $bannerImage->getClientOriginalName();  
             $bannerPath = $bannerImage->storeAs('images/banners', $bannerImageName, 'public');  
-
             // Simpan path ke database
-            $profile->banner_image = 'storage/' . $bannerPath;      
+            $profile->banner_image = 'storage/' . $bannerPath;
+            $changes[] = 'Banner baru';
         }      
 
         if ($request->hasFile('profile_image')) {      
@@ -233,13 +308,22 @@ class ProfileController extends Controller
             $profileImage = $request->file('profile_image');  
             $profileImageName = time() . '_' . $profileImage->getClientOriginalName();  
             $profilePath = $profileImage->storeAs('images/profiles', $profileImageName, 'public');  
-
             // Simpan path ke database
-            $profile->profile_image = 'storage/' . $profilePath;  
+            $profile->profile_image = 'storage/' . $profilePath;
+            $changes[] = 'Foto profil baru';
         }  
 
-        $profile->save();     
+        $profile->save();
 
+        if (!empty($changes)) {
+            $logText = 'Anda telah memperbarui media profil Anda: ' . implode(', ', $changes) . '.';
+            UserLog::create([
+                'user_id' => $user->id,
+                'log_type' => 'account',
+                'text_log' => $logText,
+                'is_read' => false,
+            ]);
+        }
         // Kembali ke halaman profile setelah berhasil disimpan    
         return redirect()->back()->with('success', 'Media profil berhasil diperbarui!');    
     }
@@ -362,10 +446,12 @@ class ProfileController extends Controller
         $progressLogs = $userLogs->where('log_type', 'progress')->unique('module_id');
         $certificateLogs = $userLogs->where('log_type', 'certificate')->unique('module_id');
         $adminLogs = $userLogs->where('log_type', 'admin');
+        $accountLogs = $userLogs->where('log_type', 'account');
 
         $allLogs = $progressLogs
             ->merge($certificateLogs)
             ->merge($adminLogs)
+            ->merge($accountLogs)
             ->sortByDesc('created_at');
 
         // Notifikasi dari admin langsung (dari tabel messages)
@@ -378,10 +464,5 @@ class ProfileController extends Controller
             return $item->created_at;
         });
     }
+}
 
-
-
-
-
-
-}    

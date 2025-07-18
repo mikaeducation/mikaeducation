@@ -23,7 +23,7 @@
                         @if ($progress->is_completed)
                             <img id="gretings-icon" src="{{ asset('images/wavinghand.gif') }}" alt="" class="md:h-14 h-10 md:w-14 w-10">
                             <h2 id="greetings-condition" class="">
-                                Selamat, anda berhasil menyelesaikan pembelajaran..!
+                                Selamat, anda telah berhasil menyelesaikan pembelajaran..!
                             </h2>
                         @else
                             {{-- Tanpa icon jika belum selesai --}}
@@ -33,7 +33,7 @@
                         @endif
                     </div>
                     {{-- Informasi Modul --}}
-                    <div class="w-full lg:h-fit xl:h-[150px] flex flex-col md:flex-row justify-between gap-4 rounded border-2 border-l-8 border-blue31">
+                    <div class="w-full lg:h-fit xl:h-[150px] py-2 lg:py-0 flex flex-col md:flex-row justify-between gap-0 md:gap-4 rounded border-2 border-l-8 border-blue31">
                         <div class="w-full h-full flex gap-6 py-6 pl-6 md:pr-0 pr-6">
                             <div class="h-full lg:w-1/3 xl:w-1/6 hidden xl:flex border border-blue31 rounded">
                                 <img id="module_publisher_banner" src="{{ asset($module->module_publisher_banner) }}" alt="Module Banner" class="object-cover h-full w-full rounded">
@@ -41,9 +41,9 @@
                             <div class="flex-col flex w-full justify-between space-y-3">
                                 <div>
                                     <h6 id="publisher-name">{{ $module->module_publisher_name }}</h6>
-                                    <h1 id="module-title" class="font-semibold text-2xl md:text-xl lg:text-2xl">{{ $module->module_title }}</h1>
+                                    <h1 id="module-title" class="font-semibold text-xl lg:text-2xl">{{ $module->module_title }}</h1>
                                 </div>
-                                <div class="flex justify-between w-full lg:w-4/5 xl:w-5/6 xl:text-lg md:text-base text-lg font-medium lg:gap-2">
+                                <div class="flex flex-col items-start md:flex-row md:justify-between w-full lg:w-4/5 xl:w-5/6 xl:text-lg md:text-base text-lg font-medium lg:gap-2">
                                     {{-- Learn Status --}}
                                     <div id="learn-status" class="flex items-center justify-center gap-2">
                                         <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15.25 2.5V9.25L15.25 9.30441V9.30442V9.30443V9.30444C15.2499 9.7285 15.2498 10.1406 15.2955 10.4805C15.347 10.8637 15.4726 11.301 15.8358 11.6642C16.199 12.0274 16.6363 12.153 17.0195 12.2045C17.3594 12.2502 17.7715 12.2501 18.1956 12.25H18.1956H18.1956H18.1956L18.25 12.25H25V20C25 23.5355 25 25.3033 23.9017 26.4017C22.8033 27.5 21.0355 27.5 17.5 27.5H12.5C8.96447 27.5 7.1967 27.5 6.09835 26.4017C5 25.3033 5 23.5355 5 20V10C5 6.46447 5 4.6967 6.09835 3.59835C7.1967 2.5 8.96447 2.5 12.5 2.5H15.25ZM17.25 2.50167V9.25C17.25 9.74967 17.2521 10.0238 17.2777 10.214L17.2787 10.2213L17.286 10.2223C17.4762 10.2479 17.7503 10.25 18.25 10.25H24.9983C24.9919 9.59064 24.9608 9.1935 24.8097 8.82883C24.6194 8.3694 24.2581 8.00811 23.5355 7.28555L23.5355 7.28554L20.2145 3.96447C19.4919 3.24189 19.1306 2.8806 18.6712 2.6903C18.3065 2.53925 17.9094 2.50809 17.25 2.50167ZM10.25 16.25C10.25 15.6977 10.6977 15.25 11.25 15.25L18.75 15.25C19.3023 15.25 19.75 15.6977 19.75 16.25C19.75 16.8023 19.3023 17.25 18.75 17.25L11.25 17.25C10.6977 17.25 10.25 16.8023 10.25 16.25ZM11.25 20.25C10.6977 20.25 10.25 20.6977 10.25 21.25C10.25 21.8023 10.6977 22.25 11.25 22.25H16.25C16.8023 22.25 17.25 21.8023 17.25 21.25C17.25 20.6977 16.8023 20.25 16.25 20.25H11.25Z" fill="#31587C"/>
                                         </svg>
                                         <a href="#" class="relative before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">
-                                            Tinjau Riwayat Penilaian
+                                            Tinjau Riwayat
                                         </a>
                                     </div>
                                 </div>
@@ -126,12 +126,12 @@
                                         @if ($item->is_completed)
                                             <a href="javascript:void(0)" 
                                                 class="w-5/6 text-center font-medium text-lg py-2 lg:py-0 xl:py-2 border-2 border-blue31 text-blue31 rounded hover:bg-blue31 hover:text-white hover:border-0">
-                                                Tinjau Pembelajaran
+                                                Tinjau
                                             </a>
                                         @else
                                             <a href="{{ route('modules.show', $item->module_id) }}"
                                                 class="w-5/6 text-center font-medium text-lg py-2 lg:py-0 xl:py-2 hover:border-2 hover:border-blue31 hover:text-blue31 hover:bg-white rounded bg-blue31 text-white border-2 border-blue31">
-                                                Lanjutkan Pembelajaran
+                                                Lanjutkan
                                             </a>
                                         @endif
                                     </div>
@@ -189,7 +189,7 @@
     
     </body>
 
-    @include('includes.components.elearning.course.dialog.ratingLearn')
+    @include('includes.components.elearning.course.dialog.rating-learn')
     @include('includes.components.elearning.course.dialog.modal-asessment')
 
 </html>

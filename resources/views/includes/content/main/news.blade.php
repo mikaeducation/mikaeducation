@@ -50,32 +50,32 @@
     <div class="w-3/4 h-full flex flex-col lg:flex-row items-start justify-start pb-10">
         <div class="w-full md:w-1/2 pt-8 flex flex-col items-start justify-start gap-5">
             <h3 class="text-2xl font-semibold text-left">
-                Mengenal lebih dekat <br> Media Visual Komunikasi Anak 
+                Mengenal lebih dekat <br> Media Visual Komunikasi Anak
             </h3>
             <div class="w-full lg:w-3/5 flex items-center justify-between p-1.5 rounded bg-blue31 self-start">
                 <p class="text-white text-lg font-medium pl-6">Baca Selengkapnya</p>
                 <a href="https://www.liputan6.com/amp/4148073/berawal-kegelisahan-terapis-dosen-unair-kembangkan-aplikasi-untuk-anak-autis" class="px-2 py-4 lg:p-3 rounded flex items-end justify-end bg-yellowf4">
                     <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-90 lg:rotate-0">
                         <path d="M25.7071 8.20711C26.0976 7.81658 26.0976 7.18342 25.7071 6.79289L19.3431 0.428932C18.9526 0.0384078 18.3195 0.0384078 17.9289 0.428932C17.5384 0.819457 17.5384 1.45262 17.9289 1.84315L23.5858 7.5L17.9289 13.1569C17.5384 13.5474 17.5384 14.1805 17.9289 14.5711C18.3195 14.9616 18.9526 14.9616 19.3431 14.5711L25.7071 8.20711ZM0 8.5H25V6.5H0V8.5Z" fill="#31587C"/>
-                    </svg>                        
+                    </svg>
                 </a>
             </div>
         </div>
         <div class="w-full lg:w-1/2 flex flex-col items-center justify-start pb-2 relative mt-6 lg:mt-0">
             <div class="text-8xl absolute top-0 left-0 rotate-12 block">"</div>
             <p class="pt-8 text-justify indent-10 text-lg">
-                Awal mula tercetusnya ide membuat Mika adalah dari kegelisahan teraphis, bagaimana caranya bisa 
-                <span class="font-medium">mengoptimalkan proses belajar komunikasi pada anak dengan autisme dan hendaya komunikasi.</span> 
-                Mika ini sebagai alat komunikasi dengan menggunakan tablet dan digunakan sebagai terapi jadi bisa digunakan oleh orang-orang yang terlatih dan paham tentang bagaimana cara memberikan visual 
-                atau <span class="font-medium">alat bantu visual untuk belajar komunikasi secara terstruktur</span>. 
-                Ada fitur untuk menambahkan kata baru untuk menyesuaikan dengan konteks bahasa, misalkan di Nusa Tenggara Timur 
+                Awal mula tercetusnya ide membuat Mika adalah dari kegelisahan teraphis, bagaimana caranya bisa
+                <span class="font-medium">mengoptimalkan proses belajar komunikasi pada anak dengan autisme dan hendaya komunikasi.</span>
+                Mika ini sebagai alat komunikasi dengan menggunakan tablet dan digunakan sebagai terapi jadi bisa digunakan oleh orang-orang yang terlatih dan paham tentang bagaimana cara memberikan visual
+                atau <span class="font-medium">alat bantu visual untuk belajar komunikasi secara terstruktur</span>.
+                Ada fitur untuk menambahkan kata baru untuk menyesuaikan dengan konteks bahasa, misalkan di Nusa Tenggara Timur
                 ada bahasa khusus yang tidak ada di dalam bahasa Indonesia, maka yang ada di tablet ini bisa ditambahkan.
                 <span class="font-bold">”</span>
             </p>
             <div class="flex items-center w-full h-16 gap-4 mt-4">
                 <img src="{{ asset('images/member-Margaretha.jpg') }}" alt="" class="h-full w-16 object-cover object-top border-2 border-blue31 rounded-full">
                 <p class="text-lg font-medium">
-                    Margaretha, SPsi, PGDipPsych, GCertEd, MSc, PhD. <span class="text-sm opacity-60 italic pl-2">04-01-2020</span> 
+                    Margaretha, S.Psi, P.G.Dip.Psych, G.Cert.Ed, M.Sc, Ph.D<span class="text-sm opacity-60 italic pl-2">04-01-2020</span>
                 </p>
             </div>
         </div>
@@ -93,7 +93,7 @@
                 news.classList.add('min-w-[325px]', 'h-[450px]');
                 news.querySelector('.baca-link')?.classList.add('hidden');
             });
-            
+
             // buat aktifkan item yang diklik
             this.classList.add('active-news', 'min-w-[425px]', 'h-[550px]', 'gradient-news');
             this.classList.remove('min-w-[325px]', 'h-[450px]');

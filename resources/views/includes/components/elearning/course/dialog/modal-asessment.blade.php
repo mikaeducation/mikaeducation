@@ -272,7 +272,7 @@
 
 
 <!-- Loading Screen -->
-<div id="loadingScreen" style="display: none" class="fixed inset-0 flex flex-col items-center justify-center z-[50]">
+<div id="loadingScreen" style="display: none" class="fixed inset-0 flex flex-col text-center items-center justify-center z-[50]">
     <div class="fixed w-full inset-0 bg-black bg-opacity-90 transition-opacity" aria-hidden="true"></div>            
     <div class="relative w-fit h-fit flex items-center justify-center flex-col gap-4">
         <h1 id="typingText" class="text-white text-2xl font-medium mb-4"></h1> <!-- kosong dulu, nanti diisi efek ketik -->

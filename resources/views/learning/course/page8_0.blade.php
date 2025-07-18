@@ -80,63 +80,65 @@
                             <div class="w-full border-4 px-8 py-5 border-bluee3 rounded">
                                 <h5 class="font-medium text-xl">Nilai Penilaian II Anda</h5>
                                 <p class="text-lg text-justify mb-5">Dibutuhkan <span class="font-medium">nilai 80% atau lebih tinggi</span> untuk lulus.</p>
-                                <table class="w-full text-lg">
-                                    <thead class="w-full">
-                                        <tr class="bg-bluee3 text-left">
-                                            <th class="py-2 px-4 w-1/3">
-                                                <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'time_asc' ? 'time_desc' : 'time_asc'])) }}"
-                                                    class="inline-flex items-center justify-center gap-1">
-                                                    Waktu
-                                                    @php $sort = request('sort'); @endphp
-                                                    @if($sort === 'time_asc' || $sort === 'time_desc' || is_null($sort))
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
-                                                                viewBox="0 0 24 24"
-                                                                class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'time_asc' ? 'rotate-180' : 'rotate-0' }}">
-                                                            <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
-                                                        </svg>
-                                                    @endif
-                                                </a>
-                                            </th>
-                                            <th class="py-2 px-4 w-1/5">
-                                                <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'score_asc' ? 'score_desc' : 'score_asc'])) }}"
-                                                    class="inline-flex items-center justify-center gap-1">
-                                                    Nilai
-                                                    @if($sort === 'score_asc' || $sort === 'score_desc')
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
-                                                                viewBox="0 0 24 24"
-                                                                class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'score_asc' ? 'rotate-180' : 'rotate-0' }}">
-                                                            <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
-                                                        </svg>
-                                                    @endif
-                                                </a>
-                                            </th>
-                                            <th class="py-2 px-4 w-1/5">Status</th>
-                                            <th class="py-2 px-4 w-1/5">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($attempts as $attempt)
-                                            <tr class="text-left">
-                                                <td class="pt-4 px-4"> 
-                                                    {{ \Carbon\Carbon::parse($attempt->finished_at)->locale('id')->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
-                                                </td>
-                                                <td class="pt-4 px-4">
-                                                    {{ $attempt->score }}%
-                                                </td>
-                                                <td class="pt-4 px-4">
-                                                    {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
-                                                </td>
-                                                <td class="underline cursor-pointer pt-4 px-4">
-                                                    <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
-                                                </td>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full min-w-full text-lg">
+                                        <thead class="w-full">
+                                            <tr class="bg-bluee3 text-left">
+                                                <th class="py-2 px-4 w-1/3">
+                                                    <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'time_asc' ? 'time_desc' : 'time_asc'])) }}"
+                                                        class="inline-flex items-center justify-center gap-1">
+                                                        Waktu
+                                                        @php $sort = request('sort'); @endphp
+                                                        @if($sort === 'time_asc' || $sort === 'time_desc' || is_null($sort))
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
+                                                                    viewBox="0 0 24 24"
+                                                                    class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'time_asc' ? 'rotate-180' : 'rotate-0' }}">
+                                                                <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
+                                                            </svg>
+                                                        @endif
+                                                    </a>
+                                                </th>
+                                                <th class="py-2 px-4 w-1/5">
+                                                    <a href="{{ route(Route::currentRouteName(), array_merge(request()->query(), ['sort' => request('sort') === 'score_asc' ? 'score_desc' : 'score_asc'])) }}"
+                                                        class="inline-flex items-center justify-center gap-1">
+                                                        Nilai
+                                                        @if($sort === 'score_asc' || $sort === 'score_desc')
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#31587C"
+                                                                    viewBox="0 0 24 24"
+                                                                    class="transition-transform duration-300 ease-in-out mt-1 {{ $sort === 'score_asc' ? 'rotate-180' : 'rotate-0' }}">
+                                                                <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
+                                                            </svg>
+                                                        @endif
+                                                    </a>
+                                                </th>
+                                                <th class="py-2 px-4 w-1/5">Status</th>
+                                                <th class="hidden py-2 px-4 w-1/5">Aksi</th>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="4" class="text-center text-gray-500">Belum ada riwayat penilaian.</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($attempts as $attempt)
+                                                <tr class="text-left">
+                                                    <td class="pt-4 px-4 text-base sm:text-lg"> 
+                                                        {{ \Carbon\Carbon::parse($attempt->finished_at)->locale('id')->timezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
+                                                    </td>
+                                                    <td class="pt-4 px-4">
+                                                        {{ $attempt->score }}%
+                                                    </td>
+                                                    <td class="pt-4 px-4">
+                                                        {{ $attempt->is_passed ? 'Lulus' : 'Belum Lulus' }}
+                                                    </td>
+                                                    <td class="hidden underline cursor-pointer pt-4 px-4">
+                                                        <a href="#">Tinjau Penilaian</a> {{-- Tambahkan href jika ada detailnya --}}
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4" class="text-center text-gray-500">Belum ada riwayat penilaian.</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <p class="text-lg text-justify mt-4">Silahkan menyelesaikan asessmen dengan melanjutkan ke bagian <span class="font-medium">Selanjutnya atau Lanjutkan Evaluasi</span> untuk menyelesaikan asesmen program pembelajaran.</p>
                             </div>
                         @endif
@@ -147,6 +149,11 @@
             {{-- Right Content --}}
             @include('includes.components.elearning.course.section')
         </div>
+
+        <script>
+            window.userIsPassed = {{ $attempts->contains('is_passed', 1) ? 'true' : 'false' }};
+        </script>
+
     </section>
 
     @include('includes.components.elearning.course.footer')

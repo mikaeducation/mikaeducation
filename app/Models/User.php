@@ -6,20 +6,25 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * @method bool hasVerifiedEmail()
+ * @method bool markEmailAsVerified()
+ */
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
-        'phone',        // Tambahkan kolom 'phone' di sini
-        'email',        // Kolom lainnya
+        'phone',
+        'email',
         'password',
         'terms_accepted',
+        'is_profile_completed',
     ];
 
     /**

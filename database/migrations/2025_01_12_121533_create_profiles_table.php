@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {  
             $table->id();  
             $table->string('phone')->unique();  
-            $table->foreign('phone')->references('phone')->on('users')->onDelete('cascade');
+            $table->foreign('phone')
+                ->references('phone')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('username')->virtualAs('CONCAT(first_name, " ", last_name)');  
             $table->string('first_name');  
             $table->string('last_name');  

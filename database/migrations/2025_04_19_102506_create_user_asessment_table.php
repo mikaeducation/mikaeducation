@@ -25,7 +25,6 @@ return new class extends Migration
             $table->integer('attempt_count')->default(0);
             $table->float('high_score')->default(0);            
             $table->timestamps();
-
             
         });
     }

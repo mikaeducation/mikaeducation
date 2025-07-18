@@ -89,7 +89,7 @@
             "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", // "/page4_1": "Rangkuman Materi", "/page4_2": "Uji Pengetahuan", "/page4_3": "Latihan Berpikir",
             "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", // "/page5_1": "Rangkuman Materi", "/page5_2": "Uji Pengetahuan", "/page5_3": "Latihan Berpikir",
             "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", // "/page6_1_1": "Studi Kasus Admin", "/page6_3": "Rangkuman Materi",
-            "/page7": "Studi Kasus - Simulasi Penggunaan MIKA 1.0",
+            "/page7": "Studi Kasus - Latihan Mandiri",
             "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_2_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar"
         };
 
@@ -272,18 +272,53 @@
         if ((page === "/page2_0" || page === "/page8_0") && sudahSelesai) {
             btnStartUlang?.addEventListener("click", (e) => {
                 e.preventDefault();
-                modalBack?.classList.remove("hidden");
+                if (page !== "/page2_0") {
+                    modalBack?.classList.remove("hidden");
+                }
             });
 
-            btnStartEval?.addEventListener("click", (e) => {
-                e.preventDefault();
-                modalEval?.classList.remove("hidden");
-            });
+            if (page === "/page8_0") {
+                // Validasi berdasarkan kelulusan
+                function checkPassedThenContinue(callback) {
+                    const isPassed = window.userIsPassed === true || window.userIsPassed === "true";
 
-            nextBtn?.addEventListener("click", (e) => {
-                e.preventDefault();
-                modalEval?.classList.remove("hidden");
-            });
+                    if (isPassed) {
+                        callback();
+                    } else {
+                        alert("Anda belum lulus penilaian. Silahkan Ulangi Penilaian terlebih dahulu untuk bisa melanjutkan.");
+                    }
+                }
+
+                btnStartEval?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    checkPassedThenContinue(() => {
+                        modalEval?.classList.remove("hidden");
+                    });
+                });
+
+                nextBtn?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    checkPassedThenContinue(() => {
+                        modalEval?.classList.remove("hidden");
+                    });
+                });
+
+                confirmBack?.addEventListener("click", () => {
+                    window.location.href = "/page8_1";
+                });
+
+            } else {
+                // Untuk page2_0 tetap tanpa validasi is_passed
+                btnStartEval?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modalEval?.classList.remove("hidden");
+                });
+
+                nextBtn?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modalEval?.classList.remove("hidden");
+                });
+            }
 
             btnBackEval?.addEventListener("click", () => {
                 modalEval?.classList.add("hidden");
@@ -295,15 +330,6 @@
                 }
                 else if (page === "/page8_0") {
                     window.location.href = "/page8_2_0";
-                }
-            });
-
-            confirmBack?.addEventListener("click", () => {
-                if (page === "/page2_0") {
-                    window.location.href = "/page2_1";
-                }
-                else if (page === "/page8_0") {
-                    window.location.href = "/page8_1";
                 }
             });
 

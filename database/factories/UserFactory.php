@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,12 +26,21 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'phone' => fake()->unique()->e164PhoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'terms_accepted' => true,
         ];
+    }
+
+    public function withProfile(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            // Logika ini sekarang hanya berjalan jika memanggil ->withProfile()
+            Profile::factory()->create(['phone' => $user->phone]);
+        });
     }
 
     /**
