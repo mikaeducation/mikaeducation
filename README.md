@@ -25,8 +25,8 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - **Authentication:** Laravel(default), Breeze
 - **Deployment:** Hostinger, Cloud Kilat S3 Bucket
 
-Dependency
-- PHP >8.2
+Dependencies
+- PHP 8.2
 - Composer, Laravel 11 (cek lagi)
 - node.js, NPM / Bun
 
@@ -68,32 +68,36 @@ contoh commit: `refactor(quiz): membuat komponen untuk pilihan jawaban`
    # ubah link jika menggunakan ssh
    cd <nama repo> (mikaeducation)
    ```
+2. Install composer dependencies
+   ```bash
+   composer install
+   ```
 
-2. Install dependencies
+3. Install npm dependencies
    ```bash
    npm install
    # atau
    bun install
    ```
 
-3. ubah env
+4. ubah env
    ```bash
    # copy .env.example
    cp .env.example .env
    # atau buat sendiri yang baru
    ```
-4. Generate Laravel key
+5. Generate Laravel key
    ```bash
    php artisan key:generate
    ```
 
-5. Migrate database dan seeder
+6. Migrate database dan seeder
    ```bash
    php artisan migrate
    php artisan db:seed
    ```
 
-6. Jalankan server development
+7. Jalankan server development
    ```bash
    php artisan serve
    ```
