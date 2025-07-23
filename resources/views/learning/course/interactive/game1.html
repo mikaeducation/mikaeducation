@@ -82,7 +82,7 @@
         const gameCard1 = gameScene1.querySelector(".game-card");
         const questionGame1 = gameScene1.querySelectorAll(".input-game");
         const questionGame1Array = Array.from(questionGame1);
-
+        const answerPlaceholder = [];
         const radius = 150;
 
         questionGame1Array.forEach((input, index) => {
@@ -230,6 +230,10 @@
                         console.log(
                             `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
                         );
+                        if (!answerPlaceholder.includes(this.el.innerHTML)) {
+                            answerPlaceholder.push(this.el.innerHTML);
+                        }
+
                         break;
                     }
                 }
@@ -241,6 +245,8 @@
                     answerNode.appendChild(this.el);
                     this.setInitialPosition(this.initialPosition);
                 }
+
+                console.log(`Current answer : ${answerPlaceholder}`);
             }
         }
 

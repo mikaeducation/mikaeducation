@@ -15,6 +15,7 @@
                 border: 1px solid red;
                 width: 470px;
                 height: 300px;
+                margin-bottom: 20px;
                 position: relative;
             }
 
@@ -34,8 +35,12 @@
                 position: absolute;
             }
 
-            #game-2 .input-card:nth-child(odd) {
-                justify-content: center;
+            .answer-container {
+                margin-top: 10px;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                justify-content: space-evenly;
             }
 
             #game-2 #question {
@@ -64,25 +69,16 @@
     </head>
     <body>
         <div id="game-2" class="game-section">
-            <h2>Game 2</h2>
+            <h2>Game 6</h2>
             <div class="game-scene">
-                <div class="game-card">
-                    <div>Karakteristik Pra-Komunikasi</div>
-                    <div class="input-card">
-                        <span>1</span>
-                        <div class="input-game" id="question-1">Input 1</div>
+                <div class="question-container">
+                    <div class="game-card">
+                        <div>Low Tech</div>
+                        <div class="answer-container" id="low-tech"></div>
                     </div>
-                    <div class="input-card">
-                        <span>2</span>
-                        <div class="input-game" id="question-1">Input 2</div>
-                    </div>
-                    <div class="input-card">
-                        <span>3</span>
-                        <div class="input-game" id="question-1">Input 3</div>
-                    </div>
-                    <div class="input-card">
-                        <span>4</span>
-                        <div class="input-game" id="question-1">Input 4</div>
+                    <div class="game-card">
+                        <div>High Tech</div>
+                        <div class="answer-container" id="high-tech"></div>
                     </div>
                 </div>
                 <div class="answer-card">
@@ -101,10 +97,12 @@
 
         // Game Scene 1
         const gameScene1 = document.getElementById("game-2");
-        const gameCard1 = gameScene1.querySelector(".game-card");
         const questionGame1 = gameScene1.querySelectorAll(".input-card");
         const questionGame1Array = Array.from(questionGame1);
-        const answerPlaceholder = [];
+        const answerPlaceholder = {
+            "low-tech": [],
+            "high-tech": [],
+        };
 
         questionGame1Array.forEach((input, index) => {
             input.style.top = `${index * 70 + 15}px`;
@@ -208,7 +206,8 @@
                 this.isDragging = false;
                 this.el.style.zIndex = 1;
 
-                const inputZones = document.querySelectorAll(".input-game");
+                const inputZones = document.querySelectorAll(".game-card");
+                console.log("Colliding Zone: ", inputZones);
                 let isCollided = false;
 
                 for (let zone of inputZones) {
@@ -216,34 +215,24 @@
                         console.log(`Collision detected with `, zone);
                         isCollided = true;
                         const zoneParent = zone.parentNode;
-                        const zoneRect = zone.getBoundingClientRect();
-                        const parentRect = zoneParent.getBoundingClientRect();
+                        const answerContainer =
+                            zone.querySelector(".answer-container");
+                        const questionId = answerContainer.id;
+                        this.el.style.position = "relative";
+                        this.el.style.left = "0px";
+                        this.el.style.top = "0px";
 
-                        // Append element to same parent as zone
-                        zoneParent.appendChild(this.el);
-
-                        // New position relative to parent
-                        const relativeLeft = zoneRect.left - parentRect.left;
-                        const relativeTop = zoneRect.top - parentRect.top;
-
-                        // Center answer in zone
-                        const centeredLeft =
-                            relativeLeft +
-                            (zoneRect.width - this.el.offsetWidth);
-                        const centeredTop =
-                            relativeTop +
-                            (zoneRect.height - this.el.offsetHeight);
-
-                        this.el.style.left = `${centeredLeft}px`;
-                        this.el.style.top = `${centeredTop}px`;
-
-                        console.log(
-                            `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
-                        );
+                        answerContainer.appendChild(this.el);
 
                         // Only add answer once
-                        if (!answerPlaceholder.includes(this.el.innerHTML)) {
-                            answerPlaceholder.push(this.el.innerHTML);
+                        if (
+                            !answerPlaceholder[questionId].includes(
+                                this.el.innerHTML
+                            )
+                        ) {
+                            answerPlaceholder[questionId].push(
+                                this.el.innerHTML
+                            );
                         }
 
                         break;
@@ -257,7 +246,9 @@
                     answerNode.appendChild(this.el);
                     this.setInitialPosition(this.initialPosition);
                 }
-                console.log(`Current answer: ${answerPlaceholder}`);
+                console.log(
+                    `Current answer: ${JSON.stringify(answerPlaceholder)}`
+                );
             }
         }
 
