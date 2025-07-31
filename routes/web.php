@@ -16,6 +16,7 @@ use App\Http\Controllers\AsessmentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Interactive\QuizController;
 
 
 /*
@@ -169,6 +170,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/asessment-evaluasi-submit', [AsessmentController::class, 'submitEvaluasi'])->name('asessment-evaluasi-submit');
 
     Route::post('/submit-review', [ModuleController::class, 'store'])->name('module.review.submit');
+
+/*
+|--------------------------------------------------------------------------
+| Halaman Login, Register & RegisterProfile
+|--------------------------------------------------------------------------
+*/
+    Route::get('/quiz/{page}', [QuizController::class, 'showQuiz'])->where('page', '.*');
 });
 
 /*
