@@ -15,14 +15,13 @@
     @vite('resources/js/quiz/quiz1/quiz1-1.js')
 </head>
 
-<body class="font-futura w-full min-h-screen flex flex-col relative">
+<body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
     @include('includes.components.elearning.course.header')
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
         <div id="game-1" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
-                <h2 class="font-bold text-lg p-2">Quiz 1</h2>
                 <p class="p-2">Isilah lingkaran-lingkaran berikut dengan karakteristik Autisme yang perlu
                     dipahami oleh orang yang bekerja dengan anak autistik.</p>
             </div>
@@ -74,6 +73,11 @@
                     @endforeach
                 </div>
             </div>
+            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                <button id="" type="button"
+                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi Kuis</button>
+                <a id="" href="{{ route('quiz.show', ['page'=> 'quiz1-2']) }}" class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
+            </div>
         </div>
         @include('includes.components.elearning.course.section')
     </section>
@@ -82,5 +86,4 @@
 </body>
 
 @include('includes.components.elearning.course.dialog.modal-asessment')
-
 </html>
