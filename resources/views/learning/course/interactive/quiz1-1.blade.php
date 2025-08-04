@@ -28,13 +28,13 @@
             <div class="game-scene flex flex-1">
                 <div class="w-full relative">
 
-                    <!-- Center Circle -->
+                    {{-- Center Circle --}}
                     <div id="question"
                         class="absolute top-1/2 left-1/2 w-40 h-40 p-4 bg-blue31 text-white font-bold text-center flex items-center justify-center rounded-full transform -translate-x-1/2 -translate-y-1/2 shadow-md">
                         Karakteristik Autisme
                     </div>
 
-                    <!-- Outer Circles -->
+                    {{-- Outer Circle --}}
                     @php
                         $positions = [
                             ['top' => '15%', 'left' => '50%'], // top
@@ -76,7 +76,7 @@
             <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['page'=> 'quiz1-2']) }}" class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
+                <a id="" href="{{ route('quiz.show', ['quiz'=> 'quiz1-2']) }}" class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
             </div>
         </div>
         @include('includes.components.elearning.course.section')

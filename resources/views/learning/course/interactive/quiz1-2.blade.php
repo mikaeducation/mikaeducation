@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Quiz 1-1 | Mika Education</title>
+    <title>Quiz 1-2 | Mika Education</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +28,13 @@
             <div class="game-scene flex flex-1">
                 <div class="w-full flex-col justify-center">
 
-                    <!-- Title -->
+                    {{-- Title --}}
                     <div id="question"
                         class="m-8 p-4 flex bg-blue31 rounded text-white font-bold text-center">
                         Karakteristik Autisme
                     </div>
 
-                    <!-- Input Box -->
+                    {{-- Input Box --}}
                     @php
                         $number = ['1', '2', '3', '4'];
                     @endphp
@@ -74,7 +74,7 @@
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['page' => 'quiz1-3']) }}"
+                <a id="" href="{{ route('quiz.show', ['quiz' => 'quiz1-3']) }}"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
             </div>
         </div>
