@@ -22,35 +22,37 @@
         {{-- Quiz Section --}}
         <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full m-2 pt-6 flex flex-col p-2">
-                <h1 class="p-2 text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan komponen kesulitan Komunikasi Pragmatis berikut.</h1>
+                <h1 class="p-2 text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan komponen kesulitan
+                    Komunikasi Pragmatis berikut.</h1>
             </div>
-                <div class="js-game-scene w-1/2 ml-12 flex flex-1 flex-col justify-evenly">
-                    @php
-                        $questions = [
-                            'Menyambut dan memberi salam',
-                            'Menggunakan isyarat tubuh',
-                            'Perhatian langsung',
-                            'Kesadaran ruang pribadi',
-                        ];
-                    @endphp
+            <div class="js-game-scene w-1/2 ml-12 flex flex-1 flex-col justify-evenly">
+                @php
+                    $questions = [
+                        'Menyambut dan memberi salam',
+                        'Menggunakan isyarat tubuh',
+                        'Perhatian langsung',
+                        'Kesadaran ruang pribadi',
+                    ];
+                @endphp
 
-                    @foreach ($questions as $question)
-                        <div class="grid grid-cols-2 gap-6">
-                            {{-- Quiz Box --}}
-                            <div id="question" class="p-4 flex bg-blue31 rounded justify-center">
-                                <h2 class="text-sm text-white font-bold">{{ $question }}</h2>
-                            </div>
-
-                            <!-- Input Box -->
-                            <div class="w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-evenly">
-                                <div id=""
-                                    class="js-input-game flex rounded items-center justify-center border border-blue31 text-sm text-blue-700">
-                                </div>
-                                    <span>____</span> {{-- Placeholder for label --}}
-                            </div>
+                @foreach ($questions as $question)
+                    <div class="grid grid-cols-2 gap-6">
+                        {{-- Quiz Box --}}
+                        <div id="question" class="p-4 flex bg-blue31 rounded justify-center">
+                            <h2 class="text-sm text-white font-bold">{{ $question }}</h2>
                         </div>
-                    @endforeach
-                </div>
+
+                        <!-- Input Box -->
+                        <div
+                            class="w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-center">
+                            <div id=""
+                                class="js-input-game justify-center text-sm text-blue31">
+                            </div>
+                            <span>____</span> {{-- Placeholder for label --}}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
             {{-- Answer Section --}}
             {{-- TODO: masukan jawaban ke database --}}
