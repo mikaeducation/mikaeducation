@@ -26,25 +26,27 @@
                     ditunjukkan anak autistik.</p>
             </div>
             <div class="game-scene flex flex-1">
-                <div class="w-full flex-col justify-center">
+                <div class="w-full flex-col content-center">
 
                     {{-- Title --}}
-                    <div id="question"
-                        class="m-8 p-4 flex bg-blue31 rounded text-white font-bold text-center">
-                        Karakteristik Autisme
+                    <div id="question" class="w-2/3 m-8 p-4 bg-blue31 rounded">
+                        <h2 class="text-center text-white font-bold">Karakteristik Autisme</h2>
                     </div>
 
                     {{-- Input Box --}}
                     @php
                         $number = ['1', '2', '3', '4'];
                     @endphp
-                    <div class="flex flex-1 flex-col items-center justify-evenly">
+                    <div class="flex flex-1 flex-col justify-evenly">
                         @foreach ($number as $i => $num)
-                            <div class="flex flex-1 items-center">
+                            <div class="w-1/2 my-4 flex flex-1">
                                 <h1 class="m-4">{{ $num }}</h1>
                                 <div id=""
-                                    class="input-game rounded flex flex-1 items-center justify-center border border-blue31 text-sm text-blue-700"
-                                    <span>____</span> {{-- Placeholder for label --}}
+                                    class="mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31">
+                                    <div class="input-game text-center">
+                                        {{-- Input jawaban akan muncul di sini --}}
+                                    </div>
+                                    <span>____</span> {{-- hilang ketika sudah diisi jawaban --}}
                                 </div>
                             </div>
                         @endforeach

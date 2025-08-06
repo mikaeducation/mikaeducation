@@ -30,14 +30,14 @@
 
                     <!-- Title -->
                     <div id="question" class="m-8 p-4 flex bg-blue31 items-center rounded">
-                        <h2 class="-rotate-90 text-white font-bold">Komunikasi Reseptif</h2>
+                        <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Reseptif</h2>
                     </div>
 
                     <!-- Input Box -->
                     <div class="w-1/3 flex flex-col items-start justify-evenly">
                         @for ($i = 0; $i < 3; $i++)
                             <div id=""
-                                class="js-input-game my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue-700"
+                                class="js-input-game my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31">
                                 <span>____</span> {{-- Placeholder for label --}}
                             </div>
                         @endfor

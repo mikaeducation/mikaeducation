@@ -29,15 +29,15 @@
                 <div class="w-full flex justify-center">
 
                     <!-- Title -->
-                    <div id="question" class="m-8 p-4 flex bg-blue31 rounded text-white font-bold text-center">
-                        Komunikasi Ekspresif
+                    <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
+                    <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
                     </div>
 
                     <!-- Input Box -->
                     <div class="flex flex-grow flex-col items-center justify-evenly">
                         @for ($i = 0; $i < 8; $i++)
                             <div id=""
-                                class="js-input-game my-2 w-full flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue-700"
+                                class="js-input-game my-2 w-full flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31">
                                 <span>____</span> {{-- Placeholder for label --}}
                             </div>
                         @endfor
