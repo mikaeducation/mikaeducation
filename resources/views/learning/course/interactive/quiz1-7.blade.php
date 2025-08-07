@@ -22,7 +22,8 @@
         {{-- Quiz Section --}}
         <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full pt-12 flex flex-col">
-                <p class="p-2 text-center text-lg">Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH yang tepat!</p>
+                <p class="p-2 text-center text-lg">Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH
+                    yang tepat!</p>
             </div>
             <div class="js-game-scene flex flex-1">
                 <div class="w-full flex flex-col items-center">
@@ -37,7 +38,8 @@
                     @foreach ($questions as $question)
                         <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
                             <!-- Question Box -->
-                            <h2 class="w-2/3 p-2 rounded bg-blue31 text-center text-xl text-white font-bold">{{ $question }}</h2>
+                            <h2 class="w-2/3 p-2 rounded bg-blue31 text-center text-xl text-white font-bold">
+                                {{ $question }}</h2>
 
                             <!-- Input Box -->
                             <div class="w-2/3 flex flex-grow flex-wrap rounded border-b-2 border-blue31">
