@@ -84,13 +84,14 @@ Route::get('/registerprofile', function () {
 | HALAMAN BERANDA / HALAMAN UTAMA + BAGIAN UTAMA LAINNYA
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
+/* Route::get('/', function () {
     $user = Auth::user();
     if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
         return redirect('/registerprofile');
     }
     return view('index');
-});
+}); */ // NOTE: dinonaktifkan sementara untuk interactive
+Route::get('/', fn() => view('learning.course.interactive.quiz1-1')); // TODO: perbaiki route jika sudah selesai interactive
 
 Route::get('/news', fn() => view('news'));
 Route::get('/article', fn() => view('article'));
@@ -101,8 +102,6 @@ Route::get('/article3', fn() => view('includes/content/main/article/article3'));
 Route::get('/article4', fn() => view('includes/content/main/article/article4'));
 Route::get('/aboutus', fn() => view('about-us'));
 
-
-
 /*
 |--------------------------------------------------------------------------
 | FITUR PESAN
@@ -110,8 +109,6 @@ Route::get('/aboutus', fn() => view('about-us'));
 */
 
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -161,6 +158,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
     Route::get('/page8_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page8_0');
+
+    Route::get('/quiz/{quiz}', [QuizController::class, 'showQuiz'])->name('quiz.show'); // TODO: taruh di bagian yang sesuai
+
     Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
     Route::post('/check-asessment-status', [AsessmentController::class, 'check']);
@@ -173,10 +173,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Halaman Login, Register & RegisterProfile
+| Halamann Kuis Interaktif
 |--------------------------------------------------------------------------
 */
-    Route::get('/quiz/{page}', [QuizController::class, 'showQuiz'])->where('page', '.*');
+
 });
 
 /*
