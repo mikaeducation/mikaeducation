@@ -21,55 +21,45 @@
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
         <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full m-2 pt-6 flex flex-col p-2">
-                <h1 class="p-2 text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan komponen kesulitan
-                    Komunikasi Pragmatis berikut.</h1>
+            <div class="w-full flex flex-col p-2">
+                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Reseptif.
+                </p>
             </div>
-            <div class="js-game-scene w-1/2 ml-12 flex flex-1 flex-col justify-evenly">
+            <div class="js-game-scene flex flex-1">
+                <div class="w-full flex justify-center">
+
+                    <!-- Title -->
+                    <div id="question" class="m-8 w-24 flex bg-blue31 items-center justify-center rounded">
+                        <h2 class="[writing-mode:sideways-lr] text-xl text-white font-bold">Komunikasi Reseptif</h2>
+                    </div>
+
+                    <!-- Input Box -->
+                    <div class="w-1/3 flex flex-col items-start justify-evenly">
+                        @for ($i = 0; $i < 3; $i++)
+                            <div id=""
+                                class="js-input-game my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31">
+                                <span>____</span> {{-- Placeholder for label --}}
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+                {{-- Answer Section --}}
+                {{-- TODO: masukan jawaban ke database --}}
                 @php
-                    $questions = [
-                        'Menyambut dan memberi salam',
-                        'Menggunakan isyarat tubuh',
-                        'Perhatian langsung',
-                        'Kesadaran ruang pribadi',
+                    $answers = [
+                        'Memahami pertanyaan yang baru didengarnya',
+                        'Mengajukan pertanyaan',
+                        'Terpaku pada kualitas sensoris khas',
+                        'Membuat komentar',
+                        'Memahami suatu konsep baru',
+                        'Memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas',
                     ];
                 @endphp
-
-                @foreach ($questions as $question)
-                    <div class="grid grid-cols-2 gap-6">
-                        {{-- Quiz Box --}}
-                        <div id="question" class="p-4 flex bg-blue31 rounded justify-center">
-                            <h2 class="text-sm text-white font-bold">{{ $question }}</h2>
-                        </div>
-
-                        <!-- Input Box -->
-                        <div
-                            class="w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-center">
-                            <div id=""
-                                class="js-input-game justify-center text-sm text-blue31">
-                            </div>
-                            <span>____</span> {{-- Placeholder for label --}}
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            {{-- Answer Section --}}
-            {{-- TODO: masukan jawaban ke database --}}
-            @php
-                $answers = [
-                    'Memahami pertanyaan yang baru didengarnya',
-                    'Mengajukan pertanyaan',
-                    'Terpaku pada kualitas sensoris khas',
-                    'Membuat komentar',
-                    'Membuat komentar',
-                    'Memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas',
-                ];
-            @endphp
-            <div class="js-answer-card px-6 py-2 flex justify-evenly relative">
-                @foreach ($answers as $answer)
-                    <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
-                @endforeach
+                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
+                    @foreach ($answers as $answer)
+                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
+                    @endforeach
+                </div>
             </div>
 
             {{-- Button --}}

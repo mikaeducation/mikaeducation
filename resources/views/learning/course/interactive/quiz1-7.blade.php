@@ -22,42 +22,43 @@
         {{-- Quiz Section --}}
         <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full pt-12 flex flex-col">
-                <p class="p-2 text-center text-lg">Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH
-                    yang tepat!</p>
+                <p class="p-2 text-center text-lg">Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh Augmentative Alternative Communication (AAC) yang sesuai.</p>
             </div>
             <div class="js-game-scene flex flex-1">
                 <div class="w-full flex flex-col items-center">
-                    @php
-                        $questions = [
-                            'Jadwal Visual',
-                            'Sistem Kerja',
-                            'Struktur Lingkungan Fisik',
-                            'Alat Bantu Visual',
-                        ];
-                    @endphp
-                    @foreach ($questions as $question)
-                        <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
-                            <!-- Question Box -->
-                            <h2 class="w-2/3 p-2 rounded bg-blue31 text-center text-xl text-white font-bold">
-                                {{ $question }}</h2>
 
-                            <!-- Input Box -->
-                            <div class="w-2/3 flex flex-grow flex-wrap rounded border-b-2 border-blue31">
-                            </div>
+                    <!-- Low Tech -->
+                    <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                        <h2 class="p-1 text-xl text-blue31 font-bold">Low Tech</h2>
+
+                        <!-- Input Box -->
+                        <div class="w-2/3 flex flex-grow flex-wrap rounded border-2 border-blue31">
                         </div>
-                    @endforeach
+                    </div>
+
+                    <!-- High Tech -->
+                    <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                        <h2 class="p-1 text-xl text-blue31 font-bold">High Tech</h2>
+
+                        <!-- Input Box -->
+                        <div class="w-2/3 flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        </div>
+                    </div>
                 </div>
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
                     $answers = [
-                        'Menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan baik',
-                        'Kartu visual memberikan informasi yang jelas dan kosisten, mengurangi kecemasan, serta meningkatkan pemahaman',
-                        'Memberikan informasi tahapan pengerjaan tugas, pengoganisasian kegiatan, untuk meningkatkan pemahaman',
-                        'Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai',
+                        'Kartu Visual',
+                        'PECS',
+                        'Papan komunikasi / ALS',
+                        'AAC',
+                        'Ipad ( Compass, Lamb words for life)',
+                        'Liberator Rugged 7, ProloQuo2Go',
+                        'MIKA 1.0',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-128 flex flex-col justify-evenly relative">
+                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
                         <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
                     @endforeach

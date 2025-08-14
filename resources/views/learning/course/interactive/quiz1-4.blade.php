@@ -22,22 +22,21 @@
         {{-- Quiz Section --}}
         <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
-                <p class="p-2">Isilah lingkaran-lingkaran berikut dengan karakteristik Pra-Komunikasi yang sering
-                    ditunjukkan anak autistik.</p>
+                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.</p>
             </div>
             <div class="js-game-scene flex flex-1">
                 <div class="w-full flex justify-center">
 
                     <!-- Title -->
-                    <div id="question" class="m-8 p-4 flex bg-blue31 items-center rounded">
-                        <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Reseptif</h2>
+                    <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
+                    <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
                     </div>
 
                     <!-- Input Box -->
-                    <div class="w-1/3 flex flex-col items-start justify-evenly">
-                        @for ($i = 0; $i < 3; $i++)
+                    <div class="flex flex-grow flex-col items-start justify-evenly">
+                        @for ($i = 0; $i < 8; $i++)
                             <div id=""
-                                class="js-input-game my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31">
+                                class="js-input-game my-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31">
                                 <span>____</span> {{-- Placeholder for label --}}
                             </div>
                         @endfor
@@ -47,12 +46,15 @@
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
                     $answers = [
-                        'Memahami pertanyaan yang baru didengarnya',
-                        'Mengajukan pertanyaan',
+                        'Membuat suara',
+                        'Menggerakkan jari dan tangan untuk memungut',
+                        'Menggunakan kata tunggal',
+                        'Menggunakan kata yang terdiri dari 2-3 kata',
+                        'Berbicara dalam kalimat',
+                        'Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)',
                         'Terpaku pada kualitas sensoris khas',
                         'Membuat komentar',
-                        'Membuat komentar',
-                        'Memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas',
+                        'Melakukan percakapan/dialog',
                     ];
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">

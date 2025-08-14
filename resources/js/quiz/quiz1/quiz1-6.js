@@ -1,15 +1,14 @@
+// Javascript for Quiz 6
 const gameSection = document.querySelector(".game-card");
 const sectionWidth = gameSection.clientWidth;
 const sectionHeight = gameSection.clientHeight;
 
 // Game Scene 1
 const gameScene1 = document.getElementById("game-2");
+const gameCard1 = gameScene1.querySelector(".game-card");
 const questionGame1 = gameScene1.querySelectorAll(".input-card");
 const questionGame1Array = Array.from(questionGame1);
-const answerPlaceholder = {
-    "low-tech": [],
-    "high-tech": [],
-};
+const answerPlaceholder = [];
 
 questionGame1Array.forEach((input, index) => {
     input.style.top = `${index * 70 + 15}px`;
@@ -97,8 +96,7 @@ class Draggable {
         this.isDragging = false;
         this.el.style.zIndex = 1;
 
-        const inputZones = document.querySelectorAll(".game-card");
-        console.log("Colliding Zone: ", inputZones);
+        const inputZones = document.querySelectorAll(".input-game");
         let isCollided = false;
 
         for (let zone of inputZones) {
@@ -106,19 +104,32 @@ class Draggable {
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
                 const zoneParent = zone.parentNode;
-                const answerContainer = zone.querySelector(".answer-container");
-                const questionId = answerContainer.id;
-                this.el.style.position = "relative";
-                this.el.style.left = "0px";
-                this.el.style.top = "0px";
+                const zoneRect = zone.getBoundingClientRect();
+                const parentRect = zoneParent.getBoundingClientRect();
 
-                answerContainer.appendChild(this.el);
+                // Append element to same parent as zone
+                zoneParent.appendChild(this.el);
+
+                // New position relative to parent
+                const relativeLeft = zoneRect.left - parentRect.left;
+                const relativeTop = zoneRect.top - parentRect.top;
+
+                // Center answer in zone
+                const centeredLeft =
+                    relativeLeft + (zoneRect.width - this.el.offsetWidth);
+                const centeredTop =
+                    relativeTop + (zoneRect.height - this.el.offsetHeight);
+
+                this.el.style.left = `${centeredLeft}px`;
+                this.el.style.top = `${centeredTop}px`;
+
+                console.log(
+                    `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
+                );
 
                 // Only add answer once
-                if (
-                    !answerPlaceholder[questionId].includes(this.el.innerHTML)
-                ) {
-                    answerPlaceholder[questionId].push(this.el.innerHTML);
+                if (!answerPlaceholder.includes(this.el.innerHTML)) {
+                    answerPlaceholder.push(this.el.innerHTML);
                 }
 
                 break;
@@ -132,7 +143,7 @@ class Draggable {
             answerNode.appendChild(this.el);
             this.setInitialPosition(this.initialPosition);
         }
-        console.log(`Current answer: ${JSON.stringify(answerPlaceholder)}`);
+        console.log(`Current answer: ${answerPlaceholder}`);
     }
 }
 

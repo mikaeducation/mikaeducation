@@ -20,53 +20,67 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-2" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full flex flex-col p-2">
-                <p class="p-2">Isilah lingkaran-lingkaran berikut dengan karakteristik Pra-Komunikasi yang sering
-                    ditunjukkan anak autistik.</p>
+        <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
+            <div class="w-full pt-12 flex flex-col">
+                <p class="p-2 text-center text-balance text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai
+                    dengan payung
+                    karakteristik yang sesuai (Komunikasi Sosial dan Minat terbatas dan perilaku berulang)</p>
             </div>
-            <div class="game-scene flex flex-1">
-                <div class="w-full flex-col content-center">
+            <div class="js-game-scene w-full flex flex-1">
+                <div class="w-full p-6 flex justify-evenly">
+                    <div id="question" class="w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                        <!-- Question Box -->
+                        <h2
+                            class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
+                            Karakteristik
+                            Komunikasi Sosial Autisme</h2>
+                        <!-- Input Box -->
+                        @for ($i = 0; $i < 3; $i++)
+                            <div id=""
+                                class="js-input-game w-2/3 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31">
+                                <!-- Input Div -->
+                                <div class="text-center">
 
-                    {{-- Title --}}
-                    <div id="question" class="w-2/3 m-8 p-4 bg-blue31 rounded">
-                        <h2 class="text-center text-white font-bold">Karakteristik Autisme</h2>
-                    </div>
-
-                    {{-- Input Box --}}
-                    @php
-                        $number = ['1', '2', '3', '4'];
-                    @endphp
-                    <div class="flex flex-1 flex-col justify-evenly">
-                        @foreach ($number as $i => $num)
-                            <div class="w-1/2 my-4 flex flex-1">
-                                <h1 class="m-4">{{ $num }}</h1>
-                                <div id=""
-                                    class="mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31">
-                                    <div class="input-game text-center">
-                                        {{-- Input jawaban akan muncul di sini --}}
-                                    </div>
-                                    <span>____</span> {{-- hilang ketika sudah diisi jawaban --}}
                                 </div>
+                                <span>____</span> {{-- Placeholder for label --}}
                             </div>
-                        @endforeach
+                        @endfor
+                    </div>
+                    <div id="question" class="w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                        <!-- Question Box -->
+                        <h2
+                            class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
+                            Minat terbatas dan perilaku berulang
+                        </h2>
+                        <!-- Input Box -->
+                        @for ($i = 0; $i < 4; $i++)
+                            <div id=""
+                                class="js-input-game w-2/3 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31">
+                                <!-- Input Div -->
+                                <div class="text-center">
+
+                                </div>
+                                <span>____</span> {{-- Placeholder for label --}}
+                            </div>
+                        @endfor
                     </div>
                 </div>
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
                     $answers = [
-                        'Kelemahan melakukan kemampuan perhatian bersama',
-                        'Anak kesulitan merespon dengan tepat ketika berkomunikasi dengan menggunakan gerak tubuh/gesture',
-                        'Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain)',
-                        'Sulit menggunakan dan memahami gestur dalam komunikasi',
-                        'Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)',
-                        'Orang lain menganggap anak kurang sopan',
+                        'Kesulitan memulai, mempertahankan dan memahami hubungan dengan orang lain',
+                        'Menuntut kesamaan, tidak fleksibel, marah jika terjadi perubahan rutinitas/ritual/pola perilaku verbal atau nonverbal',
+                        'Hyper-atau hipo-reaktivitas terhadap stimulus sensorik',
+                        'Sulit melakukan relasi sosial-emosional timbal balik',
+                        'Gerakan motorik, penggunaan objek atau wicara berulang.',
+                        'Sulit memahami komunikasi non-verbal',
+                        'Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih',
                     ];
                 @endphp
-                <div class="max-w-64 answer-card flex flex-col justify-evenly relative">
+                <div class="js-answer-card max-w-96 flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
-                        <div class="answer-game quiz-answer p-2">{{ $answer }}</div>
+                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>

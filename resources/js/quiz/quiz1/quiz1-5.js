@@ -1,3 +1,4 @@
+// NOTE: Javascript for Quiz 5
 const gameSection = document.querySelector(".game-card");
 const sectionWidth = gameSection.clientWidth;
 const sectionHeight = gameSection.clientHeight;

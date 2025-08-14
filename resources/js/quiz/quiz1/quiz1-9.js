@@ -1,21 +1,21 @@
+// NOTE: Javascript for Quiz 9
 const gameSection = document.querySelector(".game-card");
 const sectionWidth = gameSection.clientWidth;
 const sectionHeight = gameSection.clientHeight;
 
 // Game Scene 1
 const gameScene1 = document.getElementById("game-2");
-const gameCard1 = gameScene1.querySelectorAll(".game-card");
+const questionGame1 = gameScene1.querySelectorAll(".input-card");
+const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = {
-    karakteristik: [],
-    minat: [],
+    "jadwal-visual": "",
+    "sistem-kerja": "",
+    "struktur-lingkungan-fisik": "",
+    "alat-bantu-visual": "",
 };
-gameCard1.forEach((ele) => {
-    const questionGame1 = ele.querySelectorAll(".input-card");
-    const questionGame1Array = Array.from(questionGame1);
 
-    questionGame1Array.forEach((input, index) => {
-        input.style.top = `${index * 70 + 15}px`;
-    });
+questionGame1Array.forEach((input, index) => {
+    input.style.top = `${index * 70 + 15}px`;
 });
 
 // Drag Logic
@@ -100,46 +100,45 @@ class Draggable {
         this.isDragging = false;
         this.el.style.zIndex = 1;
 
-        const inputZones = document.querySelectorAll(".input-game");
+        const inputZones = document.querySelectorAll(".game-card");
+        console.log("Colliding Zone: ", inputZones);
         let isCollided = false;
 
         for (let zone of inputZones) {
             if (isColliding(this.el, zone)) {
+                const zoneParent = zone.parentNode;
+                const answerContainer = zone.querySelector(".answer-container");
+                console.log(
+                    "Answer child :",
+                    answerContainer.childElementCount
+                );
+                if (answerContainer.childElementCount > 0) {
+                    console.log("Answer filled");
+                    const existing = answerContainer.firstElementChild;
+
+                    // Kembalikan ke area jawaban
+                    const answerNode = document.querySelector(".answer-card");
+                    answerNode.appendChild(existing);
+                    // Reset posisinya
+                    if (existing.setInitialPosition) {
+                        existing.setInitialPosition(existing.initialPosition);
+                    }
+
+                    // Reset placeholder
+                    const questionId = answerContainer.id;
+                    answerPlaceholder[questionId] = "";
+                    break;
+                }
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
-                const zoneParent = zone.parentNode;
-                const questionZone = zoneParent.parentNode;
-                const questionId = questionZone.id;
-                const zoneRect = zone.getBoundingClientRect();
-                const parentRect = zoneParent.getBoundingClientRect();
-                console.log("Parent zone: ", questionZone);
+                const questionId = answerContainer.id;
+                this.el.style.position = "relative";
+                this.el.style.left = "0px";
+                this.el.style.top = "0px";
 
-                // Append element to same parent as zone
-                zoneParent.appendChild(this.el);
+                answerContainer.appendChild(this.el);
 
-                // New position relative to parent
-                const relativeLeft = zoneRect.left - parentRect.left;
-                const relativeTop = zoneRect.top - parentRect.top;
-
-                // Center answer in zone
-                const centeredLeft =
-                    relativeLeft + (zoneRect.width - this.el.offsetWidth);
-                const centeredTop =
-                    relativeTop + (zoneRect.height - this.el.offsetHeight);
-
-                this.el.style.left = `${centeredLeft}px`;
-                this.el.style.top = `${centeredTop}px`;
-
-                console.log(
-                    `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
-                );
-
-                // Only add answer once
-                if (
-                    !answerPlaceholder[questionId].includes(this.el.innerHTML)
-                ) {
-                    answerPlaceholder[questionId].push(this.el.innerHTML);
-                }
+                answerPlaceholder[questionId] = this.el.innerHTML;
 
                 break;
             }

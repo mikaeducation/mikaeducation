@@ -1,3 +1,4 @@
+// NOTE: Javascript for Quiz 7
 const gameSection = document.querySelector(".game-card");
 const sectionWidth = gameSection.clientWidth;
 const sectionHeight = gameSection.clientHeight;
@@ -7,10 +8,8 @@ const gameScene1 = document.getElementById("game-2");
 const questionGame1 = gameScene1.querySelectorAll(".input-card");
 const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = {
-    "jadwal-visual": "",
-    "sistem-kerja": "",
-    "struktur-lingkungan-fisik": "",
-    "alat-bantu-visual": "",
+    "low-tech": [],
+    "high-tech": [],
 };
 
 questionGame1Array.forEach((input, index) => {
@@ -105,31 +104,10 @@ class Draggable {
 
         for (let zone of inputZones) {
             if (isColliding(this.el, zone)) {
-                const zoneParent = zone.parentNode;
-                const answerContainer = zone.querySelector(".answer-container");
-                console.log(
-                    "Answer child :",
-                    answerContainer.childElementCount
-                );
-                if (answerContainer.childElementCount > 0) {
-                    console.log("Answer filled");
-                    const existing = answerContainer.firstElementChild;
-
-                    // Kembalikan ke area jawaban
-                    const answerNode = document.querySelector(".answer-card");
-                    answerNode.appendChild(existing);
-                    // Reset posisinya
-                    if (existing.setInitialPosition) {
-                        existing.setInitialPosition(existing.initialPosition);
-                    }
-
-                    // Reset placeholder
-                    const questionId = answerContainer.id;
-                    answerPlaceholder[questionId] = "";
-                    break;
-                }
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
+                const zoneParent = zone.parentNode;
+                const answerContainer = zone.querySelector(".answer-container");
                 const questionId = answerContainer.id;
                 this.el.style.position = "relative";
                 this.el.style.left = "0px";
@@ -137,7 +115,12 @@ class Draggable {
 
                 answerContainer.appendChild(this.el);
 
-                answerPlaceholder[questionId] = this.el.innerHTML;
+                // Only add answer once
+                if (
+                    !answerPlaceholder[questionId].includes(this.el.innerHTML)
+                ) {
+                    answerPlaceholder[questionId].push(this.el.innerHTML);
+                }
 
                 break;
             }

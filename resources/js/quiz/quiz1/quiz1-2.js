@@ -1,16 +1,22 @@
+// NOTE: Javascript for Quiz 2
 const gameSection = document.querySelector(".game-card");
 const sectionWidth = gameSection.clientWidth;
 const sectionHeight = gameSection.clientHeight;
 
 // Game Scene 1
 const gameScene1 = document.getElementById("game-2");
-const gameCard1 = gameScene1.querySelector(".game-card");
-const questionGame1 = gameScene1.querySelectorAll(".input-card");
-const questionGame1Array = Array.from(questionGame1);
-const answerPlaceholder = [];
+const gameCard1 = gameScene1.querySelectorAll(".game-card");
+const answerPlaceholder = {
+    karakteristik: [],
+    minat: [],
+};
+gameCard1.forEach((ele) => {
+    const questionGame1 = ele.querySelectorAll(".input-card");
+    const questionGame1Array = Array.from(questionGame1);
 
-questionGame1Array.forEach((input, index) => {
-    input.style.top = `${index * 70 + 15}px`;
+    questionGame1Array.forEach((input, index) => {
+        input.style.top = `${index * 70 + 15}px`;
+    });
 });
 
 // Drag Logic
@@ -103,8 +109,11 @@ class Draggable {
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
                 const zoneParent = zone.parentNode;
+                const questionZone = zoneParent.parentNode;
+                const questionId = questionZone.id;
                 const zoneRect = zone.getBoundingClientRect();
                 const parentRect = zoneParent.getBoundingClientRect();
+                console.log("Parent zone: ", questionZone);
 
                 // Append element to same parent as zone
                 zoneParent.appendChild(this.el);
@@ -127,8 +136,10 @@ class Draggable {
                 );
 
                 // Only add answer once
-                if (!answerPlaceholder.includes(this.el.innerHTML)) {
-                    answerPlaceholder.push(this.el.innerHTML);
+                if (
+                    !answerPlaceholder[questionId].includes(this.el.innerHTML)
+                ) {
+                    answerPlaceholder[questionId].push(this.el.innerHTML);
                 }
 
                 break;
@@ -142,7 +153,7 @@ class Draggable {
             answerNode.appendChild(this.el);
             this.setInitialPosition(this.initialPosition);
         }
-        console.log(`Current answer: ${answerPlaceholder}`);
+        console.log(`Current answer: ${JSON.stringify(answerPlaceholder)}`);
     }
 }
 
