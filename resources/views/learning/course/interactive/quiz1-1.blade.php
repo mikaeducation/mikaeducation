@@ -20,12 +20,12 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-1" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene-1" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
                 <p class="p-2">Isilah lingkaran-lingkaran berikut dengan karakteristik Autisme yang perlu
                     dipahami oleh orang yang bekerja dengan anak autistik.</p>
             </div>
-            <div class="game-scene flex flex-1">
+            <div class="js-scene-card flex flex-1">
                 <div class="w-full relative">
 
                     {{-- Center Circle --}}
@@ -47,7 +47,7 @@
                     @endphp
                     @foreach ($positions as $i => $pos)
                         <div id="question-{{ $i + 1 }}"
-                            class="input-game absolute w-40 h-40 rounded-full border border-blue31 flex items-center justify-center text-sm text-blue-700"
+                            class="js-input absolute w-40 h-40 rounded-full border border-blue31 flex items-center justify-center text-sm text-blue-700"
                             style="top: {{ $pos['top'] }}; left: {{ $pos['left'] }}; transform: translate(-50%, -50%)">
                             <span>____</span> {{-- Placeholder for label --}}
                         </div>
@@ -67,9 +67,9 @@
                         'Keubutuhan Makanan Khusus/Diet',
                     ];
                 @endphp
-                <div class="answer-card flex flex-col justify-evenly relative">
+                <div class="js-answer-card flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
-                        <div class="answer-game quiz-answer p-2">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
