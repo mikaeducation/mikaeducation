@@ -1,17 +1,14 @@
 // NOTE: Javascript for Quiz 2
-const gameSection = document.querySelector(".game-card");
-const sectionWidth = gameSection.clientWidth;
-const sectionHeight = gameSection.clientHeight;
 
 // Game Scene 1
-const gameScene1 = document.getElementById("game-2");
-const gameCard1 = gameScene1.querySelectorAll(".game-card");
+const gameScene1 = document.getElementById("js-scene");
+const gameCard1 = gameScene1.querySelectorAll(".js-scene-card");
 const answerPlaceholder = {
     karakteristik: [],
     minat: [],
 };
 gameCard1.forEach((ele) => {
-    const questionGame1 = ele.querySelectorAll(".input-card");
+    const questionGame1 = ele.querySelectorAll(".js-input");
     const questionGame1Array = Array.from(questionGame1);
 
     questionGame1Array.forEach((input, index) => {
@@ -101,22 +98,28 @@ class Draggable {
         this.isDragging = false;
         this.el.style.zIndex = 1;
 
-        const inputZones = document.querySelectorAll(".input-game");
+        const inputZones = document.querySelectorAll(".js-input");
         let isCollided = false;
 
         for (let zone of inputZones) {
             if (isColliding(this.el, zone)) {
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
+
                 const zoneParent = zone.parentNode;
                 const questionZone = zoneParent.parentNode;
                 const questionId = questionZone.id;
+
+                zoneParent.classList.add("relative")
+                this.el.style.position = "absolute";
+                zoneParent.appendChild(this.el);
+
                 const zoneRect = zone.getBoundingClientRect();
                 const parentRect = zoneParent.getBoundingClientRect();
-                console.log("Parent zone: ", questionZone);
+                console.log("Parent zone: ", zoneParent);
+                console.log("Question ID: ", questionId);
 
                 // Append element to same parent as zone
-                zoneParent.appendChild(this.el);
 
                 // New position relative to parent
                 const relativeLeft = zoneRect.left - parentRect.left;
@@ -124,9 +127,9 @@ class Draggable {
 
                 // Center answer in zone
                 const centeredLeft =
-                    relativeLeft + (zoneRect.width - this.el.offsetWidth);
+                    relativeLeft + (zoneRect.width - this.el.offsetWidth) / 2;
                 const centeredTop =
-                    relativeTop + (zoneRect.height - this.el.offsetHeight);
+                    relativeTop + (zoneRect.height - this.el.offsetHeight) / 2;
 
                 this.el.style.left = `${centeredLeft}px`;
                 this.el.style.top = `${centeredTop}px`;
@@ -149,7 +152,7 @@ class Draggable {
             console.log(
                 `No collision detected, move to ${this.initialPosition}`
             );
-            const answerNode = document.querySelector(".answer-card");
+            const answerNode = document.querySelector(".js-answer-card");
             answerNode.appendChild(this.el);
             this.setInitialPosition(this.initialPosition);
         }
@@ -157,8 +160,8 @@ class Draggable {
     }
 }
 
-const answerCard = document.querySelector(".answer-card");
-const answerGame = answerCard.querySelectorAll(".answer-game");
+const answerCard = document.querySelector(".js-answer-card");
+const answerGame = answerCard.querySelectorAll(".js-answer");
 answerGame.forEach((el, index) => {
     new Draggable(el, { top: index * 60, left: 0 });
 });
