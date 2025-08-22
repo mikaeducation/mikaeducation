@@ -20,11 +20,11 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-2" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
                 <p class="p-2">Isilah dengan karakteristik Pra-Komunikasi yang sering ditunjukkan anak autistik.</p>
             </div>
-            <div class="game-scene flex flex-1">
+            <div class="js-scene-card flex flex-1">
                 <div class="w-full flex-col content-center">
 
                     {{-- Title --}}
@@ -41,8 +41,8 @@
                             <div class="w-1/2 my-4 flex flex-1">
                                 <h1 class="m-4">{{ $num }}</h1>
                                 <div id=""
-                                    class="mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31">
-                                    <div class="input-game text-center">
+                                    class="js-input-card mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31 relative">
+                                    <div class="js-input text-center">
                                         {{-- Input jawaban akan muncul di sini --}}
                                     </div>
                                     <span>____</span> {{-- hilang ketika sudah diisi jawaban --}}
@@ -63,9 +63,9 @@
                         'Orang lain menganggap anak kurang sopan',
                     ];
                 @endphp
-                <div class="max-w-64 answer-card flex flex-col justify-evenly relative">
+                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
-                        <div class="answer-game quiz-answer p-2">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>

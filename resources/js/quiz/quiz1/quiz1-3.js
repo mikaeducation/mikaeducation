@@ -1,18 +1,15 @@
 // NOTE: Javascript for quiz 3
-const gameSection = document.querySelector(".game-card");
-const sectionWidth = gameSection.clientWidth;
-const sectionHeight = gameSection.clientHeight;
 
 // Game Scene 1
-const gameScene1 = document.getElementById("game-2");
-const gameCard1 = gameScene1.querySelector(".game-card");
-const questionGame1 = gameScene1.querySelectorAll(".input-card");
+const gameScene1 = document.getElementById("js-scene");
+const gameCard1 = gameScene1.querySelector(".js-scene-card");
+const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = [];
 
-questionGame1Array.forEach((input, index) => {
-    input.style.top = `${index * 70 + 15}px`;
-});
+// questionGame1Array.forEach((input, index) => {
+//     input.style.top = `${index * 100 + 30}px`;
+// });
 
 // Drag Logic
 function isColliding(el1, el2) {
@@ -96,7 +93,7 @@ class Draggable {
         this.isDragging = false;
         this.el.style.zIndex = 1;
 
-        const inputZones = document.querySelectorAll(".input-game");
+        const inputZones = document.querySelectorAll(".js-input");
         let isCollided = false;
 
         for (let zone of inputZones) {
@@ -116,9 +113,9 @@ class Draggable {
 
                 // Center answer in zone
                 const centeredLeft =
-                    relativeLeft + (zoneRect.width - this.el.offsetWidth);
+                    relativeLeft + (zoneRect.width - this.el.offsetWidth) / 2;
                 const centeredTop =
-                    relativeTop + (zoneRect.height - this.el.offsetHeight);
+                    relativeTop + (zoneRect.height - this.el.offsetHeight) / 2;
 
                 this.el.style.left = `${centeredLeft}px`;
                 this.el.style.top = `${centeredTop}px`;
@@ -139,7 +136,7 @@ class Draggable {
             console.log(
                 `No collision detected, move to ${this.initialPosition}`
             );
-            const answerNode = document.querySelector(".answer-card");
+            const answerNode = document.querySelector(".js-answer-card");
             answerNode.appendChild(this.el);
             this.setInitialPosition(this.initialPosition);
         }
@@ -147,8 +144,8 @@ class Draggable {
     }
 }
 
-const answerCard = document.querySelector(".answer-card");
-const answerGame = answerCard.querySelectorAll(".answer-game");
+const answerCard = document.querySelector(".js-answer-card");
+const answerGame = answerCard.querySelectorAll(".js-answer");
 answerGame.forEach((el, index) => {
-    new Draggable(el, { top: index * 60, left: 0 });
+    new Draggable(el, { top: index * 100, left: 0 });
 });
