@@ -1,18 +1,11 @@
 // NOTE: Javascript for Quiz 5
-const gameSection = document.querySelector(".game-card");
-const sectionWidth = gameSection.clientWidth;
-const sectionHeight = gameSection.clientHeight;
-
 // Game Scene 1
-const gameScene1 = document.getElementById("game-2");
-const gameCard1 = gameScene1.querySelector(".game-card");
-const questionGame1 = gameScene1.querySelectorAll(".input-card");
+const gameScene1 = document.getElementById("js-scene");
+const gameCard1 = gameScene1.querySelector(".js-scene-card");
+const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = [];
 
-questionGame1Array.forEach((input, index) => {
-    input.style.top = `${index * 70 + 15}px`;
-});
 
 // Drag Logic
 function isColliding(el1, el2) {
@@ -96,11 +89,34 @@ class Draggable {
         this.isDragging = false;
         this.el.style.zIndex = 1;
 
-        const inputZones = document.querySelectorAll(".input-game");
+        const inputZones = document.querySelectorAll(".js-input");
         let isCollided = false;
 
         for (let zone of inputZones) {
             if (isColliding(this.el, zone)) {
+                if (zone.children.length > 0) {
+                    const existingAnswer = zone.children[0];
+                    console.log(`Replacing existing answer: ${existingAnswer.textContent}`);
+
+                    const answerNode = document.querySelector(".js-answer-card");
+                    answerNode.appendChild(existingAnswer);
+
+                    // Reset position of the old one
+                    if (existingAnswer.setInitialPosition) {
+                        existingAnswer.setInitialPosition(existingAnswer.initialPosition);
+                    } else {
+                        existingAnswer.style.left = "0px";
+                        existingAnswer.style.top = "0px";
+                    }
+
+                    if (answerPlaceholder.includes(existingAnswer.innerHTML)) {
+                        const index = answerPlaceholder.indexOf(existingAnswer.innerHTML);
+                        if (index > -1) {
+                            answerPlaceholder.splice(index, 1); // Remove from array
+                        }
+                    }
+                }
+
                 console.log(`Collision detected with `, zone);
                 isCollided = true;
                 const zoneParent = zone.parentNode;
@@ -108,7 +124,7 @@ class Draggable {
                 const parentRect = zoneParent.getBoundingClientRect();
 
                 // Append element to same parent as zone
-                zoneParent.appendChild(this.el);
+                zone.appendChild(this.el);
 
                 // New position relative to parent
                 const relativeLeft = zoneRect.left - parentRect.left;
@@ -116,9 +132,9 @@ class Draggable {
 
                 // Center answer in zone
                 const centeredLeft =
-                    relativeLeft + (zoneRect.width - this.el.offsetWidth);
+                    relativeLeft + (zoneRect.width - this.el.offsetWidth) / 2;
                 const centeredTop =
-                    relativeTop + (zoneRect.height - this.el.offsetHeight);
+                    relativeTop + (zoneRect.height - this.el.offsetHeight) / 2;
 
                 this.el.style.left = `${centeredLeft}px`;
                 this.el.style.top = `${centeredTop}px`;
@@ -139,16 +155,24 @@ class Draggable {
             console.log(
                 `No collision detected, move to ${this.initialPosition}`
             );
-            const answerNode = document.querySelector(".answer-card");
+            const answerNode = document.querySelector(".js-answer-card");
             answerNode.appendChild(this.el);
             this.setInitialPosition(this.initialPosition);
+
+            // Remove from answer if it was there
+            if (answerPlaceholder.includes(this.el.innerHTML)) {
+                const index = answerPlaceholder.indexOf(this.el.innerHTML);
+                if (index > -1) {
+                    answerPlaceholder.splice(index, 1); // Remove from array
+                }
+            }
         }
         console.log(`Current answer: ${answerPlaceholder}`);
     }
 }
 
-const answerCard = document.querySelector(".answer-card");
-const answerGame = answerCard.querySelectorAll(".answer-game");
+const answerCard = document.querySelector(".js-answer-card");
+const answerGame = answerCard.querySelectorAll(".js-answer");
 answerGame.forEach((el, index) => {
     new Draggable(el, { top: index * 60, left: 0 });
 });

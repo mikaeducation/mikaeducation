@@ -20,12 +20,12 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
                 <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Reseptif.
                 </p>
             </div>
-            <div class="js-game-scene flex flex-1">
+            <div class="js-scene-card flex flex-1">
                 <div class="w-full flex justify-center">
 
                     <!-- Title -->
@@ -37,7 +37,8 @@
                     <div class="w-1/3 flex flex-col items-start justify-evenly">
                         @for ($i = 0; $i < 3; $i++)
                             <div id=""
-                                class="js-input-game my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31">
+                                class="js-input-card my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31 relative">
+                                <div class="js-input text-center"></div>
                                 <span>____</span> {{-- Placeholder for label --}}
                             </div>
                         @endfor
@@ -57,7 +58,7 @@
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
-                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
