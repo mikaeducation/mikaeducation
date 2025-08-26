@@ -20,28 +20,28 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full pt-12 flex flex-col">
                 <p class="p-2 text-center text-lg">Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh Augmentative Alternative Communication (AAC) yang sesuai.</p>
             </div>
-            <div class="js-game-scene flex flex-1">
+            <div class="js-scene-card flex flex-1">
                 <div class="w-full flex flex-col items-center">
 
                     <!-- Low Tech -->
-                    <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div id="" class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">Low Tech</h2>
 
                         <!-- Input Box -->
-                        <div class="w-2/3 flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="low-tech" class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
                         </div>
                     </div>
 
                     <!-- High Tech -->
-                    <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div id="" class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">High Tech</h2>
 
                         <!-- Input Box -->
-                        <div class="w-2/3 flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="high-tech" class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
                         </div>
                     </div>
                 </div>
@@ -58,9 +58,9 @@
                         'MIKA 1.0',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
+                <div class="js-answer-card min-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $answer)
-                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
