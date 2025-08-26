@@ -21,7 +21,7 @@
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
         <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full pt-12 flex flex-col">
+            <div class="w-full flex flex-col">
                 <p class="p-2 text-center text-balance text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai
                     dengan payung
                     karakteristik yang sesuai (Komunikasi Sosial dan Minat terbatas dan perilaku berulang)</p>
@@ -36,17 +36,14 @@
                             Komunikasi Sosial Autisme</h2>
                         <!-- Input Box -->
                         @for ($i = 0; $i < 3; $i++)
-                            <div id=""
-                                class="w-2/3 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 relative">
-                                <!-- Input Div -->
-                                <div class="js-input text-center">
-
-                                </div>
-                                <span>____</span> {{-- Placeholder for label --}}
+                            <div class="js-input px-2 w-2/3 flex items-center border border-blue31 rounded justify-center text-center"
+                                data-accepting="true">
+                                ____
                             </div>
                         @endfor
                     </div>
-                    <div id="karakteristik" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                    <div id="karakteristik"
+                        class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
                         <!-- Question Box -->
                         <h2
                             class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
@@ -54,13 +51,9 @@
                         </h2>
                         <!-- Input Box -->
                         @for ($i = 0; $i < 4; $i++)
-                            <div id=""
-                                class="w-2/3 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 relative">
-                                <!-- Input Div -->
-                                <div class="js-input text-center">
-
-                                </div>
-                                <span>____</span> {{-- Placeholder for label --}}
+                            <div class="js-input px-2 w-2/3 flex items-center border border-blue31 rounded justify-center text-center"
+                                data-accepting="true">
+                                ____
                             </div>
                         @endfor
                     </div>
@@ -78,9 +71,10 @@
                         'Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-96 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
+                <div class="js-answer-card min-w-64 flex flex-col justify-evenly">
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">
+                            {{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
