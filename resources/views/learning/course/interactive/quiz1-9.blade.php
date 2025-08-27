@@ -20,12 +20,12 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full pt-12 flex flex-col">
                 <p class="p-2 text-center text-lg">Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH
                     yang tepat!</p>
             </div>
-            <div class="js-game-scene px-6 gap-24 flex flex-1">
+            <div class="js-scene-card px-6 gap-24 flex flex-1">
                 <div class="w-full flex flex-col items-center">
                     @php
                         $questions = [
@@ -36,13 +36,14 @@
                         ];
                     @endphp
                     @foreach ($questions as $question)
-                        <div id="" class="w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                        <div id="" class="js-input-card w-full my-2 flex flex-col flex-grow items-center justify-evenly">
                             <!-- Question Box -->
                             <h2 class="w-full p-2 rounded bg-blue31 text-center text-xl text-white font-bold">
                                 {{ $question }}</h2>
 
                             <!-- Input Box -->
-                            <div class="w-full flex flex-grow flex-wrap rounded border-b-2 border-blue31">
+                            <div id="{{ $question }}" class="js-input w-full flex flex-grow flex-wrap rounded border-b-2 border-blue31 text-center" data-accepting="true">
+
                             </div>
                         </div>
                     @endforeach
@@ -58,8 +59,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card max-w-128 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id={{ $key }}>{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
