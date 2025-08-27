@@ -20,13 +20,13 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="game-3" class="quiz-section h-[85vh] flex flex-col flex-grow">
+        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full m-2 pt-6 flex flex-col p-2">
                 <h1 class="p-2 text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan komponen kesulitan
                     Komunikasi Pragmatis berikut.</h1>
             </div>
             <div class="px-12 gap-x-4 w-full h-full flex">
-                <div class="js-game-scene flex flex-1 flex-col justify-evenly">
+                <div class="js-scene-card flex flex-1 flex-col justify-evenly">
                     @php
                         $questions = ['Karakteristik', 'Dampak', 'Strategi'];
                     @endphp
@@ -40,10 +40,10 @@
 
                             <!-- Input Box -->
                             <div
-                                class="w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-center">
-                                <div id="" class="js-input-game justify-center text-sm text-blue31">
+                                class="js-input-card w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-center">
+                                <div id="{{ $question }}" class="js-input justify-center text-sm text-blue31 text-center" data-accepting="true">
+                                ____
                                 </div>
-                                <span>____</span> {{-- Placeholder for label --}}
                             </div>
                         </div>
                     @endforeach
@@ -62,8 +62,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card max-w-sm px-6 py-2 flex flex-col justify-evenly">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer-game quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
