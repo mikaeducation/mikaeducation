@@ -4,6 +4,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
+    const answerPlaceholder = {
+        'karakteristik': [],
+        'minat': [],
+    }
 
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {
@@ -30,7 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             this.classList.remove("border-dashed", "border-2");
 
+
+            const parentId = this.parentNode.id
             const droppedText = e.dataTransfer.getData("text/plain");
+            let text = droppedText.trim();
+            text = text.replace(/\s+/g, " ");
+            answerPlaceholder[parentId].push(text);
+            if (!answerPlaceholder[parentId].includes(text)) {
+            }
+            console.log("Parent ID:", parentId);
+            console.log("Current Answers:", answerPlaceholder);
 
             if (
                 this.textContent.trim() === "" ||
