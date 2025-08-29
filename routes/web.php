@@ -17,7 +17,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Interactive\QuizController;
-
+use App\Http\Controllers\InteractiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +91,8 @@ Route::get('/registerprofile', function () {
     }
     return view('index');
 }); */ // NOTE: dinonaktifkan sementara untuk interactive
-Route::get('/', fn() => view('learning.course.interactive.quiz1-1')); // TODO: perbaiki route jika sudah selesai interactive
+Route::get('/interactive/{id}', [InteractiveController::class, 'index']); // TODO: perbaiki route jika sudah selesai interactive
+Route::post('/interactive/{quiz_id}', [InteractiveController::class, 'update'])->name("interactive.post"); // TODO: perbaiki route jika sudah selesai interactive
 
 Route::get('/news', fn() => view('news'));
 Route::get('/article', fn() => view('article'));
