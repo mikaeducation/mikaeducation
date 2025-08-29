@@ -28,7 +28,7 @@
             </div>
             <div class="w-full flex flex-1">
                 <div class="w-full p-6 flex justify-evenly">
-                    <div id="minat" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                    <div id="karakteristik" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
                         <!-- Question Box -->
                         <h2
                             class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
@@ -42,7 +42,7 @@
                             </div>
                         @endfor
                     </div>
-                    <div id="karakteristik"
+                    <div id="minat"
                         class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
                         <!-- Question Box -->
                         <h2
