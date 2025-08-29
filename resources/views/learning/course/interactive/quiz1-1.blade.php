@@ -77,7 +77,7 @@
                 @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['quiz'=> 'quiz1-2']) }}" class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
+                <a id="" href="{{ route('quiz.show', ['id'=> '2']) }}" class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
             </form>
         </div>
         @include('includes.components.elearning.course.section')

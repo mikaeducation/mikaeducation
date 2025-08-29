@@ -28,7 +28,8 @@
             </div>
             <div class="w-full flex flex-1">
                 <div class="w-full p-6 flex justify-evenly">
-                    <div id="karakteristik" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                    <div id="karakteristik"
+                        class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
                         <!-- Question Box -->
                         <h2
                             class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
@@ -42,8 +43,7 @@
                             </div>
                         @endfor
                     </div>
-                    <div id="minat"
-                        class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                    <div id="minat" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
                         <!-- Question Box -->
                         <h2
                             class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
@@ -80,13 +80,14 @@
             </div>
 
             {{-- Button --}}
-            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['quiz' => 'quiz1-3']) }}"
+                <a id="" href="{{ route('quiz.show', ['id' => '3']) }}"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
-            </div>
+            </form>
         </div>
         @include('includes.components.elearning.course.section')
     </section>
