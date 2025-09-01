@@ -22,26 +22,31 @@
         {{-- Quiz Section --}}
         <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full pt-12 flex flex-col">
-                <p class="p-2 text-center text-lg">Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh Augmentative Alternative Communication (AAC) yang sesuai.</p>
+                <p class="p-2 text-center text-lg">Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh
+                    Augmentative Alternative Communication (AAC) yang sesuai.</p>
             </div>
             <div class="js-scene-card flex flex-1">
                 <div class="w-full flex flex-col items-center">
 
                     <!-- Low Tech -->
-                    <div id="" class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div id=""
+                        class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">Low Tech</h2>
 
                         <!-- Input Box -->
-                        <div id="low-tech" class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="low-tech"
+                            class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
                         </div>
                     </div>
 
                     <!-- High Tech -->
-                    <div id="" class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div id=""
+                        class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">High Tech</h2>
 
                         <!-- Input Box -->
-                        <div id="high-tech" class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="high-tech"
+                            class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
                         </div>
                     </div>
                 </div>
@@ -66,13 +71,14 @@
             </div>
 
             {{-- Button --}}
-            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['quiz' => 'quiz1-8']) }}"
+                <a id="" href="{{ route('quiz.show', ['id' => '8']) }}"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
-            </div>
+            </form>
         </div>
         @include('includes.components.elearning.course.section')
     </section>

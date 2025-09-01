@@ -41,8 +41,10 @@
                             <!-- Input Box -->
                             <div
                                 class="js-input-card w-full flex flex-col border-2 border-blue31 rounded-full items-center justify-center">
-                                <div id="{{ $question }}" class="js-input justify-center text-sm text-blue31 text-center" data-accepting="true">
-                                ____
+                                <div id="{{ $question }}"
+                                    class="js-input justify-center text-sm text-blue31 text-center"
+                                    data-accepting="true">
+                                    ____
                                 </div>
                             </div>
                         </div>
@@ -63,18 +65,20 @@
                 @endphp
                 <div class="js-answer-card max-w-sm px-6 py-2 flex flex-col justify-evenly">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">
+                            {{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
             {{-- Button --}}
-            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['quiz' => 'quiz1-9']) }}"
+                <a id="" href="{{ route('quiz.show', ['id' => '9']) }}"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
-            </div>
+            </form>
         </div>
         @include('includes.components.elearning.course.section')
     </section>

@@ -22,14 +22,15 @@
         {{-- Quiz Section --}}
         <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
-                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.</p>
+                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.
+                </p>
             </div>
             <div class="js-scene-card flex flex-1">
                 <div class="w-full flex justify-center">
 
                     <!-- Title -->
                     <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
-                    <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
+                        <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
                     </div>
 
                     <!-- Input Box -->
@@ -66,13 +67,14 @@
             </div>
 
             {{-- Button --}}
-            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['quiz' => 'quiz1-5']) }}"
+                <a id="" href="{{ route('quiz.show', ['id' => '5']) }}"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
-            </div>
+            </form>
         </div>
         @include('includes.components.elearning.course.section')
     </section>

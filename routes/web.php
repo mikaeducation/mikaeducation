@@ -17,7 +17,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Interactive\QuizController;
-use App\Http\Controllers\InteractiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,8 +90,8 @@ Route::get('/registerprofile', function () {
     }
     return view('index');
 }); */ // NOTE: dinonaktifkan sementara untuk interactive
-Route::get('/interactive/{id}', [InteractiveController::class, 'index']); // TODO: perbaiki route jika sudah selesai interactive
-Route::post('/interactive/{quiz_id}', [InteractiveController::class, 'update'])->name("interactive.post"); // TODO: perbaiki route jika sudah selesai interactive
+Route::get('/quiz/{id}', [QuizController::class, 'index'])->name("quiz.show"); // TODO: perbaiki route jika sudah selesai interactive
+Route::post('/quiz/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post"); // TODO: perbaiki route jika sudah selesai interactive
 
 Route::get('/news', fn() => view('news'));
 Route::get('/article', fn() => view('article'));
@@ -159,8 +158,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
     Route::get('/page8_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page8_0');
-
-    Route::get('/quiz/{quiz}', [QuizController::class, 'showQuiz'])->name('quiz.show'); // TODO: taruh di bagian yang sesuai
 
     Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
