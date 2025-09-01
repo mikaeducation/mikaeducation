@@ -1,27 +1,8 @@
 // NOTE: Javascript for Quiz 1
 
 // Game Scene 1
-const gameScene1 = document.getElementById("js-scene-1");
-const gameCard1 = gameScene1.querySelector(".js-scene-card");
-const questionGame1 = gameScene1.querySelectorAll(".js-input");
-const questionGame1Array = Array.from(questionGame1);
-const answerPlaceholder = [];
-const radius = 150;
-
-// questionGame1Array.forEach((input, index) => {
-//     input.innerHTML = `Question ${index}`;
-//     const angle = (index / questionGame1Array.length) * (2 * Math.PI);
-//     const opp = radius * Math.sin(angle);
-//     const hyp = radius * Math.cos(angle);
-//     const a = sectionWidth / 2 - opp;
-//     const b = sectionHeight / 2 - hyp;
-//     const x = (a / sectionWidth) * 100;
-//     const y = (b / sectionHeight) * 100;
-
-//     // console.log(`Input ${index + 1} - X: ${x}, Y: ${y}, Angle: ${angle}`);
-//     input.style.top = `${y}%`;
-//     input.style.left = `${x}%`;
-// });
+export const answerPlaceholder = [];
+window.answerPlaceholder = answerPlaceholder
 
 // Drag Logic
 function isColliding(el1, el2) {
@@ -130,21 +111,14 @@ class Draggable {
                 isCollided = true;
                 const zoneParent = zone.parentNode;
                 const zoneRect = zone.getBoundingClientRect();
-                const parentRect = zoneParent.getBoundingClientRect(); // 👈 key difference
 
                 // Append element to same parent as zone
-                zoneParent.appendChild(this.el);
-
-                // New position relative to parent
-                const relativeLeft = zoneRect.left - parentRect.left;
-                const relativeTop = zoneRect.top - parentRect.top;
+                zone.appendChild(this.el);
 
                 // Center answer in zone
                 const centeredLeft =
-                    relativeLeft +
                     (zoneRect.width - this.el.offsetWidth) / 2;
                 const centeredTop =
-                    relativeTop +
                     (zoneRect.height - this.el.offsetHeight) / 2;
 
                 this.el.style.left = `${centeredLeft}px`;
