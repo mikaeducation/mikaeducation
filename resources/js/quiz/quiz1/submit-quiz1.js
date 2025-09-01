@@ -1,6 +1,7 @@
-async function submitQuiz(url, answers) {
+async function submitQuiz(url) {
     const token = document.querySelector('input[name="_token"]').value
     const data = window.answerPlaceholder
+    console.log("Interactive answer submitted :", data)
 
     try {
         const response = await fetch(url, {
@@ -9,7 +10,7 @@ async function submitQuiz(url, answers) {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": token,
             },
-            body: JSON.stringify({ answers: answers })
+            body: JSON.stringify({ answers: data })
         })
 
         if (!response.ok) {
@@ -17,9 +18,14 @@ async function submitQuiz(url, answers) {
         }
 
         const result = await response.json();
-        return { success: true, data: result }
+        alert(result.message || "Quiz submitted successfully")
+
+        // return { success: true, data: result }
     } catch (error) {
-        return { success: false, message: error.message }
+        alert(error.message || "An error occurred while submitting the quiz")
+        // return { success: false, message: error.message }
     }
 
 }
+
+window.submitQuiz = submitQuiz
