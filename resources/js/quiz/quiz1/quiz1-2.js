@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'karakteristik': [],
         'minat': [],
     }
+    window.answerPlaceholder = answerPlaceholder
 
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {

@@ -6,6 +6,7 @@ const gameCard1 = gameScene1.querySelector(".js-scene-card");
 const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = [];
+window.answerPlaceholder = answerPlaceholder
 
 // questionGame1Array.forEach((input, index) => {
 //     input.style.top = `${index * 100 + 30}px`;

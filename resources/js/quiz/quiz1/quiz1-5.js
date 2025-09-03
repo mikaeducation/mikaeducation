@@ -5,6 +5,7 @@ const gameCard1 = gameScene1.querySelector(".js-scene-card");
 const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 const questionGame1Array = Array.from(questionGame1);
 const answerPlaceholder = [];
+window.answerPlaceholder = answerPlaceholder
 
 
 // Drag Logic

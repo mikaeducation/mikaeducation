@@ -5,6 +5,7 @@ const answerPlaceholder = {
     "low-tech": [],
     "high-tech": [],
 };
+window.answerPlaceholder = answerPlaceholder
 
 // Drag Logic
 function isColliding(el1, el2) {

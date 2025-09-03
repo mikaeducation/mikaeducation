@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const answerPlaceholder = {};
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
+    window.answerPlaceholder = answerPlaceholder
 
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {
