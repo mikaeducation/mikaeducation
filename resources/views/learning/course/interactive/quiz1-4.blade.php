@@ -13,6 +13,7 @@
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-4.js')
+    @vite('resources/js/quiz/quiz1/submit-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
@@ -72,8 +73,10 @@
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <a id="" href="{{ route('quiz.show', ['id' => '5']) }}"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Kumpulkan</a>
+                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
+                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">
+                    Kumpulkan
+                </div>
             </form>
         </div>
         @include('includes.components.elearning.course.section')
