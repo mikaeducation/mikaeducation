@@ -7,6 +7,7 @@ use BcMath\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Expr\Cast\String_;
 use Ramsey\Uuid\Type\Integer;
@@ -29,14 +30,15 @@ class QuizController extends Controller
             "karakteristik" => [
                 "Sulit melakukan relasi sosio-emosional timbal balik",
                 "Sulit memahami komunikasi non-verbal",
-                "Kesulitan memulai, mempertahankan, dan memahami interaksi sosial",
+                "Kesulitan memulai, mempertahankan dan memahami interaksi sosial",
             ],
             "minat" => [
-                "Gerakan motorik, penggunaan objek atau wicaa berulang",
+                "Gerakan motorik, penggunaan objek atau wicara berulang.",
                 "Menuntut kesamaan, tidak fleksibel, marah jika terjadi perubahan rutinitas/ritual/pola perilaku verbal atau nonverbal",
-                "Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih"
-                ]
-            ],
+                "Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih",
+                "Hyper-atau hipo-reaktivitas terhadap stimulus sensorik"
+            ]
+        ],
         "3" => [
             "Kemampuan perhatian bersama",
             "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain).",
@@ -94,7 +96,7 @@ class QuizController extends Controller
     ];
     public function index(string $id)
     {
-        return view('learning.course.interactive.quiz1-'.$id);
+        return view('learning.course.interactive.quiz1-'.$id, ["quiz_id" => $id]);
     }
 
     /**
@@ -116,7 +118,7 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $module_id, $quiz_id)
+    public function update(Request $request, string $quiz_id)
     {
         $validator = Validator::make($request->all(), [
             "answers" => "required|array",
@@ -139,62 +141,74 @@ class QuizController extends Controller
             ], 404);
         }
         $answers = $request->input("answers");
-        $correct = 0;
+        Log::info('Answer sent to quiz:', [
+            'quiz_id' => $quiz_id,
+            'answers' => $answers
+        ]);
+
+        $result = [];
         try {
 
             switch($quiz_id){
                 case 1:
                     // Jawaban berupa array of string
-                    $correct = $this->calculateArrayScore($answers, $this->answer["1"]);
+                    $result = $this->calculateArrayScore($answers, $this->answer["1"]);
                     break;
 
                 case 2:
                     // Jawaban berupa map dengan array values
-                    $correct = $this->calculateMapScore($answers, $this->answer["2"]);
+                    $result = $this->calculateMapScore($answers, $this->answer["2"]);
                     break;
 
                 case 3:
-                    $correct = $this->calculateArrayScore($answers, $this->answer["3"]);
+                    $result = $this->calculateArrayScore($answers, $this->answer["3"]);
                     break;
 
                 case 4:
-                    $correct = $this->calculateArrayScore($answers, $this->answer["4"]);
+                    $result = $this->calculateArrayScore($answers, $this->answer["4"]);
                     break;
 
                 case 5:
-                    $correct = $this->calculateArrayScore($answers, $this->answer["5"]);
+                    $result = $this->calculateArrayScore($answers, $this->answer["5"]);
                     break;
 
                 case 6:
                     // Jawaban berupa map dengan string values
-                    $correct = $this->calculateMapScore($answers, $this->answer["6"]);
+                    $result = $this->calculateMapScore($answers, $this->answer["6"]);
                     break;
 
                 case 7:
                     // Jawaban berupa map dengan array values (low/high)
-                    $correct = $this->calculateMapScore($answers, $this->answer["7"]);
+                    $result = $this->calculateMapScore($answers, $this->answer["7"]);
                     break;
 
                 case 8:
                     // Jawaban berupa map dengan string values
-                    $correct = $this->calculateMapScore($answers, $this->answer["8"]);
+                    $result = $this->calculateMapScore($answers, $this->answer["8"]);
                     break;
 
                 case 9:
                     // Jawaban berupa map dengan string values
-                    $correct = $this->calculateMapScore($answers, $this->answer["9"]);
+                    $result = $this->calculateMapScore($answers, $this->answer["9"]);
                     break;
 
                 default:
-                    $correct = 0;
+                    $result = 0;
                     break;
             }
-            $user_id = Auth::id();
 
-            // Calculate incorrect and score
-            $incorrect = count($this->answer[$quiz_id]) - $correct;
-            $score = $correct / count($this->answer[$quiz_id]) * 100;
+            // Calculate score
+            $correct = $result["correct"];
+            $incorrect = $result["incorrect"];
+            $score = $correct / ($correct + $incorrect) * 100;
             $score = round($score, 2);
+            Log::info("Score calculated :", [
+                "correct" => $correct,
+                "incorrect" => $incorrect,
+                "score" => $score
+            ]);
+            dd();
+            $user_id = Auth::id();
 
             // TODO: Use transaction manually
             DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score) {
@@ -246,48 +260,114 @@ class QuizController extends Controller
                     'finished_at' => now() // TODO: ganti dengan waktu selesai yang sesuai
                 ]);
             });
+
+            return response()->json([
+                'status' => 'success',
+                'type' => 'quiz_submitted',
+                'message' => 'Kuis berhasil dikumpulkan',
+                'data' => [
+                    'correct' => $correct,
+                    'incorrect' => $incorrect,
+                    'score' => $score,
+                    'redirect' => route('quiz.show', ['id' => $quiz_id + 1]) // Redirect ke kuis berikutnya
+                ]
+            ]);
         } catch (\Throwable $th) {
-            return back()->with("calculation_error", "Terjadi kesalahan dalam perhitungan skor");
+            return response()->json([
+                'status' => 'error',
+                'type' => 'calculation_error',
+                'message' => 'Terjadi kesalahan dalam perhitungan skor'
+            ], 500);
         }
 
     }
 
-    private function calculateArrayScore(array $answers, array $key_answers): int{
+    private function calculateArrayScore(array $answers, array $key_answers): array {
         $score = 0;
-        foreach ($answers as $answer){
-            if(in_array(strtolower($answer),
-                array_map('strtolower', $key_answers))){
+        foreach ($answers as $answer) {
+            if (in_array(strtolower($answer), array_map('strtolower', $key_answers))) {
                 $score++;
             }
         }
 
-        return $score;
+        $incorrect = count($answers) - $score;
+
+        return [
+            'correct' => $score,
+            'incorrect' => $incorrect,
+        ];
     }
 
-    private function calculateMapScore(array $answers, array $key_answers): int{
+    private function calculateMapScore(array $answers, array $key_answers): array {
         $score = 0;
-        foreach($answers as $key => $answer){
-           if(!isset($key_answers[$key])){
-               continue;
-           }
+        $total = 0;
 
-           $key_answer = $key_answers[$key];
-           if(is_string($answer) && is_string($key_answer)){
-                if(strtolower($answer) === strtolower($key_answer)){
+        foreach ($answers as $key => $answer) {
+            if (!isset($key_answers[$key])) {
+                continue;
+            }
+
+            $key_answer = $key_answers[$key];
+
+            if (is_string($answer) && is_string($key_answer)) {
+                $total++;
+                if (strtolower($answer) === strtolower($key_answer)) {
                     $score++;
                 }
-           }
-
-           else if (is_array($answer) && is_array($key_answer)){
+            } elseif (is_array($answer) && is_array($key_answer)) {
                 $answer = array_map('strtolower', $answer);
                 $key_answer = array_map('strtolower', $key_answer);
+
                 $common = array_intersect($answer, $key_answer);
                 $score += count($common);
+                $total += count($answer); // each chosen answer counts toward total
             }
         }
 
-        return $score;
+        $incorrect = $total - $score;
+
+        return [
+            'correct' => $score,
+            'incorrect' => $incorrect,
+        ];
     }
+
+    // private function calculateArrayScore(array $answers, array $key_answers): int{
+    //     $score = 0;
+    //     foreach ($answers as $answer){
+    //         if(in_array(strtolower($answer),
+    //             array_map('strtolower', $key_answers))){
+    //             $score++;
+    //         }
+    //     }
+
+    //     return $score;
+    // }
+
+    // private function calculateMapScore(array $answers, array $key_answers): int{
+    //     $score = 0;
+    //     foreach($answers as $key => $answer){
+    //        if(!isset($key_answers[$key])){
+    //            continue;
+    //        }
+
+    //        $key_answer = $key_answers[$key];
+    //        if(is_string($answer) && is_string($key_answer)){
+    //             if(strtolower($answer) === strtolower($key_answer)){
+    //                 $score++;
+    //             }
+    //        }
+
+    //        else if (is_array($answer) && is_array($key_answer)){
+    //             $answer = array_map('strtolower', $answer);
+    //             $key_answer = array_map('strtolower', $key_answer);
+    //             $common = array_intersect($answer, $key_answer);
+    //             $score += count($common);
+    //         }
+    //     }
+
+    //     return $score;
+    // }
     /**
      * Remove the specified resource from storage.
      */
