@@ -4,12 +4,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
-    const answerPlaceholder = {
-        'karakteristik': [],
-        'minat': [],
-    }
+    const answerPlaceholder = {}
     window.answerPlaceholder = answerPlaceholder
-
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("text/plain", this.textContent);
@@ -40,8 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const droppedText = e.dataTransfer.getData("text/plain");
             let text = droppedText.trim();
             text = text.replace(/\s+/g, " ");
-            answerPlaceholder[parentId].push(text);
+
+            if (!answerPlaceholder[parentId]) {
+                answerPlaceholder[parentId] = [];
+            }
+
             if (!answerPlaceholder[parentId].includes(text)) {
+                answerPlaceholder[parentId].push(text);
             }
             console.log("Parent ID:", parentId);
             console.log("Current Answers:", answerPlaceholder);

@@ -35,8 +35,9 @@
                         <h2 class="p-1 text-xl text-blue31 font-bold">Low Tech</h2>
 
                         <!-- Input Box -->
-                        <div id="low-tech"
-                            class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="low"
+                            data-accepting="true"
+                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 rounded border-2 border-blue31">
                         </div>
                     </div>
 
@@ -46,8 +47,9 @@
                         <h2 class="p-1 text-xl text-blue31 font-bold">High Tech</h2>
 
                         <!-- Input Box -->
-                        <div id="high-tech"
-                            class="js-input w-full flex flex-grow flex-wrap rounded border-2 border-blue31">
+                        <div id="high"
+                            data-accepting="true"
+                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 rounded border-2 border-blue31">
                         </div>
                     </div>
                 </div>
@@ -65,8 +67,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card min-w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
@@ -74,7 +76,7 @@
             {{-- Button --}}
             <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
                 @csrf
-                <button id="" type="button"
+                <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
                 <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"

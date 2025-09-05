@@ -14,6 +14,7 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-3.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
+    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
@@ -41,12 +42,10 @@
                         @foreach ($number as $i => $num)
                             <div class="w-1/2 my-4 flex flex-1">
                                 <h1 class="m-4">{{ $num }}</h1>
-                                <div id=""
-                                    class="js-input-card mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31 relative">
-                                    <div class="js-input text-center">
-                                        {{-- Input jawaban akan muncul di sini --}}
-                                    </div>
-                                    <span>____</span> {{-- hilang ketika sudah diisi jawaban --}}
+                                <div
+                                    data-accepting="true"
+                                    class="js-input mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31 text-center">
+                                        ____
                                 </div>
                             </div>
                         @endforeach
@@ -65,8 +64,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
@@ -74,7 +73,7 @@
             {{-- Button --}}
             <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
                 @csrf
-                <button id="" type="button"
+                <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
                 <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"

@@ -12,8 +12,9 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    {{-- @vite('resources/js/quiz/quiz1/quiz1-1.js') --}} <!-- WARNING: dimatikan sementara karna mengubah layout-->
+    @vite('resources/js/quiz/quiz1/quiz1-1.js') <!-- WARNING: dimatikan sementara karna mengubah layout-->
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
+    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative">
@@ -34,6 +35,7 @@
                     <div class="w-full grid grid-cols-3">
                         @for ($i = 0; $i < 3; $i++)
                             <div id="question-{{ $i + 1 }}"
+                                data-accepting="true"
                                 class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center text-blue-700">
                                 ____
                             </div>
@@ -45,6 +47,7 @@
                         </div>
                         @for ($i = 0; $i < 3; $i++)
                             <div id="question-{{ $i + 1 }}"
+                                data-accepting="true"
                                 class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center text-blue-700">
                                 ____
                             </div>
@@ -66,14 +69,16 @@
                     ];
                 @endphp
                 <div class="js-answer-card flex flex-col justify-evenly">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2 text-white bg-blue31 rounded">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2 text-white bg-blue31 rounded"
+                        draggable="true" data-id="{{ $key }}">
+                        {{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
             <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
                 @csrf
-                <button id="" type="button"
+                <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
                 <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"

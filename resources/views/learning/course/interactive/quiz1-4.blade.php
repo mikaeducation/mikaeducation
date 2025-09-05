@@ -37,10 +37,10 @@
                     <!-- Input Box -->
                     <div class="flex flex-grow flex-col items-start justify-evenly">
                         @for ($i = 0; $i < 8; $i++)
-                            <div id=""
-                                class="js-input-card my-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 relative">
-                                <div class="js-input text-center"></div>
-                                <span>____</span> {{-- Placeholder for label --}}
+                            <div
+                                data-accepting="true"
+                                class="js-input my-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
+                                ____ {{-- Placeholder for label --}}
                             </div>
                         @endfor
                     </div>
@@ -61,8 +61,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>

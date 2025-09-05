@@ -38,9 +38,8 @@
                     <div class="w-1/3 flex flex-col items-start justify-evenly">
                         @for ($i = 0; $i < 3; $i++)
                             <div id=""
-                                class="js-input-card my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31 relative">
-                                <div class="js-input text-center"></div>
-                                <span>____</span> {{-- Placeholder for label --}}
+                                class="js-input my-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
+                                ____ {{-- Placeholder for label --}}
                             </div>
                         @endfor
                     </div>
@@ -58,8 +57,8 @@
                     ];
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $answer)
-                        <div class="js-answer quiz-answer p-2">{{ $answer }}</div>
+                    @foreach ($answers as $key => $answer)
+                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>

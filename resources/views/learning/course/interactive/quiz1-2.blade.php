@@ -14,6 +14,7 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-2.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
+    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative">
@@ -87,7 +88,7 @@
             {{-- Button --}}
             <form class="x-5 py-3 w-1/3 h-1/10 flex justify-stretch self-end">
                 @csrf
-                <button id="" type="button"
+                <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
                 <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
