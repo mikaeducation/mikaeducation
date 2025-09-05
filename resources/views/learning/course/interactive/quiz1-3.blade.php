@@ -65,7 +65,7 @@
                 @endphp
                 <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>

@@ -12,7 +12,7 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-1.js') <!-- WARNING: dimatikan sementara karna mengubah layout-->
+    @vite('resources/js/quiz/quiz1/quiz1-1.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
@@ -70,7 +70,7 @@
                 @endphp
                 <div class="js-answer-card flex flex-col justify-evenly">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 text-white bg-blue31 rounded"
+                        <div class="js-answer quiz-answer p-2 text-white bg-blue31 rounded cursor-pointer"
                         draggable="true" data-id="{{ $key }}">
                         {{ $answer }}</div>
                     @endforeach

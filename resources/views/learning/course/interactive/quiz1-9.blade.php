@@ -14,6 +14,7 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-9.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
+    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
@@ -43,8 +44,7 @@
                                 {{ $question }}</h2>
 
                             <!-- Input Box -->
-                            <div id="{{ $question }}" class="js-input w-full flex flex-grow flex-wrap rounded border-b-2 border-blue31 text-center" data-accepting="true">
-
+                            <div id="{{ $question }}" class="js-input p-2 w-full flex flex-grow justify-center items-end rounded border-b-2 border-blue31 text-center" data-accepting="true">
                             </div>
                         </div>
                     @endforeach
@@ -59,20 +59,20 @@
                         'Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-128 flex flex-col justify-evenly relative">
+                <div class="js-answer-card w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2" draggable="true" data-id={{ $key }}>{{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id={{ $key }}>{{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
 
             {{-- Button --}}
             <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                <button id="" type="button"
+                <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
                 <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">
+                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
             </div>

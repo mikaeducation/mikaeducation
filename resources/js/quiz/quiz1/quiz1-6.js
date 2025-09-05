@@ -20,16 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
     inputs.forEach((input) => {
         input.addEventListener("dragover", function (e) {
             e.preventDefault(); // needed to allow drop
-            this.classList.add("border-dashed", "border-2");
+            this.classList.add("border-dashed");
         });
 
         input.addEventListener("dragleave", function () {
-            this.classList.remove("border-dashed", "border-2");
+            this.classList.remove("border-dashed");
         });
 
         input.addEventListener("drop", function (e) {
             e.preventDefault();
-            this.classList.remove("border-dashed", "border-2");
+            this.classList.remove("border-dashed");
 
             const droppedText = e.dataTransfer.getData("text/plain");
 
