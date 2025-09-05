@@ -16,43 +16,46 @@
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
 </head>
 
-<body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
+<body class="font-futura w-full min-h-screen flex flex-col relative">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full flex flex-grow items-start justify-start">
+    <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full flex flex-col">
+        {{-- TODO: buat jadi modular --}}
+        <div id="js-scene" class="quiz-section w-full h-full flex flex-col">
+            <div class="w-full h-1/10 flex flex-col">
                 <p class="p-2 text-center text-balance text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai
                     dengan payung
                     karakteristik yang sesuai (Komunikasi Sosial dan Minat terbatas dan perilaku berulang)</p>
             </div>
-            <div class="w-full flex flex-1">
-                <div class="w-full p-6 flex justify-evenly">
+            <div
+                class="w-full h-full flex overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
+                <div class="w-full h-full p-6 flex justify-evenly">
                     <div id="karakteristik"
-                        class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                        class="js-scene-card w-full h-full mx-4 grid grid-rows-5 gap-2 justify-items-end">
                         <!-- Question Box -->
                         <h2
-                            class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
+                            class="w-2/3 p-2 justify-self-start rounded bg-blue31 text-center content-center text-md text-white font-bold">
                             Karakteristik
                             Komunikasi Sosial Autisme</h2>
                         <!-- Input Box -->
                         @for ($i = 0; $i < 3; $i++)
-                            <div class="js-input px-2 w-2/3 flex items-center border border-blue31 rounded justify-center text-center"
+                            <div class="js-input px-2 w-4/5 h-full flex items-center border-2 border-blue31 rounded justify-center text-center"
                                 data-accepting="true">
                                 ____
                             </div>
                         @endfor
                     </div>
-                    <div id="minat" class="js-scene-card w-1/3 mx-4 grid grid-rows-auto gap-6 justify-items-end">
+                    <div id="minat"
+                        class="js-scene-card mx-4 w-full h-full grid grid-rows-5 gap-2 justify-items-end">
                         <!-- Question Box -->
                         <h2
-                            class="justify-self-start w-2/3 p-2 rounded bg-blue31 text-center content-center text-md text-white font-bold">
+                            class="p-2 w-2/3 h-full justify-self-start rounded bg-blue31 text-center content-center text-md text-white font-bold">
                             Minat terbatas dan perilaku berulang
                         </h2>
                         <!-- Input Box -->
                         @for ($i = 0; $i < 4; $i++)
-                            <div class="js-input px-2 w-2/3 flex items-center border border-blue31 rounded justify-center text-center"
+                            <div class="js-input px-2 w-4/5 h-full flex items-center border-2 border-blue31 rounded justify-center text-center"
                                 data-accepting="true">
                                 ____
                             </div>
@@ -72,16 +75,17 @@
                         'Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih',
                     ];
                 @endphp
-                <div class="js-answer-card min-w-64 flex flex-col justify-evenly">
+                <div class="js-answer-card pr-3 w-64 h-full flex flex-col justify-evenly overflow-y-auto scrollbar">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2" draggable="true" data-id="{{ $key }}">
+                        <div class="js-answer quiz-answer my-2 p-2 bg-blue31 rounded text-white text-center cursor-pointer"
+                            draggable="true" data-id="{{ $key }}">
                             {{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
 
             {{-- Button --}}
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 h-1/10 flex justify-stretch self-end">
                 @csrf
                 <button id="" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
@@ -94,7 +98,6 @@
         </div>
         @include('includes.components.elearning.course.section')
     </section>
-
     @include('includes.components.elearning.course.footer')
 </body>
 
