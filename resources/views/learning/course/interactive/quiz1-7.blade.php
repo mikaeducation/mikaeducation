@@ -38,7 +38,8 @@
                         <!-- Input Box -->
                         <div id="low"
                             data-accepting="true"
-                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 rounded border-2 border-blue31">
+                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 justify-center items-center rounded border-2 border-blue31">
+                            ____
                         </div>
                     </div>
 
@@ -50,7 +51,8 @@
                         <!-- Input Box -->
                         <div id="high"
                             data-accepting="true"
-                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 rounded border-2 border-blue31">
+                            class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 justify-center items-center rounded border-2 border-blue31">
+                            ____
                         </div>
                     </div>
                 </div>

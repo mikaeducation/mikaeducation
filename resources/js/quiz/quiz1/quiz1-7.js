@@ -37,12 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Dropped Text:", droppedText);
             let text = droppedText.trim();
             text = text.replace(/\s+/g, " ");
+
+            if (!answerPlaceholder[inputId]) {
+                answerPlaceholder[inputId] = [];
+            }
+
             if (!answerPlaceholder[inputId].includes(text)) {
                 answerPlaceholder[inputId].push(text);
             }
             console.log("Current Answers:", answerPlaceholder);
 
-
+            if (this.textContent.includes("____")) {
+                this.textContent = ""; // Clear placeholder
+            }
             const span = document.createElement("span");
             span.textContent = droppedText;
             span.className = "js-dropped-answer";
