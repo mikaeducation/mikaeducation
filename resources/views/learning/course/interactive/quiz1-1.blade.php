@@ -11,6 +11,8 @@
     <meta name="show-asessment-dialog" content="true">
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
+    <meta name="module_id" content="">
+    <meta name="quiz_id" content="">
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-1.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
@@ -98,7 +100,7 @@
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
+                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id,'quiz_id' => $quiz_id]) }}')"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
