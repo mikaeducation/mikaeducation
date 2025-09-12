@@ -220,6 +220,12 @@ class QuizController extends Controller
                     ->where("module_id", $module_id)
                     ->value("progress_id");
 
+
+                // Get the current User Profile
+                $username = DB::table('profiles')
+                    ->where('phone', Auth::user()->phone)
+                    ->value('username');
+
                 // Upsert into user_quizzes table
                 $user_quiz = DB::table("user_quizzes") // TODO: tambahkan data username
                     ->where("user_id", $user_id)
@@ -240,7 +246,8 @@ class QuizController extends Controller
                         'progress_id' => $progress_id,
                         'quiz_id' => $quiz_id,
                         'attempt_count' => 1,
-                        'high_score' => $score
+                        'high_score' => $score,
+                        'username' => $username
                     ]);
                 }
 
