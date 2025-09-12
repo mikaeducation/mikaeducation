@@ -12,10 +12,12 @@ class PopupQuestion extends Component
      * Create a new component instance.
      */
     public $answers;
+    public $question;
 
-    public function __construct($answers)
+    public function __construct($answers, $question)
     {
         $this->answers = $answers;
+        $this->question = $question;
     }
 
     /**

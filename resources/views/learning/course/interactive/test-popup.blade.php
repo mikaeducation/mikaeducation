@@ -144,7 +144,8 @@
         <x-elearning.course.interactive.popup-question :answers="[
             'Kemampuan otak yang berbeda-beda antara satu dengan yang lain.',
             'Kemampuan otak ada yang lemah dan kuat.',
-        ]" />
+        ]"
+            question="Apa yang dimaksud dengan neurodivergen?" />
     </section>
 
     @include('includes.components.elearning.course.footer')
@@ -163,7 +164,7 @@
         const btnConfirm = document.getElementById("btnSubmitConfirm");
 
         let quizTriggered = false;
-        const stopTime = 60; // in seconds
+        const stopTime = 0; // in seconds
 
         // Monitor time
         video.addEventListener("timeupdate", function() {
