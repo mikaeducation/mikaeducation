@@ -83,16 +83,13 @@ Route::get('/registerprofile', function () {
 | HALAMAN BERANDA / HALAMAN UTAMA + BAGIAN UTAMA LAINNYA
 |--------------------------------------------------------------------------
 */
-/* Route::get('/', function () {
+Route::get('/', function () {
     $user = Auth::user();
     if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
         return redirect('/registerprofile');
     }
     return view('index');
-}); */ // NOTE: dinonaktifkan sementara untuk interactive
-Route::get('/quiz/{id}', [QuizController::class, 'index'])->name("quiz.show"); // TODO: perbaiki route jika sudah selesai interactive
-Route::post('/quiz/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post"); // TODO: perbaiki route jika sudah selesai interactive
-
+});
 Route::get('/news', fn() => view('news'));
 Route::get('/article', fn() => view('article'));
 Route::get('/articleexplore', fn() => view('includes/content/main/article/articleexplore'));
@@ -130,7 +127,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });
 
-
+/*
+|--------------------------------------------------------------------------
+| Halamann Kuis Interaktif
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/popup-quiz', fn() => view('learning.course.interactive.test-popup'));
+    Route::get('/quiz/{module_id}/{id}', [QuizController::class, 'index'])->name("quiz.show");
+    Route::post('/quiz/{module_id}/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post");
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -169,13 +175,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/submit-review', [ModuleController::class, 'store'])->name('module.review.submit');
 
-/*
-|--------------------------------------------------------------------------
-| Halamann Kuis Interaktif
-|--------------------------------------------------------------------------
-*/
-
 });
+
 
 /*
 |--------------------------------------------------------------------------

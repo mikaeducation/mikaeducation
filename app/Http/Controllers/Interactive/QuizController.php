@@ -94,9 +94,9 @@ class QuizController extends Controller
 
 
     ];
-    public function index(string $id)
+    public function index(string $module_id, string $quiz_id)
     {
-        return view('learning.course.interactive.quiz1-'.$id, ["quiz_id" => $id]);
+        return view('learning.course.interactive.quiz1-'.$quiz_id, ["module_id" => $module_id, "quiz_id" => $quiz_id]);
     }
 
     /**
@@ -118,7 +118,7 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $quiz_id)
+    public function update(Request $request, string $quiz_id, string $module_id)
     {
         $validator = Validator::make($request->all(), [
             "answers" => "required|array",
@@ -209,8 +209,8 @@ class QuizController extends Controller
                 "score" => $score,
                 "duration" => $duration
             ]);
-            dd();
             $user_id = Auth::id();
+            dd(Auth::user());
 
             // TODO: Use transaction manually
             DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
@@ -221,7 +221,7 @@ class QuizController extends Controller
                     ->value("progress_id");
 
                 // Upsert into user_quizzes table
-                $user_quiz = DB::ttable("user_quizzes")
+                $user_quiz = DB::table("user_quizzes") // TODO: tambahkan data username
                     ->where("user_id", $user_id)
                     ->where("module_id", $module_id)
                     ->where("quiz_id", (int)$quiz_id)
@@ -275,6 +275,7 @@ class QuizController extends Controller
                 ]
             ]);
         } catch (\Throwable $th) {
+            Log::error("calculation error", [$th->getMessage()]);
             return response()->json([
                 'status' => 'error',
                 'type' => 'calculation_error',

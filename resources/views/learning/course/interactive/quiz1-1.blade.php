@@ -11,6 +11,8 @@
     <meta name="show-asessment-dialog" content="true">
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
+    <meta name="module_id" content="">
+    <meta name="quiz_id" content="">
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz1-1.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
@@ -31,27 +33,44 @@
             <div
                 class="js-scene-card flex flex-1 overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                 <div class="w-full">
-                    {{-- Top Circle --}}
-                    <div class="w-full grid grid-cols-3">
-                        @for ($i = 0; $i < 3; $i++)
-                            <div id="question-{{ $i + 1 }}"
-                                data-accepting="true"
-                                class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center text-blue-700">
+                    <div class="w-full grid grid-cols-3 gap-10 justify-center items-center place-items-center">
+                        {{-- Left --}}
+                        <div class="row-span-3 grid-rows-subgrid justify-self-end">
+                            <div id="question-1" data-accepting="true"
+                                class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
                                 ____
                             </div>
-                        @endfor
-                        {{-- Center Circle --}}
+                            <div id="question-4" data-accepting="true"
+                                class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                                ____
+                            </div>
+                        </div>
+                        {{-- Top Center --}}
+                        <div id="question-2" data-accepting="true"
+                            class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            ____
+                        </div>
+                        {{-- Right --}}
+                        <div class="row-span-3 grid-rows-subgrid justify-self-start">
+                            <div id="question-3" data-accepting="true"
+                                class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                                ____
+                            </div>
+                            <div id="question-6" data-accepting="true"
+                                class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                                ____
+                            </div>
+                        </div>
+                        {{-- Center --}}
                         <div id="question"
-                            class="w-40 h-40 p-4 col-start-2 col-span-3 flex items-center justify-center bg-blue31 rounded-full shadow-md text-white font-bold text-center">
+                            class="p-4 w-40 h-40 flex items-center justify-center bg-blue31 rounded-full shadow-md text-white font-bold text-center">
                             Karakteristik Autisme
                         </div>
-                        @for ($i = 0; $i < 3; $i++)
-                            <div id="question-{{ $i + 1 }}"
-                                data-accepting="true"
-                                class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center text-blue-700">
-                                ____
-                            </div>
-                        @endfor
+                        {{-- Bottom Center --}}
+                        <div id="question-2" data-accepting="true"
+                            class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            ____
+                        </div>
                     </div>
                 </div>
                 {{-- Answer Section --}}
@@ -68,11 +87,11 @@
                         'Keubutuhan Makanan Khusus/Diet',
                     ];
                 @endphp
-                <div class="js-answer-card flex flex-col justify-evenly">
+                <div class="js-answer-card pr-3 flex flex-col justify-evenly">
                     @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 text-white bg-blue31 rounded cursor-pointer"
-                        draggable="true" data-id="{{ $key }}">
-                        {{ $answer }}</div>
+                        <div class="js-answer quiz-answer p-2 bg-blue31 rounded text-center text-white cursor-pointer"
+                            draggable="true" data-id="{{ $key }}">
+                            {{ $answer }}</div>
                     @endforeach
                 </div>
             </div>
@@ -81,8 +100,8 @@
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">
+                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id,'quiz_id' => $quiz_id]) }}')"
+                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
             </form>

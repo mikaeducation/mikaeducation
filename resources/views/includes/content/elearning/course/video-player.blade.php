@@ -38,6 +38,7 @@
     ></iframe>
 @elseif ($videoTagSrc)
     <video 
+        id="courseVideo"
         class="w-full h-full md:object-fill rounded" 
         src="{{ $videoTagSrc }}" 
         autoplay 

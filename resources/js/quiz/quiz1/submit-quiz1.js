@@ -22,15 +22,15 @@ async function submitQuiz(url) {
         })
 
         if (!response.ok) {
-            throw new Error(response.message || "Failed to submit quiz")
+            throw new Error(response.message || "Gagal mengumpulkan kuis")
         }
 
         const result = await response.json();
-        alert(result.message || "Quiz submitted successfully")
+        alert(result.message || "Berhasil mengumpulkan kuis")
 
         // return { success: true, data: result }
     } catch (error) {
-        alert(error.message || "An error occurred while submitting the quiz")
+        alert(error.message || "Terdapat error saat mengumpulkan kuis")
         // return { success: false, message: error.message }
     }
 
