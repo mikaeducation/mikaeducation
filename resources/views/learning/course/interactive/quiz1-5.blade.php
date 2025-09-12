@@ -70,7 +70,7 @@
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]}')"
+                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
