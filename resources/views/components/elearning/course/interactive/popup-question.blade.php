@@ -19,9 +19,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-bluee3 w-full bg-opacity-40 px-4 py-3 flex justify-center space-x-4 sm:px-6 text-lg font-medium">
+                <div class="bg-bluee3 w-full bg-opacity-40 px-4 py-3 flex flex-col justify-center gap-2 sm:px-6 text-lg font-medium">
                     @foreach ($answers as $i => $answer)
-                    <button id="answer-{{ $i }}" type="button" class="w-1/3 justify-center rounded border-2 border-blue31 px-3 py-2 text-blue31 hover:-translate-y-1 hover:scale-110">{{ $answer }}</button>
+                    <button id="answer-{{ $i }}" type="button" class="px-3 py-2 w-full flex justify-start place-items-center gap-2 bg-blue31 rounded text-white text-left hover:-translate-y-1 hover:scale-110">
+                        <h1 class="h-fit">{{ chr(65 + $i) }})</h1>
+                        <h1 class="h-fit">{{ $answer }}</h1>
+                    </button>
                     @endforeach
                 </div>
             </div>
