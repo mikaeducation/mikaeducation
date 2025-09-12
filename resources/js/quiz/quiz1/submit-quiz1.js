@@ -1,7 +1,15 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const started_at = new Date().toISOString();
+    window.started_at = started_at;
+});
+
 async function submitQuiz(url) {
     const token = document.querySelector('input[name="_token"]').value
+    const started_at = window.started_at
+    const ended_at = new Date().toISOString();
+    const duration = Math.floor((new Date(ended_at) - new Date(started_at)) / 1000);
     const data = window.answerPlaceholder
-    console.log("Interactive answer submitted :", data)
+    console.log("Interactive answer submitted :", data, " Duration:", duration);
 
     try {
         const response = await fetch(url, {
@@ -10,7 +18,7 @@ async function submitQuiz(url) {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": token,
             },
-            body: JSON.stringify({ answers: data })
+            body: JSON.stringify({ answers: data, duration: duration })
         })
 
         if (!response.ok) {

@@ -122,6 +122,7 @@ class QuizController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "answers" => "required|array",
+            "duration" => "required|integer|min:0"
         ]);
 
         if ($validator->fails()) {
@@ -148,7 +149,6 @@ class QuizController extends Controller
 
         $result = [];
         try {
-
             switch($quiz_id){
                 case 1:
                     // Jawaban berupa array of string
@@ -202,16 +202,18 @@ class QuizController extends Controller
             $incorrect = $result["incorrect"];
             $score = $correct / ($correct + $incorrect) * 100;
             $score = round($score, 2);
+            $duration = $request->input("duration", 0);
             Log::info("Score calculated :", [
                 "correct" => $correct,
                 "incorrect" => $incorrect,
-                "score" => $score
+                "score" => $score,
+                "duration" => $duration
             ]);
             dd();
             $user_id = Auth::id();
 
             // TODO: Use transaction manually
-            DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score) {
+            DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
                 // Get the progress_id from progress_tracking table
                 $progress_id = DB::table("progress_tracking")
                     ->where("user_id", $user_id)
@@ -254,8 +256,8 @@ class QuizController extends Controller
                     'correct_answers' => $correct,
                     'incorrect_answers' => $incorrect,
                     'score' => $score,
-                    'is_passed' => $score >= 70 ? 1 : 0, // Misal passing grade 70
-                    'duration' => 0, // TODO: ganti dengan durasi yang sesuai
+                    'is_passed' => $score >= 70 ? 1 : 0, // TODO: ganti dengan passing grade yang sesuai
+                    'duration' => $duration,
                     'started_at' => now(), // TODO: ganti dengan waktu mulai yang sesuai
                     'finished_at' => now() // TODO: ganti dengan waktu selesai yang sesuai
                 ]);
