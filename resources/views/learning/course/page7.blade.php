@@ -37,6 +37,7 @@
                                 <ul class="list-decimal pl-5">
                                     <li>Buatlah planning matrix kemampuan komunikasi Budi</li>
                                 </ul>
+                                <x-elearning.course.interactive.studycase/>
                             </p>
                             <p class="mt-10"><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 2 - Tata</p>                   
                                 Tata sudah 3 bulan belajar dibantu dengan MIKA 1.0. Dia adalah anak laki-laki usia 3.5 tahun, yang mendapatkan diagnosa ASD level 1 sejak setahun yang lalu. Ketika dilakukan planning matrix, diketahui bahwa Tata perlu meningkatkan komunikasi mulai Level 1 MIKA 1.0.
@@ -51,6 +52,7 @@
                                     <li>Buatlah skoring kemampuan reseptif dan ekspresifnya</li>
                                     <li>Evaluasi perfomasinya, lalu tentukan apa target terapi/belajar komunikasi Tata berikutnya.</li>
                                 </ul>
+                                <x-elearning.course.interactive.studycase/>
                             </p>
                         </div>
                     </div>
