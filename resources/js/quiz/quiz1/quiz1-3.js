@@ -1,5 +1,4 @@
-// NOTE: Javascript for quiz 3
-
+// NOTE: Javascript for Quiz 4
 // Game Scene 1
 document.addEventListener("DOMContentLoaded", function () {
     const answers = document.querySelectorAll(".js-answer");
@@ -63,16 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 // const gameScene1 = document.getElementById("js-scene");
 // const gameCard1 = gameScene1.querySelector(".js-scene-card");
 // const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 // const questionGame1Array = Array.from(questionGame1);
 // const answerPlaceholder = [];
-// window.answerPlaceholder = answerPlaceholder
-
-// // questionGame1Array.forEach((input, index) => {
-// //     input.style.top = `${index * 100 + 30}px`;
-// // });
+// window.answerPlacheolder = answerPlaceholder
 
 // // Drag Logic
 // function isColliding(el1, el2) {
@@ -210,5 +206,5 @@ document.addEventListener("DOMContentLoaded", function () {
 // const answerCard = document.querySelector(".js-answer-card");
 // const answerGame = answerCard.querySelectorAll(".js-answer");
 // answerGame.forEach((el, index) => {
-//     new Draggable(el, { top: index * 100, left: 0 });
+//     new Draggable(el, { top: index * 60, left: 0 });
 // });

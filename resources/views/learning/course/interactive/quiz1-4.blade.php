@@ -24,24 +24,23 @@
         {{-- Quiz Section --}}
         <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
-                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.
+                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Reseptif.
                 </p>
             </div>
             <div class="js-scene-card flex flex-1">
                 <div class="w-full flex justify-center">
 
                     <!-- Title -->
-                    <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
-                        <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
+                    <div id="question" class="m-8 w-24 flex bg-blue31 items-center justify-center rounded">
+                        <h2 class="[writing-mode:sideways-lr] text-xl text-white font-bold">Komunikasi Reseptif</h2>
                     </div>
 
                     <!-- Input Box -->
-                    <div class="flex flex-grow flex-col items-start justify-evenly">
-                        @for ($i = 0; $i < 8; $i++)
-                            <div
-                                data-accepting="true"
-                                class="js-input my-2 p-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
-                                ____
+                    <div class="w-1/3 flex flex-col items-start justify-evenly">
+                        @for ($i = 0; $i < 3; $i++)
+                            <div id=""
+                                class="js-input my-2 p-2 w-full h-1/6 flex flex-col-reverse rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
+                                ____ {{-- Placeholder for label --}}
                             </div>
                         @endfor
                     </div>
@@ -50,18 +49,15 @@
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
                     $answers = [
-                        'Membuat suara',
-                        'Menggerakkan jari dan tangan untuk memungut',
-                        'Menggunakan kata tunggal',
-                        'Menggunakan kata yang terdiri dari 2-3 kata',
-                        'Berbicara dalam kalimat',
-                        'Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)',
+                        'Memahami pertanyaan yang baru didengarnya',
+                        'Mengajukan pertanyaan',
                         'Terpaku pada kualitas sensoris khas',
                         'Membuat komentar',
-                        'Melakukan percakapan/dialog',
+                        'Memahami suatu konsep baru',
+                        'Memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-64 flex flex-col justify-evenly">
+                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
                     @foreach ($answers as $key => $answer)
                         <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
@@ -74,7 +70,7 @@
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
+                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>

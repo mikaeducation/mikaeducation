@@ -1,9 +1,9 @@
-// Javascript for Quiz 6
+// NOTE: Javascript for Quiz 7
 // Game Scene 1
 document.addEventListener("DOMContentLoaded", function () {
-    const answerPlaceholder = {};
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
+    const answerPlaceholder = {};
     window.answerPlaceholder = answerPlaceholder
 
     answers.forEach((answer) => {
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         answer.addEventListener("dragend", function () {
+            console.log("Drag Ended");
             this.classList.remove("opacity-50");
         });
     });
@@ -31,34 +32,48 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             this.classList.remove("border-dashed");
 
+            const inputId = this.id; // "low" or "high"
             const droppedText = e.dataTransfer.getData("text/plain");
+            console.log("Dropped Text:", droppedText);
+            let text = droppedText.trim();
+            text = text.replace(/\s+/g, " ");
 
-            if (
-                this.textContent.trim() === "" ||
-                this.textContent.includes("____")
-            ) {
-                this.textContent = droppedText;
-                const id = this.id;
-                answerPlaceholder[id] = droppedText;
-                console.log("Current Answers:", answerPlaceholder);
-
-                // Remove the dragged element from the list
-                const draggedElements = document.querySelectorAll(".js-answer");
-                draggedElements.forEach((el) => {
-                    if (el.textContent.trim() === droppedText.trim()) {
-                        el.remove();
-                    }
-                });
+            if (!answerPlaceholder[inputId]) {
+                answerPlaceholder[inputId] = [];
             }
+
+            if (!answerPlaceholder[inputId].includes(text)) {
+                answerPlaceholder[inputId].push(text);
+            }
+            console.log("Current Answers:", answerPlaceholder);
+
+            if (this.textContent.includes("____")) {
+                this.textContent = ""; // Clear placeholder
+            }
+            const span = document.createElement("span");
+            span.textContent = droppedText;
+            span.className = "js-dropped-answer";
+            this.appendChild(span);
+
+            // Remove the dragged element from the list
+            const draggedElements = document.querySelectorAll(".js-answer");
+            draggedElements.forEach((el) => {
+                if (el.textContent.trim() === droppedText.trim()) {
+                    el.remove();
+                }
+            });
         });
     });
 });
-// Game Scene 1
+
+
+
 // const gameScene1 = document.getElementById("js-scene");
-// const gameCard1 = gameScene1.querySelector(".js-scene-card");
-// const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
-// const questionGame1Array = Array.from(questionGame1);
-// const answerPlaceholder = [];
+// const answerPlaceholder = {
+//     "low-tech": [],
+//     "high-tech": [],
+// };
+// window.answerPlaceholder = answerPlaceholder
 
 // // Drag Logic
 // function isColliding(el1, el2) {
@@ -85,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 
 //     setInitialPosition(pos) {
-//         // this.el.style.position = "absolute";
+//         this.el.style.position = "absolute";
 
 //         if (
 //             pos &&
@@ -142,7 +157,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //         this.isDragging = false;
 //         this.el.style.zIndex = 1;
 
-//         const inputZones = document.querySelectorAll(".js-input");
+//         const inputZones = document.querySelectorAll(".js-input-card");
+//         console.log("Colliding Zone: ", inputZones);
 //         let isCollided = false;
 
 //         for (let zone of inputZones) {
@@ -150,32 +166,19 @@ document.addEventListener("DOMContentLoaded", function () {
 //                 console.log(`Collision detected with `, zone);
 //                 isCollided = true;
 //                 const zoneParent = zone.parentNode;
-//                 const zoneRect = zone.getBoundingClientRect();
-//                 const parentRect = zoneParent.getBoundingClientRect();
+//                 const answerContainer = zone.querySelector(".js-input");
+//                 const questionId = answerContainer.id;
+//                 this.el.style.position = "relative";
+//                 this.el.style.left = "0px";
+//                 this.el.style.top = "0px";
 
-//                 // Append element to same parent as zone
-//                 zoneParent.appendChild(this.el);
-
-//                 // New position relative to parent
-//                 const relativeLeft = zoneRect.left - parentRect.left;
-//                 const relativeTop = zoneRect.top - parentRect.top;
-
-//                 // Center answer in zone
-//                 const centeredLeft =
-//                     relativeLeft + (zoneRect.width - this.el.offsetWidth) / 2;
-//                 const centeredTop =
-//                     relativeTop + (zoneRect.height - this.el.offsetHeight) / 2;
-
-//                 this.el.style.left = `${centeredLeft}px`;
-//                 this.el.style.top = `${centeredTop}px`;
-
-//                 console.log(
-//                     `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
-//                 );
+//                 answerContainer.appendChild(this.el);
 
 //                 // Only add answer once
-//                 if (!answerPlaceholder.includes(this.el.innerHTML)) {
-//                     answerPlaceholder.push(this.el.innerHTML);
+//                 if (
+//                     !answerPlaceholder[questionId].includes(this.el.innerHTML)
+//                 ) {
+//                     answerPlaceholder[questionId].push(this.el.innerHTML);
 //                 }
 
 //                 break;
@@ -189,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //             answerNode.appendChild(this.el);
 //             this.setInitialPosition(this.initialPosition);
 //         }
-//         console.log(`Current answer: ${answerPlaceholder}`);
+//         console.log(`Current answer: ${JSON.stringify(answerPlaceholder)}`);
 //     }
 // }
 

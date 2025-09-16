@@ -24,46 +24,44 @@
         {{-- Quiz Section --}}
         <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
             <div class="w-full flex flex-col p-2">
-                <p class="p-2">Isilah dengan karakteristik Pra-Komunikasi yang sering ditunjukkan anak autistik.</p>
+                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.
+                </p>
             </div>
             <div class="js-scene-card flex flex-1">
-                <div class="w-full flex-col content-center">
+                <div class="w-full flex justify-center">
 
-                    {{-- Title --}}
-                    <div id="question" class="w-2/3 m-8 p-4 bg-blue31 rounded">
-                        <h2 class="text-center text-white font-bold">Karakteristik Pra-Komunikasi</h2>
+                    <!-- Title -->
+                    <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
+                        <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
                     </div>
 
-                    {{-- Input Box --}}
-                    @php
-                        $number = ['1', '2', '3', '4'];
-                    @endphp
-                    <div class="flex flex-1 flex-col justify-evenly">
-                        @foreach ($number as $i => $num)
-                            <div class="w-1/2 my-4 flex flex-1">
-                                <h1 class="m-4">{{ $num }}</h1>
-                                <div
-                                    data-accepting="true"
-                                    class="js-input mx-2 rounded flex flex-grow flex-col items-center justify-center border border-blue31 text-sm text-blue31 text-center">
-                                        ____
-                                </div>
+                    <!-- Input Box -->
+                    <div class="flex flex-grow flex-col items-start justify-evenly">
+                        @for ($i = 0; $i < 8; $i++)
+                            <div
+                                data-accepting="true"
+                                class="js-input my-2 p-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
+                                ____
                             </div>
-                        @endforeach
+                        @endfor
                     </div>
                 </div>
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
                     $answers = [
-                        'Kelemahan melakukan kemampuan perhatian bersama',
-                        'Anak kesulitan merespon dengan tepat ketika berkomunikasi dengan menggunakan gerak tubuh/gesture',
-                        'Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain)',
-                        'Sulit menggunakan dan memahami gestur dalam komunikasi',
-                        'Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)',
-                        'Orang lain menganggap anak kurang sopan',
+                        'Membuat suara',
+                        'Menggerakkan jari dan tangan untuk memungut',
+                        'Menggunakan kata tunggal',
+                        'Menggunakan kata yang terdiri dari 2-3 kata',
+                        'Berbicara dalam kalimat',
+                        'Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)',
+                        'Terpaku pada kualitas sensoris khas',
+                        'Membuat komentar',
+                        'Melakukan percakapan/dialog',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-64 flex flex-col justify-evenly relative">
+                <div class="js-answer-card max-w-64 flex flex-col justify-evenly">
                     @foreach ($answers as $key => $answer)
                         <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
                     @endforeach
@@ -76,8 +74,8 @@
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition hover:-translate-y-1 hover:scale-105">
+                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
+                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
             </form>

@@ -1,9 +1,9 @@
-// NOTE: Javascript for Quiz 5
+// Javascript for Quiz 6
 // Game Scene 1
 document.addEventListener("DOMContentLoaded", function () {
+    const answerPlaceholder = {};
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
-    const answerPlaceholder = [];
     window.answerPlaceholder = answerPlaceholder
 
     answers.forEach((answer) => {
@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         answer.addEventListener("dragend", function () {
-            console.log("Drag Ended");
             this.classList.remove("opacity-50");
         });
     });
@@ -32,21 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             this.classList.remove("border-dashed");
 
-
             const droppedText = e.dataTransfer.getData("text/plain");
-            console.log("Dropped Text:", droppedText);
-            let text = droppedText.trim();
-            text = text.replace(/\s+/g, " ");
-            if (!answerPlaceholder.includes(text)) {
-                answerPlaceholder.push(text);
-            }
-            console.log("Current Answers:", answerPlaceholder);
 
             if (
                 this.textContent.trim() === "" ||
                 this.textContent.includes("____")
             ) {
                 this.textContent = droppedText;
+                const id = this.id;
+                answerPlaceholder[id] = droppedText;
+                console.log("Current Answers:", answerPlaceholder);
 
                 // Remove the dragged element from the list
                 const draggedElements = document.querySelectorAll(".js-answer");
@@ -59,15 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
-
+// Game Scene 1
 // const gameScene1 = document.getElementById("js-scene");
 // const gameCard1 = gameScene1.querySelector(".js-scene-card");
 // const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
 // const questionGame1Array = Array.from(questionGame1);
 // const answerPlaceholder = [];
-// window.answerPlaceholder = answerPlaceholder
-
 
 // // Drag Logic
 // function isColliding(el1, el2) {
@@ -94,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 
 //     setInitialPosition(pos) {
-//         this.el.style.position = "absolute";
+//         // this.el.style.position = "absolute";
 
 //         if (
 //             pos &&
@@ -156,29 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //         for (let zone of inputZones) {
 //             if (isColliding(this.el, zone)) {
-//                 if (zone.children.length > 0) {
-//                     const existingAnswer = zone.children[0];
-//                     console.log(`Replacing existing answer: ${existingAnswer.textContent}`);
-
-//                     const answerNode = document.querySelector(".js-answer-card");
-//                     answerNode.appendChild(existingAnswer);
-
-//                     // Reset position of the old one
-//                     if (existingAnswer.setInitialPosition) {
-//                         existingAnswer.setInitialPosition(existingAnswer.initialPosition);
-//                     } else {
-//                         existingAnswer.style.left = "0px";
-//                         existingAnswer.style.top = "0px";
-//                     }
-
-//                     if (answerPlaceholder.includes(existingAnswer.innerHTML)) {
-//                         const index = answerPlaceholder.indexOf(existingAnswer.innerHTML);
-//                         if (index > -1) {
-//                             answerPlaceholder.splice(index, 1); // Remove from array
-//                         }
-//                     }
-//                 }
-
 //                 console.log(`Collision detected with `, zone);
 //                 isCollided = true;
 //                 const zoneParent = zone.parentNode;
@@ -186,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //                 const parentRect = zoneParent.getBoundingClientRect();
 
 //                 // Append element to same parent as zone
-//                 zone.appendChild(this.el);
+//                 zoneParent.appendChild(this.el);
 
 //                 // New position relative to parent
 //                 const relativeLeft = zoneRect.left - parentRect.left;
@@ -220,14 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //             const answerNode = document.querySelector(".js-answer-card");
 //             answerNode.appendChild(this.el);
 //             this.setInitialPosition(this.initialPosition);
-
-//             // Remove from answer if it was there
-//             if (answerPlaceholder.includes(this.el.innerHTML)) {
-//                 const index = answerPlaceholder.indexOf(this.el.innerHTML);
-//                 if (index > -1) {
-//                     answerPlaceholder.splice(index, 1); // Remove from array
-//                 }
-//             }
 //         }
 //         console.log(`Current answer: ${answerPlaceholder}`);
 //     }
