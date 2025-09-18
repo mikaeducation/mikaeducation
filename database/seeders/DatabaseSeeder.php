@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             SubModuleSubjectsTableSeeder::class,
             ModuleAsessmentsTableSeeder::class,
             QuestionBankTableSeeder::class,
-            ModuleReviewsTableSeeder::class
+            ModuleReviewsTableSeeder::class,
+            QuizzesTableSeeder::class,
         ]);
     }
 }
