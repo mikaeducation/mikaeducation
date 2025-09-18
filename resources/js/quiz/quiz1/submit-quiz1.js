@@ -4,11 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function submitQuiz(url) {
-    const token = document.querySelector('input[name="_token"]').value
-    const started_at = window.started_at
+    const token = document.querySelector('input[name="_token"]').value;
+    const started_at = window.started_at;
     const ended_at = new Date().toISOString();
-    const duration = Math.floor((new Date(ended_at) - new Date(started_at)) / 1000);
-    const data = window.answerPlaceholder
+    const duration = Math.floor(
+        (new Date(ended_at) - new Date(started_at)) / 1000
+    );
+    const data = window.answerPlaceholder;
     console.log("Interactive answer submitted :", data, " Duration:", duration);
 
     try {
@@ -18,22 +20,25 @@ async function submitQuiz(url) {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": token,
             },
-            body: JSON.stringify({ answers: data, duration: duration })
-        })
+            body: JSON.stringify({ answers: data, duration: duration }),
+        });
 
         if (!response.ok) {
-            throw new Error(response.message || "Gagal mengumpulkan kuis")
+            throw new Error(response.message || "Gagal mengumpulkan kuis");
         }
 
         const result = await response.json();
-        alert(result.message || "Berhasil mengumpulkan kuis")
+        alert(response.message || "Berhasil mengumpulkan kuis");
+
+        if (result.data) {
+            window.location.href = result.data.redirect;
+        }
 
         // return { success: true, data: result }
     } catch (error) {
-        alert(error.message || "Terdapat error saat mengumpulkan kuis")
+        alert(error.message || "Terdapat error saat mengumpulkan kuis");
         // return { success: false, message: error.message }
     }
-
 }
 
-window.submitQuiz = submitQuiz
+window.submitQuiz = submitQuiz;
