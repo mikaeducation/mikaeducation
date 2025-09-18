@@ -67,7 +67,8 @@
             </div>
 
             {{-- Button --}}
-            <div class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                @csrf
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
@@ -75,7 +76,7 @@
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
-            </div>
+            </form>
         </div>
         @include('includes.components.elearning.course.section')
     </section>
