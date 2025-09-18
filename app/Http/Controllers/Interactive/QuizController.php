@@ -18,7 +18,7 @@ class QuizController extends Controller
     /**
      * Display a listing of the resource.
      */
-    private $answer = [
+    private $answer = [ // TODO: cek ulang jawaban sehingga sama dengan yang ada di front-end dan juga jawaban valid dari ppt
         "1" => [
             "Motorik",
             "Pemrosesan Informasi",
@@ -28,15 +28,15 @@ class QuizController extends Controller
             "Bermain"
         ],
         "2" => [
-            "Kemampuan perhatian bersama",
-            "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain).",
-            "Sulit menggunakan dan memahami gestur dalam komunikasi.",
-            "Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)."
+            "Kelemahan melakukan kemampuan perhatian bersama",
+            "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain)",
+            "Sulit menggunakan dan memahami gestur dalam komunikasi",
+            "Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)"
         ],
         "3" => [
             "Membuat suara",
             "Menggunakan kata tunggal",
-            "Menggunakan kata yang terdiri dari 2-3 kata.",
+            "Menggunakan kata yang terdiri dari 2-3 kata",
             "Berbicara dalam kalimat",
             "Echolalia (mengulan kata atau kalimat yang diucapkan seseorang)",
             "Mengajukan pertanyaan",
@@ -96,7 +96,7 @@ class QuizController extends Controller
     ];
     public function index(string $module_id, string $quiz_id)
     {
-        return view('learning.course.interactive.quiz1-'.$quiz_id, ["module_id" => $module_id, "quiz_id" => $quiz_id]);
+        return view('learning.course.interactive.quiz1-' . $quiz_id, ["module_id" => $module_id, "quiz_id" => $quiz_id]);
     }
 
     /**
@@ -118,7 +118,7 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $module_id, string $quiz_id )
+    public function update(Request $request, string $module_id, string $quiz_id)
     {
         $validator = Validator::make($request->all(), [
             "answers" => "required|array",
@@ -129,7 +129,7 @@ class QuizController extends Controller
             return response()->json([
                 'status' => 'error',
                 'type'   => 'validation',
-                'message'=> 'Format jawaban tidak sesuai',
+                'message' => 'Format jawaban tidak sesuai',
                 'errors' => $validator->errors(),
             ], 422);
         }
@@ -149,7 +149,7 @@ class QuizController extends Controller
 
         $result = [];
         try {
-            switch($quiz_id){
+            switch ($quiz_id) {
                 case 1:
                     // Jawaban berupa array of string
                     $result = $this->calculateArrayScore($answers, $this->answer["1"]);
@@ -189,8 +189,8 @@ class QuizController extends Controller
                     break;
 
                 // case 9:
-                    // $result = $this->calculateMapScore($answers, $this->answer["9"]);
-                    // break;
+                // $result = $this->calculateMapScore($answers, $this->answer["9"]);
+                // break;
 
                 default:
                     $result = 0;
@@ -212,7 +212,7 @@ class QuizController extends Controller
             $user_id = Auth::id();
 
             // TODO: Use transaction manually
-            DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
+            DB::transaction(function () use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
                 // Get the progress_id from progress_tracking table
                 $progress_id = DB::table("progress_tracking")
                     ->where("user_id", $user_id)
@@ -239,7 +239,6 @@ class QuizController extends Controller
                         'high_score' => DB::raw("GREATEST(high_score, $score)")
                     ]);
                     $user_quiz_id = $user_quiz->user_quiz_id;
-
                 } else {
                     $user_quiz_id = DB::table('user_quizzes')->insertGetId([
                         'module_id' => $module_id,
@@ -253,8 +252,8 @@ class QuizController extends Controller
                 }
 
                 $attempt_number = DB::table('user_quizzes_attempt')
-                ->where('user_quiz_id', $user_quiz_id)
-                ->count() + 1;
+                    ->where('user_quiz_id', $user_quiz_id)
+                    ->count() + 1;
 
                 // Insert into user_quizzes_attempt table
                 DB::table('user_quizzes_attempt')->insert([
@@ -279,6 +278,7 @@ class QuizController extends Controller
                     'correct' => $correct,
                     'incorrect' => $incorrect,
                     'score' => $score,
+                    'details' => $result['details'] ?? [],
                     'redirect' => route('quiz.show', ['module_id' => 1, 'id' => $quiz_id + 1]) // Redirect ke kuis berikutnya
                 ]
             ]);
@@ -290,13 +290,20 @@ class QuizController extends Controller
                 'message' => 'Terjadi kesalahan dalam perhitungan skor'
             ], 500);
         }
-
     }
 
-    private function calculateArrayScore(array $answers, array $key_answers): array {
+    private function calculateArrayScore(array $answers, array $key_answers): array
+    {
         $score = 0;
-        foreach ($answers as $answer) {
-            if (in_array(strtolower($answer), array_map('strtolower', $key_answers))) {
+        $details = [];
+
+        foreach ($answers as $i => $answer) {
+            $isCorrect = in_array(strtolower($answer), array_map('strtolower', $key_answers));
+            $details[$i] = [
+                'answer' => $answer,
+                'correct' => $isCorrect,
+            ];
+            if ($isCorrect) {
                 $score++;
             }
         }
@@ -306,10 +313,12 @@ class QuizController extends Controller
         return [
             'correct' => $score,
             'incorrect' => $incorrect,
+            'details' => $details,
         ];
     }
 
-    private function calculateMapScore(array $answers, array $key_answers): array {
+    private function calculateMapScore(array $answers, array $key_answers): array
+    {
         $score = 0;
         $total = 0;
 

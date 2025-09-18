@@ -30,8 +30,21 @@ async function submitQuiz(url) {
         const result = await response.json();
         alert(response.message || "Berhasil mengumpulkan kuis");
 
-        if (result.data) {
-            window.location.href = result.data.redirect;
+        if (result.data?.details) {
+            const inputs = document.querySelectorAll(".js-input");
+
+            result.data.details.forEach((item, index) => {
+                const input = inputs[index];
+                if (!input) return;
+
+                input.classList.remove("border-blue31");
+
+                if (item.correct) {
+                    input.classList.add("border-green-500", "bg-green-100");
+                } else {
+                    input.classList.add("border-red-500", "bg-red-100");
+                }
+            });
         }
 
         // return { success: true, data: result }
