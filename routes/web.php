@@ -134,8 +134,8 @@ Route::middleware(['auth'])->group(function () {
 */
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/popup-quiz', fn() => view('learning.course.interactive.test-popup'));
-    Route::get('/quiz/{module_id}/{id}', [QuizController::class, 'index'])->name("quiz.show");
-    Route::post('/quiz/{module_id}/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post");
+    Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name("quiz.show");
+    Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post");
 });
 
 /*
