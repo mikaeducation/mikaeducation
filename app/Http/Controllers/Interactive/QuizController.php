@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Interactive;
 
 use App\Http\Controllers\Controller;
+use App\Models\Module;
 use BcMath\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,25 +28,12 @@ class QuizController extends Controller
             "Bermain"
         ],
         "2" => [
-            "karakteristik" => [
-                "Sulit melakukan relasi sosio-emosional timbal balik",
-                "Sulit memahami komunikasi non-verbal",
-                "Kesulitan memulai, mempertahankan dan memahami interaksi sosial",
-            ],
-            "minat" => [
-                "Gerakan motorik, penggunaan objek atau wicara berulang.",
-                "Menuntut kesamaan, tidak fleksibel, marah jika terjadi perubahan rutinitas/ritual/pola perilaku verbal atau nonverbal",
-                "Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih",
-                "Hyper-atau hipo-reaktivitas terhadap stimulus sensorik"
-            ]
-        ],
-        "3" => [
             "Kemampuan perhatian bersama",
             "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain).",
             "Sulit menggunakan dan memahami gestur dalam komunikasi.",
             "Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)."
         ],
-        "4" => [
+        "3" => [
             "Membuat suara",
             "Menggunakan kata tunggal",
             "Menggunakan kata yang terdiri dari 2-3 kata.",
@@ -55,18 +43,18 @@ class QuizController extends Controller
             "Membuat komentar",
             "Melakukan percakapan/dialog"
         ],
-        "5" => [
+        "4" => [
             "memahami pertanyaan yang baru didengarnya.",
             "memahami suatu konsep baru.",
             "memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas."
         ],
-        "6" => [
+        "5" => [
             "menyambut" => "Tidak bisa spontan mengatakan \"Halo\"",
             "isyarat" => "Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial",
             "perhatian" => "Sulit kontak mata, fokus mudah teralihkan",
             "kesadaran" => "Tidak menyadari ruang personal space orang lain"
         ],
-        "7" => [
+        "6" => [
             "low" => [
                 "Kartu visual",
                 "PECS",
@@ -79,20 +67,32 @@ class QuizController extends Controller
                 "MIKA 1.0"
             ]
         ],
-        "8" => [
+        "7" => [
             "Karakteristik" => "Deskripsikan perilaku anak. Uraikan apa yang mampu dilakukan dan yang masih perlu dikembangkan.",
             "Dampak" => "Apa konsekuensi perilaku pada anak, orang lain, lingkungan sekolah, masyarakat, dan masa depan anak.",
             "Strategi" => "Strategi intervensi sesuai kebutuhan anak (membentuk perilaku baru, meningkatkan atau menurunkan perilaku)."
 
         ],
-        "9" => [
-            "jadwal visual" => "Memberikan informasi tahapan pengerjaan tugas, pengoganisasian kegiatan, untuk meningkatkan pemahaman.",
-            "sistem kerja" => "Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai.",
-            "struktur lingkungan fisik" => "Menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan baik.",
-            "alat bantu visual" => "Kartu visual memberikan informasi yang jelas dan kosisten, mengurangi kecemasan, serta meningkatkan pemahaman."
+        "8" => [
+            "Jadwal Visual" => "Memberikan informasi tahapan pengerjaan tugas, pengoganisasian kegiatan, untuk meningkatkan pemahaman.",
+            "Sistem Kerja" => "Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai.",
+            "Struktur Lingkungan Fisik" => "Menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan baik.",
+            "Alat Bantu Visual" => "Kartu visual memberikan informasi yang jelas dan kosisten, mengurangi kecemasan, serta meningkatkan pemahaman."
         ],
-
-
+        // NOTE: quiz cadangan
+        // "2" => [
+        //     "karakteristik" => [
+        //         "Sulit melakukan relasi sosio-emosional timbal balik",
+        //         "Sulit memahami komunikasi non-verbal",
+        //         "Kesulitan memulai, mempertahankan dan memahami interaksi sosial",
+        //     ],
+        //     "minat" => [
+        //         "Gerakan motorik, penggunaan objek atau wicara berulang.",
+        //         "Menuntut kesamaan, tidak fleksibel, marah jika terjadi perubahan rutinitas/ritual/pola perilaku verbal atau nonverbal",
+        //         "Perhatian terbatas atau minat yang terpaku pada satu hal secara berlebih-lebih",
+        //         "Hyper-atau hipo-reaktivitas terhadap stimulus sensorik"
+        //     ]
+        // ],
     ];
     public function index(string $module_id, string $quiz_id)
     {
@@ -118,7 +118,7 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $quiz_id, string $module_id)
+    public function update(Request $request, string $module_id, string $quiz_id )
     {
         $validator = Validator::make($request->all(), [
             "answers" => "required|array",
@@ -157,7 +157,7 @@ class QuizController extends Controller
 
                 case 2:
                     // Jawaban berupa map dengan array values
-                    $result = $this->calculateMapScore($answers, $this->answer["2"]);
+                    $result = $this->calculateArrayScore($answers, $this->answer["2"]);
                     break;
 
                 case 3:
@@ -169,16 +169,17 @@ class QuizController extends Controller
                     break;
 
                 case 5:
-                    $result = $this->calculateArrayScore($answers, $this->answer["5"]);
+                    // Jawaban berupa map dengan string values
+                    $result = $this->calculateMapScore($answers, $this->answer["5"]);
                     break;
 
                 case 6:
-                    // Jawaban berupa map dengan string values
+                    // Jawaban berupa map dengan array values (low/high)
                     $result = $this->calculateMapScore($answers, $this->answer["6"]);
                     break;
 
                 case 7:
-                    // Jawaban berupa map dengan array values (low/high)
+                    // Jawaban berupa map dengan string values
                     $result = $this->calculateMapScore($answers, $this->answer["7"]);
                     break;
 
@@ -187,10 +188,9 @@ class QuizController extends Controller
                     $result = $this->calculateMapScore($answers, $this->answer["8"]);
                     break;
 
-                case 9:
-                    // Jawaban berupa map dengan string values
-                    $result = $this->calculateMapScore($answers, $this->answer["9"]);
-                    break;
+                // case 9:
+                    // $result = $this->calculateMapScore($answers, $this->answer["9"]);
+                    // break;
 
                 default:
                     $result = 0;
@@ -210,7 +210,6 @@ class QuizController extends Controller
                 "duration" => $duration
             ]);
             $user_id = Auth::id();
-            dd(Auth::user());
 
             // TODO: Use transaction manually
             DB::transaction(function() use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
@@ -219,6 +218,7 @@ class QuizController extends Controller
                     ->where("user_id", $user_id)
                     ->where("module_id", $module_id)
                     ->value("progress_id");
+                Log::info("progress", [$progress_id]);
 
 
                 // Get the current User Profile
@@ -234,11 +234,12 @@ class QuizController extends Controller
                     ->first();
 
                 if ($user_quiz) {
-                    DB::table('user_quizzes')->where('id', $user_quiz->id)->update([
+                    DB::table('user_quizzes')->where('user_id', $user_quiz->user_id)->update([
                         'attempt_count' => DB::raw('attempt_count + 1'),
                         'high_score' => DB::raw("GREATEST(high_score, $score)")
                     ]);
-                    $user_quiz_id = $user_quiz->id;
+                    $user_quiz_id = $user_quiz->user_quiz_id;
+
                 } else {
                     $user_quiz_id = DB::table('user_quizzes')->insertGetId([
                         'module_id' => $module_id,
@@ -278,7 +279,7 @@ class QuizController extends Controller
                     'correct' => $correct,
                     'incorrect' => $incorrect,
                     'score' => $score,
-                    'redirect' => route('quiz.show', ['id' => $quiz_id + 1]) // Redirect ke kuis berikutnya
+                    'redirect' => route('quiz.show', ['module_id' => 1, 'id' => $quiz_id + 1]) // Redirect ke kuis berikutnya
                 ]
             ]);
         } catch (\Throwable $th) {
