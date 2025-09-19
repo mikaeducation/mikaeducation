@@ -63,6 +63,7 @@
                         'Kartu Visual',
                         'PECS',
                         'Papan komunikasi / ALS',
+                        'Kartu Emosi',
                         'AAC',
                         'Ipad ( Compass, Lamb words for life)',
                         'Liberator Rugged 7, ProloQuo2Go',
