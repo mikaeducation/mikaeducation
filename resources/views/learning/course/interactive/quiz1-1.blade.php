@@ -96,11 +96,14 @@
                 </div>
             </div>
             <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
+                <div id="quiz-score" class="w-full m-2 p-2 flex justify-center bg-blue31 rounded hidden">
+                    <h1 class="text-white">Score: 0</h1>
+                </div>
                 @csrf
                 <button id="refresh-btn" type="button"
                     class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id,'quiz_id' => $quiz_id]) }}')"
+                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
                     class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
                 </div>
