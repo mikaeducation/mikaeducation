@@ -197,6 +197,7 @@ class QuizController extends Controller
                     break;
             }
 
+            Log::info("Calculate Result:", [$result]);
             // Calculate score
             $correct = $result["correct"];
             $incorrect = $result["incorrect"];
@@ -321,6 +322,7 @@ class QuizController extends Controller
     {
         $score = 0;
         $total = 0;
+        $details = [];
 
         foreach ($answers as $key => $answer) {
             if (!isset($key_answers[$key])) {
@@ -331,16 +333,26 @@ class QuizController extends Controller
 
             if (is_string($answer) && is_string($key_answer)) {
                 $total++;
-                if (strtolower($answer) === strtolower($key_answer)) {
+                $isCorrect = strtolower($answer) === strtolower($key_answer);
+                $details[$key] = [
+                    'answer' => $answer,
+                    'correct' => $isCorrect,
+                ];
+                if ($isCorrect) {
                     $score++;
                 }
             } elseif (is_array($answer) && is_array($key_answer)) {
-                $answer = array_map('strtolower', $answer);
-                $key_answer = array_map('strtolower', $key_answer);
+                $answer_lower = array_map('strtolower', $answer);
+                $key_answer_lower = array_map('strtolower', $key_answer);
 
-                $common = array_intersect($answer, $key_answer);
+                $common = array_intersect($answer_lower, $key_answer_lower);
                 $score += count($common);
                 $total += count($answer); // each chosen answer counts toward total
+                
+                $details[$key] = [
+                    'answer' => $answer,
+                    'correct' => count($common) === count($answer) && count($answer) === count($key_answer),
+                ];
             }
         }
 
@@ -349,6 +361,7 @@ class QuizController extends Controller
         return [
             'correct' => $score,
             'incorrect' => $incorrect,
+            'details' => $details,
         ];
     }
 
