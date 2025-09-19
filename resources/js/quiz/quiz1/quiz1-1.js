@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const inputs = document.querySelectorAll(".js-input");
 
             result.data.details.forEach((item, index) => {
-                const input = inputs[index];
+                const input = Array.from(inputs).find(inp => inp.textContent.trim() === item.answer);
                 if (!input) return;
 
                 input.classList.remove("border-blue31");
