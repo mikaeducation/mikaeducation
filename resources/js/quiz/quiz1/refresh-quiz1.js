@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         inputs.forEach((input) => {
             if (input.innerHTML !== "____") input.innerHTML = "____";
+            input.classList.remove("border-red-500", "bg-red-100", "border-green-500", "bg-green-100")
+            input.classList.add("border-blue31")
         })
 
         if (Array.isArray(answerPlaceholder)) {
