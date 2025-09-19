@@ -235,7 +235,10 @@ class QuizController extends Controller
                     ->first();
 
                 if ($user_quiz) {
-                    DB::table('user_quizzes')->where('user_id', $user_quiz->user_id)->update([
+                    DB::table('user_quizzes')
+                    ->where('user_id', $user_quiz->user_id)
+                    ->where('quiz_id', $quiz_id)
+                    ->update([
                         'attempt_count' => DB::raw('attempt_count + 1'),
                         'high_score' => DB::raw("GREATEST(high_score, $score)")
                     ]);
