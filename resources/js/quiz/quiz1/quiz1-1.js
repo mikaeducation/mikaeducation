@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputs = document.querySelectorAll(".js-input");
     const scoreBox = document.getElementById("quiz-score");
     const scoreLabel = scoreBox?.querySelector("h1");
+    const nextBtn = document.getElementById("next-btn")
+    const submitBtn = document.getElementById("submit-btn")
     const answerPlaceholder = [];
     window.answerPlaceholder = answerPlaceholder;
 
@@ -87,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
+        nextBtn?.classList.remove("hidden")
+        submitBtn?.classList.add("hidden")
     });
 
     document.addEventListener("quiz-refreshed", function (e) {
@@ -101,5 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         scoreBox.classList.add("hidden");
         scoreLabel.textContent = `Score: 0`;
+        nextBtn?.classList.add("hidden")
+        submitBtn?.classList.remove("hidden")
     });
 });

@@ -22,7 +22,7 @@
 <body class="font-futura w-full min-h-screen flex flex-col relative">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-ful h-[81vh] flex items-start justify-start text-blue31">
+    <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
         {{-- Quiz Section --}}
         <div id="js-scene-1" class="quiz-section w-full h-full flex flex-col">
             <div class="w-full h-1/10 flex flex-col">
@@ -95,18 +95,24 @@
                     @endforeach
                 </div>
             </div>
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                <div id="quiz-score" class="w-full m-2 p-2 flex justify-center bg-blue31 rounded hidden">
+            <form class="px-2 w-full flex justify-end bg-bluee3 rounded">
+                <div id="quiz-score" class="m-2 p-2 w-1/5 flex justify-center bg-blue31 rounded hidden">
                     <h1 class="text-white">Score: 0</h1>
                 </div>
                 @csrf
                 <button id="refresh-btn" type="button"
-                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
+                    class="m-2 p-2 w-1/5 text-blue31 text-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">Ulangi
                     Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
+                <button id="submit-btn" type="button"
+                    onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
+                    class="m-2 p-2 w-1/5 text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
                     Kumpulkan
-                </div>
+                </button>
+                <button id="next-btn" type="button" onclick="window.location.href='{{ route('quiz.show', ['module_id' => $module_id, 'id' => $quiz_id + 1]) }}'"
+                    class="m-2 p-2 w-1/5 text-white text-center bg-blue31 font-medium rounded transition hover:-translate-y-1 hover:scale-105 hidden">
+                    Selanjutnya
+                </button>
+
             </form>
         </div>
         @include('includes.components.elearning.course.section')
