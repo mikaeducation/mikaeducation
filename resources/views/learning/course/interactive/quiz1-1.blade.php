@@ -25,13 +25,16 @@
     <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
         {{-- Quiz Section --}}
         <div id="js-scene-1" class="quiz-section w-full h-full flex flex-col">
-            <div class="w-full h-1/10 flex flex-col">
-                <p class="p-2 text-lg text-center text-balance">Isilah lingkaran-lingkaran berikut dengan karakteristik
-                    Autisme yang perlu
-                    dipahami oleh orang yang bekerja dengan anak autistik.</p>
-            </div>
+
+            {{-- Quiz Title --}}
+            <x-elearning.course.interactive.quiz.title>
+                Isilah lingkaran-lingkaran berikut dengan karakteristik Autisme yang perlu dipahami oleh orang yang
+                bekerja dengan anak autistik.
+            </x-elearning.course.interactive.quiz.title>
+
+            {{-- Interactive Section --}}
             <div
-                class="js-scene-card flex flex-1 overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
+                class="js-scene-card flex flex-1 items-center overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                 <div class="w-full">
                     <div class="w-full grid grid-cols-3 gap-10 justify-center items-center place-items-center">
                         {{-- Left --}}
@@ -73,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
@@ -87,33 +91,13 @@
                         'Keubutuhan Makanan Khusus/Diet',
                     ];
                 @endphp
-                <div class="js-answer-card pr-3 flex flex-col justify-evenly">
-                    @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 bg-blue31 rounded text-center text-white cursor-pointer"
-                            draggable="true" data-id="{{ $key }}">
-                            {{ $answer }}</div>
-                    @endforeach
-                </div>
+                <x-elearning.course.interactive.quiz.answer-box :answers=$answers>
+                </x-elearning.course.interactive.quiz.answer-box>
             </div>
-            <form class="px-2 w-full flex justify-end bg-bluee3 rounded">
-                <div id="quiz-score" class="m-2 p-2 w-1/5 flex justify-center bg-blue31 rounded hidden">
-                    <h1 class="text-white">Score: 0</h1>
-                </div>
-                @csrf
-                <button id="refresh-btn" type="button"
-                    class="m-2 p-2 w-1/5 text-blue31 text-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">Ulangi
-                    Kuis</button>
-                <button id="submit-btn" type="button"
-                    onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="m-2 p-2 w-1/5 text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
-                    Kumpulkan
-                </button>
-                <button id="next-btn" type="button" onclick="window.location.href='{{ route('quiz.show', ['module_id' => $module_id, 'id' => $quiz_id + 1]) }}'"
-                    class="m-2 p-2 w-1/5 text-white text-center bg-blue31 font-medium rounded transition hover:-translate-y-1 hover:scale-105 hidden">
-                    Selanjutnya
-                </button>
 
-            </form>
+            {{-- Button --}}
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            </x-elearning.course.interactive.quiz.button>
         </div>
         @include('includes.components.elearning.course.section')
     </section>
