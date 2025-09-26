@@ -11,9 +11,9 @@
         class="m-2 p-2 w-1/5 text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
         Kumpulkan
     </button>
-    <button id="next-btn" type="button"
-        onclick="window.location.href='{{ route('quiz.show', ['module_id' => $moduleId, 'id' => $quizId + 1]) }}'"
+    <a id="next-btn" 
+        href="{{ route('quiz.show', ['module_id' => $moduleId, 'id' => 2]) }}"
         class="m-2 p-2 w-1/5 text-white text-center bg-blue31 font-medium rounded transition hover:-translate-y-1 hover:scale-105 hidden">
         Selanjutnya
-    </button>
+    </a>
 </form>
