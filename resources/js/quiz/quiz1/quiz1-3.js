@@ -1,10 +1,14 @@
-// NOTE: Javascript for Quiz 4
-// Game Scene 1
+// NOTE: Javascript for Quiz 3
+
 document.addEventListener("DOMContentLoaded", function () {
     const answers = document.querySelectorAll(".js-answer");
     const inputs = document.querySelectorAll(".js-input");
+    const scoreBox = document.getElementById("quiz-score");
+    const scoreLabel = scoreBox?.querySelector("h1");
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
     const answerPlaceholder = [];
-    window.answerPlaceholder = answerPlaceholder
+    window.answerPlaceholder = answerPlaceholder;
 
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {
@@ -32,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             this.classList.remove("border-dashed");
 
-
             const droppedText = e.dataTransfer.getData("text/plain");
             console.log("Dropped Text:", droppedText);
             let text = droppedText.trim();
@@ -58,153 +61,50 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    document.addEventListener("quiz-submitted", function (e) {
+        const result = e.detail;
+        // Update score label
+        if (scoreBox && result.data?.score !== undefined) {
+            scoreBox.classList.remove("hidden");
+            scoreLabel.textContent = `Score: ${result.data.score}`;
+        }
+        // Color coded answer feedback
+        if (result.data?.details) {
+            const inputs = document.querySelectorAll(".js-input");
+
+            result.data.details.forEach((item, index) => {
+                const input = Array.from(inputs).find(
+                    (inp) => inp.textContent.trim() === item.answer
+                );
+                if (!input) return;
+
+                input.classList.remove("border-blue31");
+
+                if (item.correct) {
+                    input.classList.add("border-green-500", "bg-green-100");
+                } else {
+                    input.classList.add("border-red-500", "bg-red-100");
+                }
+            });
+        }
+        nextBtn?.classList.remove("hidden");
+        submitBtn?.classList.add("hidden");
+    });
+
+    document.addEventListener("quiz-refreshed", function (e) {
+        inputs.forEach((input) => {
+            input.classList.remove(
+                "border-red-500",
+                "bg-red-100",
+                "border-green-500",
+                "bg-green-100"
+            );
+            input.classList.add("border-blue31");
+        });
+        scoreBox.classList.add("hidden");
+        scoreLabel.textContent = `Score: 0`;
+        nextBtn?.classList.add("hidden");
+        submitBtn?.classList.remove("hidden");
+    });
 });
-
-
-
-
-// const gameScene1 = document.getElementById("js-scene");
-// const gameCard1 = gameScene1.querySelector(".js-scene-card");
-// const questionGame1 = gameScene1.querySelectorAll(".js-input-card");
-// const questionGame1Array = Array.from(questionGame1);
-// const answerPlaceholder = [];
-// window.answerPlacheolder = answerPlaceholder
-
-// // Drag Logic
-// function isColliding(el1, el2) {
-//     const r1 = el1.getBoundingClientRect();
-//     const r2 = el2.getBoundingClientRect();
-
-//     return !(
-//         r1.right < r2.left ||
-//         r1.left > r2.right ||
-//         r1.bottom < r2.top ||
-//         r1.top > r2.bottom
-//     );
-// }
-// class Draggable {
-//     constructor(element, initialPosition = null) {
-//         this.el = element;
-//         this.offsetX = 0;
-//         this.offsetY = 0;
-//         this.isDragging = false;
-//         this.initialPosition = initialPosition;
-
-//         this.setInitialPosition(initialPosition);
-//         this.init();
-//     }
-
-//     setInitialPosition(pos) {
-//         this.el.style.position = "absolute";
-
-//         if (
-//             pos &&
-//             typeof pos.top === "number" &&
-//             typeof pos.left === "number"
-//         ) {
-//             // Use provided values
-//             this.el.style.top = `${pos.top}px`;
-//             this.el.style.left = `${pos.left}px`;
-//         } else {
-//             // Default: calculate current position in layout
-//             const rect = this.el.getBoundingClientRect();
-//             const scrollTop =
-//                 window.scrollY || document.documentElement.scrollTop;
-//             const scrollLeft =
-//                 window.scrollX || document.documentElement.scrollLeft;
-
-//             this.el.style.top = rect.top + scrollTop + "px";
-//             this.el.style.left = rect.left + scrollLeft + "px";
-//         }
-//     }
-
-//     init() {
-//         this.el.addEventListener("mousedown", this.onMouseDown.bind(this));
-//         document.addEventListener("mousemove", this.onMouseMove.bind(this));
-//         document.addEventListener("mouseup", this.onMouseUp.bind(this));
-
-//         this.el.addEventListener("touchstart", this.onMouseDown.bind(this));
-//         document.addEventListener("touchmove", this.onMouseMove.bind(this), {
-//             passive: false,
-//         });
-//         document.addEventListener("touchend", this.onMouseUp.bind(this));
-//     }
-
-//     onMouseDown(e) {
-//         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-//         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-//         this.isDragging = true;
-//         this.offsetX = e.clientX - this.el.offsetLeft;
-//         this.offsetY = e.clientY - this.el.offsetTop;
-//         this.el.style.zIndex = 1000;
-//     }
-
-//     onMouseMove(e) {
-//         if (!this.isDragging) return;
-//         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-//         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-//         this.el.style.left = `${e.clientX - this.offsetX}px`;
-//         this.el.style.top = `${e.clientY - this.offsetY}px`;
-//     }
-
-//     onMouseUp() {
-//         this.isDragging = false;
-//         this.el.style.zIndex = 1;
-
-//         const inputZones = document.querySelectorAll(".js-input");
-//         let isCollided = false;
-
-//         for (let zone of inputZones) {
-//             if (isColliding(this.el, zone)) {
-//                 console.log(`Collision detected with `, zone);
-//                 isCollided = true;
-//                 const zoneParent = zone.parentNode;
-//                 const zoneRect = zone.getBoundingClientRect();
-//                 const parentRect = zoneParent.getBoundingClientRect();
-
-//                 // Append element to same parent as zone
-//                 zoneParent.appendChild(this.el);
-
-//                 // New position relative to parent
-//                 const relativeLeft = zoneRect.left - parentRect.left;
-//                 const relativeTop = zoneRect.top - parentRect.top;
-
-//                 // Center answer in zone
-//                 const centeredLeft =
-//                     relativeLeft + (zoneRect.width - this.el.offsetWidth) / 2;
-//                 const centeredTop =
-//                     relativeTop + (zoneRect.height - this.el.offsetHeight) / 2;
-
-//                 this.el.style.left = `${centeredLeft}px`;
-//                 this.el.style.top = `${centeredTop}px`;
-
-//                 console.log(
-//                     `Moved ${this.el.textContent} to (${centeredLeft}px, ${centeredTop}px) inside zone.`
-//                 );
-
-//                 // Only add answer once
-//                 if (!answerPlaceholder.includes(this.el.innerHTML)) {
-//                     answerPlaceholder.push(this.el.innerHTML);
-//                 }
-
-//                 break;
-//             }
-//         }
-//         if (!isCollided) {
-//             console.log(
-//                 `No collision detected, move to ${this.initialPosition}`
-//             );
-//             const answerNode = document.querySelector(".js-answer-card");
-//             answerNode.appendChild(this.el);
-//             this.setInitialPosition(this.initialPosition);
-//         }
-//         console.log(`Current answer: ${answerPlaceholder}`);
-//     }
-// }
-
-// const answerCard = document.querySelector(".js-answer-card");
-// const answerGame = answerCard.querySelectorAll(".js-answer");
-// answerGame.forEach((el, index) => {
-//     new Draggable(el, { top: index * 60, left: 0 });
-// });

@@ -38,8 +38,7 @@
                     <!-- Input Box -->
                     <div class="flex flex-grow flex-col items-start justify-evenly">
                         @for ($i = 0; $i < 8; $i++)
-                            <div
-                                data-accepting="true"
+                            <div data-accepting="true"
                                 class="js-input my-2 p-2 w-1/2 flex flex-1 flex-col rounded items-center justify-center border border-blue31 text-sm text-blue31 text-center">
                                 ____
                             </div>
@@ -61,24 +60,13 @@
                         'Melakukan percakapan/dialog',
                     ];
                 @endphp
-                <div class="js-answer-card max-w-64 flex flex-col justify-evenly">
-                    @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
-                    @endforeach
-                </div>
+                <x-elearning.course.interactive.quiz.answer-box :answers=$answers>
+                </x-elearning.course.interactive.quiz.answer-box>
             </div>
 
             {{-- Button --}}
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                @csrf
-                <button id="refresh-btn" type="button"
-                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
-                    Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
-                    Kumpulkan
-                </div>
-            </form>
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            </x-elearning.course.interactive.quiz.button>
         </div>
         @include('includes.components.elearning.course.section')
     </section>
