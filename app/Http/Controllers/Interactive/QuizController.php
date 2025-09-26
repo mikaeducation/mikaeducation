@@ -38,7 +38,7 @@ class QuizController extends Controller
             "Menggunakan kata tunggal",
             "Menggunakan kata yang terdiri dari 2-3 kata",
             "Berbicara dalam kalimat",
-            "Echolalia (mengulan kata atau kalimat yang diucapkan seseorang)",
+            "Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)",
             "Mengajukan pertanyaan",
             "Membuat komentar",
             "Melakukan percakapan/dialog"

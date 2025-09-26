@@ -20,16 +20,21 @@
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full flex flex-grow items-start justify-start">
+    <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full flex flex-col p-2">
-                <p class="p-2">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.
-                </p>
-            </div>
-            <div class="js-scene-card flex flex-1">
-                <div class="w-full flex justify-center">
+        <div id="js-scene" class="quiz-section w-full h-full flex flex-col flex-grow">
 
+            {{-- Quiz Title --}}
+            <x-elearning.course.interactive.quiz.title>
+                Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan contoh Komunikasi Ekspresif.
+            </x-elearning.course.interactive.quiz.title>
+
+            {{-- Interactive Section --}}
+            <div
+                class="js-scene-card flex flex-1 overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
+
+                {{-- Placeholder Section --}}
+                <div class="w-full flex justify-center">
                     <!-- Title -->
                     <div id="question" class="m-8 p-4 flex bg-blue31 rounded items-center">
                         <h2 class="-rotate-90 text-xl text-white font-bold">Komunikasi Ekspresif</h2>
