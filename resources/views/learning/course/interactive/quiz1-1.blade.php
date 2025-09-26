@@ -41,27 +41,27 @@
                     {{-- Left --}}
                     <div class="row-span-3 grid-rows-subgrid justify-self-end">
                         <div id="question-1" data-accepting="true"
-                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
                         <div id="question-4" data-accepting="true"
-                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
                     </div>
                     {{-- Top Center --}}
                     <div id="question-2" data-accepting="true"
-                        class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                        class="js-input w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                         ____
                     </div>
                     {{-- Right --}}
                     <div class="row-span-3 grid-rows-subgrid justify-self-start">
                         <div id="question-3" data-accepting="true"
-                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
                         <div id="question-6" data-accepting="true"
-                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     </div>
                     {{-- Bottom Center --}}
                     <div id="question-2" data-accepting="true"
-                        class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                        class="js-input w-40 h-40 flex items-center justify-center border-2 border-blue31 rounded-full text-sm text-center">
                         ____
                     </div>
                 </div>

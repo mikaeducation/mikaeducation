@@ -20,12 +20,46 @@ class QuizController extends Controller
      */
     private $answer = [ // TODO: cek ulang jawaban sehingga sama dengan yang ada di front-end dan juga jawaban valid dari ppt
         "1" => [
-            "Motorik",
-            "Pemrosesan Informasi",
-            "Pemrosesan sensoris",
-            "Perilaku",
-            "Komunikasi Sosial",
-            "Bermain"
+            [
+                "answer" => "Motorik",
+                "explanation" => "Karakteristik motorik halus dan kasar perlu dipetakan untuk menentukan target pembelajaran motorik.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Pemrosesan Sensoris",
+                "explanation" => "Karakteristik inderawi individu dipetakan untuk mengarahkan pengelolaan stimulus. Perlu dipahami, anak autistik sering teralihkan belajar karena stimulus inderawi dirasa terlalu banyak (hipersensitif) atau terlalu sedikit (hiposensitif).",
+                "correct" => true
+            ],
+            [
+                "answer" => "Pemrosesan Informasi",
+                "explanation" => "Cara anak menerima, memproses dan menyimpan informasi akan menentukan gaya dan kemampuan belajar.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Perilaku",
+                "explanation" => "Persoalan perilaku minat terbatas dan berulang perlu dipahami untuk menyusun strategi perilaku.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Komunikasi Sosial",
+                "explanation" => "Persoalan komunikasi sosial, baik secara ekspresif dan reseptif) akan menentukan level mulai pembelajaran dan target belajar anak.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Bermain",
+                "explanation" => "Kesulitan bermain adalah salah satu indikasi persoalan interaksi sosial pada ASD.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Agresi",
+                "explanation" => "Kekerasan/agresi bukan gejala autisme.",
+                "correct" => false
+            ],
+            [
+                "answer" => "Keubutuhan Makanan Khusus/Diet",
+                "explanation" => "Diet bukan intervensi best practice utama untuk ASD.",
+                "correct" => false
+            ],
         ],
         "2" => [
             "Kelemahan melakukan kemampuan perhatian bersama",
@@ -236,12 +270,12 @@ class QuizController extends Controller
 
                 if ($user_quiz) {
                     DB::table('user_quizzes')
-                    ->where('user_id', $user_quiz->user_id)
-                    ->where('quiz_id', $quiz_id)
-                    ->update([
-                        'attempt_count' => DB::raw('attempt_count + 1'),
-                        'high_score' => DB::raw("GREATEST(high_score, $score)")
-                    ]);
+                        ->where('user_id', $user_quiz->user_id)
+                        ->where('quiz_id', $quiz_id)
+                        ->update([
+                            'attempt_count' => DB::raw('attempt_count + 1'),
+                            'high_score' => DB::raw("GREATEST(high_score, $score)")
+                        ]);
                     $user_quiz_id = $user_quiz->user_quiz_id;
                 } else {
                     $user_quiz_id = DB::table('user_quizzes')->insertGetId([
@@ -301,11 +335,23 @@ class QuizController extends Controller
         $score = 0;
         $details = [];
 
+        $answerMap = [];
+        foreach ($key_answers as $item) {
+            $normalized = strtolower(trim($item["answer"]));
+            $answerMap[$normalized] = [
+                "correct" => $item["correct"],
+                "explanation" => $item["explanation"]
+            ];
+        }
         foreach ($answers as $i => $answer) {
-            $isCorrect = in_array(strtolower($answer), array_map('strtolower', $key_answers));
+            $normalized = strtolower(trim($answer));
+            $isCorrect = $answerMap[$normalized]["correct"] ?? false;
+            $explanation = $answerMap[$normalized]["explanation"] ?? "Jawaban tidak terdapat di list";
+
             $details[$i] = [
                 'answer' => $answer,
                 'correct' => $isCorrect,
+                'explanation' => $explanation,
             ];
             if ($isCorrect) {
                 $score++;
@@ -351,7 +397,7 @@ class QuizController extends Controller
                 $common = array_intersect($answer_lower, $key_answer_lower);
                 $score += count($common);
                 $total += count($answer); // each chosen answer counts toward total
-                
+
                 $details[$key] = [
                     'answer' => $answer,
                     'correct' => count($common) === count($answer) && count($answer) === count($key_answer),

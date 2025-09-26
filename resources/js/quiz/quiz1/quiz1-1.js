@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     answers.forEach((answer) => {
         answer.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("text/plain", this.textContent);
+            e.dataTransfer.effectAllowed = "move";
             this.classList.add("opacity-50"); // visual feedback
         });
 
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inputs.forEach((input) => {
         input.addEventListener("dragover", function (e) {
             e.preventDefault(); // needed to allow drop
+            e.dataTransfer.dropEffect = "move";
             this.classList.add("border-dashed");
         });
 
@@ -86,6 +88,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     input.classList.add("border-red-500", "bg-red-100");
                 }
+
+                if (item.explanation) {
+                    input.setAttribute("title", item.explanation);
+                }
+
+                input.classList.add("cursor-help")
             });
         }
         nextBtn?.classList.remove("hidden");
@@ -101,6 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "bg-green-100"
             );
             input.classList.add("border-blue31");
+            input.classList.remove("cursor-help")
+            input.removeAttribute("title");
         });
         scoreBox.classList.add("hidden");
         scoreLabel.textContent = `Score: 0`;
