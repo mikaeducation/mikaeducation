@@ -33,7 +33,7 @@
             <div
                 class="js-scene-card flex flex-1 overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
 
-                {{-- Interactive Section --}}
+                {{-- Placeholder Section --}}
                 <div class="p-6 w-full flex flex-col justify-center">
                     {{-- Title --}}
                     <div id="question" class="m-8 p-4 bg-blue31 rounded">

@@ -24,7 +24,7 @@
 
     <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene-1" class="quiz-section w-full h-full flex flex-col">
+        <div id="js-scene" class="quiz-section w-full h-full flex flex-col">
 
             {{-- Quiz Title --}}
             <x-elearning.course.interactive.quiz.title>
@@ -35,45 +35,45 @@
             {{-- Interactive Section --}}
             <div
                 class="js-scene-card flex flex-1 items-center overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
-                <div class="w-full">
-                    <div class="w-full grid grid-cols-3 gap-10 justify-center items-center place-items-center">
-                        {{-- Left --}}
-                        <div class="row-span-3 grid-rows-subgrid justify-self-end">
-                            <div id="question-1" data-accepting="true"
-                                class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
-                                ____
-                            </div>
-                            <div id="question-4" data-accepting="true"
-                                class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
-                                ____
-                            </div>
-                        </div>
-                        {{-- Top Center --}}
-                        <div id="question-2" data-accepting="true"
-                            class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+
+                {{-- Placeholder Section --}}
+                <div class="w-full grid grid-cols-3 gap-10 justify-center items-center place-items-center">
+                    {{-- Left --}}
+                    <div class="row-span-3 grid-rows-subgrid justify-self-end">
+                        <div id="question-1" data-accepting="true"
+                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
-                        {{-- Right --}}
-                        <div class="row-span-3 grid-rows-subgrid justify-self-start">
-                            <div id="question-3" data-accepting="true"
-                                class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
-                                ____
-                            </div>
-                            <div id="question-6" data-accepting="true"
-                                class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
-                                ____
-                            </div>
-                        </div>
-                        {{-- Center --}}
-                        <div id="question"
-                            class="p-4 w-40 h-40 flex items-center justify-center bg-blue31 rounded-full shadow-md text-white font-bold text-center">
-                            Karakteristik Autisme
-                        </div>
-                        {{-- Bottom Center --}}
-                        <div id="question-2" data-accepting="true"
-                            class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                        <div id="question-4" data-accepting="true"
+                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
                             ____
                         </div>
+                    </div>
+                    {{-- Top Center --}}
+                    <div id="question-2" data-accepting="true"
+                        class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                        ____
+                    </div>
+                    {{-- Right --}}
+                    <div class="row-span-3 grid-rows-subgrid justify-self-start">
+                        <div id="question-3" data-accepting="true"
+                            class="js-input mb-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            ____
+                        </div>
+                        <div id="question-6" data-accepting="true"
+                            class="js-input mt-12 w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                            ____
+                        </div>
+                    </div>
+                    {{-- Center --}}
+                    <div id="question"
+                        class="p-4 w-40 h-40 flex items-center justify-center bg-blue31 rounded-full shadow-md text-white font-bold text-center">
+                        Karakteristik Autisme
+                    </div>
+                    {{-- Bottom Center --}}
+                    <div id="question-2" data-accepting="true"
+                        class="js-input w-40 h-40 flex items-center justify-center border border-blue31 rounded-full text-sm text-center">
+                        ____
                     </div>
                 </div>
 
