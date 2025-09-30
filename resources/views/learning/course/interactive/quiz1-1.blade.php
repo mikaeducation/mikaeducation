@@ -22,9 +22,9 @@
 <body class="font-futura w-full min-h-screen flex flex-col relative">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full h-[81vh] flex items-start justify-start text-blue31">
+    <section class="w-full flex-1 flex text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section w-full h-full flex flex-col">
+        <x-elearning.course.interactive.quiz>
 
             {{-- Quiz Title --}}
             <x-elearning.course.interactive.quiz.title>
@@ -33,11 +33,10 @@
             </x-elearning.course.interactive.quiz.title>
 
             {{-- Interactive Section --}}
-            <div
-                class="js-scene-card flex flex-1 items-center overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
+            <div class="js-scene-card flex flex-1">
 
                 {{-- Placeholder Section --}}
-                <div class="w-full grid grid-cols-3 gap-10 justify-center items-center place-items-center">
+                <div class="w-full grid grid-cols-3 gap-10 place-items-center">
                     {{-- Left --}}
                     <div class="row-span-3 grid-rows-subgrid justify-self-end">
                         <div id="question-1" data-accepting="true"
@@ -98,7 +97,8 @@
             {{-- Button --}}
             <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
             </x-elearning.course.interactive.quiz.button>
-        </div>
+
+        </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
     </section>
 

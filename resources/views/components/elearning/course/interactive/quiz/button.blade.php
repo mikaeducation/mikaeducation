@@ -1,4 +1,4 @@
-<form class="px-2 w-full flex justify-end bg-bluee3 rounded shadow-[0px_0px_12px_rgba(0,0,0,0.25)]">
+<form class="px-2 w-full flex justify-end sticky bottom-0 bg-bluee3 rounded shadow-[0px_0px_12px_rgba(0,0,0,0.25)]">
     <div id="quiz-score" class="m-2 p-2 w-1/5 flex justify-center bg-blue31 rounded hidden">
         <h1 class="text-white">Score: 0</h1>
     </div>

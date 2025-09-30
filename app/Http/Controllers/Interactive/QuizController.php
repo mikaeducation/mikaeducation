@@ -62,21 +62,121 @@ class QuizController extends Controller
             ],
         ],
         "2" => [
-            "Kelemahan melakukan kemampuan perhatian bersama",
-            "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain)",
-            "Sulit menggunakan dan memahami gestur dalam komunikasi",
-            "Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)"
+            [
+                "answer" => "Kelemahan melakukan kemampuan perhatian bersama",
+                "explanation" => "Kesulitan joint attention (pemusatan perhatian bersama) akan menyulitkan anak untuk belajar dari mengamati orang lain.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Melihat orang lain ketika berkomunikasi dengan lawan bicara (lebih banyak melihat ke arah lain)",
+                "explanation" => "Sulit mempertahankan kontak mata menyulitkan melakukan komunikasi sosial dan belajar.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Sulit menggunakan dan memahami gestur dalam komunikasi",
+                "explanation" => "Gestur adalah bentuk komunikasi dasar bagi anak tipikal tapi sulit digunakan anak autistik.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Cenderung terbatas dalam komunikasi fungsional (untuk menyampaikan maksud/informasi dari diri ke orang lain)",
+                "explanation" => "Salah satu bentuk kesulitan komunikasi sosial ASD yang paling awal dikenali.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Orang lain menganggap anak kurang sopan",
+                "explanation" => "Ini adalah dampak kesulitan komunikasi dan perilaku ASD.",
+                "correct" => false
+            ],
         ],
         "3" => [
-            "Membuat suara",
-            "Menggunakan kata tunggal",
-            "Menggunakan kata yang terdiri dari 2-3 kata",
-            "Berbicara dalam kalimat",
-            "Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)",
-            "Mengajukan pertanyaan",
-            "Membuat komentar",
-            "Melakukan percakapan/dialog"
+            [
+                "answer" => "Membuat suara",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Menggunakan kata tunggal",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Menggunakan kata yang terdiri dari 2-3 kata",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Berbicara dalam kalimat",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Mengajukan pertanyaan",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Membuat komentar",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Melakukan percakapan/dialog",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Menggerakkan jari dan tangan untuk memungut",
+                "explanation" => "",
+                "correct" => true
+            ],
+            [
+                "answer" => "Terpaku pada kualitas sensoris khas",
+                "explanation" => "",
+                "correct" => true
+            ],
         ],
+        "4" => [
+            [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => true
+            ],
+        ],
+        "5" => [
+            [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => true
+            ],
+        ],
+        "6" => [
+            [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => true
+            ],
+        ],
+        "7" => [
+            [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => true
+            ],
+        ],
+        "8" => [
+            [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => true
+            ],
+        ],
+
+
         "4" => [
             "memahami pertanyaan yang baru didengarnya.",
             "memahami suatu konsep baru.",
