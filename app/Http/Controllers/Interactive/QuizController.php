@@ -173,10 +173,35 @@ class QuizController extends Controller
             ],
         ],
         "5" => [
-            [
-                "answer" => "",
+            "menyambut" => [
+                "answer" => 'Tidak bisa spontan mengatakan Halo',
                 "explanation" => "",
                 "correct" => true
+            ],
+            "isyarat" => [
+                "answer" => "Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "perhatian" => [
+                "answer" => "Sulit kontak mata, fokus mudah teralihkan",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "kesadaran" => [
+                "answer" => "Tidak menyadari ruang personal space orang lain",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "" => [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => false
+            ],
+            "" => [
+                "answer" => "",
+                "explanation" => "",
+                "correct" => false
             ],
         ],
         "6" => [
@@ -199,12 +224,6 @@ class QuizController extends Controller
                 "explanation" => "",
                 "correct" => true
             ],
-        ],
-        "5" => [
-            "menyambut" => "Tidak bisa spontan mengatakan \"Halo\"",
-            "isyarat" => "Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial",
-            "perhatian" => "Sulit kontak mata, fokus mudah teralihkan",
-            "kesadaran" => "Tidak menyadari ruang personal space orang lain"
         ],
         "6" => [
             "low" => [
@@ -322,7 +341,7 @@ class QuizController extends Controller
 
                 case 5:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMapScore($answers, $this->answer["5"]);
+                    $result = $this->calculateMatchingScore($answers, $this->answer["5"]);
                     break;
 
                 case 6:
@@ -421,8 +440,8 @@ class QuizController extends Controller
                     'score' => $score,
                     'is_passed' => $score >= 70 ? 1 : 0, // TODO: ganti dengan passing grade yang sesuai
                     'duration' => $duration,
-                    'started_at' => now(), // TODO: ganti dengan waktu mulai yang sesuai
-                    'finished_at' => now() // TODO: ganti dengan waktu selesai yang sesuai
+                    'started_at' => now(),
+                    'finished_at' => now()
                 ]);
             });
 
@@ -482,6 +501,41 @@ class QuizController extends Controller
             'correct' => $score,
             'incorrect' => $incorrect,
             'details' => $details,
+        ];
+    }
+    private function calculateMatchingScore(array $answers, array $key_answers): array
+    {
+        $score = 0;
+        $details = [];
+
+        foreach ($key_answers as $key => $item) {
+            // Item must be structured with answer, explanation, correct
+            $correctAnswer = $item['answer'];
+            $explanation   = $item['explanation'] ?? null;
+            $isCorrectFlag = $item['correct'] ?? true;
+
+            $userAnswer = $answers[$key] ?? null;
+            $isCorrect = $userAnswer && strtolower(trim($userAnswer)) === strtolower(trim($correctAnswer)) && $isCorrectFlag;
+
+            if ($isCorrect) {
+                $score++;
+            }
+
+            $details[$key] = [
+                'question'    => $key,
+                'answer'      => $userAnswer,
+                'correct'     => $isCorrect,
+                'explanation' => $explanation
+            ];
+        }
+
+        $total = count($key_answers);
+        $incorrect = $total - $score;
+
+        return [
+            'correct'   => $score,
+            'incorrect' => $incorrect,
+            'details'   => $details,
         ];
     }
 

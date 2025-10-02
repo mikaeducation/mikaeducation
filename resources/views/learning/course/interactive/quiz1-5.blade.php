@@ -20,15 +20,21 @@
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full flex flex-grow items-start justify-start">
+    <section class="w-full flex-1 flex text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full m-2 pt-6 flex flex-col p-2">
-                <h1 class="p-2 text-lg">Cocokkanlah gejala-gejala di bawah ini agar sesuai dengan komponen kesulitan
-                    Komunikasi Pragmatis berikut.</h1>
-            </div>
-            <div class="px-12 gap-x-24 w-full h-full flex">
-                <div class="js-scene-card flex flex-1 flex-col justify-evenly">
+        <x-elearning.course.interactive.quiz>
+
+            {{-- Quiz Title --}}
+            <x-elearning.course.interactive.quiz.title>
+                Isilah lingkaran-lingkaran berikut dengan karakteristik Autisme yang perlu dipahami oleh orang yang
+                bekerja dengan anak autistik.
+            </x-elearning.course.interactive.quiz.title>
+
+            {{-- Interactive Section --}}
+            <div class="js-scene-card w-full flex flex-1">
+
+                {{-- Placeholder Section --}}
+                <div class="p-6 w-full flex flex-col justify-evenly">
                     @php
                         $questions = [
                             'menyambut' => 'Menyambut dan memberi salam',
@@ -37,53 +43,41 @@
                             'kesadaran' => 'Kesadaran ruang pribadi',
                         ];
                     @endphp
-
                     @foreach ($questions as $key => $question)
                         <div class="grid grid-cols-2 gap-6">
-                            {{-- Quiz Box --}}
+                            {{-- Question --}}
                             <div id="question" class="p-4 flex bg-blue31 rounded justify-center">
                                 <h2 class="text-sm text-white font-bold">{{ $question }}</h2>
                             </div>
-
                             <!-- Input Box -->
-                                <div id="{{ $key }}"
-                                    class="js-input w-full flex justify-center items-center border-2 border-blue31 rounded-full text-sm text-blue31 text-center"
-                                    data-accepting="true">
-                                    ____
-                                </div>
+                            <div id="{{ $key }}"
+                                class="js-input w-full flex justify-center items-center border-2 border-blue31 rounded-full text-sm text-blue31 text-center"
+                                data-accepting="true">
+                                ____
+                            </div>
                         </div>
                     @endforeach
-                    {{-- Answer Section --}}
-                    {{-- TODO: masukan jawaban ke database --}}
-                    @php
-                        $answers = [
-                            'Tidak bisa spontan mengatakan “Halo”',
-                            'Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial',
-                            'Sulit kontak mata, fokus mudah teralihkan',
-                            'Tidak menyadari ruang personal space orang lain',
-                        ];
-                    @endphp
-                    <div class="js-answer-card max-w-64 px-6 py-2 flex flex-col justify-evenly">
-                        @foreach ($answers as $key => $answer)
-                            <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">
-                                {{ $answer }}</div>
-                        @endforeach
-                    </div>
                 </div>
 
+                {{-- Answer Section --}}
+                {{-- TODO: masukan jawaban ke database --}}
+                @php
+                    $answers = [
+                        'Tidak bisa spontan mengatakan Halo', // TODO: Normalisasi text jika perlu tanda ""
+                        'Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial',
+                        'Sulit kontak mata, fokus mudah teralihkan',
+                        'Tidak menyadari ruang personal space orang lain',
+                    ];
+                @endphp
+                <x-elearning.course.interactive.quiz.answer-box :answers=$answers>
+                </x-elearning.course.interactive.quiz.answer-box>
             </div>
+
             {{-- Button --}}
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                @csrf
-                <button id="refresh-btn" type="button"
-                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
-                    Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
-                    Kumpulkan
-                </div>
-            </form>
-        </div>
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            </x-elearning.course.interactive.quiz.button>
+
+        </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
     </section>
 
