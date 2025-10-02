@@ -91,60 +91,85 @@ class QuizController extends Controller
         "3" => [
             [
                 "answer" => "Membuat suara",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Menggunakan kata tunggal",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Menggunakan kata yang terdiri dari 2-3 kata",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Berbicara dalam kalimat",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Echolalia (mengulang kata atau kalimat yang diucapkan seseorang)",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Mengajukan pertanyaan",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Membuat komentar",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Melakukan percakapan/dialog",
-                "explanation" => "",
+                "explanation" => "Bentuk komunikasi ekspresif.",
                 "correct" => true
             ],
             [
                 "answer" => "Menggerakkan jari dan tangan untuk memungut",
-                "explanation" => "",
-                "correct" => true
+                "explanation" => "Bentuk kemampuan motorik halus.",
+                "correct" => false
             ],
             [
                 "answer" => "Terpaku pada kualitas sensoris khas",
-                "explanation" => "",
-                "correct" => true
+                "explanation" => "", // TODO: minta penjelasan
+                "correct" => false
             ],
         ],
         "4" => [
             [
-                "answer" => "",
-                "explanation" => "",
+                "answer" => "Memahami pertanyaan yang baru didengarnya",
+                "explanation" => "Bentuk komunikasi reseptif.",
                 "correct" => true
+            ],
+            [
+                "answer" => "Memahami suatu konsep baru",
+                "explanation" => "Bentuk komunikasi reseptif.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas",
+                "explanation" => "Bentuk komunikasi reseptif.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Mengajukan pertanyaan",
+                "explanation" => "Bentuk komunikasi ekspresif.",
+                "correct" => false
+            ],
+            [
+                "answer" => "Terpaku pada kualitas sensoris khas",
+                "explanation" => "Bentuk karakteristik sensoris.",
+                "correct" => false
+            ],
+            [
+                "answer" => "Membuat komentar",
+                "explanation" => "Bentuk komunikasi ekspresif.",
+                "correct" => false
             ],
         ],
         "5" => [
@@ -174,13 +199,6 @@ class QuizController extends Controller
                 "explanation" => "",
                 "correct" => true
             ],
-        ],
-
-
-        "4" => [
-            "memahami pertanyaan yang baru didengarnya.",
-            "memahami suatu konsep baru.",
-            "memahami konsep abstrak seperti peribahasa, lawan kata, padanan kata dan majas."
         ],
         "5" => [
             "menyambut" => "Tidak bisa spontan mengatakan \"Halo\"",
