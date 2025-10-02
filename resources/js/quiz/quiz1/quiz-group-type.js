@@ -67,6 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("quiz-submitted", function (e) {
         const result = e.detail;
         // Update score label
+        answers.forEach((answer) => {
+            answer.setAttribute("draggable", "false");
+            answer.classList.add("opacity-70", "cursor-not-allowed");
+        });
+
         if (scoreBox && result.data?.score !== undefined) {
             scoreBox.classList.remove("hidden");
             scoreLabel.textContent = `Score: ${result.data.score}`;
@@ -93,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     input.setAttribute("title", item.explanation);
                 }
 
-                input.classList.add("cursor-help")
+                input.classList.add("cursor-help");
             });
         }
         nextBtn?.classList.remove("hidden");
@@ -101,6 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("quiz-refreshed", function (e) {
+        answers.forEach((answer) => {
+            answer.setAttribute("draggable", "true");
+            answer.classList.remove("opacity-70", "cursor-not-allowed");
+        });
+
         inputs.forEach((input) => {
             input.classList.remove(
                 "border-red-500",
@@ -109,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "bg-green-100"
             );
             input.classList.add("border-blue31");
-            input.classList.remove("cursor-help")
+            input.classList.remove("cursor-help");
             input.removeAttribute("title");
         });
         scoreBox.classList.add("hidden");

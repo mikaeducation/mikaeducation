@@ -12,7 +12,7 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-3.js')
+    @vite('resources/js/quiz/quiz1/quiz-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>

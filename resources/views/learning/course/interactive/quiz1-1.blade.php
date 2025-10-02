@@ -14,7 +14,7 @@
     <meta name="module_id" content="">
     <meta name="quiz_id" content="">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-1.js')
+    @vite('resources/js/quiz/quiz1/quiz-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
