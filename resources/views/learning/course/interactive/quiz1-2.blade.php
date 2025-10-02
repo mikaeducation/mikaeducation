@@ -30,7 +30,7 @@
             </x-elearning.course.interactive.quiz.title>
 
             {{-- Interactive Section --}}
-            <div class="js-scene-card flex flex-1">
+            <div class="js-scene-card w-full flex flex-1">
 
                 {{-- Placeholder Section --}}
                 <div class="p-6 w-full flex flex-col justify-center">

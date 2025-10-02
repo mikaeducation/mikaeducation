@@ -31,7 +31,7 @@
 
             {{-- Interactive Section --}}
             <div
-                class="js-scene-card flex flex-1">
+                class="js-scene-card w-full flex flex-1">
 
                 {{-- Placeholder Section --}}
                 <div class="p-6 w-full flex justify-center">

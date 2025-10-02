@@ -33,7 +33,7 @@
             </x-elearning.course.interactive.quiz.title>
 
             {{-- Interactive Section --}}
-            <div class="js-scene-card flex flex-1">
+            <div class="js-scene-card w-full flex flex-1">
 
                 {{-- Placeholder Section --}}
                 <div class="w-full grid grid-cols-3 gap-10 place-items-center">
