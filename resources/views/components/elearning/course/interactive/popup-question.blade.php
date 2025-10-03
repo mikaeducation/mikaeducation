@@ -25,19 +25,24 @@
                 <div
                     class="px-4 sm:px-6 w-full flex flex-col justify-center gap-2 bg-bluee3 bg-opacity-40 text-lg font-medium">
                     @foreach ($answers as $i => $answer)
-                        <button id="answer-{{ $i }}" type="button"
+                        <button id="btnAnswer{{ $i }}" type="button"
                             class="px-3 py-2 w-full flex justify-start place-items-center gap-2 bg-blue31 rounded text-white text-left hover:-translate-y-1 hover:scale-110">
                             <h1 class="h-fit">{{ chr(65 + $i) }})</h1>
                             <h1 class="h-fit">{{ $answer }}</h1>
                         </button>
                     @endforeach
                 </div>
+                <div class="px-4 sm:px-6 w-full flex justify-center gap-2 bg-bluee3 bg-opacity-40">
+                    <button id="btnBack" type="button"
+                        class="mt-4 w-1/2 border-2 border-blue31 rounded text-lg font-medium">
+                        Kembali
+                    </button>
+                </div>
                 <p class="my-2 px-6 pb-4 pt-8 sm:pt-6 text-center">
                     Jika memerlukan bantuan lebih lanjut,<a href="https://wa.me/082156226440 "
                         class="relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full">
                         hubungi tim dukungan kami disini.</a>
                 </p>
-
             </div>
         </div>
     </div>
