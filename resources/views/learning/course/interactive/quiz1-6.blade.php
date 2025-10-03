@@ -12,7 +12,7 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-6.js')
+    @vite('resources/js/quiz/quiz1/quiz-two-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
@@ -22,40 +22,40 @@
 
     <section class="w-full flex flex-grow items-start justify-start">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full pt-12 flex flex-col">
-                <p class="p-2 text-center text-lg">Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh
-                    Augmentative Alternative Communication (AAC) yang sesuai.</p>
-            </div>
-            <div class="js-scene-card flex flex-1">
-                <div class="w-full flex flex-col items-center">
+        <x-elearning.course.interactive.quiz>
 
+            {{-- Quiz Title --}}
+            <x-elearning.course.interactive.quiz.title>
+                Cocokkanlah alat bantu visual di bawah ini agar sesuai dengan contoh
+                Augmentative Alternative Communication (AAC) yang sesuai.
+            </x-elearning.course.interactive.quiz.title>
+
+            {{-- Interactive Section --}}
+            <div class="js-scene-card w-full flex flex-1">
+
+                {{-- Placeholder Section --}}
+                <div class="p-6 w-full flex flex-col items-center">
                     <!-- Low Tech -->
-                    <div id=""
-                        class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div class="js-input-card py-3 w-full min-h-64 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">Low Tech</h2>
-
                         <!-- Input Box -->
-                        <div id="low"
-                            data-accepting="true"
+                        <div id="low" data-accepting="true"
                             class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 justify-center items-center rounded border-2 border-blue31">
                             ____
                         </div>
                     </div>
-
                     <!-- High Tech -->
-                    <div id=""
-                        class="js-input-card w-2/3 my-2 flex flex-col flex-grow items-center justify-evenly">
+                    <div class="js-input-card py-3 w-full min-h-64 flex flex-col flex-grow items-center justify-evenly">
                         <h2 class="p-1 text-xl text-blue31 font-bold">High Tech</h2>
 
                         <!-- Input Box -->
-                        <div id="high"
-                            data-accepting="true"
+                        <div id="high" data-accepting="true"
                             class="js-input p-3 w-full flex flex-grow flex-wrap gap-5 justify-center items-center rounded border-2 border-blue31">
                             ____
                         </div>
                     </div>
                 </div>
+
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
@@ -64,31 +64,20 @@
                         'PECS',
                         'Papan komunikasi / ALS',
                         'Kartu Emosi',
-                        'AAC',
-                        'Ipad ( Compass, Lamb words for life)',
+                        'Ipad (Compass, Lamb words for life)',
                         'Liberator Rugged 7, ProloQuo2Go',
                         'MIKA 1.0',
                     ];
                 @endphp
-                <div class="js-answer-card min-w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id="{{ $key }}">{{ $answer }}</div>
-                    @endforeach
-                </div>
+                <x-elearning.course.interactive.quiz.answer-box :answers="$answers">
+                </x-elearning.course.interactive.quiz.answer-box>
             </div>
 
             {{-- Button --}}
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                @csrf
-                <button id="refresh-btn" type="button"
-                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
-                    Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
-                    Kumpulkan
-                </div>
-            </form>
-        </div>
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            </x-elearning.course.interactive.quiz.button>
+
+        </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
     </section>
 

@@ -12,7 +12,7 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-8.js')
+    @vite('resources/js/quiz/quiz1/quiz-matching-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
@@ -20,15 +20,21 @@
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full flex flex-grow items-start justify-start">
+    <section class="w-full flex-1 flex text-blue31">
         {{-- Quiz Section --}}
-        <div id="js-scene" class="quiz-section h-[85vh] flex flex-col flex-grow">
-            <div class="w-full pt-12 flex flex-col">
-                <p class="p-2 text-center text-lg">Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH
-                    yang tepat!</p>
-            </div>
-            <div class="js-scene-card px-6 gap-24 flex flex-1">
-                <div class="w-full flex flex-col items-center">
+        <x-elearning.course.interactive.quiz>
+
+            {{-- Quiz Title --}}
+            <x-elearning.course.interactive.quiz.title>
+                Cocokanlah penjelasan di bawah ini agar sesuai dengan komponen TEACCH
+                yang tepat!
+            </x-elearning.course.interactive.quiz.title>
+
+            {{-- Interactive Section --}}
+            <div class="js-scene-card w-full flex flex-1">
+
+                {{-- Placeholder Section --}}
+                <div class="p-6 w-full flex flex-col justfity items-center">
                     @php
                         $questions = [
                             'Jadwal Visual',
@@ -38,17 +44,21 @@
                         ];
                     @endphp
                     @foreach ($questions as $question)
-                        <div id="" class="js-input-card w-full my-2 flex flex-col flex-grow items-center justify-evenly">
+                        <div id=""
+                            class="js-input-card w-full my-2 flex flex-col flex-grow items-center justify-evenly">
                             <!-- Question Box -->
                             <h2 class="w-full p-2 rounded bg-blue31 text-center text-xl text-white font-bold">
                                 {{ $question }}</h2>
 
                             <!-- Input Box -->
-                            <div id="{{ $question }}" class="js-input p-2 w-full flex flex-grow justify-center items-end rounded border-b-2 border-blue31 text-center" data-accepting="true">
+                            <div id="{{ $question }}"
+                                class="js-input p-2 w-full flex flex-grow justify-center items-end rounded border-b-2 border-blue31 text-center"
+                                data-accepting="true">
                             </div>
                         </div>
                     @endforeach
                 </div>
+
                 {{-- Answer Section --}}
                 {{-- TODO: masukan jawaban ke database --}}
                 @php
@@ -59,25 +69,15 @@
                         'Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai',
                     ];
                 @endphp
-                <div class="js-answer-card w-64 flex flex-col justify-evenly relative">
-                    @foreach ($answers as $key => $answer)
-                        <div class="js-answer quiz-answer p-2 cursor-pointer" draggable="true" data-id={{ $key }}>{{ $answer }}</div>
-                    @endforeach
-                </div>
+                <x-elearning.course.interactive.quiz.answer-box :answers=$answers>
+                </x-elearning.course.interactive.quiz.answer-box>
             </div>
 
             {{-- Button --}}
-            <form class="x-5 py-3 w-1/3 flex justify-stretch self-end">
-                @csrf
-                <button id="refresh-btn" type="button"
-                    class="w-full m-2 p-2 text-blue31 text-center border-2 border-blue31 rounded transition hover:-translate-y-1 hover:scale-105">Ulangi
-                    Kuis</button>
-                <div onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $module_id, 'quiz_id' => $quiz_id]) }}')"
-                    class="w-full m-2 p-2 text-white text-center bg-blue31 rounded transition cursor-pointer hover:-translate-y-1 hover:scale-105">
-                    Kumpulkan
-                </div>
-            </form>
-        </div>
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            </x-elearning.course.interactive.quiz.button>
+
+        </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
     </section>
 
