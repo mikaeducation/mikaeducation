@@ -193,62 +193,101 @@ class QuizController extends Controller
                 "explanation" => "",
                 "correct" => true
             ],
-            "" => [
-                "answer" => "",
-                "explanation" => "",
-                "correct" => false
-            ],
-            "" => [
-                "answer" => "",
-                "explanation" => "",
-                "correct" => false
-            ],
-        ],
-        "6" => [
-            [
-                "answer" => "",
-                "explanation" => "",
-                "correct" => true
-            ],
-        ],
-        "7" => [
-            [
-                "answer" => "",
-                "explanation" => "",
-                "correct" => true
-            ],
-        ],
-        "8" => [
-            [
-                "answer" => "",
-                "explanation" => "",
-                "correct" => true
-            ],
         ],
         "6" => [
             "low" => [
-                "Kartu visual",
-                "PECS",
-                "Papan komunikasi / ALS",
-                "Kartu Emosi"
+                [
+                    "answer" => "Kartu Visual",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+                [
+                    "answer" => "PECS",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+                [
+                    "answer" => "Papan komunikasi / ALS",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+                [
+                    "answer" => "Kartu Emosi",
+                    "explanation" => "",
+                    "correct" => true
+                ],
             ],
             "high" => [
-                "Ipad (Comass, Lamb words for life",
-                "Liberator Rugged 7, ProloQuo2Go",
-                "MIKA 1.0"
-            ]
+                [
+                    "answer" => "Ipad (Compass, Lamb words for life)",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+                [
+                    "answer" => "Liberator Rugged 7, ProloQuo2Go",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+                [
+                    "answer" => "MIKA 1.0",
+                    "explanation" => "",
+                    "correct" => true
+                ],
+            ],
         ],
         "7" => [
-            "Karakteristik" => "Deskripsikan perilaku anak. Uraikan apa yang mampu dilakukan dan yang masih perlu dikembangkan.",
-            "Dampak" => "Apa konsekuensi perilaku pada anak, orang lain, lingkungan sekolah, masyarakat, dan masa depan anak.",
-            "Strategi" => "Strategi intervensi sesuai kebutuhan anak (membentuk perilaku baru, meningkatkan atau menurunkan perilaku)."
-
+            "Karakteristik" => [
+                "answer" => "Deskripsikan perilaku anak. Uraikan apa yang mampu dilakukan dan yang masih perlu dikembangkan.",
+                "explanation" => "Kolom yang pertama diisi dalam Planning matriks.",
+                "correct" => true
+            ],
+            "Dampak" => [
+                "answer" => "Apa konsekuensi perilaku pada anak, orang lain, lingkungan sekolah, masyarakat, dan masa depan anak.",
+                "explanation" => "Kolom yang kedua diisi dalam Planning matriks.",
+                "correct" => true
+            ],
+            "Strategi" => [
+                "answer" => "Strategi intervensi sesuai kebutuhan anak (membentuk perilaku baru, meningkatkan atau menurunkan perilaku).",
+                "explanation" => "Kolom yang ketiga diisi dalam Planning matriks.",
+                "correct" => true
+            ],
+            [
+                "answer" => "Dokumen yang memfoto keadaan anak secara menyeluruh (komprehensif).",
+                "explanation" => "Definisi planning matriks.",
+                "correct" => false
+            ],
+            [
+                "answer" => "Bisa disusun dan digunakan oleh orang tua, guru dan professional.",
+                "explanation" => "Bagaimana planning matriks.",
+                "correct" => false
+            ],
+            [
+                "answer" => "Untuk memahami anak dan menyusun intervensi/pembelajaran yang paling pas.",
+                "explanation" => "Tujuan planning matriks.",
+                "correct" => false
+            ],
         ],
         "8" => [
-            "Jadwal Visual" => "Memberikan informasi tahapan pengerjaan tugas, pengoganisasian kegiatan, untuk meningkatkan pemahaman.",
-            "Sistem Kerja" => "Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai.",
-            "Struktur Lingkungan Fisik" => "Menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan baik.",
-            "Alat Bantu Visual" => "Kartu visual memberikan informasi yang jelas dan kosisten, mengurangi kecemasan, serta meningkatkan pemahaman."
+            "Jadwal Visual" => [
+                "answer" => "Memberikan informasi tahapan pengerjaan tugas, pengoganisasian kegiatan, untuk meningkatkan pemahaman",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "Sistem Kerja" => [
+                "answer" => "Memahami apa yang harus dilakukan, bagaimana dilakukan, kapan tugasnya selesai dan apa yang harus dilakukan setelah tugas itu selesai",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "Struktur Lingkungan Fisik" => [
+                "answer" => "Menciptakan lingkungan yang terorganisir secara visual untuk membantu individu memahami tugas dan rutinitas dengan baik",
+                "explanation" => "",
+                "correct" => true
+            ],
+            "Alat Bantu Visual" => [
+                "answer" => "Kartu visual memberikan informasi yang jelas dan kosisten, mengurangi kecemasan, serta meningkatkan pemahaman",
+                "explanation" => "",
+                "correct" => true
+            ],
         ],
         // NOTE: quiz cadangan
         // "2" => [
@@ -323,20 +362,20 @@ class QuizController extends Controller
             switch ($quiz_id) {
                 case 1:
                     // Jawaban berupa array of string
-                    $result = $this->calculateArrayScore($answers, $this->answer["1"]);
+                    $result = $this->calculateOneGroup($answers, $this->answer["1"]);
                     break;
 
                 case 2:
                     // Jawaban berupa map dengan array values
-                    $result = $this->calculateArrayScore($answers, $this->answer["2"]);
+                    $result = $this->calculateOneGroup($answers, $this->answer["2"]);
                     break;
 
                 case 3:
-                    $result = $this->calculateArrayScore($answers, $this->answer["3"]);
+                    $result = $this->calculateOneGroup($answers, $this->answer["3"]);
                     break;
 
                 case 4:
-                    $result = $this->calculateArrayScore($answers, $this->answer["4"]);
+                    $result = $this->calculateOneGroup($answers, $this->answer["4"]);
                     break;
 
                 case 5:
@@ -346,17 +385,17 @@ class QuizController extends Controller
 
                 case 6:
                     // Jawaban berupa map dengan array values (low/high)
-                    $result = $this->calculateMapScore($answers, $this->answer["6"]);
+                    $result = $this->calculateTwoGroup($answers, $this->answer["6"]);
                     break;
 
                 case 7:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMapScore($answers, $this->answer["7"]);
+                    $result = $this->calculateMatchingScore($answers, $this->answer["7"]);
                     break;
 
                 case 8:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMapScore($answers, $this->answer["8"]);
+                    $result = $this->calculateMatchingScore($answers, $this->answer["8"]);
                     break;
 
                 // case 9:
@@ -467,7 +506,7 @@ class QuizController extends Controller
         }
     }
 
-    private function calculateArrayScore(array $answers, array $key_answers): array
+    private function calculateOneGroup(array $answers, array $key_answers): array
     {
         $score = 0;
         $details = [];
@@ -508,6 +547,7 @@ class QuizController extends Controller
         $score = 0;
         $details = [];
 
+        $totalCorrect = count(array_filter($key_answers, fn($item) => $item['correct'] === true));
         foreach ($key_answers as $key => $item) {
             // Item must be structured with answer, explanation, correct
             $correctAnswer = $item['answer'];
@@ -529,8 +569,7 @@ class QuizController extends Controller
             ];
         }
 
-        $total = count($key_answers);
-        $incorrect = $total - $score;
+        $incorrect = $totalCorrect - $score;
 
         return [
             'correct'   => $score,
@@ -539,54 +578,61 @@ class QuizController extends Controller
         ];
     }
 
-    private function calculateMapScore(array $answers, array $key_answers): array
+    private function calculateTwoGroup(array $answers, array $key_answers): array
     {
         $score = 0;
-        $total = 0;
         $details = [];
 
-        foreach ($answers as $key => $answer) {
-            if (!isset($key_answers[$key])) {
-                continue;
+        // Count only correct answers in key set
+        $totalCorrect = 0;
+        foreach ($key_answers as $group => $items) {
+            foreach ($items as $item) {
+                if (!empty($item['correct'])) {
+                    $totalCorrect++;
+                }
             }
+        }
 
-            $key_answer = $key_answers[$key];
+        foreach ($key_answers as $group => $items) {
+            $userGroupAnswers = $answers[$group] ?? []; // user answers for this group
 
-            if (is_string($answer) && is_string($key_answer)) {
-                $total++;
-                $isCorrect = strtolower($answer) === strtolower($key_answer);
-                $details[$key] = [
-                    'answer' => $answer,
-                    'correct' => $isCorrect,
-                ];
+            foreach ($items as $expected) {
+                $expectedAnswer   = strtolower(trim($expected['answer']));
+                $expectedCorrect  = $expected['correct'] ?? true;
+                $explanation      = $expected['explanation'] ?? null;
+
+                // Check if user placed this answer in this group
+                $matched = false;
+                foreach ($userGroupAnswers as $ua) {
+                    if (strtolower(trim($ua)) === $expectedAnswer) {
+                        $matched = true;
+                        break;
+                    }
+                }
+
+                $isCorrect = $matched && $expectedCorrect;
                 if ($isCorrect) {
                     $score++;
                 }
-            } elseif (is_array($answer) && is_array($key_answer)) {
-                $answer_lower = array_map('strtolower', $answer);
-                $key_answer_lower = array_map('strtolower', $key_answer);
 
-                $common = array_intersect($answer_lower, $key_answer_lower);
-                $score += count($common);
-                $total += count($answer); // each chosen answer counts toward total
-
-                $details[$key] = [
-                    'answer' => $answer,
-                    'correct' => count($common) === count($answer) && count($answer) === count($key_answer),
+                $details[$group][] = [
+                    'answer'      => $expected['answer'],
+                    'correct'     => $isCorrect,
+                    'explanation' => $explanation
                 ];
             }
         }
 
-        $incorrect = $total - $score;
+        $incorrect = $totalCorrect - $score;
 
         return [
-            'correct' => $score,
+            'correct'   => $score,
             'incorrect' => $incorrect,
-            'details' => $details,
+            'details'   => $details,
         ];
     }
 
-    // private function calculateArrayScore(array $answers, array $key_answers): int{
+        // private function calculateArrayScore(array $answers, array $key_answers): int{
     //     $score = 0;
     //     foreach ($answers as $answer){
     //         if(in_array(strtolower($answer),
