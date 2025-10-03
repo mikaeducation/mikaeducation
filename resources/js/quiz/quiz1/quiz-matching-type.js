@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         answer.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("text/plain", this.textContent);
             e.dataTransfer.effectAllowed = "move";
-            this.classList.add("opacity-50"); // visual feedback
+            this.classList.add("opacity-50");
         });
 
         answer.addEventListener("dragend", function () {
@@ -96,10 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn?.classList.add("hidden");
 
         // Disable dragging after submit
-        const allAnswers = document.querySelectorAll(".js-answer");
-        allAnswers.forEach((ans) => {
-            ans.setAttribute("draggable", "false");
-            ans.classList.add("opacity-50", "cursor-not-allowed");
+        answers.forEach((answer) => {
+            answer.setAttribute("draggable", "false");
+            answer.classList.add("opacity-50", "cursor-not-allowed");
         });
     });
 

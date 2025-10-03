@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("quiz-submitted", function (e) {
         const result = e.detail;
-        // Update score label
         answers.forEach((answer) => {
             answer.setAttribute("draggable", "false");
             answer.classList.add("opacity-70", "cursor-not-allowed");
         });
 
+        // Show score
         if (scoreBox && result.data?.score !== undefined) {
             scoreBox.classList.remove("hidden");
             scoreLabel.textContent = `Score: ${result.data.score}`;
@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 input.classList.add("cursor-help");
             });
         }
+
+        // Toggle buttons
         nextBtn?.classList.remove("hidden");
         submitBtn?.classList.add("hidden");
     });
