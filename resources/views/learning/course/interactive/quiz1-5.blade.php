@@ -12,7 +12,7 @@
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
     @vite('public/assets/css/style.css')
-    @vite('resources/js/quiz/quiz1/quiz1-5.js')
+    @vite('resources/js/quiz/quiz1/quiz-matching-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
     @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
@@ -46,8 +46,8 @@
                     @foreach ($questions as $key => $question)
                         <div class="grid grid-cols-2 gap-6">
                             {{-- Question --}}
-                            <div id="question" class="p-4 flex bg-blue31 rounded justify-center">
-                                <h2 class="text-sm text-white font-bold">{{ $question }}</h2>
+                            <div id="question" class="p-4 flex justify-center items-center bg-blue31 rounded">
+                                <h2 class="text-center text-lg text-white font-bold">{{ $question }}</h2>
                             </div>
                             <!-- Input Box -->
                             <div id="{{ $key }}"
