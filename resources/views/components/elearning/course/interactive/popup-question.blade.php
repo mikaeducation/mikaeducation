@@ -15,8 +15,8 @@
                             </svg>
                         </div>
                         <div class="text-center space-y-4 text-blue31">
-                            <h3 class="pb-6 text-3xl font-semibold">Popup Quiz</h3>
-                            <p class="text-lg mt-2">
+                            <h3 class="my-3 text-3xl font-semibold">Pertanyaan Popup</h3>
+                            <p class="my-3 text-lg mt-2">
                                 {{ $question }}
                             </p>
                         </div>
