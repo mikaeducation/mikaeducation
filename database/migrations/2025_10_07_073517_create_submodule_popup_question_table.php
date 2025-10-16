@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string("title");
             $table->text("instruction");
             $table->json("answers");
+            $table->integer("pop_time");
             $table->timestamps();
         });
     }
