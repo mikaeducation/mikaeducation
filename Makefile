@@ -26,9 +26,9 @@ start: mariadb-start ## Start Laravel + Vite + DB
 	(npm run dev &)
 	@echo "🚀 Development environment started"
 
-laravel-make: ## Run php artisan make:<TYPE> <NAME> [flags]
+laravel-make: ## Run php artisan make:<TYPE> [NAME] [flags]
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
-		echo "❌ Usage: make laravel-make component Alert [--view]"; \
+		echo "❌ Usage: make laravel-make <TYPE> [NAME] [flags]"; \
 		exit 1; \
 	fi; \
 	TYPE=$(word 2,$(MAKECMDGOALS)); \
