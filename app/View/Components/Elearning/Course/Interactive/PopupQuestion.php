@@ -5,26 +5,32 @@ namespace App\View\Components\Elearning\Course\Interactive;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\SubmodulePopupQuestion;
+use App\Models\UserPopupQuestion;
 
 class PopupQuestion extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public $answers;
-    public $question;
+    public $popup;
+    public $user;
 
-    public function __construct($answers, $question)
+    public function __construct($id, $userId, $moduleId)
     {
-        $this->answers = $answers;
-        $this->question = $question;
+        $this->popup = SubmodulePopupQuestion::findOrFail($id);
+        $this->user = UserPopupQuestion::firstOrCreate(
+            [
+                'user_id' => $userId,
+                'popup_question_id' => $this->popup->id,
+            ],
+            [
+                'module_id' => $moduleId,
+            ],
+        );
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
+        if (!$this->popup) {
+        }
         return view('components.elearning.course.interactive.popup-question');
     }
 }

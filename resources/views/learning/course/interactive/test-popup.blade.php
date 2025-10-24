@@ -45,99 +45,29 @@
             {{-- Right Content --}}
             @include('includes.components.elearning.course.section')
         </div>
-        <x-elearning.course.interactive.popup-question :answers="[
-            'Kemampuan otak yang berbeda-beda antara satu dengan yang lain.',
-            'Kemampuan otak ada yang lemah dan kuat.',
-        ]"
-            question="Apa yang dimaksud dengan neurodivergen?" />
     </section>
 
     @include('includes.components.elearning.course.footer')
 
+    <x-elearning.course.interactive.popup-question id=1 userId="{{ Auth::id() }}" moduleId=1/>
+    <x-elearning.course.interactive.popup-question id=2 userId="{{ Auth::id() }}" moduleId=1/>
 </body>
 
 @include('includes.components.elearning.course.dialog.modal-asessment')
 
 </html>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const video = document.getElementById("courseVideo");
-        const popup = document.getElementById("popupQuiz");
-        const btnBack = document.getElementById("btnBack");
-        const btnAnswer0 = document.getElementById("btnAnswer0");
-        const btnAnswer1 = document.getElementById("btnAnswer1");
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const submoduleId = document.body.dataset.submoduleId; // or any hidden meta
+        const response = await fetch(`/popup-questions/${submoduleId}`);
+        const popups = await response.json();
 
-        let quizTriggered = false;
-        const stopTime = 10; // in seconds
+        console.log("Popup Questions:", popups);
 
-        // Monitor time
-        video.addEventListener("timeupdate", function() {
-            if (!quizTriggered && video.currentTime >= stopTime) {
-                triggerQuiz();
-            }
-        });
-
-        // Prevent scrubbing past stopTime
-        video.addEventListener("seeking", function() {
-            if (!quizTriggered && video.currentTime > stopTime) {
-                video.currentTime = stopTime;
-                video.pause();
-                triggerQuiz();
-            }
-        });
-
-        function triggerQuiz() {
-            video.pause();
-            video.controls = false
-            popup.classList.remove("hidden");
-        }
-
-        // Back button: force pause, rewind slightly
-        btnBack.addEventListener("click", function() {
-            popup.classList.add("hidden");
-            video.currentTime = stopTime - 10;
-            video.controls = true
-            video.play();
-        });
-
-        // ✅ Answer click logic
-        btnAnswer0.addEventListener("click", function() {
-            // Mark this as correct
-            btnAnswer0.classList.add("bg-green-500");
-            btnAnswer0.classList.remove("bg-blue31");
-
-            // Mark the other as wrong
-            btnAnswer1.classList.add("bg-red-500");
-            btnAnswer1.classList.remove("bg-blue31");
-
-            quizTriggered = true;
-            video.controls = true
-
-            // Auto-continue after short delay (optional)
-            setTimeout(() => {
-                popup.classList.add("hidden");
-                video.play();
-            }, 2000);
-        });
-
-        btnAnswer1.addEventListener("click", function() {
-            // Mark this as wrong
-            btnAnswer1.classList.add("bg-red-500");
-            btnAnswer1.classList.remove("bg-blue31");
-
-            // Mark the correct one as green
-            btnAnswer0.classList.add("bg-green-500");
-            btnAnswer0.classList.remove("bg-blue31");
-
-            quizTriggered = true;
-            video.controls = true
-
-            // Auto-continue after short delay (optional)
-            setTimeout(() => {
-                popup.classList.add("hidden");
-                video.play();
-            }, 2000);
+        popups.forEach(popup => {
+            // Dynamically render each popup question into the DOM if you like
+            // OR trigger them based on popup.pop_time
         });
     });
-</script>
+</script> --}}

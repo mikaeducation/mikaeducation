@@ -1,4 +1,4 @@
-<div id="popupQuiz" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div id="popupQuestion-{{ $popup->id }}" class="relative z-50 hidden w-3/4 md:w-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed w-full inset-0 bg-black bg-opacity-55 transition-opacity" aria-hidden="true"></div>
     <div class="fixed inset-0 z-10 w-full md:w-screen overflow-y-auto">
         <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
@@ -17,24 +17,28 @@
                         <div class="text-center space-y-4 text-blue31">
                             <h3 class="my-3 text-3xl font-semibold">Pertanyaan Popup</h3>
                             <p class="my-3 text-lg mt-2">
-                                {{ $question }}
+                                {{ $popup->instruction }}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div
                     class="px-4 sm:px-6 w-full flex flex-col justify-center gap-2 bg-bluee3 bg-opacity-40 text-lg font-medium">
-                    @foreach ($answers as $i => $answer)
-                        <button id="btnAnswer{{ $i }}" type="button"
+                    @foreach ($popup->answers as $i => $answer)
+                        <button id="btnAnswer{{ $i }}-{{ $popup->id }}" type="button" data-correct="{{ $answer['is_correct'] }}"
                             class="px-3 py-2 w-full flex justify-start place-items-center gap-2 bg-blue31 rounded text-white text-left hover:-translate-y-1 hover:scale-110">
                             <h1 class="h-fit">{{ chr(65 + $i) }})</h1>
-                            <h1 class="h-fit">{{ $answer }}</h1>
+                            <h1 class="h-fit">{{ $answer['text'] }}</h1>
                         </button>
                     @endforeach
                 </div>
                 <div class="px-4 sm:px-6 w-full flex justify-center gap-2 bg-bluee3 bg-opacity-40">
-                    <button id="btnBack" type="button"
+                    <button id="btnBack-{{ $popup->id }}" type="button"
                         class="mt-4 w-1/2 border-2 border-blue31 rounded text-lg font-medium">
+                        Kembali
+                    </button>
+                    <button id="btnContinue-{{ $popup->id }}" type="button"
+                        class="mt-4 w-1/2 border-2 border-blue31 rounded text-lg font-medium hidden">
                         Kembali
                     </button>
                 </div>
@@ -47,3 +51,64 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const video = document.getElementById('courseVideo');
+    const popup = document.getElementById('popupQuestion-' + {{ $popup->id }});
+    const btnBack = document.getElementById('btnBack-' + {{ $popup->id }});
+    const btnAnswer0 = document.getElementById('btnAnswer0-' + {{ $popup->id }});
+    const btnAnswer1 = document.getElementById('btnAnswer1-' + {{ $popup->id }});
+
+    let quizTriggered = {{ $user->is_passed }};
+    const stopTime = {{ $popup->pop_time }};
+
+    // Monitor time
+    video.addEventListener('timeupdate', function () {
+        if (!quizTriggered && video.currentTime >= stopTime) {
+            video.currentTime = stopTime;
+            video.pause();
+            triggerQuiz();
+        }
+    });
+
+    function triggerQuiz() {
+        video.controls = false;
+        popup.classList.remove('hidden');
+    }
+
+    btnBack.addEventListener('click', function () {
+        popup.classList.add('hidden');
+        video.currentTime = stopTime - 20;
+        video.controls = true;
+        video.play();
+    });
+
+    // Answer button
+    btnAnswer0.addEventListener('click', function () {
+        // Mark this as correct
+        btnAnswer0.classList.add('bg-green-500');
+        btnAnswer0.classList.remove('bg-blue31');
+
+        // Mark the other as wrong
+        btnAnswer1.classList.add('bg-red-500');
+        btnAnswer1.classList.remove('bg-blue31');
+
+        quizTriggered = true;
+        video.controls = true;
+    });
+
+    btnAnswer1.addEventListener('click', function () {
+        // Mark this as wrong
+        btnAnswer1.classList.add('bg-red-500');
+        btnAnswer1.classList.remove('bg-blue31');
+
+        // Mark the correct one as green
+        btnAnswer0.classList.add('bg-green-500');
+        btnAnswer0.classList.remove('bg-blue31');
+
+        quizTriggered = true;
+        video.controls = true;
+    });
+});
+</script>

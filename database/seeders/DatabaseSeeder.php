@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             QuestionBankTableSeeder::class,
             ModuleReviewsTableSeeder::class,
             QuizzesTableSeeder::class,
+            PopupQuestionTableSeeder::class,
         ]);
     }
 }
