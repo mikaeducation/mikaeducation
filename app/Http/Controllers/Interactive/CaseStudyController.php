@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Interactive;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -10,8 +11,51 @@ use Illuminate\Support\Facades\Validator;
 class CaseStudyController extends Controller
 {
     private $key_answer = [
-        'adadawdawd',
-        'awdadadawdada'
+        // NOTE: jawaban 1
+        "Pra-komunikasi:
+    Kontak mata Budi masih terbatas
+    Budi sering menggunakan isyarat tubuh untuk mengungkapkan beberapa kebutuhan sehari-harinya, misalkan makan dan mau keluar rumah.
+    Dampak:
+    Kemampuan kontak mata dan perhatian bersama belum kuat sehingga menyulitkan Budi belajar hal baru dan belajar dari orang lain (sulit meniru/imitasi).
+    Budi belum konsisten menggunakan komunikasi verbal karena masih mudah menggunakan gesture, akibatnya tidak mudah berkomunikasi dengan orang baru yang tidak familiar dengan komunikasi gesturenya.
+
+    Komunikasi reseptif:
+    Budi mampu memahami instruksi sederhana 1-2 kata atas tugas yang sudah familar baginya. Namun masih belum bisa memberikan respon secara mandiri, maka masih membutuhkan prompt dan pengulangan agar dia bisa memberikan respon.
+    Kemampuan pemrosesan informasi yang dimilikinya membutuhkan waktu untuk bisa menerima dan memahami informasi dari lingkungannya.
+    Dampak:
+    Keterbatasan reseptif dan pemrosesan informasi menyebabkan kemampuan merespon komunikasinya tampak lambat dan tidak mudah menerima/belajar informasi baru.
+    Mampu memahami kalimat 1 langkah, 1 kata instruksi dengan kata yang telah familiar.
+
+    Komunikasi ekspresif
+    Budi belum mampu mengucapkan kata secara utuh. Dia mengucapkan akhir suku kata dan cenderung belum mampu mengucapkan lafal c, r, dan ng.
+    Belum mampu melakukan dialog secara mandiri.
+    Beberapa kesempatan bisa gagap atau kesulitan mengucapkan kata dengan benar.
+    Dampak:
+    Beberapa orang baru akan kesulitan memahami apa yang disampaikannya.
+    Sering Budi bisa frustasi ketika tidak bisa mengungkapkan apa yang diinginkannya.
+
+    Komunikasi pragmatis:
+    Budi mampu memberikan salam, namun belum secara mandiri, sehingga masih perlu diingatkan dengan prompt fisik dan verbal.
+    Dampak: Belum luwes secara sosial - untuk mampu menggunakan komunikasi salam harus diingatkan.
+
+    Strategi:
+    Memperkuat kemampuan pemusatan perhatian bersama (joint attention) dengan menggunakan mainan mobil-mobilan yang disukainya. Terapis dan Budi akan bermain bersama dengan mainan mobil untuk meraih kontak mata dan joint attention, dan dilanjutkan dengan membangun perbendaharaan kata baru.
+    Membangun perbendaharaan kata kerja fungsional sehari-hari dengan bantuan alat bantu visual. Dimulai dengan kata-kata terkait dengan konsumsi sehari: makan, minum, nasi, lauk, piring, sendok, gelas, air.
+    Pengenalan konsep first-and-then - “setelah belajar kata, baru main mobil”. Hal ini sebagai dasar pembentukan kesiapan belajar menggunakan jadwal sederhana 2 tahap. Mobil digunakan sebagai reward belajar agar mau belajar. Ke depannya, jadwal belajar bisa lebih banyak/kompleks.
+    ",
+        // NOTE: jawaban 2
+        "
+    Di bulan ke-3
+    Komunikasi ekspresif: skor 8 atau 80% benar - mampu menguasai ekspresi fungsional dan mandiri. Maka dianggap lolos Level I. Tata bisa diarahkan untuk maju ke Level II Komunikasi ekspresif.
+    Komunikasi reseptif: skor 7 atau 70% benar - walaupun sudah menguasai beberapa kata secara fungsional, belum mencapai kemandirian yang dibutuhkan untuk bisa memahami instruksi sehari-hari. Maka masih perlu dilanjutkan belajar komunikasi reseptif Level I hingga mencapai 80% benar.
+
+    Evaluasi Komunikasi:
+    Tata mengalami kemajuan kemampuan komunikasi. Kontak mata yang dimilikinya bertambah secara signifikan dari kurang dari 2 detik menjadi 2-3 detik hingga menjadi cukup untuk belajar instruksi sederhana dengan orang-orang di sekitarnya. Begitu juga kemampuan komunikasi verbalnya, dari awalnya belum mampu mengungkapkan kata secara mandiri, menjadi lebih mampu melakukan komunikasi secara fungsional. Di awal, skor 0 di setiap sesi maka kumulatif skor menunjukkan Tata belum mampu mengungkapkan komunikasi fungsional. Namun menunjukkan kemajuan di bulan kedua (skor 3 untuk ekspresif dan 5 untuk reseptif) dan ketiga (skor 8 untuk ekspresif dan 7 untuk reseptif).
+
+    Komunikasi reseptif Tata belum mencapai kemandirian yang dibutuhkan untuk bisa memahami instruksi sehari-hari. Maka ia masih perlu melanjutkan belajar komunikasi reseptif Level I hingga mencapai 80% benar. Dalam hal komunikasi ekspresif, Tata bisa diarahkan untuk maju ke Level II Komunikasi ekspresif. Namun latihan ekspresi Level I masih bisa diulang jika ada kesempatan agar semakin mantap penguasaannya.
+
+    Staregi: Penggunaan alat bantu visual akan membantu sebagai strategi belajar perbendarahaan kata-kata baru, memperkuat joint attention dan minat berinteraksi sosial dengan orang lain.
+    ",
     ];
 
     private $model = env('GEMINI_MODEL', 'gemini-1.5-flash');
@@ -51,16 +95,19 @@ class CaseStudyController extends Controller
             'answer' => 'required|string',
         ]);
 
-        if($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $validator->errors()->first(),
-            ], 400);
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => $validator->errors()->first(),
+                ],
+                400,
+            );
         }
 
         try {
             $answer = $request->input('answer');
-            $key_answer = $this->key_answer[$case_study_id] ?? "";
+            $key_answer = $this->key_answer[$case_study_id] ?? '';
 
             $prompt = $this->generateTemplate($this->prompt_template, [
                 'answer' => $answer,
@@ -85,10 +132,13 @@ class CaseStudyController extends Controller
             Log::error('CaseStudyController@store', [
                 'error' => $th->getMessage(),
             ]);
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Terjadi kesalahan saat memproses permintaan.',
-            ], 500);
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Terjadi kesalahan saat memproses permintaan.',
+                ],
+                500,
+            );
         }
     }
 
@@ -116,24 +166,28 @@ class CaseStudyController extends Controller
         //
     }
 
-    function fetchGemini(string $prompt, string $model = "gemini-1.5-flash") {
-        $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" . env('GEMINI_API_KEY');
+    function fetchGemini(string $prompt, string $model = 'gemini-1.5-flash')
+    {
+        $url =
+            "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" .
+            env('GEMINI_API_KEY');
 
         $response = Http::post($url, [
-            "contents" => [[
-                "parts" => [[ "text" => $prompt ]]
-            ]]
+            'contents' => [
+                [
+                    'parts' => [['text' => $prompt]],
+                ],
+            ],
         ]);
 
         return $response->json();
     }
 
-
-    function generateTemplate(string $template, array $variables) {
+    function generateTemplate(string $template, array $variables)
+    {
         foreach ($variables as $key => $value) {
-            $template = str_replace("{{" . $key . "}}", $value, $template);
+            $template = str_replace('{{' . $key . '}}', $value, $template);
         }
         return $template;
     }
-
 }
