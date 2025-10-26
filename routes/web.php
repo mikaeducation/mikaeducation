@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Interactive\QuizController;
+use App\Http\Controllers\Interactive\CaseStudyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,13 +130,14 @@ Route::middleware(['auth'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Halamann Kuis Interaktif
+| Halaman Interaktif
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/popup-quiz', fn() => view('learning.course.interactive.test-popup'));
     Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name("quiz.show");
     Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post");
+    Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name("case.study.post");
 });
 
 /*

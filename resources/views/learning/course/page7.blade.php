@@ -12,17 +12,17 @@
     </head>
     <body class="font-futura w-full min-h-screen flex flex-col relative">
         @include('includes.components.elearning.course.header')
-    
+
         <section class="w-full flex-1 flex flex-col items-center justify-center text-blue31">
             <div class="w-full flex-grow flex items-start justify-start">
                 {{-- Left Content --}}
                 <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                     <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-8">
                         <div class="w-full pb-12 text-lg flex flex-col text-justify">
-                            <p><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 1 - Budi</p>                   
+                            <p><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 1 - Budi</p>
                                 Budi adalah seorang anak laki-laki berusia 5 tahun. Ia didiagnosis ASD pada usia 3 tahun oleh Dokter Anak dan Psikolog Klinis.
                                 Sejak usia 2,5 tahun, ia telah menerima terapi komunikasi dan perilaku dari Pusat Terapi Smart Growth.
-                                <br><br>Saat ini, kemampuan komunikasinya adalah sebagai berikut: 
+                                <br><br>Saat ini, kemampuan komunikasinya adalah sebagai berikut:
                                 <ul class="list-disc pl-5">
                                     <li>Budi hanya mengucapkan beberapa huruf dalam satu kata. Ia belum dapat mengucapkan kata-kata yang masing-masing terdiri dari dua suku kata. Misalnya, ketika subjek mengatakan "minum", subjek hanya mengucapkan "num". Selanjutnya, ketika subjek mengatakan kata “mau pergi”, subjek sering mengucapkannya dengan "gi"</li>
                                     <li>Budi sering berbicara dengan gagap. Hal ini karena subjek tidak dapat mengucapkan kata-kata yang ingin diucapkannya sehingga ia gagap dan lambat</li>
@@ -37,11 +37,11 @@
                                 <ul class="list-decimal pl-5">
                                     <li>Buatlah planning matrix kemampuan komunikasi Budi</li>
                                 </ul>
-                                <x-elearning.course.interactive.studycase/>
+                                <x-elearning.course.interactive.studycase id="1"/>
                             </p>
-                            <p class="mt-10"><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 2 - Tata</p>                   
+                            <p class="mt-10"><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 2 - Tata</p>
                                 Tata sudah 3 bulan belajar dibantu dengan MIKA 1.0. Dia adalah anak laki-laki usia 3.5 tahun, yang mendapatkan diagnosa ASD level 1 sejak setahun yang lalu. Ketika dilakukan planning matrix, diketahui bahwa Tata perlu meningkatkan komunikasi mulai Level 1 MIKA 1.0.
-                                <br><br>Berikut adalah performasinya dalam sesi MIKA 1.0: 
+                                <br><br>Berikut adalah performasinya dalam sesi MIKA 1.0:
                                 <ul class="list-decimal pl-5">
                                     <li>Bulan pertama: Ia belum mampu membuat kontak mata lebih dari 2 detik. Juga belum mandiri menggunakan kata-kata kerja penting, seperti: “makan”, “minum”, “lagi”, “stop”. Terapis masih menggunakan prompt fisik seperti dorongan tangan atau menunjuk. Ia mampu memahami instruksi kalimat sederhana yang sudah biasa didengarnya di rumah, seperti: “ambil makan”, “pergi sekolah’. Tapi ternyata masih kesulitan mengerjakan instruksi tersebut jika diberikan guru di pusat terapis. Total kata yang mampu dipahaminya: 15 kata.</li>
                                     <li>Bulan kedua: Ia mulai mampu memberikan fokus selama instruksi pendek (2-3 detik) namun hanya jika diberikan terapis yang dikenalnya. Ia mampu menggunakan kata-kata kerja penting, seperti: “makan”, “minum”, “lagi”, “stop” secara mandiri sekitar 5 kali dari 10 latihan per sesi bulan ini. Ia mulai belajar mengerjakan instruksi sederhana: “ambil makan”, “pergi sekolah’, “pakai kaos kaki”, “pipis di wc”. Dalam sesi bulan ini, rata-rata ia berhasil 3 dari 10 trial benar secara mandiri, sedangkan sisanya masih harus diberikan prompt fisik. Total kata yang mampu dipahaminya: 45 kata.</li>
@@ -52,7 +52,7 @@
                                     <li>Buatlah skoring kemampuan reseptif dan ekspresifnya</li>
                                     <li>Evaluasi perfomasinya, lalu tentukan apa target terapi/belajar komunikasi Tata berikutnya.</li>
                                 </ul>
-                                <x-elearning.course.interactive.studycase/>
+                                <x-elearning.course.interactive.studycase id="2"/>
                             </p>
                         </div>
                     </div>
@@ -63,6 +63,39 @@
         </section>
 
     @include('includes.components.elearning.course.footer')
-    
+
     </body>
 </html>
+
+{{-- Case Study Javascript --}}
+<script>
+async function submitCaseStudy(url, id) {
+    const token = document.querySelector('input[name="_token"]').value;
+    const data = document.querySelector("#caseStudy-" + id)
+    const score = document.querySelector("score-" + id)
+    console.log(`case study answer submitted :`, data.value);
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": token,
+            },
+            body: JSON.stringify({ answer: data.value }),
+        });
+
+        if (!response.ok) {
+            throw new Error(response.message || "Gagal mengumpulkan Studi Kasus");
+        }
+
+        const result = await response.json();
+        alert(response.message || "Berhasil mengumpulkan Studi Kasus");
+
+        score.textContent = `Score: adili jokowi`
+
+    } catch (error) {
+        alert(error.message || "Terdapat error saat mengumpulkan kuis");
+    }
+}
+</script>

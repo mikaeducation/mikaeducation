@@ -57,8 +57,12 @@ class CaseStudyController extends Controller
     Staregi: Penggunaan alat bantu visual akan membantu sebagai strategi belajar perbendarahaan kata-kata baru, memperkuat joint attention dan minat berinteraksi sosial dengan orang lain.
     ",
     ];
+    private $model;
 
-    private $model = env('GEMINI_MODEL', 'gemini-1.5-flash');
+    public function __construct()
+        {
+            $this->model = env('GEMINI_MODEL', 'gemini-1.5-flash');
+        }
 
     private $prompt_template = "Anda adalah penilai jawaban kuis studi kasus.
                                 Tugas Anda adalah menilai **keselarasan jawaban pengguna** dengan **kunci jawaban**.
@@ -107,7 +111,7 @@ class CaseStudyController extends Controller
 
         try {
             $answer = $request->input('answer');
-            $key_answer = $this->key_answer[$case_study_id] ?? '';
+            $key_answer = $this->key_answer[$case_study_id-1] ?? '';
 
             $prompt = $this->generateTemplate($this->prompt_template, [
                 'answer' => $answer,
@@ -166,7 +170,7 @@ class CaseStudyController extends Controller
         //
     }
 
-    function fetchGemini(string $prompt, string $model = 'gemini-1.5-flash')
+    function fetchGemini(string $prompt, string $model)
     {
         $url =
             "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" .
@@ -186,7 +190,7 @@ class CaseStudyController extends Controller
     function generateTemplate(string $template, array $variables)
     {
         foreach ($variables as $key => $value) {
-            $template = str_replace('{{' . $key . '}}', $value, $template);
+            $template = str_replace('{{ ' . $key . ' }}', $value, $template);
         }
         return $template;
     }
