@@ -26,7 +26,13 @@ start: mariadb-start ## Start Laravel + Vite + DB
 	(npm run dev &)
 	@echo "🚀 Development environment started"
 
-laravel-make: ## Run php artisan make:<TYPE> [NAME] [flags]
+clear-cache: ## Clear Laravel cache, routes, config, and views
+	php artisan cache:clear
+	php artisan route:clear
+	php artisan config:clear
+	php artisan view:clear
+
+make: ## Run php artisan make:<TYPE> [NAME] [flags]
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
 		echo "❌ Usage: make laravel-make <TYPE> [NAME] [flags]"; \
 		exit 1; \
@@ -37,5 +43,15 @@ laravel-make: ## Run php artisan make:<TYPE> [NAME] [flags]
 	echo "🚀 Running: php artisan make:$$TYPE $$NAME $$FLAGS"; \
 	php artisan make:$$TYPE $$NAME $$FLAGS
 
+migrate: ## Run php artisan migrate[:option] [ARGS="--seed"]
+	@OPTION=$(word 2,$(MAKECMDGOALS)); \
+	ARGS=$(ARGS); \
+	if [ -z "$$OPTION" ]; then \
+		echo "🚀 Running: php artisan migrate $$ARGS"; \
+		php artisan migrate $$ARGS; \
+	else \
+		echo "🚀 Running: php artisan migrate:$$OPTION $$ARGS"; \
+		php artisan migrate:$$OPTION $$ARGS; \
+	fi
 %:
 	@:
