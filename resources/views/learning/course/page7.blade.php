@@ -37,7 +37,7 @@
                                 <ul class="list-decimal pl-5">
                                     <li>Buatlah planning matrix kemampuan komunikasi Budi</li>
                                 </ul>
-                                <x-elearning.course.interactive.studycase id="1"/>
+                                <x-elearning.course.interactive.case-study id="1"/>
                             </p>
                             <p class="mt-10"><p class="p-2 bg-bluee3 mb-2 font-medium text-xl"><span class="underline">Studi Kasus</span> 2 - Tata</p>
                                 Tata sudah 3 bulan belajar dibantu dengan MIKA 1.0. Dia adalah anak laki-laki usia 3.5 tahun, yang mendapatkan diagnosa ASD level 1 sejak setahun yang lalu. Ketika dilakukan planning matrix, diketahui bahwa Tata perlu meningkatkan komunikasi mulai Level 1 MIKA 1.0.
@@ -52,7 +52,7 @@
                                     <li>Buatlah skoring kemampuan reseptif dan ekspresifnya</li>
                                     <li>Evaluasi perfomasinya, lalu tentukan apa target terapi/belajar komunikasi Tata berikutnya.</li>
                                 </ul>
-                                <x-elearning.course.interactive.studycase id="2"/>
+                                <x-elearning.course.interactive.case-study id="2"/>
                             </p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
 async function submitCaseStudy(url, id) {
     const token = document.querySelector('input[name="_token"]').value;
     const data = document.querySelector("#caseStudy-" + id)
-    const score = document.querySelector("score-" + id)
+    const score = document.querySelector("#score-" + id)
     console.log(`case study answer submitted :`, data.value);
 
     try {
@@ -92,7 +92,7 @@ async function submitCaseStudy(url, id) {
         const result = await response.json();
         alert(response.message || "Berhasil mengumpulkan Studi Kasus");
 
-        score.textContent = `Score: adili jokowi`
+        score.textContent = "Skor: " + result.score
 
     } catch (error) {
         alert(error.message || "Terdapat error saat mengumpulkan kuis");

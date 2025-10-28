@@ -9,5 +9,5 @@
             Kumpulkan
         </button>
 </form>
-<div id="score-{{ $id }}" class="px-2 w-full flex justify-end bottom-0 bg-bluee3">
+<div id="score-{{ $id }}" class="px-2 w-full flex justify-end bottom-0 bg-bluee3 text-lg">
 </div>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Studycase extends Component
+class CaseStudy extends Component
 {
     /**
      * Create a new component instance.
@@ -18,6 +18,6 @@ class Studycase extends Component
      */
     public function render(): View|Closure|string
     {
-        return view("components.elearning.course.interactive.studycase");
+        return view('components.elearning.course.interactive.case-study');
     }
 }

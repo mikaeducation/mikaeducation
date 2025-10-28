@@ -60,9 +60,9 @@ class CaseStudyController extends Controller
     private $model;
 
     public function __construct()
-        {
-            $this->model = env('GEMINI_MODEL', 'gemini-1.5-flash');
-        }
+    {
+        $this->model = env('GEMINI_MODEL', 'gemini-1.5-flash');
+    }
 
     private $prompt_template = "Anda adalah penilai jawaban kuis studi kasus.
                                 Tugas Anda adalah menilai **keselarasan jawaban pengguna** dengan **kunci jawaban**.
@@ -111,7 +111,7 @@ class CaseStudyController extends Controller
 
         try {
             $answer = $request->input('answer');
-            $key_answer = $this->key_answer[$case_study_id-1] ?? '';
+            $key_answer = $this->key_answer[$case_study_id - 1] ?? '';
 
             $prompt = $this->generateTemplate($this->prompt_template, [
                 'answer' => $answer,
@@ -127,10 +127,10 @@ class CaseStudyController extends Controller
                 'prompt' => $prompt,
                 'response' => $response,
             ]);
-
             return response()->json([
                 'status' => 'success',
                 'data' => $response,
+                'score' => $response['candidates'][0]['content']['parts'][0]['text'],
             ]);
         } catch (\Throwable $th) {
             Log::error('CaseStudyController@store', [
@@ -172,9 +172,7 @@ class CaseStudyController extends Controller
 
     function fetchGemini(string $prompt, string $model)
     {
-        $url =
-            "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" .
-            env('GEMINI_API_KEY');
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" . env('GEMINI_API_KEY');
 
         $response = Http::post($url, [
             'contents' => [
