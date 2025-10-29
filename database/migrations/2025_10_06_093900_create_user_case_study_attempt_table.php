@@ -12,14 +12,12 @@ return new class extends Migration {
     {
         Schema::create('user_case_study_attempt', function (Blueprint $table) {
             $table->id('attempt_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_case_study_id');
+            $table->unsignedBigInteger('case_study_id');
             $table->foreign('user_case_study_id')->references('id')->on('user_case_study')->onDelete('cascade');
             $table->integer('attempt_number');
-            $table->float('score');
-            $table->boolean('is_passed')->default(false);
-            $table->string('duration', 8)->nullable();
-            $table->dateTime('started_at')->nullable();
-            $table->dateTime('finished_at')->nullable();
+            $table->integer('score');
             $table->timestamps();
         });
     }

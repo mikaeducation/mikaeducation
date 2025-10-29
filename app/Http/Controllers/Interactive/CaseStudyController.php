@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Interactive;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
+use App\Models\ProgressTracking;
+use App\Models\UserCaseStudy;
+use App\Models\UserCaseStudyAttempt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -110,6 +115,7 @@ class CaseStudyController extends Controller
         }
 
         try {
+            $user = Auth::user();
             $answer = $request->input('answer');
             $key_answer = $this->key_answer[$case_study_id - 1] ?? '';
 
@@ -119,6 +125,44 @@ class CaseStudyController extends Controller
             ]);
 
             $response = $this->fetchGemini($prompt, $this->model);
+            $score = $response['candidates'][0]['content']['parts'][0]['text'] ?? 0;
+
+            $progress = ProgressTracking::where('user_id', $user->id)->firstOrFail();
+            $profile = Profile::where('phone', $user->phone)->firstOrFail();
+
+            // === STEP 4: Create or update user_case_study ===
+            $caseStudy = UserCaseStudy::updateOrCreate(
+                [
+                    'user_id' => $user->id,
+                    'case_study_id' => $case_study_id,
+                ],
+                [
+                    'module_id' => 1,
+
+                    'progress_id' => $progress->progress_id,
+                    'username' => $profile->username,
+                ],
+            );
+
+            // Increment attempt count
+            $caseStudy->increment('attempt_count');
+
+            // Update high score if new one is higher
+            if ($score > $caseStudy->high_score) {
+                $caseStudy->high_score = $score;
+                $caseStudy->save();
+            }
+
+            // === STEP 5: Create user_case_study_attempt entry ===
+            $attemptNumber = UserCaseStudyAttempt::where('user_case_study_id', $caseStudy->id)->count() + 1;
+
+            UserCaseStudyAttempt::create([
+                'user_id' => $user->id,
+                'user_case_study_id' => $caseStudy->id,
+                'case_study_id' => $case_study_id,
+                'attempt_number' => $attemptNumber,
+                'score' => $score,
+            ]);
 
             Log::info('CaseStudyController@store', [
                 'case_study_id' => $case_study_id,
@@ -127,15 +171,17 @@ class CaseStudyController extends Controller
                 'prompt' => $prompt,
                 'response' => $response,
             ]);
+
             return response()->json([
                 'status' => 'success',
                 'data' => $response,
-                'score' => $response['candidates'][0]['content']['parts'][0]['text'],
+                'score' => $score,
             ]);
         } catch (\Throwable $th) {
             Log::error('CaseStudyController@store', [
                 'error' => $th->getMessage(),
             ]);
+
             return response()->json(
                 [
                     'status' => 'error',

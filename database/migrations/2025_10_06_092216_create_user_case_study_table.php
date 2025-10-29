@@ -13,10 +13,11 @@ return new class extends Migration {
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('progress_id');
+            $table->unsignedBigInteger('case_study_id');
             $table->foreign('progress_id')->references('progress_id')->on('progress_tracking')->onDelete('cascade');
             $table->string('username');
             $table->integer('attempt_count')->default(0);
-            $table->float('high_score')->default(0);
+            $table->integer('high_score')->default(0);
             $table->timestamps();
         });
     }
