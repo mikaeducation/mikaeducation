@@ -1,28 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const answerCard = document.querySelector(".js-answer-card");
-    const answer = document.querySelector(".js-answer");
-    const inputs = document.querySelectorAll(".js-input");
-    const refreshBtn = document.querySelector("#refresh-btn");
+document.addEventListener('DOMContentLoaded', function () {
+    const answerCard = document.querySelector('.js-answer-card');
+    const answer = document.querySelector('.js-answer');
+    const inputs = document.querySelectorAll('.js-input');
+    const refreshBtn = document.querySelector('#refreshButton');
     const answerPlaceholder = window.answerPlaceholder;
-    console.log("Initial Answers:", answerPlaceholder);
+    console.log('Initial Answers:', answerPlaceholder);
 
     function makeDraggable(el) {
-        el.addEventListener("dragstart", function (e) {
-            e.dataTransfer.setData("text/plain", this.textContent);
-            this.classList.add("opacity-50");
+        el.addEventListener('dragstart', function (e) {
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.classList.add('opacity-50');
         });
-        el.addEventListener("dragend", function () {
-            this.classList.remove("opacity-50");
+        el.addEventListener('dragend', function () {
+            this.classList.remove('opacity-50');
         });
     }
 
-    refreshBtn.addEventListener("click", function (e) {
+    refreshBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
         inputs.forEach((input) => {
-            if (input.innerHTML !== "____") input.innerHTML = "____";
+            if (input.innerHTML !== '____') input.innerHTML = '____';
         });
-        document.dispatchEvent(new CustomEvent("quiz-refreshed"));
+        document.dispatchEvent(new CustomEvent('quiz-refreshed'));
 
         if (Array.isArray(answerPlaceholder)) {
             answerPlaceholder.forEach((answerValue, index) => {
@@ -34,10 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         // Kalau Map → iterasi [key, value]
-        else if (
-            typeof answerPlaceholder === "object" &&
-            answerPlaceholder !== null
-        ) {
+        else if (typeof answerPlaceholder === 'object' && answerPlaceholder !== null) {
             Object.entries(answerPlaceholder).forEach(([key, value]) => {
                 if (Array.isArray(value)) {
                     value.forEach((val, index) => {
@@ -60,10 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear isi placeholder
         if (Array.isArray(answerPlaceholder)) {
             answerPlaceholder.length = 0;
-        } else if (
-            typeof answerPlaceholder === "object" &&
-            answerPlaceholder !== null
-        ) {
+        } else if (typeof answerPlaceholder === 'object' && answerPlaceholder !== null) {
             for (const key in answerPlaceholder) {
                 delete answerPlaceholder[key];
             }
