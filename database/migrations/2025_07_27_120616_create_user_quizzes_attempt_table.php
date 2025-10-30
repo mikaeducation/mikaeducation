@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,8 +19,7 @@ return new class extends Migration
             $table->integer('correct_answers')->default(0);
             $table->integer('incorrect_answers')->default(0);
             $table->float('score');
-            $table->boolean('is_passed')->default(false);
-            $table->string('duration', 8)->nullable();
+            $table->string('duration', 8)->nullable(); // TODO: hilangkan durasi dan hitung berdasarkan start dan end time
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();
             $table->timestamps();
