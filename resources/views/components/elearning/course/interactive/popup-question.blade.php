@@ -25,21 +25,22 @@
                 <div
                     class="px-4 sm:px-6 w-full flex flex-col justify-center gap-2 bg-bluee3 bg-opacity-40 text-lg font-medium">
                     @foreach ($popup->answers as $i => $answer)
-                        <button id="btnAnswer{{ $i }}-{{ $popup->id }}" type="button" data-correct="{{ $answer['is_correct'] }}"
+                        <button id="btnAnswer{{ $i }}-{{ $popup->id }}" type="button" data-no="{{ $answer['no'] }}" data-explanation="{{ $answer['explanation'] }}"
                             class="px-3 py-2 w-full flex justify-start place-items-center gap-2 bg-blue31 rounded text-white text-left hover:-translate-y-1 hover:scale-110">
                             <h1 class="h-fit">{{ chr(65 + $i) }})</h1>
                             <h1 class="h-fit">{{ $answer['text'] }}</h1>
                         </button>
                     @endforeach
+                    <p id="feedback-{{ $popup->id }}" class="text-center text-lg font-medium mt-4"></p>
                 </div>
                 <div class="px-4 sm:px-6 w-full flex justify-center gap-2 bg-bluee3 bg-opacity-40">
                     <button id="btnBack-{{ $popup->id }}" type="button"
-                        class="mt-4 w-1/2 border-2 border-blue31 rounded text-lg font-medium">
+                        class="mt-4 py-2 w-1/2 border-2 border-blue31 rounded text-lg font-medium">
                         Kembali
                     </button>
                     <button id="btnContinue-{{ $popup->id }}" type="button"
-                        class="mt-4 w-1/2 border-2 border-blue31 rounded text-lg font-medium hidden">
-                        Kembali
+                        class="mt-4 py-2 w-1/2 bg-blue31 rounded text-white text-lg font-medium hover:-translate-y-1 hover:scale-110 hidden">
+                        Lanjutkan
                     </button>
                 </div>
                 <p class="my-2 px-6 pb-4 pt-8 sm:pt-6 text-center">
@@ -57,13 +58,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const video = document.getElementById('courseVideo');
     const popup = document.getElementById('popupQuestion-' + {{ $popup->id }});
     const btnBack = document.getElementById('btnBack-' + {{ $popup->id }});
-    const btnAnswer0 = document.getElementById('btnAnswer0-' + {{ $popup->id }});
-    const btnAnswer1 = document.getElementById('btnAnswer1-' + {{ $popup->id }});
+    const btnContinue = document.getElementById('btnContinue-' + {{ $popup->id }});
+    const buttons = popup.querySelectorAll('button[data-no]');
+    const feedback = document.getElementById('feedback-' + {{ $popup->id }});
+    const token = document.querySelector('meta[name="csrf-token"]').content;
 
     let quizTriggered = {{ $user->is_passed }};
     const stopTime = {{ $popup->pop_time }};
 
-    // Monitor time
+    // Monitor video time
     video.addEventListener('timeupdate', function () {
         if (!quizTriggered && video.currentTime >= stopTime) {
             video.currentTime = stopTime;
@@ -84,31 +87,49 @@ document.addEventListener('DOMContentLoaded', function () {
         video.play();
     });
 
-    // Answer button
-    btnAnswer0.addEventListener('click', function () {
-        // Mark this as correct
-        btnAnswer0.classList.add('bg-green-500');
-        btnAnswer0.classList.remove('bg-blue31');
-
-        // Mark the other as wrong
-        btnAnswer1.classList.add('bg-red-500');
-        btnAnswer1.classList.remove('bg-blue31');
-
-        quizTriggered = true;
+    btnContinue.addEventListener('click', function () {
+        popup.classList.add('hidden');
         video.controls = true;
+        video.play();
+        quizTriggered = true
     });
 
-    btnAnswer1.addEventListener('click', function () {
-        // Mark this as wrong
-        btnAnswer1.classList.add('bg-red-500');
-        btnAnswer1.classList.remove('bg-blue31');
+    // ✅ Handle answer click
+    buttons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const answerNo = btn.dataset.no;
 
-        // Mark the correct one as green
-        btnAnswer0.classList.add('bg-green-500');
-        btnAnswer0.classList.remove('bg-blue31');
+            const response = await fetch(`/popup/{{ $popup->id }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token,
+                },
+                body: JSON.stringify({
+                    popup_id: {{ $popup->id }},
+                    answer_no: answerNo
+                })
+            });
 
-        quizTriggered = true;
-        video.controls = true;
+            const data = await response.json();
+
+            // Show feedback
+            feedback.textContent = data.message;
+            feedback.classList.remove('text-green-600', 'text-red-600');
+
+            if (data.correct) {
+                btn.classList.add('bg-green-500');
+                feedback.classList.add('text-green-600');
+            } else {
+                btn.classList.add('bg-red-500');
+                feedback.classList.add('text-red-600');
+            }
+
+            // Disable all buttons and show continue
+            buttons.forEach(b => (b.disabled = true));
+            btnContinue.classList.remove('hidden');
+            btnBack.classList.add('hidden');
+        });
     });
 });
 </script>

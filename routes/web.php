@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Interactive\QuizController;
 use App\Http\Controllers\Interactive\CaseStudyController;
+use App\Http\Controllers\Interactive\PopupQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,10 @@ use App\Http\Controllers\Interactive\CaseStudyController;
 */
 Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) {
     $user = User::findOrFail($id);
-    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/register')->withErrors(['message' => 'Link verifikasi tidak valid atau telah kadaluarsa.']);
     }
-    if (! $user->hasVerifiedEmail()) {
+    if (!$user->hasVerifiedEmail()) {
         $user->markEmailAsVerified();
         event(new \Illuminate\Auth\Events\Verified($user));
     }
@@ -37,12 +38,13 @@ Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) 
     Auth::login($user);
     // Redirect ke form melengkapi biodata
     return redirect('/registerprofile')->with('status', 'Email berhasil diverifikasi. Silakan lengkapi biodata Anda.');
-})->middleware(['signed'])->name('verification.verify');
+})
+    ->middleware(['signed'])
+    ->name('verification.verify');
 
 Route::get('/reactivate-account', [RegisteredUserController::class, 'showReactivationForm'])->name('reactivate.form');
 Route::post('/reactivate-account', [RegisteredUserController::class, 'reactivate'])->name('reactivate.submit');
 Route::get('/reactivate/verify/{token}', [RegisteredUserController::class, 'verifyReactivation'])->name('reactivate.verify');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -75,9 +77,9 @@ Route::get('/registerprofile', function () {
         ->view('auth.registerprofile')
         ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
         ->header('Pragma', 'no-cache');
-})->middleware('auth')->name('registerprofile');
-
-
+})
+    ->middleware('auth')
+    ->name('registerprofile');
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +88,7 @@ Route::get('/registerprofile', function () {
 */
 Route::get('/', function () {
     $user = Auth::user();
-    if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
+    if ($user && !\App\Models\Profile::where('phone', $user->phone)->exists()) {
         return redirect('/registerprofile');
     }
     return view('index');
@@ -134,10 +136,11 @@ Route::middleware(['auth'])->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/popup-quiz', fn() => view('learning.course.interactive.test-popup'));
-    Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name("quiz.show");
-    Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name("quiz.post");
-    Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name("case.study.post");
+    Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name('quiz.show');
+    Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name('quiz.post');
+    Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name('case.study.post');
+    Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup'));
+    Route::post('/popup/{id}', [PopupQuestionController::class, 'checkAnswer']);
 });
 
 /*
@@ -176,9 +179,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/asessment-evaluasi-submit', [AsessmentController::class, 'submitEvaluasi'])->name('asessment-evaluasi-submit');
 
     Route::post('/submit-review', [ModuleController::class, 'store'])->name('module.review.submit');
-
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -186,4 +187,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 |--------------------------------------------------------------------------
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
