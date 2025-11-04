@@ -14,7 +14,6 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz-matching-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
-    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">

@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Interactive;
 
 use App\Http\Controllers\Controller;
-use App\Models\Module;
-use BcMath\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Expr\Cast\String_;
-use Ramsey\Uuid\Type\Integer;
 
 class QuizController extends Controller
 {
@@ -333,9 +329,6 @@ class QuizController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $module_id, string $quiz_id)
     {
         $validator = Validator::make($request->all(), [
@@ -394,7 +387,7 @@ class QuizController extends Controller
 
                 case 5:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMatchingScore($answers, $this->answer['5']);
+                    $result = $this->calculateMatching($answers, $this->answer['5']);
                     break;
 
                 case 6:
@@ -404,12 +397,12 @@ class QuizController extends Controller
 
                 case 7:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMatchingScore($answers, $this->answer['7']);
+                    $result = $this->calculateMatching($answers, $this->answer['7']);
                     break;
 
                 case 8:
                     // Jawaban berupa map dengan string values
-                    $result = $this->calculateMatchingScore($answers, $this->answer['8']);
+                    $result = $this->calculateMatching($answers, $this->answer['8']);
                     break;
 
                 // case 9:
@@ -423,12 +416,14 @@ class QuizController extends Controller
 
             Log::info('Calculate Result:', [$result]);
             // Calculate score
+            $totalQuestions = $result['total_questions'];
             $correct = $result['correct'];
             $incorrect = $result['incorrect'];
             $score = ($correct / ($correct + $incorrect)) * 100;
             $score = round($score, 2);
             $duration = $request->input('duration', 0); // TODO: hilangkan durasi dan hitung berdasarkan start dan end time
             Log::info('Score calculated :', [
+                'total_question' => $totalQuestions,
                 'correct' => $correct,
                 'incorrect' => $incorrect,
                 'score' => $score,
@@ -437,7 +432,7 @@ class QuizController extends Controller
             $user_id = Auth::id();
 
             // TODO: Use transaction manually
-            DB::transaction(function () use ($user_id, $module_id, $quiz_id, $correct, $incorrect, $score, $duration) {
+            DB::transaction(function () use ($user_id, $module_id, $quiz_id, $totalQuestions, $correct, $incorrect, $score, $duration) {
                 // Get the progress_id from progress_tracking table
                 $progress_id = DB::table('progress_tracking')->where('user_id', $user_id)->where('module_id', $module_id)->value('progress_id');
                 Log::info('progress', [$progress_id]);
@@ -484,7 +479,7 @@ class QuizController extends Controller
                 DB::table('user_quizzes_attempt')->insert([
                     'user_quiz_id' => $user_quiz_id,
                     'attempt_number' => $attempt_number,
-                    'total_questions' => count($this->answer[$quiz_id]),
+                    'total_questions' => $totalQuestions,
                     'correct_answers' => $correct,
                     'incorrect_answers' => $incorrect,
                     'score' => $score,
@@ -528,6 +523,7 @@ class QuizController extends Controller
         $score = 0;
         $details = [];
 
+        $totalQuestions = count(array_filter($key_answers, fn($item) => ($item['correct'] ?? false) === true));
         $answerMap = [];
         foreach ($key_answers as $item) {
             $normalized = strtolower(trim($item['answer']));
@@ -551,24 +547,26 @@ class QuizController extends Controller
             }
         }
 
-        $incorrect = count($answers) - $score;
+        $incorrect = $totalQuestions - $score;
 
         return [
+            'total_questions' => $totalQuestions,
             'correct' => $score,
             'incorrect' => $incorrect,
             'details' => $details,
         ];
     }
-    private function calculateMatchingScore(array $answers, array $key_answers): array
+
+    private function calculateMatching(array $answers, array $key_answers): array
     {
         $score = 0;
         $details = [];
 
-        $totalCorrect = count(array_filter($key_answers, fn($item) => $item['correct'] === true));
+        $totalQuestions = count(array_filter($key_answers, fn($item) => $item['correct'] === true));
         foreach ($key_answers as $key => $item) {
             // Item must be structured with answer, explanation, correct
             $correctAnswer = $item['answer'];
-            $explanation = $item['explanation'] ?? null;
+            $explanation = $item['explanation'] ?? 'Jawaban tidak terdapat di list';
             $isCorrectFlag = $item['correct'] ?? true;
 
             $userAnswer = $answers[$key] ?? null;
@@ -586,9 +584,10 @@ class QuizController extends Controller
             ];
         }
 
-        $incorrect = $totalCorrect - $score;
+        $incorrect = $totalQuestions - $score;
 
         return [
+            'total_questions' => $totalQuestions,
             'correct' => $score,
             'incorrect' => $incorrect,
             'details' => $details,
@@ -601,11 +600,11 @@ class QuizController extends Controller
         $details = [];
 
         // Count only correct answers in key set
-        $totalCorrect = 0;
+        $totalQuestions = 0;
         foreach ($key_answers as $group => $items) {
             foreach ($items as $item) {
                 if (!empty($item['correct'])) {
-                    $totalCorrect++;
+                    $totalQuestions++;
                 }
             }
         }
@@ -640,51 +639,16 @@ class QuizController extends Controller
             }
         }
 
-        $incorrect = $totalCorrect - $score;
+        $incorrect = $totalQuestions - $score;
 
         return [
+            'total_questions' => $totalQuestions,
             'correct' => $score,
             'incorrect' => $incorrect,
             'details' => $details,
         ];
     }
 
-    // private function calculateArrayScore(array $answers, array $key_answers): int{
-    //     $score = 0;
-    //     foreach ($answers as $answer){
-    //         if(in_array(strtolower($answer),
-    //             array_map('strtolower', $key_answers))){
-    //             $score++;
-    //         }
-    //     }
-
-    //     return $score;
-    // }
-
-    // private function calculateMapScore(array $answers, array $key_answers): int{
-    //     $score = 0;
-    //     foreach($answers as $key => $answer){
-    //        if(!isset($key_answers[$key])){
-    //            continue;
-    //        }
-
-    //        $key_answer = $key_answers[$key];
-    //        if(is_string($answer) && is_string($key_answer)){
-    //             if(strtolower($answer) === strtolower($key_answer)){
-    //                 $score++;
-    //             }
-    //        }
-
-    //        else if (is_array($answer) && is_array($key_answer)){
-    //             $answer = array_map('strtolower', $answer);
-    //             $key_answer = array_map('strtolower', $key_answer);
-    //             $common = array_intersect($answer, $key_answer);
-    //             $score += count($common);
-    //         }
-    //     }
-
-    //     return $score;
-    // }
     /**
      * Remove the specified resource from storage.
      */

@@ -14,7 +14,6 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
-    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
@@ -69,7 +68,7 @@
             {{-- Button --}}
             <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
             </x-elearning.course.interactive.quiz.button>
-            
+
         </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
     </section>

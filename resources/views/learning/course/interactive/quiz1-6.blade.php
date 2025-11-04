@@ -14,13 +14,12 @@
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz-two-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
-    @vite('resources/js/quiz/quiz1/refresh-quiz1.js')
 </head>
 
 <body class="font-futura w-full min-h-screen flex flex-col relative text-blue31">
     @include('includes.components.elearning.course.header')
 
-    <section class="w-full flex flex-grow items-start justify-start">
+    <section class="w-full flex-1 flex text-blue31">
         {{-- Quiz Section --}}
         <x-elearning.course.interactive.quiz>
 
@@ -69,13 +68,11 @@
                         'MIKA 1.0',
                     ];
                 @endphp
-                <x-elearning.course.interactive.quiz.answer-box :answers="$answers">
-                </x-elearning.course.interactive.quiz.answer-box>
+                <x-elearning.course.interactive.quiz.answer-box :answers="$answers"/>
             </div>
 
             {{-- Button --}}
-            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
-            </x-elearning.course.interactive.quiz.button>
+            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id"/>
 
         </x-elearning.course.interactive.quiz>
         @include('includes.components.elearning.course.section')
