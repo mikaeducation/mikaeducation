@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Interactive\QuizController;
 use App\Http\Controllers\Interactive\CaseStudyController;
 use App\Http\Controllers\Interactive\PopupQuestionController;
+use App\Http\Controllers\Interactive\ForumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,7 +141,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name('quiz.post');
     Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name('case.study.post');
     Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup'));
-    Route::post('/popup/{id}', [PopupQuestionController::class, 'checkAnswer']);
+    Route::post('/popup/{popup_id}', [PopupQuestionController::class, 'checkAnswer']);
+    Route::get('/module/{module_id}/forum/', [ForumController::class, 'index']);
+    Route::get('/module/{module_id}/threads/{thread_id}', [ForumController::class, 'threads'])->name('forum.threads.show');
 });
 
 /*
