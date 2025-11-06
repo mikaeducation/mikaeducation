@@ -45,16 +45,14 @@ class PopupQuestionTableSeeder extends Seeder
                 'answers' => json_encode([
                     [
                         'no' => 1,
-                        'text' =>
-                            'Tingkat dan bentuk gejala autisme pada satu orang akan unik dan berbeda dengan individu lain.',
+                        'text' => 'Tingkat dan bentuk gejala autisme pada satu orang akan unik dan berbeda dengan individu lain.',
                         'explanation' => '',
                         'is_correct' => true,
                     ],
                     [
                         'no' => 2,
                         'text' => 'Proses sensori pada setiap individu autistik akan menjadi hipersensitif.',
-                        'explanation' =>
-                            'Proses sensoris pada orang autistik tidak selalu hipersensitif, namun bisa juga hiposensitif.',
+                        'explanation' => 'Proses sensoris pada orang autistik tidak selalu hipersensitif, namun bisa juga hiposensitif.',
                         'is_correct' => false,
                     ],
                 ]),
@@ -69,16 +67,14 @@ class PopupQuestionTableSeeder extends Seeder
                 'answers' => json_encode([
                     [
                         'no' => 1,
-                        'text' =>
-                            'Joint attention membuat anak mampu fokus mengamati obyek/situasi dan berbagi perhatian dengan orang lain.',
+                        'text' => 'Joint attention membuat anak mampu fokus mengamati obyek/situasi dan berbagi perhatian dengan orang lain.',
                         'explanation' =>
                             'Kemampuan berbagi perhatian bersama membuat anak mampu membentuk interaksi bukan hanya dengan obyek (mati) tapi juga melakukan interaksi dengan orang lain di sekitarnya. Ini adalah dasar kemampuan belajar dari sosial.',
                         'is_correct' => true,
                     ],
                     [
                         'no' => 2,
-                        'text' =>
-                            'Intervensi pra komunikasi membentuk kontak mata anak agar bisa fokus terhadap obyek belajar.',
+                        'text' => 'Intervensi pra komunikasi membentuk kontak mata anak agar bisa fokus terhadap obyek belajar.',
                         'explanation' =>
                             'Kontak mata pada individu autistik yang perlu didukung dikembangkan adalah kontak mata dengan orang lain di sekitarnya. Bukan hanya pada obyek mati.',
                         'is_correct' => false,
@@ -139,22 +135,67 @@ class PopupQuestionTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'submoduleSubject_id' => 2,
+                'title' => 'Komunikasi Pragmatis',
+                'instruction' => 'Mengapa kesulitan komunikasi pragmatis menjadi persoalan bagi anak autistik?',
+                'answers' => json_encode([
+                    [
+                        'no' => 1,
+                        'text' => 'Mereka jadi kurang memahami aturan dan kesulitan memunculkan perilaku yang tepat dalam situasi sosial.',
+                        'explanation' =>
+                            'Kelemahan komunikasi pragmatis membuat mereka cenderung sulit memahami informasi implisit, dan sebagai akibatnya  membuat mereka sering tampak ‘aneh’.',
+                        'is_correct' => true,
+                    ],
+                    [
+                        'no' => 2,
+                        'text' => 'Mereka jadi kurang percaya diri sehingga berdampak menyangkal interaksi sosial.',
+                        'explanation' =>
+                            'Pada umumnya, anak autistik sulit memahami tanda sosial sehingga menjadi canggung atau sulit memunculkan perilaku adaptif sesuai harapan sosial yang kurang jelas. Tapi persoalan ini bukan karena mereka berniat menyangkal sosial.',
+                        'is_correct' => false,
+                    ],
+                ]),
+                'pop_time' => '104',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'submoduleSubject_id' => 2,
+                'title' => 'Strategi Komunikasi',
+                'instruction' => 'Apa kelemahan penggunaan alat bantu visual Low-Technology?',
+                'answers' => json_encode([
+                    [
+                        'no' => 1,
+                        'text' => 'Kurang praktis ketika ada banyak kata-kata yang dipelajari',
+                        'explanation' =>
+                            'Seiring berkembangnya kemampuan komunikasi anak, akan dibutuhkan semakin lebih banyak kartu visual untuk mempelajari banyak konsep dan informasi. Untuk itulah MIKA 1.0 menjadi alternatif belajar menggunakan kartu visual yang telah disistem dalam pembelajaran high technology.',
+                        'is_correct' => true,
+                    ],
+                    [
+                        'no' => 2,
+                        'text' => 'Tidak menyerap teknologi canggih di saat modern ini',
+                        'explanation' => '',
+                        'is_correct' => false,
+                    ],
+                ]),
+                'pop_time' => '230',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
                 'submoduleSubject_id' => 3,
                 'title' => 'Intervensi Matriks',
                 'instruction' => 'Mengapa intervensi autisme perlu didesain secara individual?',
                 'answers' => json_encode([
                     [
                         'no' => 1,
-                        'text' =>
-                            'Kebutuhan masing-masing individu berbeda-beda, maka penanganannya harus dibuat secara individual',
+                        'text' => 'Kebutuhan masing-masing individu berbeda-beda, maka penanganannya harus dibuat secara individual',
                         'explanation' =>
                             'Dengan didesain secara individual, maka kebutuhan intervensinya akan disesuaikan dengan target  dan kemampuan individual.',
                         'is_correct' => true,
                     ],
                     [
                         'no' => 2,
-                        'text' =>
-                            'Perencanaan intervensi dan rekaman perkembangan individu autisme tidak dilakukan secara organis.',
+                        'text' => 'Perencanaan intervensi dan rekaman perkembangan individu autisme tidak dilakukan secara organis.',
                         'explanation' =>
                             'Perencanaan intervensi dan rekaman perkembangan individu autisme justru dilakukan secara organis, maka dokumennya selalu bisa diupdate. Karena inilah planning matrix disebut sebagai dokumen dinamis/hidup.',
                         'is_correct' => false,
@@ -167,21 +208,19 @@ class PopupQuestionTableSeeder extends Seeder
             [
                 'submoduleSubject_id' => 4,
                 'title' => 'Pembelajaran Terstruktur',
-                'instruction' => 'Mengapa kesulitan komunikasi pragmatis menjadi persoalan bagi anak autistik?',
+                'instruction' => 'Mengapa individu autistik lebih mampu belajar menggunakan pendekatan terstruktur?',
                 'answers' => json_encode([
                     [
                         'no' => 1,
-                        'text' =>
-                            'Mereka jadi kurang memahami aturan dan kesulitan memunculkan perilaku yang tepat dalam situasi sosial.',
+                        'text' => 'Pembelajaran terstruktur membuat lingkungan dan elemen belajar bisa diantisipasi karena ada keteraturan.',
                         'explanation' =>
-                            'Kelemahan komunikasi pragmatis membuat mereka cenderung sulit memahami informasi implisit, dan sebagai akibatnya  membuat mereka sering tampak ‘aneh’.',
+                            'Pembelajaran terstruktur membuat proses belajar menjadi rutin dan teratur, yang akan membuat belajar bisa diprediksi oleh individu autistik. Sedangkan, stress belajar yang menurun, adalah dampak proses belajar terstruktur.',
                         'is_correct' => true,
                     ],
                     [
                         'no' => 2,
-                        'text' => 'Mereka jadi kurang percaya diri sehingga berdampak menyangkal interaksi sosial.',
-                        'explanation' =>
-                            'Pada umumnya, anak autistik sulit memahami tanda sosial sehingga menjadi canggung atau sulit memunculkan perilaku adaptif sesuai harapan sosial yang kurang jelas. Tapi persoalan ini bukan karena mereka berniat menyangkal sosial.',
+                        'text' => 'Stress belajar yang dialami individu autistik akan menurun.',
+                        'explanation' => '',
                         'is_correct' => false,
                     ],
                 ]),
