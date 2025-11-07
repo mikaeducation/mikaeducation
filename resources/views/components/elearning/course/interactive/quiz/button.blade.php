@@ -3,7 +3,7 @@
         <h1 class="text-white">Score: 0</h1>
     </div>
     @csrf
-    <button id="refreshButton" type="button"
+    <button id="refreshButton" type="button" onclick=window.location.reload()
         class="m-2 p-2 w-1/5 text-blue31 text-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">Ulangi
         Kuis</button>
     <button id="submitButton" type="button"
