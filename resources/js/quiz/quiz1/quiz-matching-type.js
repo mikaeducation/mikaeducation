@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     answers.forEach((answer) => {
         answer.addEventListener('dragstart', function (e) {
             e.dataTransfer.setData('text/plain', this.textContent);
+            e.dataTransfer.setData('source/type', 'js-answer-source');
             e.dataTransfer.effectAllowed = 'move';
             this.classList.add('opacity-50');
         });
@@ -38,7 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             this.classList.remove('border-dashed');
 
+            const sourceType = e.dataTransfer.getData('source/type');
             const droppedText = e.dataTransfer.getData('text/plain');
+
+            if (sourceType !== 'js-answer-source') {
+                console.warn('Dropped item is not a valid quiz answer.');
+                return;
+            }
 
             if (this.textContent.trim() === '' || this.textContent.includes('____')) {
                 this.textContent = droppedText;
@@ -99,25 +106,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Handle quiz refreshed ---
-    document.addEventListener('quiz-refreshed', function () {
-        inputs.forEach((input) => {
-            input.classList.remove('border-red-500', 'bg-red-100', 'border-green-500', 'bg-green-100', 'cursor-help');
-            input.classList.add('border-blue31');
-            input.removeAttribute('title');
-            input.textContent = '____';
-        });
+    // document.addEventListener('quiz-refreshed', function () {
+    //     inputs.forEach((input) => {
+    //         input.classList.remove('border-red-500', 'bg-red-100', 'border-green-500', 'bg-green-100', 'cursor-help');
+    //         input.classList.add('border-blue31');
+    //         input.removeAttribute('title');
+    //         input.textContent = '____';
+    //     });
 
-        scoreBox.classList.add('hidden');
-        scoreLabel.textContent = `Score: 0`;
-        nextBtn?.classList.add('hidden');
-        submitBtn?.classList.remove('hidden');
+    //     scoreBox.classList.add('hidden');
+    //     scoreLabel.textContent = `Score: 0`;
+    //     nextBtn?.classList.add('hidden');
+    //     submitBtn?.classList.remove('hidden');
 
-        // Re-enable answers
-        const allAnswers = document.querySelectorAll('.js-answer');
-        allAnswers.forEach((ans) => {
-            ans.setAttribute('draggable', 'true');
-            ans.classList.remove('opacity-50', 'cursor-not-allowed');
-        });
-    });
+    //     // Re-enable answers
+    //     const allAnswers = document.querySelectorAll('.js-answer');
+    //     allAnswers.forEach((ans) => {
+    //         ans.setAttribute('draggable', 'true');
+    //         ans.classList.remove('opacity-50', 'cursor-not-allowed');
+    //     });
+    // });
 });

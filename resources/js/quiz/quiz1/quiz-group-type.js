@@ -1,4 +1,4 @@
-// NOTE: Javascript for Quiz 1
+// Javascript for one group type quiz
 
 document.addEventListener('DOMContentLoaded', function () {
     const answers = document.querySelectorAll('.js-answer');
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     answers.forEach((answer) => {
         answer.addEventListener('dragstart', function (e) {
             e.dataTransfer.setData('text/plain', this.textContent);
+            e.dataTransfer.setData('source/type', 'js-answer-source');
             e.dataTransfer.effectAllowed = 'move';
             this.classList.add('opacity-50'); // visual feedback
         });
@@ -38,10 +39,18 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             this.classList.remove('border-dashed');
 
+            const sourceType = e.dataTransfer.getData('source/type');
             const droppedText = e.dataTransfer.getData('text/plain');
+
             console.log('Dropped Text:', droppedText);
             let text = droppedText.trim();
             text = text.replace(/\s+/g, ' ');
+
+            if (sourceType !== 'js-answer-source') {
+                console.warn('Dropped item is not a valid quiz answer.');
+                return;
+            }
+
             if (!answerPlaceholder.includes(text)) {
                 answerPlaceholder.push(text);
             }
@@ -102,21 +111,21 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn?.classList.add('hidden');
     });
 
-    document.addEventListener('quiz-refreshed', function (e) {
-        answers.forEach((answer) => {
-            answer.setAttribute('draggable', 'true');
-            answer.classList.remove('opacity-70', 'cursor-not-allowed');
-        });
+    // document.addEventListener('quiz-refreshed', function (e) {
+    //     answers.forEach((answer) => {
+    //         answer.setAttribute('draggable', 'true');
+    //         answer.classList.remove('opacity-70', 'cursor-not-allowed');
+    //     });
 
-        inputs.forEach((input) => {
-            input.classList.remove('border-red-500', 'bg-red-100', 'border-green-500', 'bg-green-100');
-            input.classList.add('border-blue31');
-            input.classList.remove('cursor-help');
-            input.removeAttribute('title');
-        });
-        scoreBox.classList.add('hidden');
-        scoreLabel.textContent = `Score: 0`;
-        nextBtn?.classList.add('hidden');
-        submitBtn?.classList.remove('hidden');
-    });
+    //     inputs.forEach((input) => {
+    //         input.classList.remove('border-red-500', 'bg-red-100', 'border-green-500', 'bg-green-100');
+    //         input.classList.add('border-blue31');
+    //         input.classList.remove('cursor-help');
+    //         input.removeAttribute('title');
+    //     });
+    //     scoreBox.classList.add('hidden');
+    //     scoreLabel.textContent = `Score: 0`;
+    //     nextBtn?.classList.add('hidden');
+    //     submitBtn?.classList.remove('hidden');
+    // });
 });

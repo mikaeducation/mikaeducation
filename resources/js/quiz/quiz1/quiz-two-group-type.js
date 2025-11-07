@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const answerPlaceholder = {};
     window.answerPlaceholder = answerPlaceholder;
 
-    // Drag logic
     answers.forEach((answer) => {
         answer.addEventListener('dragstart', function (e) {
             e.dataTransfer.setData('text/plain', this.textContent);
+            e.dataTransfer.setData('source/type', 'js-answer-source');
             this.classList.add('opacity-50');
         });
 
@@ -36,8 +36,14 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             this.classList.remove('border-dashed');
 
+            const sourceType = e.dataTransfer.getData('source/type');
             const inputId = this.id;
             const droppedText = e.dataTransfer.getData('text/plain').trim();
+
+            if (sourceType !== 'js-answer-source') {
+                console.warn('Dropped item is not a valid quiz answer.');
+                return;
+            }
 
             if (!answerPlaceholder[inputId]) {
                 answerPlaceholder[inputId] = [];
@@ -57,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
             answerDiv.className = 'js-dropped-answer px-2 py-1 m-1 rounded border';
             this.appendChild(answerDiv);
 
-            // Remove dragged item from pool
             const draggedElements = document.querySelectorAll('.js-answer');
             draggedElements.forEach((el) => {
                 if (el.textContent.trim() === droppedText) {
@@ -87,23 +92,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 const groupBox = document.getElementById(group);
                 if (!groupBox) return;
 
-                // Apply feedback
+                const droppedElementsInGroup = groupBox.querySelectorAll('.js-dropped-answer');
+
+                droppedElementsInGroup.forEach((el) => {
+                    el.classList.add('border-red-500', 'bg-red-100');
+                });
+
                 items.forEach((item) => {
-                    const droppedEl = Array.from(groupBox.querySelectorAll('.js-dropped-answer')).find(
-                        (el) => el.textContent.trim() === item.answer,
-                    );
+                    if (item.correct === true) {
+                        const droppedEl = Array.from(droppedElementsInGroup).find((el) => el.textContent.trim() === item.answer.trim());
 
-                    if (!droppedEl) return;
+                        if (!droppedEl) return;
 
-                    if (item.correct) {
+                        droppedEl.classList.remove('border-red-500', 'bg-red-100');
                         droppedEl.classList.add('border-green-500', 'bg-green-100');
-                    } else {
-                        droppedEl.classList.add('border-red-500', 'bg-red-100');
-                    }
 
-                    if (item.explanation) {
-                        droppedEl.setAttribute('title', item.explanation);
-                        droppedEl.classList.add('cursor-help');
+                        if (item.explanation) {
+                            droppedEl.setAttribute('title', item.explanation);
+                            droppedEl.classList.add('cursor-help');
+                        }
                     }
                 });
             });
@@ -114,17 +121,17 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn?.classList.add('hidden');
     });
 
-    document.addEventListener('quiz-refreshed', function () {
-        answers.forEach((answer) => {
-            answer.setAttribute('draggable', 'true');
-            answer.classList.remove('opacity-70', 'cursor-not-allowed');
-        });
+    // document.addEventListener('quiz-refreshed', function () {
+    //     answers.forEach((answer) => {
+    //         answer.setAttribute('draggable', 'true');
+    //         answer.classList.remove('opacity-70', 'cursor-not-allowed');
+    //     });
 
-        inputs.forEach((input) => {
-            input.innerHTML = '____';
-        });
-        Object.keys(answerPlaceholder).forEach((key) => {
-            answerPlaceholder[key] = [];
-        });
-    });
+    //     inputs.forEach((input) => {
+    //         input.innerHTML = '____';
+    //     });
+    //     Object.keys(answerPlaceholder).forEach((key) => {
+    //         answerPlaceholder[key] = [];
+    //     });
+    // });
 });
