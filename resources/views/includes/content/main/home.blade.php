@@ -76,13 +76,13 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="section-1" class="w-3/4 flex items-center justify-center py-4 px-0">
             <div class="w-full flex flex-col lg:flex-row items-start justify-start gap-0 lg:gap-11 text-base lg:text-lg text-blue31">
                 <div class="w-full lg:w-[48%] text-justify pb-3 ">
                     <p>
-                        MIKA Education merupakan platform belajar online untuk memahami Autisme, karakteristik belajar komunikasi pada individu autistik, strategi asesmen matriks perencanaan, metode intervensi TEACCH, serta administrasi, skoring dan interpretasi MIKA dalam mendampingi belajar komunikasi. 
-                        MIKA education dibentuk sebagai kelanjutan pengembangan MIKA 1.0 dan menjadi suatu model komprehensif belajar menggunakan teknologi, yang mengkombinasikan aplikasi belajar (MIKA 1.0) dan website sumber belajar (MIKA Education).                    
+                        MIKA Education merupakan platform belajar online untuk memahami Autisme, karakteristik belajar komunikasi pada individu autistik, strategi asesmen matriks perencanaan, metode intervensi TEACCH, serta administrasi, skoring dan interpretasi MIKA dalam mendampingi belajar komunikasi.
+                        MIKA education dibentuk sebagai kelanjutan pengembangan MIKA 1.0 dan menjadi suatu model komprehensif belajar menggunakan teknologi, yang mengkombinasikan aplikasi belajar (MIKA 1.0) dan website sumber belajar (MIKA Education).
                         <span class="lg:hidden">Aplikasi berbasis website ini sedang dalam tahap pengembangan dan telah memiliki versi Beta yang dapat diakses sekarang juga dibawah ini.</span>
                     </p>
                 </div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="w-full xl:w-[50%] flex-row md:flex gap-8 space-y-4 md:space-y-0">
                                 <p class="w-full lg:w-1/2">
-                                    MIKA Education membantu dalam memahami Autisme melalui pembelajaran 
+                                    MIKA Education membantu dalam memahami Autisme melalui pembelajaran
                                     berbasis keterampilan (microcredentials) yang aplikatif dan sesuai kebutuhan nyata.
                                 </p>
                                 <p class="w-full lg:w-1/2">
@@ -164,7 +164,7 @@
                                 <img class="w-[60%] hidden lg:flex rounded-3xl shadow-xl" src="{{ asset('images/content-2.1.png') }}" alt="">
                                 <div class="w-full lg:w-[50%] absolute z-10 right-0">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center border-0 lg:border-8 bg-white border-white lg:rounded-3xl overflow-hidden">
-                                        @include('includes.content.main.video-player', 
+                                        @include('includes.content.main.video-player',
                                         ['src' => 'https://s3-id-jkt-1.kilatstorage.id/general-assets/short-tutorial-mika-education.mp4'])
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                     <img src="{{ asset('images/mika-edu-display.png') }}" alt="MIKA Education"class="w-[95%] h-full" />
                                 </div>
                                 <p>
-                                    Website MIKA Education <span class="font-medium">dapat diakses melalui berbagai perangkat</span>, seperti dari laptop/komputer, tablet dan smartphone. Pada layanan pembelajaran akan menyediakan berbagai modul belajar terkait dengan Autisme dan Perkembangan Komunikasi. 
+                                    Website MIKA Education <span class="font-medium">dapat diakses melalui berbagai perangkat</span>, seperti dari laptop/komputer, tablet dan smartphone. Pada layanan pembelajaran akan menyediakan berbagai modul belajar terkait dengan Autisme dan Perkembangan Komunikasi.
                                     Untuk bisa menggunakan MIKA Education, anda perlu melakukan <span class="font-medium">registasi sebagai pengguna (user)</span>. Lalu mulai <span class="font-medium">memilih tombol pembelajaran yang berada di bilah navigasi atas</span>, kemudian <span class="font-medium">memilih modul yang tersedia</span>. Pastikan anda memilih modul belajar yang sesuai dengan minat dan kebutuhan anda.
                                     Dalam modul belajar, anda akan mengakses berbagai materi. Dari presentasi (informasi power point dan narasi presenter), modul implementasi, dan sumber bacaan. Untuk memastikan keterlibatan belajar dan pelaksanaan asesmen belajar, anda akan mengerjakan kuis, pre dan post test, dan laporan studi kasus. Jika anda telah melaksanakan semua komponen belajar, barulah anda dinyatakan lolos modul belajar dan berhak mengajukan sertifikat belajar.
                                     Saat ini, <span class="font-medium">modul yang tersedia adalah modul belajar menggunakan MIKA 1.0</span>.
@@ -200,8 +200,8 @@
                             Sertifikasi Microcredentials: Apa<span class="text-pinkee"> Manfaatnya</span> untuk Anda?
                         </h1>
                         <p class="w-full h-fit text-xl font-medium bg-bluee3 text-center px-6 py-6 rounded shadow-md">
-                            "Dari hasil belajar di MIKA Education, anda bisa mendapatkan sertifikat atas hasil belajar anda. 
-                            Sertifikat ini bisa menjadi dukungan bukti belajar dan bermanfaat untuk perencanaan proses belajar anda kelak."                          
+                            "Dari hasil belajar di MIKA Education, anda bisa mendapatkan sertifikat atas hasil belajar anda.
+                            Sertifikat ini bisa menjadi dukungan bukti belajar dan bermanfaat untuk perencanaan proses belajar anda kelak."
                         </p>
                     </div>
                 </div>
@@ -232,20 +232,20 @@
                                 </h1>
                                 <div class="w-full md:w-[40%] h-full float-none md:float-right md:ml-6 lg:ml-8  bg-blue31 rounded">
                                     <div class="aspect-w-16 aspect-h-9 w-full h-full flex justify-center items-center overflow-hidden">
-                                        @include('includes.content.main.video-player', 
+                                        @include('includes.content.main.video-player',
                                         ['src' => 'https://s3-id-jkt-1.kilatstorage.id/general-assets/teaser-mika-10.mp4'])
                                     </div>
                                 </div>
                                 <p>
-                                    MIKA 1.0 adalah teknologi pendukung belajar komunikasi visual yang baru, lebih cepat, komprehensif dan sistematis sehingga dapat memberikan stimulasi pembelajaran komunikasi yang lebih baik 
-                                    karena dikembangkan berdasarkan sistem Aided Language Stimulation (ALS) dan Pragmatic Organisation Dynamic Display (PODD), dan juga bisa dikombinasikan dengan Picture Exchange Communication System (PECS). 
+                                    MIKA 1.0 adalah teknologi pendukung belajar komunikasi visual yang baru, lebih cepat, komprehensif dan sistematis sehingga dapat memberikan stimulasi pembelajaran komunikasi yang lebih baik
+                                    karena dikembangkan berdasarkan sistem Aided Language Stimulation (ALS) dan Pragmatic Organisation Dynamic Display (PODD), dan juga bisa dikombinasikan dengan Picture Exchange Communication System (PECS).
                                     MIKA 1.0 dikembangkan dengan Bahasa Indonesia, namun bisa disesuaikan dengan konteks bahasa daerah dengan fitur penambahan kata dan istilah.
                                     Belajar komunikasi yang dibantu MIKA 1.0 akan menghasilkan lebih banyak konsep kata yang dapat dipelajari (sedikitnya ada 2000 kata tersimpan di MIKA 1.0).
-                                    Seluruh proses belajar akan disimpan secara real time dan mudah diakses untuk mengevaluasi kemajuan terapi/belajar anak. Anak-anak ASD dan hendaya komunikasi dapat belajar 
+                                    Seluruh proses belajar akan disimpan secara real time dan mudah diakses untuk mengevaluasi kemajuan terapi/belajar anak. Anak-anak ASD dan hendaya komunikasi dapat belajar
                                     hingga tingkat kemampuan komunikasi yang lebih tinggi (dari menambah perbendaharaan kata, menyusun kalimat sederhana hingga kompleks, dan mengembangkan dialog).
                                     <br><br>
-                                    Selain itu, data yang diperoleh dari aplikasi perangkat lunak ini dapat digunakan untuk penelitian pengembangan intervensi autisme. Keterlibatan dan kontribusi anda akan bermakna dalam pengembangan intervensi pendidikan inklusi di Indonesia.                        
-                                    MIKA 1.0 juga dilaunching di Google play sehingga memudahkan dan memperluas akses di Indonesia. MIKA 1.0 bisa diutamakan digunakan oleh Terapis dan Guru dalam proses terapi, maka dibuka seluasnya akses untuk sekolah dan pusat terapi di Indonesia. 
+                                    Selain itu, data yang diperoleh dari aplikasi perangkat lunak ini dapat digunakan untuk penelitian pengembangan intervensi autisme. Keterlibatan dan kontribusi anda akan bermakna dalam pengembangan intervensi pendidikan inklusi di Indonesia.
+                                    MIKA 1.0 juga dilaunching di Google play sehingga memudahkan dan memperluas akses di Indonesia. MIKA 1.0 bisa diutamakan digunakan oleh Terapis dan Guru dalam proses terapi, maka dibuka seluasnya akses untuk sekolah dan pusat terapi di Indonesia.
                                     Orang tua juga bisa mendampingi belajar anaknya dengan MIKA 1.0, namun disarankan untuk turut belajar prinsip belajar komunikasi autisme agar bisa mengadministrasi MIKA 1.0 dengan baik.
                                 </p>
                             </div>
@@ -259,7 +259,7 @@
                         <div class="w-full lg:h-96 xl:h-72 lg:flex items-start justify-center text-base md:text-lg gap-5 grid md:grid-cols-2">
                             <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
                                 <div class="w-full flex items-center justify-center h-14">
-                                    <img src="https://img.icons8.com/3d-fluency/94/visual-effects.png" alt="signing-a-document" class="h-full"/>                                
+                                    <img src="https://img.icons8.com/3d-fluency/94/visual-effects.png" alt="signing-a-document" class="h-full"/>
                                 </div>
                                 <p>
                                     Pembelajaran komunikasi berbasis visual untuk anak berkebutuhan khusus menggunakan metode Aided Language Stimulation (ALS) dan dukungan suara untuk setiap gambar.
@@ -267,26 +267,26 @@
                             </div>
                             <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
                                 <div class="w-full flex items-center justify-center h-14">
-                                    <img src="https://img.icons8.com/3d-fluency/94/signing-a-document.png" alt="signing-a-document" class="h-full"/>                                
-                                </div>      
-                                <p>
-                                    Learning content yang dapat dipersonalisasi dengan fitur Penambahan kategori, gambar, dan suara berdasarkan kebutuhan anak-anak dan konteks lingkungan.                            
-                                </p>
-                            </div>
-                            <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
-                                <div class="w-full flex items-center justify-center h-14">
-                                    <img src="https://img.icons8.com/3d-fluency/94/product-documents.png" alt="signing-a-document" class="h-full"/>                                
+                                    <img src="https://img.icons8.com/3d-fluency/94/signing-a-document.png" alt="signing-a-document" class="h-full"/>
                                 </div>
                                 <p>
-                                    Manajemen performansi dan progress anak sebagai media analitis kemajuan anak serta penambahan opsi ulasan di setiap sesi pembelajaran.                            
+                                    Learning content yang dapat dipersonalisasi dengan fitur Penambahan kategori, gambar, dan suara berdasarkan kebutuhan anak-anak dan konteks lingkungan.
                                 </p>
                             </div>
                             <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
                                 <div class="w-full flex items-center justify-center h-14">
-                                    <img src="https://img.icons8.com/3d-fluency/94/group--v3.png" alt="signing-a-document" class="h-full"/>                                
-                                </div>                              
+                                    <img src="https://img.icons8.com/3d-fluency/94/product-documents.png" alt="signing-a-document" class="h-full"/>
+                                </div>
                                 <p>
-                                    Manajemen profil dan online-synchronization, untuk pengelolaan profil dan sinkronisasi data secara online.                            
+                                    Manajemen performansi dan progress anak sebagai media analitis kemajuan anak serta penambahan opsi ulasan di setiap sesi pembelajaran.
+                                </p>
+                            </div>
+                            <div class="w-full lg:w-1/4 h-fit sm:h-60 lg:h-full bg-bluee3 flex flex-col items-center text-justify p-4 lg:pt-6 gap-2">
+                                <div class="w-full flex items-center justify-center h-14">
+                                    <img src="https://img.icons8.com/3d-fluency/94/group--v3.png" alt="signing-a-document" class="h-full"/>
+                                </div>
+                                <p>
+                                    Manajemen profil dan online-synchronization, untuk pengelolaan profil dan sinkronisasi data secara online.
                                 </p>
                             </div>
                         </div>
@@ -312,7 +312,7 @@
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 h-20 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">3</div>
                             <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Pengelolaan profil anak</span>
-                                Terapis dapat mengisi dan merubah dan profil kemampuan anak (planning matrix) yang ada di aplikasi MIKA 1.0 sesuai kebutuhan dan perkembangan anak.                            
+                                Terapis dapat mengisi dan merubah dan profil kemampuan anak (planning matrix) yang ada di aplikasi MIKA 1.0 sesuai kebutuhan dan perkembangan anak.
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
@@ -328,7 +328,7 @@
                                         <p class="text-justify">Anak dihadapkan dengan sekumpulan gambar dan memilih kata-kata yang dipelajari untuk menguasai komunikasi reseptif dan ekspresif. Tujuan fase ini adalah anak menggunakan kata-kata tersebut secara fungsional. Misalkan: belajar memahami dan mengekspresikan kata “makan”, hingga anak mampu menggunakan kata tersebut untuk meminta makan.</p>
                                     </div>
                                     <div class="p-4 lg:w-1/4 bg-bluee3 text-center flex flex-col">
-                                        <div class="lg:h-24 whitespace-pre-line">Level 2 
+                                        <div class="lg:h-24 whitespace-pre-line">Level 2
                                             (Menyusun Kalimat Sederhana - terdiri 2 kata)</div>
                                         <p class="text-justify">Anak dihadapkan dengan sekumpulan gambar dan memilih 2 kata untuk menyusun kalimat sederhana (subyek + predikat). Tujuan fase ini adalah anak menggunakan kalimat sederhana tersebut secara fungsional, baik secara reseptif dan ekspresif.</p>
                                     </div>
@@ -341,20 +341,20 @@
                                         <div class="lg:h-24 whitespace-pre-line">Level 4
                                             (Menyusun dialog)</div>
                                         <p class="text-justify">Anak dihadapkan dengan sekumpulan gambar dan menyusun percakapan dengan menggunakan alat bantu visual percakapan (menyusun kalimat tanya dan kalimat respon/komentar). Tujuan fase ini adalah anak mampu berdialog secara fungsional.</p>
-                                    </div>   
-                                </div>                  
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">5</div>
                             <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Mengevaluasi keberhasilan terapi/belajar</span>
-                                Terapis dapat mengevaluasi hasil terapi komunikasi anak selama masa terapi/belajar.                            
+                                Terapis dapat mengevaluasi hasil terapi komunikasi anak selama masa terapi/belajar.
                             </p>
                         </div>
                         <div class="w-full h-fit flex gap-5">
                             <div class="py-4 px-7 text-2xl font-bold bg-bluee3 rounded-l-full flex items-center justify-center">6</div>
                             <p class="w-full py-2 whitespace-pre-line border-2 border-bluee3 border-l-0 rounded pr-4"> <span class="font-bold">Mengelola dan mengamati perkembangan anak</span>
-                                Terapis dapat melihat dan merubah perkembangan anak selama terapi/belajar berlangsung.                            
+                                Terapis dapat melihat dan merubah perkembangan anak selama terapi/belajar berlangsung.
                             </p>
                         </div>
                     </div>
@@ -383,7 +383,7 @@
                 <img src="{{ asset('images/aawa.png') }}" alt="" class="rounded-full w-24 lg:w-32 lg:h-32">
             </div>
         </div>
-        <p class="text-base lg:text-lg text-justify">Media ini dikembangkan oleh Forum Peduli Autisme Jawa Timur (FPAJT) berkerjasama dengan Fakultas Psikologi dan Fakultas Sains dan Teknologi Universitas Airlangga Surabaya, 
+        <p class="text-base lg:text-lg text-justify">Media ini dikembangkan oleh Forum Peduli Autisme Jawa Timur (FPAJT) berkerjasama dengan Fakultas Psikologi dan Fakultas Sains dan Teknologi Universitas Airlangga Surabaya,
             UPTD Layanan Disabilitas Kab.Sidoarjo dan SLB Riverkids Malang, serta dukungan pendanaan Konsulat Jenderal Pemerintah Australia.
         </p>
     </div>

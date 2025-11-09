@@ -16,7 +16,10 @@ use App\Http\Controllers\AsessmentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
+use App\Http\Controllers\Interactive\QuizController;
+use App\Http\Controllers\Interactive\CaseStudyController;
+use App\Http\Controllers\Interactive\PopupQuestionController;
+use App\Http\Controllers\Interactive\ForumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +28,10 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) {
     $user = User::findOrFail($id);
-    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         return redirect('/register')->withErrors(['message' => 'Link verifikasi tidak valid atau telah kadaluarsa.']);
     }
-    if (! $user->hasVerifiedEmail()) {
+    if (!$user->hasVerifiedEmail()) {
         $user->markEmailAsVerified();
         event(new \Illuminate\Auth\Events\Verified($user));
     }
@@ -36,12 +39,13 @@ Route::get('/verify-email/{id}/{hash}', function ($id, $hash, Request $request) 
     Auth::login($user);
     // Redirect ke form melengkapi biodata
     return redirect('/registerprofile')->with('status', 'Email berhasil diverifikasi. Silakan lengkapi biodata Anda.');
-})->middleware(['signed'])->name('verification.verify');
+})
+    ->middleware(['signed'])
+    ->name('verification.verify');
 
 Route::get('/reactivate-account', [RegisteredUserController::class, 'showReactivationForm'])->name('reactivate.form');
 Route::post('/reactivate-account', [RegisteredUserController::class, 'reactivate'])->name('reactivate.submit');
 Route::get('/reactivate/verify/{token}', [RegisteredUserController::class, 'verifyReactivation'])->name('reactivate.verify');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +78,9 @@ Route::get('/registerprofile', function () {
         ->view('auth.registerprofile')
         ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
         ->header('Pragma', 'no-cache');
-})->middleware('auth')->name('registerprofile');
-
-
+})
+    ->middleware('auth')
+    ->name('registerprofile');
 
 /*
 |--------------------------------------------------------------------------
@@ -85,12 +89,11 @@ Route::get('/registerprofile', function () {
 */
 Route::get('/', function () {
     $user = Auth::user();
-    if ($user && ! \App\Models\Profile::where('phone', $user->phone)->exists()) {
+    if ($user && !\App\Models\Profile::where('phone', $user->phone)->exists()) {
         return redirect('/registerprofile');
     }
     return view('index');
 });
-
 Route::get('/news', fn() => view('news'));
 Route::get('/article', fn() => view('article'));
 Route::get('/articleexplore', fn() => view('includes/content/main/article/articleexplore'));
@@ -100,8 +103,6 @@ Route::get('/article3', fn() => view('includes/content/main/article/article3'));
 Route::get('/article4', fn() => view('includes/content/main/article/article4'));
 Route::get('/aboutus', fn() => view('about-us'));
 
-
-
 /*
 |--------------------------------------------------------------------------
 | FITUR PESAN
@@ -109,8 +110,6 @@ Route::get('/aboutus', fn() => view('about-us'));
 */
 
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -132,7 +131,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
 });
 
-
+/*
+|--------------------------------------------------------------------------
+| Halaman Interaktif
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name('quiz.show');
+    Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name('quiz.post');
+    Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name('case.study.post');
+    Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup'));
+    Route::post('/popup/{popup_id}', [PopupQuestionController::class, 'checkAnswer']);
+    Route::get('/module/{module_id}/forum/', [ForumController::class, 'index']);
+    Route::get('/module/{module_id}/threads/{thread_id}', [ForumController::class, 'threads'])->name('forum.threads.show');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -160,6 +172,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
     Route::get('/page8_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page8_0');
+
     Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
     Route::post('/check-asessment-status', [AsessmentController::class, 'check']);
@@ -177,4 +190,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 |--------------------------------------------------------------------------
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

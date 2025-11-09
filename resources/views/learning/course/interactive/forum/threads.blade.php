@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>E-Learning | Mika Education</title>
+        <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo.png') }}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="progress-id" content="{{ session('progress_id') }}">
+        <meta name="user-id" content="{{ Auth::id() }}">
+        @vite('public/assets/css/style.css')
+    </head>
+    <body class="font-futura w-full min-h-screen flex flex-col relative">
+    @include('includes.components.elearning.course.header')
+
+        <section class="w-full flex-1 flex flex-col items-center justify-center text-blue31">
+            <div class="w-full flex-grow flex items-start justify-start">
+                {{-- Left Content --}}
+                <div id="left" class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
+                    <div class="w-full h-full flex flex-col pl-12 md:pr-12 mt-10">
+                        <div class="h-full w-full space-y-8">
+                            <h1 class="text-xl font-bold">
+                                Forum Diskusi
+                            </h1>
+                        </div>
+                        <div class="pt-4">
+                            @if($threads->count() > 0)
+                                @foreach($threads as $thread)
+                                    <div class="mb-4 p-4 bg-bluee3 rounded">
+                                        <h2 class="text-lg font-bold">{{ $thread->title }}</h2>
+                                        <p class="text-black">{{ $thread->content }}</p>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p class="text-gray-600">Belum ada diskusi.</p>
+                            @endif
+                        </div>
+                        <button id="createThreadButton" type="button"
+                            onclick=""
+                            class="m-2 p-2 w-12 content-center text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
+                                +
+                        </button>
+                    </div>
+                </div>
+                {{-- Right Content --}}
+                @include('includes.components.elearning.course.section')
+            </div>
+        </section>
+
+    @include('includes.components.elearning.course.footer')
+
+    </body>
+
+</html>

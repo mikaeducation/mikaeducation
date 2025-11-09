@@ -30,8 +30,8 @@
                                 <button id="menu-btn" class="h-full flex items-center z-50 text-center text-blue6a text-2xl font-medium border-2 border-blue6a transition rounded hover:border-blue31">
                                     @if(Auth::check() && Auth::user()->profile)
                                         @if(Auth::user()->profile->profile_image)
-                                            <img src="{{ asset( Auth::user()->profile->profile_image) }}" 
-                                                alt="Profil" 
+                                            <img src="{{ asset( Auth::user()->profile->profile_image) }}"
+                                                alt="Profil"
                                                 class="w-10 h-10 object-cover object-top">
                                         @else
                                             <span class="flex items-center justify-center px-3 xl:px-4 py-0 xl:py-0.5 text-blue6a font-normal text-3xl">
@@ -44,13 +44,13 @@
                                                 <path d="M19.7628 19.9054C20.3157 19.7902 20.6449 19.2117 20.3702 18.7183C19.7646 17.6307 18.8106 16.6749 17.5902 15.9465C16.0184 15.0085 14.0925 14.5 12.1113 14.5C10.1301 14.5 8.20425 15.0085 6.63245 15.9465C5.41202 16.6749 4.45799 17.6307 3.85241 18.7183C3.57771 19.2117 3.90695 19.7902 4.45976 19.9054C9.50657 20.9572 14.716 20.9572 19.7628 19.9054Z" fill="#6AA4D9"/>
                                                 <circle cx="12.1113" cy="8.5" r="5" fill="#6AA4D9"/>
                                             </svg>
-                                            Masuk/Daftar                                      
+                                            Masuk/Daftar
                                         </p>
                                     @endif
                                 </button>
                             </a>
                         </div>
-                        
+
                         <div class="relative group menu-container">
                             <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center flex lg:hidden">
                                 <path d="M18 9L12 15L6 9" stroke="#6AA4D9" stroke-width="2"/>
@@ -66,8 +66,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>                  
+
+                    </div>
                 </nav>
             </div>
         </div>
@@ -78,7 +78,7 @@
                 <div class="mr-2">
                     <img src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-12 w-12">
                 </div>
-                <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA 
+                <h1 class="font-bold text-2xl text-blue6a whitespace-pre-line leading-6">MIKA
                     EDUCATION</h1>
             </a>
         </div>
@@ -91,7 +91,7 @@
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.7628 19.9054C20.3157 19.7902 20.6449 19.2117 20.3702 18.7183C19.7646 17.6307 18.8106 16.6749 17.5902 15.9465C16.0184 15.0085 14.0925 14.5 12.1113 14.5C10.1301 14.5 8.20425 15.0085 6.63245 15.9465C5.41202 16.6749 4.45799 17.6307 3.85241 18.7183C3.57771 19.2117 3.90695 19.7902 4.45976 19.9054C9.50657 20.9572 14.716 20.9572 19.7628 19.9054Z" fill="#6AA4D9"/>
                             <circle cx="12.1113" cy="8.5" r="5" fill="#6AA4D9"/>
-                        </svg>                                        
+                        </svg>
                     </p>
                 @endif
             </div>
@@ -106,8 +106,8 @@
                 <button id="menu-btn" class="h-full w-[18%] flex items-center z-50 text-center text-blue6a text-2xl font-medium transition rounded-full hover:border-blue31">
                     @if(Auth::check() && Auth::user()->profile)
                         @if(Auth::user()->profile->profile_image)
-                            <img src="{{ asset( Auth::user()->profile->profile_image) }}" 
-                                alt="Profil" 
+                            <img src="{{ asset( Auth::user()->profile->profile_image) }}"
+                                alt="Profil"
                                 class="w-14 h-14 object-cover object-top rounded-full border-2 border-blue6a">
                         @else
                             <span class="flex items-center justify-center px-3 h-10 text-blue6a font-normal text-3xl border-2 border-blue6a rounded-full">
@@ -120,7 +120,7 @@
                                 <path d="M19.7628 19.9054C20.3157 19.7902 20.6449 19.2117 20.3702 18.7183C19.7646 17.6307 18.8106 16.6749 17.5902 15.9465C16.0184 15.0085 14.0925 14.5 12.1113 14.5C10.1301 14.5 8.20425 15.0085 6.63245 15.9465C5.41202 16.6749 4.45799 17.6307 3.85241 18.7183C3.57771 19.2117 3.90695 19.7902 4.45976 19.9054C9.50657 20.9572 14.716 20.9572 19.7628 19.9054Z" fill="#6AA4D9"/>
                                 <circle cx="12.1113" cy="8.5" r="5" fill="#6AA4D9"/>
                             </svg>
-                            Masuk/Daftar                              
+                            Masuk/Daftar
                         </p>
                     @endif
                 </button>
@@ -188,7 +188,7 @@
                 </div>
                 @if($isAbout) → @endif
             </a>
-            
+
             @php $isLearn = request()->is('learn') || request()->is('login') @endphp
             <a href="{{ Auth::check() ? '/learn' : '/login' }}" class="w-full p-2 px-5 hover:text-xl text-blue31 flex justify-between items-center {{ $isLearn ? 'bg-bluee3 rounded-xl' : '' }}">
                 <div class="flex items-center justify-start gap-3 h-fit w-full">
@@ -243,7 +243,7 @@
                                     <div class="w-full flex flex-col pb-2 border-b-2">
                                         <button onclick="toggleFAQ(this)" class="w-full flex justify-between text-left">
                                             <p class="w-11/12">Bagaimana mengakses pembelajaran?</p>
-                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                                 class="items-center flex opacity-50 transition-transform duration-300">
                                                 <path d="M18 9L12 15L6 9" stroke="#31587C" stroke-width="2"/>
                                             </svg>
@@ -255,7 +255,7 @@
                                     <div class="w-full flex flex-col pb-2 border-b-2">
                                         <button onclick="toggleFAQ(this)" class="w-full flex justify-between text-left">
                                             <p class="w-11/12">Bagaimana caranya untuk login/masuk?</p>
-                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                                 class="items-center flex opacity-50 transition-transform duration-300">
                                                 <path d="M18 9L12 15L6 9" stroke="#31587C" stroke-width="2"/>
                                             </svg>
@@ -267,7 +267,7 @@
                                     <div class="w-full flex flex-col pb-2 border-b-2">
                                         <button onclick="toggleFAQ(this)" class="w-full flex justify-between text-left">
                                             <p class="w-11/12">Bagaimana caranya untuk Daftar Akun atau melakukan proses Registrasi?</p>
-                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                                            <svg width="24" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                                 class="items-center flex opacity-50 transition-transform duration-300">
                                                 <path d="M18 9L12 15L6 9" stroke="#31587C" stroke-width="2"/>
                                             </svg>
@@ -286,11 +286,11 @@
                                         <path d="M46.8327 12.1665C46.8327 8.39527 46.8327 6.50965 45.6611 5.33808C44.4895 4.1665 42.6039 4.1665 38.8327 4.1665H38.166C34.3948 4.1665 32.5092 4.1665 31.3376 5.33808C30.166 6.50965 30.166 8.39527 30.166 12.1665V18.8332C30.166 19.776 30.166 20.2474 30.4589 20.5403C30.7518 20.8332 31.2232 20.8332 32.166 20.8332H38.8327C42.6039 20.8332 44.4895 20.8332 45.6611 19.6616C46.8327 18.49 46.8327 16.6044 46.8327 12.8332V12.1665Z" fill="#31587C" stroke="white" stroke-width="1.2"/>
                                         <path d="M35.375 10.4165L41.625 10.4165" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M35.375 14.5835H38.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>                                        
+                                        </svg>
                                     <p class="font-medium">Kirim Pesan kepada Kami...</p>
                                 </button>
                                 <a href="https://wa.me/085141177976" class="h-fit flex items-center justify-start gap-3 font-medium bg-blue31 px-3 py-2 rounded hover:shadow-lg text-sm">
-                                    <img src="https://img.icons8.com/pastel-glyph/128/FFFFFF/whatsapp--v2.png" alt="signing-a-document" class="h-7"/>                                
+                                    <img src="https://img.icons8.com/pastel-glyph/128/FFFFFF/whatsapp--v2.png" alt="signing-a-document" class="h-7"/>
                                     atau Hubungi via WhatsApp...
                                 </a>
                             </div>
@@ -317,7 +317,7 @@
                 <form id="chat-form" class="flex items-center space-x-2">
                     @csrf
                     @if(Auth::check())
-                    <input type="text" id="chat-input" name="message" placeholder="Balas di sini..." 
+                    <input type="text" id="chat-input" name="message" placeholder="Balas di sini..."
                     class="flex-1 border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue6a" required />
                         <button type="submit" id="send-button" class="bg-white text-white p-2 rounded-full flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#31587C" class="w-5 h-5">

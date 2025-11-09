@@ -81,7 +81,7 @@
                     <div class="w-3/4 lg:w-2/5 bg-white p-10 rounded flex flex-col items-center justify-center">
                         <h3 class="text-3xl font-bold pb-4 border-b-2 border-bluee3 w-full text-center">Hapus Akun Anda</h3>
                         <p class="whitespace-pre-line text-justify lg:text-center text-lg mt-4">Setelah akun Mika Anda dinonaktifkan, akun tersebut tidak dapat dipulihkan setelah 30 hari. Menghapus akun Mika Anda akan menyebabkan hilangnya progress data yang telah diperloeh sebelumnya.
-                            
+
                             Jika Anda memerlukan informasi lebih lanjut atau bantuan, <a href="" class="underline font-medium">hubungi tim dukungan kami.</a>
                         </p>
                         <div class="w-full mt-8 flex justify-end">
@@ -113,7 +113,7 @@
                                 required class="border-2 mt-2 px-4 py-2 w-full rounded border-blue31" />
                             @error('password')
                                 <div class="text-blue31 text-sm mt-1 w-full text-left">{{ $message }}</div>
-                            @enderror                            
+                            @enderror
                             <div class="w-full mt-8 flex justify-end">
                                 <button id="cancel-input-btn" type="button" class="w-1/2 px-4 py-2 bg-blue31 text-white hover:border-blue31 border-2 rounded mr-2">Batalkan</button>
                                 <button type="submit" class="w-1/2 px-4 py-2 bg-transparent border-2 border-blue31 transition rounded hover:bg-pinkee hover:border-pinkee">Nonaktifkan Akun</button>
@@ -154,7 +154,7 @@
                             <div id="addSuccess" style="display: none;" class=" py-1 px-1 border-2 border-blue31 bg-blue31 rounded-full">
                                 <svg width="26" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M24.548 7.26651C25.2475 6.41162 25.1215 5.15157 24.2666 4.45212C23.4117 3.75266 22.1516 3.87866 21.4522 4.73355L13.7048 14.2026L10.2495 11.4383C9.38697 10.7483 8.12839 10.8881 7.43837 11.7506C6.74835 12.6132 6.8882 13.8717 7.75072 14.5618L11.9784 17.9439C13.2621 18.9709 15.1333 18.7734 16.1743 17.501L24.548 7.26651Z" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                                </svg>                                                                                
+                                </svg>
                             </div>
                         </div>
                     </div>
