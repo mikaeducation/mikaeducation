@@ -529,9 +529,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         toggleBtn.addEventListener("click", function () {
             if (courseBar.classList.contains("w-10")) {
-                // Buka course-bar (slide ke kiri)
+                // Buka course-bar
                 courseBar.classList.remove("w-10");
-                courseBar.classList.add("w-[100%]", "lg:w-1/3", "xl:w-1/4");
+                if (window.innerWidth < 1024) {
+                    courseBar.classList.add("w-[100%]");
+                } else {
+                    courseBar.classList.add("w-[40%]", "lg:w-1/3", "xl:w-1/4");
+                }
                 title.classList.remove("opacity-0");
                 progressSection.classList.remove("opacity-0");
                 mainContent.classList.remove("opacity-0");
@@ -545,9 +549,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 leftContent.classList.add("w-3/4");
                 leftContent.classList.add("overflow-y-scroll", "scrollbar-thumb-blue31", "scrollbar-track-gray-100");
             } else {
-                // Tutup course-bar (slide ke kanan)
+                // Tutup course-bar
                 courseBar.classList.add("w-10");
-                courseBar.classList.remove("w-[100%]", "lg:w-1/3", "xl:w-1/4");
+                courseBar.classList.remove("w-[100%]", "w-[40%]", "lg:w-1/3", "xl:w-1/4");
                 title.classList.add("opacity-0");
                 progressSection.classList.add("opacity-0");
                 mainContent.classList.add("opacity-0");
