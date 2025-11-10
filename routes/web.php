@@ -140,7 +140,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/module/{module_id}/quiz/{id}', [QuizController::class, 'index'])->name('quiz.show');
     Route::post('/module/{module_id}/quiz/{quiz_id}', [QuizController::class, 'update'])->name('quiz.post');
     Route::post('/case-study/{case_study_id}', [CaseStudyController::class, 'store'])->name('case.study.post');
-    Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup'));
+    Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup')); // WARN: hapus route untuk testing
     Route::post('/popup/{popup_id}', [PopupQuestionController::class, 'checkAnswer']);
     Route::get('/module/{module_id}/forum/', [ForumController::class, 'index']);
     Route::get('/module/{module_id}/threads/{thread_id}', [ForumController::class, 'threads'])->name('forum.threads.show');

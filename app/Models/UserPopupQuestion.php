@@ -8,5 +8,5 @@ class UserPopupQuestion extends Model
 {
     protected $table = 'user_popup_question';
 
-    protected $fillable = ['module_id', 'user_id', 'popup_question_id', 'is_passed', 'is_correct'];
+    protected $fillable = ['module_id', 'user_id', 'popup_question_id', 'is_triggered', 'is_correct'];
 }
