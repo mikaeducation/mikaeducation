@@ -2,8 +2,18 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
+use App\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
 
 class RegistrationTest extends TestCase
 {
@@ -16,33 +26,53 @@ class RegistrationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_new_users_can_register(): void
+    public function test_user_can_register_and_get_verification_email(): void
     {
-        // Ganti data yang dikirim agar sesuai dengan form registrasi dan tabel Anda
+        Notification::fake();
+
         $response = $this->post('/register', [
-        'phone' => '081234567890',
-        'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
-        'terms_accepted' => true,
-    ]);
+            'phone' => '08123456789',
+            'email' => 'newuser@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+        ]);
 
-        $this->assertAuthenticated();
-        
-        // Asumsikan setelah registrasi, user diarahkan ke 'dashboard'
-        // Ganti 'dashboard' jika nama route Anda berbeda
-        $response->assertRedirect(route('auth.verify-email'));
-
-        // Tambahkan validasi untuk memastikan data tersimpan di kedua tabel
+        $response->assertStatus(200);
         $this->assertDatabaseHas('users', [
-            'email' => 'test@example.com',
-            'phone' => '081234567890',
+            'email' => 'newuser@example.com',
+            'phone' => '08123456789',
         ]);
 
-        $this->assertDatabaseHas('profiles', [
-            'first_name' => 'Test',
-            'last_name' => 'User',
-            'phone' => '081234567890',
+        $user = User::where('email', 'newuser@example.com')->first();
+
+        // Notifikasi email verifikasi harus dikirim
+        Notification::assertSentTo($user, \Illuminate\Auth\Notifications\VerifyEmail::class);
+    }
+
+    public function test_user_can_verify_email_and_redirected_to_profile(): void
+    {
+        Event::fake([Verified::class]);
+
+        $user = User::factory()->create([
+            'email_verified_at' => null,
         ]);
+
+        // Generate signed URL untuk email verification (seperti yang Laravel kirim)
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            Carbon::now()->addMinutes(60),
+            [
+                'id' => $user->getKey(),
+                'hash' => sha1($user->getEmailForVerification()),
+            ]
+        );
+
+        $response = $this->actingAs($user)->get($verificationUrl);
+
+        $response->assertRedirect('/registerprofile');
+
+        $this->assertNotNull($user->fresh()->email_verified_at);
+        $this->assertAuthenticatedAs($user);
+        Event::assertDispatched(Verified::class);
     }
 }

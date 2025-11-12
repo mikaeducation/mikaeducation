@@ -415,9 +415,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (data.message) {
-                // Tambahkan pesan pengguna
                 let newMessage = document.createElement("div");
                 newMessage.classList.add("w-full", "flex", "items-end", "space-x-2");
+
+                // Ambil data user
+                let user = data.user;
+                let profileHTML = "";
+
+                if (user.profile_image) {
+                    profileHTML = `<img src="${user.profile_image}" alt="Profile Image" class="w-7 h-7 bg-white rounded-full object-cover">`;
+                } else {
+                    let initial = user.name.charAt(0).toUpperCase();
+                    profileHTML = `<span class="flex items-center justify-center w-7 h-7 text-blue31 bg-white rounded-full font-normal text-xl">${initial}</span>`;
+                }
+
                 newMessage.innerHTML = `
                     <div class="w-full flex items-start space-x-2">
                         <div class="w-11/12 flex flex-col items-start justify-start space-y-1">
@@ -426,15 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                         <div class="w-1/12 flex items-center">
-                            @if(Auth::user()->profile->profile_image)
-                                <img src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}"
-                                    alt="Profile Image"
-                                    class="w-full h-7 bg-white rounded-full object-cover">
-                            @else
-                                <span class="flex items-center justify-center w-full text-blue31 bg-white rounded-full font-normal text-xl">
-                                    {{ strtoupper(substr(Auth::user()->profile->first_name, 0, 1)) }}
-                                </span>
-                            @endif
+                            ${profileHTML}
                         </div>
                     </div>
                 `;

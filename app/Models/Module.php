@@ -9,6 +9,10 @@ class Module extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'module_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
     public function subjects()
     {
         return $this->hasMany(ModuleSubject::class, 'module_id', 'module_id');

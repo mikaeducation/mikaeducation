@@ -242,7 +242,7 @@ class ProfileController extends Controller
 
         // Misalnya di ProfileController::updateProfile
         Log::debug('Request data:', $request->all());
-        Log::debug('Validated data:', $request->validated());
+        Log::debug('Validated data:', $data);
         Log::debug('Profile after update:', $profile->toArray());
 
         // Kembali ke halaman profile setelah berhasil disimpan

@@ -570,7 +570,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Jalankan saat halaman dimuat dan saat layar diubah ukurannya
     updateVisibility();
     window.addEventListener("resize", updateVisibility);
-
 });
 
 </script>
