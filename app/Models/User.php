@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method bool hasVerifiedEmail()
  * @method bool markEmailAsVerified()
  */
+/** @property \Illuminate\Support\Carbon|null $email_verified_at */
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -34,4 +36,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(\App\Models\Profile::class, 'phone', 'phone'); //dibuat seperti ini agar nama class Profile tidak bentrok dengan namespace Symfony
     }
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
 }

@@ -1,9 +1,9 @@
 <div class="w-full min-h-max text-white">
     <div class="w-full min-h-max flex items-center flex-col">
-        <div class="w-full lg:h-full h-[250px] overflow-hidden">
+        <div class="w-full h-full overflow-hidden">
             <!-- Untuk layar besar -->
             <div class="relative hidden lg:block">
-                <div id="slider-lg" class="w-full h-[670px] flex transition-transform duration-1000 ease-in-out">
+                <div id="slider-lg" class="w-full h-full flex transition-transform duration-1000 ease-in-out">
                     <img src="{{ asset('images/banner3.png') }}" class="w-full h-full flex-shrink-0 object-fill">
                     <img src="{{ asset('images/banner1.png') }}" class="w-full h-full flex-shrink-0 object-fill">
                     <img src="{{ asset('images/banner2.png') }}" class="w-full h-full flex-shrink-0 object-fill">
@@ -22,8 +22,8 @@
                     <img src="{{ asset('images/banner3.png') }}" class="w-full h-full flex-shrink-0 object-cover">
                     <img src="{{ asset('images/bg1.png') }}" class="w-full h-full flex-shrink-0 object-cover object-top">
                 </div>
-                <button id="prevBtn-sm" class="absolute top-32 left-3 transform -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 px-4 rounded-full z-10">&#10094;</button>
-                <button id="nextBtn-sm" class="absolute top-32 right-3 transform -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 px-4 rounded-full z-10">&#10095;</button>
+                <button id="prevBtn-sm" class="absolute top-1/3 md:top-1/2 left-3 transform -translate-y-1/2 bg-black bg-opacity-40 text-white p-1 sm:p-2 px-3 sm:px-4 rounded-full z-10">&#10094;</button>
+                <button id="nextBtn-sm" class="absolute top-1/3 md:top-1/2 right-3 transform -translate-y-1/2 bg-black bg-opacity-40 text-white p-1 sm:p-2 px-3 sm:px-4 rounded-full z-10">&#10095;</button>
             </div>
         </div>
         <div class="w-full pt-10 bg-blue31 flex items-center justify-center flex-col gap-5 md:gap-5 lg:gap-16">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="w-full h-fit flex flex-wrap items-center justify-center xl:justify-between gap-0 lg:gap-5 md:space-y-0 space-y-5">
-                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-full shadow-md p-4 flex items-center gap-4 rounded-md">
+                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-fit shadow-md p-4 flex items-center gap-4 rounded-md">
                                 <div class="bg-blue31 p-3 rounded-full h-fit flex items-center justify-center">
                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C13.4992 2 14.7004 2 15.6773 2.07361C15.5629 2.3601 15.5 2.6727 15.5 3V3.5H15C13.6193 3.5 12.5 4.61929 12.5 6C12.5 7.38071 13.6193 8.5 15 8.5H15.5V9C15.5 10.3807 16.6193 11.5 18 11.5C18.8178 11.5 19.5439 11.1073 20 10.5002V14C20 17.7712 20 19.6569 18.8284 20.8284C17.6569 22 15.7712 22 12 22C8.22876 22 6.34315 22 5.17157 20.8284C4 19.6569 4 17.7712 4 14V10C4 6.22876 4 4.34315 5.17157 3.17157C6.34315 2 8.22876 2 12 2ZM8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H12C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11H8ZM8 14C7.44772 14 7 14.4477 7 15C7 15.5523 7.44772 16 8 16H14C14.5523 16 15 15.5523 15 15C15 14.4477 14.5523 14 14 14H8ZM8 17C7.44772 17 7 17.4477 7 18C7 18.5523 7.44772 19 8 19H12C12.5523 19 13 18.5523 13 18C13 17.4477 12.5523 17 12 17H8Z" fill="white"/>
@@ -128,7 +128,7 @@
                                     <p class="font-normal text-base">Mendapat sertifikat resmi pasca berhasil menyelesaikan modul belajar.</p>
                                 </div>
                             </div>
-                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-full shadow-md p-4 flex items-center gap-4 rounded-md">
+                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-fit shadow-md p-4 flex items-center gap-4 rounded-md">
                                 <div class="bg-pinkee p-3 rounded-full h-fit flex items-center justify-center">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8333 26.6667H26.6666C29.8093 26.6667 31.3807 26.6667 32.357 25.6904C33.3333 24.714 33.3333 23.1427 33.3333 20V11.6667C33.3333 8.52397 33.3333 6.95262 32.357 5.97631C31.3807 5 29.8093 5 26.6666 5H13.3333C10.1906 5 8.61925 5 7.64294 5.97631C6.66663 6.95262 6.66663 8.52397 6.66663 11.6667V30.8333C6.66663 28.5321 8.53211 26.6667 10.8333 26.6667ZM26.414 11.9193C25.633 11.1382 24.3669 11.1382 23.5859 11.9193L18.333 17.1712L16.414 15.2523C15.633 14.4714 14.3669 14.4714 13.5859 15.2523C12.8049 16.0333 12.805 17.2993 13.5859 18.0804L16.2119 20.7074C17.3835 21.8789 19.2835 21.8789 20.455 20.7074L26.414 14.7474C27.1951 13.9663 27.1951 12.7003 26.414 11.9193Z" fill="white"/>
@@ -141,7 +141,7 @@
                                     <p class="font-normal text-base">Dirancang sesuai kebutuhan praktik terapi & belajar di lapangan.</p>
                                 </div>
                             </div>
-                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-full shadow-md p-4 flex items-center gap-4 rounded-md">
+                            <div class="md:w-[50%] lg:w-[48%] xl:w-[32%] w-fit shadow-md p-4 flex items-center gap-4 rounded-md">
                                 <div class="bg-blue31 p-3 rounded-full h-fit flex items-center justify-center">
                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="9" r="4" fill="white"/>
@@ -195,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full h-fit text-blue31 flex flex-col gap-4 mt-24 lg:mt-16">
+                    <div class="w-full h-fit text-blue31 flex flex-col gap-4 mt-16">
                         <h1 class="w-full italic text-xl md:text-2xl lg:text-3xl font-bold text-left text-blue31">
                             Sertifikasi Microcredentials: Apa<span class="text-pinkee"> Manfaatnya</span> untuk Anda?
                         </h1>
