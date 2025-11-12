@@ -23,14 +23,13 @@ class PopupQuestion extends Component
             ],
             [
                 'module_id' => $moduleId,
+                'video_id' => $this->popup->video_id,
             ],
         );
     }
 
     public function render(): View|Closure|string
     {
-        if (!$this->popup) {
-        }
         return view('components.elearning.course.interactive.popup-question.popup-question');
     }
 }

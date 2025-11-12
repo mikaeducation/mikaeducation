@@ -599,7 +599,6 @@ class QuizController extends Controller
         $score = 0;
         $details = [];
 
-        // Count only correct answers in key set
         $totalQuestions = 0;
         foreach ($key_answers as $group => $items) {
             foreach ($items as $item) {

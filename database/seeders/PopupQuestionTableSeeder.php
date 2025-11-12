@@ -17,6 +17,7 @@ class PopupQuestionTableSeeder extends Seeder
         DB::table('popup_question')->insert([
             [
                 'submoduleSubject_id' => 1,
+                'video_id' => 1,
                 'title' => 'Neurodivergen',
                 'instruction' => 'Apa yang dimaksud dengan neurodivergen?',
                 'answers' => json_encode([
@@ -40,13 +41,15 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 1,
+                'video_id' => 1,
                 'title' => 'Spektrum Autisme',
                 'instruction' => 'Apakah yang dimaksud dengan spektrum autisme?',
                 'answers' => json_encode([
                     [
                         'no' => 1,
                         'text' => 'Tingkat dan bentuk gejala autisme pada satu orang akan unik dan berbeda dengan individu lain.',
-                        'explanation' => '',
+                        'explanation' =>
+                            'Spektrum seperti pelangi, dimana bias warna ada banyak variasinya, begitupula autisme ada banyak variasinya.',
                         'is_correct' => true,
                     ],
                     [
@@ -62,6 +65,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 2,
+                'video_id' => 2,
                 'title' => 'Pra Komunikasi',
                 'instruction' => 'Keterampilan pra-komunikasi menjadi sangat mendasar untuk dimiliki karena?',
                 'answers' => json_encode([
@@ -86,6 +90,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 2,
+                'video_id' => 3,
                 'title' => 'Komunikasi Ekspresif',
                 'instruction' => 'Bagaimana komunikasi ekspresif digunakan dalam berinteraksi sosial?',
                 'answers' => json_encode([
@@ -111,6 +116,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 2,
+                'video_id' => 4,
                 'title' => 'Komunikasi Reseptif',
                 'instruction' => 'Memetakan kemampuan komunikasi reseptif anak akan berguna untuk?',
                 'answers' => json_encode([
@@ -136,6 +142,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 2,
+                'video_id' => 5,
                 'title' => 'Komunikasi Pragmatis',
                 'instruction' => 'Mengapa kesulitan komunikasi pragmatis menjadi persoalan bagi anak autistik?',
                 'answers' => json_encode([
@@ -160,6 +167,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 2,
+                'video_id' => 6,
                 'title' => 'Strategi Komunikasi',
                 'instruction' => 'Apa kelemahan penggunaan alat bantu visual Low-Technology?',
                 'answers' => json_encode([
@@ -183,6 +191,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 3,
+                'video_id' => 7,
                 'title' => 'Intervensi Matriks',
                 'instruction' => 'Mengapa intervensi autisme perlu didesain secara individual?',
                 'answers' => json_encode([
@@ -207,6 +216,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 4,
+                'video_id' => 8,
                 'title' => 'Pembelajaran Terstruktur',
                 'instruction' => 'Mengapa individu autistik lebih mampu belajar menggunakan pendekatan terstruktur?',
                 'answers' => json_encode([
@@ -230,6 +240,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 7,
+                'video_id' => 9,
                 'title' => 'Evaluasi Komunikasi Level 1',
                 'instruction' => 'Target kemampuan komunikasi level 1 adalah:',
                 'answers' => json_encode([
@@ -254,6 +265,7 @@ class PopupQuestionTableSeeder extends Seeder
             ],
             [
                 'submoduleSubject_id' => 7,
+                'video_id' => 9,
                 'title' => 'Evaluasi Skoring',
                 'instruction' => 'Kapan diberikan skor ++ (2 plus)?',
                 'answers' => json_encode([

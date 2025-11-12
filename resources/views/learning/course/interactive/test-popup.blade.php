@@ -51,17 +51,18 @@
 
 </body>
 
-<button class="m-2 p-2 w-1/5 absolute bottom-24 right-12 text-white text-center bg-blue31 font-medium rounded transition hover:-translate-y-1 hover:scale-105 hidden">Reset Pertanyaan Popup</button>
-
+{{-- Pertanyaan Popup --}}
 @php
-$popups = [1,2];
+$popups = [1,2]; // ID Pertanyaan Popup
 @endphp
 
+{{-- Render Komponen Popup --}}
 @foreach ($popups as $popup)
 <x-elearning.course.interactive.popup-question id="{{ $popup }}" userId="{{ Auth::id() }}" moduleId=1/>
 @endforeach
 
-<x-elearning.course.interactive.popup-question.reset-button :id="$popups" userId="{{ Auth::id() }}" moduleId=1/>
+{{-- Render Button Reset Popup --}}
+<x-elearning.course.interactive.popup-question.reset-button videoId=1 userId="{{ Auth::id() }}" moduleId=1/>
 
 @include('includes.components.elearning.course.dialog.modal-asessment')
 

@@ -8,7 +8,7 @@ class SubmodulePopupQuestion extends Model
 {
     protected $table = 'popup_question';
 
-    protected $fillable = ['submoduleSubject_id', 'title', 'instruction', 'answers', 'pop_time'];
+    protected $fillable = ['submoduleSubject_id', 'video_id', 'title', 'instruction', 'answers', 'pop_time'];
 
     protected $casts = [
         'answers' => 'array', // Secarra otomatis mendecode JSON dari DB

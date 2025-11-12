@@ -54,4 +54,18 @@ class PopupQuestionController extends Controller
             'correct_answer' => $correct['no'],
         ]);
     }
+
+    public function resetPopup($video_id, $user_id)
+    {
+        $resetCount = UserPopupQuestion::where('user_id', $user_id)
+            ->where('video_id', $video_id)
+            ->update([
+                'is_triggered' => false,
+            ]);
+
+        return response()->json([
+            'message' => "Successfully reset $resetCount popup statuses for Video ID: $video_id.",
+            'success' => true,
+        ]);
+    }
 }
