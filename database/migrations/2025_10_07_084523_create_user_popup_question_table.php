@@ -15,8 +15,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('module_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('popup_question_id');
+            $table->unsignedBigInteger('video_id');
             $table->foreign('popup_question_id')->references('id')->on('popup_question')->onDelete('cascade');
-            $table->boolean('is_passed')->default(0);
+            $table->boolean('is_triggered')->default(0);
             $table->boolean('is_correct')->nullable();
             $table->timestamps();
         });

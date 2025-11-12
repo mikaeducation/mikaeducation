@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Elearning\Course\Interactive;
+namespace App\View\Components\Elearning\Course\Interactive\PopupQuestion;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -23,14 +23,13 @@ class PopupQuestion extends Component
             ],
             [
                 'module_id' => $moduleId,
+                'video_id' => $this->popup->video_id,
             ],
         );
     }
 
     public function render(): View|Closure|string
     {
-        if (!$this->popup) {
-        }
-        return view('components.elearning.course.interactive.popup-question');
+        return view('components.elearning.course.interactive.popup-question.popup-question');
     }
 }

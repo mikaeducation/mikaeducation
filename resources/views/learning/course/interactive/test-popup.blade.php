@@ -36,7 +36,7 @@
                         </div>
                         <div class="w-full py-8 border-y-2 border-bluee3 space-y-4 text-lg">
                             <div class="w-full md:flex lg:flex text-justify">
-
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </div>
                         </div>
                     </div>
@@ -49,25 +49,21 @@
 
     @include('includes.components.elearning.course.footer')
 
-    <x-elearning.course.interactive.popup-question id=1 userId="{{ Auth::id() }}" moduleId=1/>
-    <x-elearning.course.interactive.popup-question id=2 userId="{{ Auth::id() }}" moduleId=1/>
 </body>
+
+{{-- Pertanyaan Popup --}}
+@php
+$popups = [1,2]; // ID Pertanyaan Popup
+@endphp
+
+{{-- Render Komponen Popup --}}
+@foreach ($popups as $popup)
+<x-elearning.course.interactive.popup-question id="{{ $popup }}" userId="{{ Auth::id() }}" moduleId=1/>
+@endforeach
+
+{{-- Render Button Reset Popup --}}
+<x-elearning.course.interactive.popup-question.reset-button videoId=1 userId="{{ Auth::id() }}" moduleId=1/>
 
 @include('includes.components.elearning.course.dialog.modal-asessment')
 
 </html>
-
-{{-- <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        const submoduleId = document.body.dataset.submoduleId; // or any hidden meta
-        const response = await fetch(`/popup-questions/${submoduleId}`);
-        const popups = await response.json();
-
-        console.log("Popup Questions:", popups);
-
-        popups.forEach(popup => {
-            // Dynamically render each popup question into the DOM if you like
-            // OR trigger them based on popup.pop_time
-        });
-    });
-</script> --}}

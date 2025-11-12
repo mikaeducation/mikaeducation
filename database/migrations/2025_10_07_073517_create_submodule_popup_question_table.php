@@ -10,18 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create("popup_question", function (Blueprint $table) {
+        Schema::create('popup_question', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("submoduleSubject_id");
-            $table
-                ->foreign("submoduleSubject_id")
-                ->references("submoduleSubject_id")
-                ->on("submodule_subject")
-                ->onDelete("cascade");
-            $table->string("title");
-            $table->text("instruction");
-            $table->json("answers");
-            $table->integer("pop_time");
+            $table->unsignedBigInteger('submoduleSubject_id');
+            $table->foreign('submoduleSubject_id')->references('submoduleSubject_id')->on('submodule_subject')->onDelete('cascade');
+            $table->unsignedBigInteger('video_id');
+            $table->string('title');
+            $table->text('instruction');
+            $table->json('answers');
+            $table->integer('pop_time');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists("popup_question");
+        Schema::dropIfExists('popup_question');
     }
 };

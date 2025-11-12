@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const feedback = document.getElementById('feedback-' + {{ $popup->id }});
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    let quizTriggered = {{ $user->is_passed }};
+    let quizTriggered = {{ $user->is_triggered }};
     const stopTime = {{ $popup->pop_time }};
 
     // Monitor video time
@@ -71,14 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!quizTriggered && video.currentTime >= stopTime) {
             video.currentTime = stopTime;
             video.pause();
-            triggerQuiz();
+            video.controls = false;
+            popup.classList.remove('hidden');
         }
     });
-
-    function triggerQuiz() {
-        video.controls = false;
-        popup.classList.remove('hidden');
-    }
 
     btnBack.addEventListener('click', function () {
         popup.classList.add('hidden');
@@ -94,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
         quizTriggered = true
     });
 
-    // ✅ Handle answer click
     buttons.forEach(btn => {
         btn.addEventListener('click', async () => {
             const answerNo = btn.dataset.no;
@@ -106,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-CSRF-TOKEN': token,
                 },
                 body: JSON.stringify({
-                    popup_id: {{ $popup->id }},
                     answer_no: answerNo
                 })
             });
@@ -117,6 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
             feedback.textContent = data.message;
             feedback.classList.remove('text-green-600', 'text-red-600');
 
+            console.log(btn);
+
             if (data.correct) {
                 btn.classList.add('bg-green-500');
                 feedback.classList.add('text-green-600');
@@ -125,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 feedback.classList.add('text-red-600');
             }
 
-            // Disable all buttons and show continue
+
+            // Disable all buttons and show continue button
             buttons.forEach(b => (b.disabled = true));
             btnContinue.classList.remove('hidden');
             btnBack.classList.add('hidden');
