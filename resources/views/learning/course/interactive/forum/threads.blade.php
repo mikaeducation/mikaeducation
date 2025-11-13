@@ -27,20 +27,28 @@
                         <div class="pt-4">
                             @if($threads->count() > 0)
                                 @foreach($threads as $thread)
-                                    <div class="mb-4 p-4 bg-bluee3 rounded">
+                                    <a href="{{ route('forum.thread.show', ["module_id" => $module->module_id, "thread_id" => $thread->id]) }}" class="block mb-4 p-4 bg-bluee3 hover:bg-blue-100 transition duration-150 rounded-lg">
                                         <h2 class="text-lg font-bold">{{ $thread->title }}</h2>
                                         <p class="text-black">{{ $thread->content }}</p>
-                                    </div>
+                                        <div class="flex justify-between items-center text-xs mt-2 text-gray-500">
+                                            <span>Dibuat oleh: {{ $thread->user->name ?? 'Pengguna' }}</span>
+                                            <span>{{ $thread->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </a>
                                 @endforeach
                             @else
                                 <p class="text-gray-600">Belum ada diskusi.</p>
                             @endif
                         </div>
-                        <button id="createThreadButton" type="button"
+                        <a href="{{ Auth::check() ? route('forum.thread.create', $module->module_id) : '#' }}"
+                            class="m-2 p-2 w-12 content-center text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105 {{ Auth::check() ? '' : 'opacity-50 cursor-not-allowed' }}">
+                            +
+                        </a>
+                        {{-- <button id="createThreadButton" type="button"
                             onclick=""
                             class="m-2 p-2 w-12 content-center text-white text-center bg-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
                                 +
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
                 {{-- Right Content --}}
