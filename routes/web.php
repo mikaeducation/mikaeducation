@@ -143,8 +143,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/popup-question', fn() => view('learning.course.interactive.test-popup')); // WARN: hapus route untuk testing
     Route::post('/popup/{popup_id}', [PopupQuestionController::class, 'checkAnswer']);
     Route::post('/popup/{video_id}/{user_id}/reset', [PopupQuestionController::class, 'resetPopup'])->name('popup.reset');
-    Route::get('/module/{module_id}/forum/', [ForumController::class, 'index']);
-    Route::get('/module/{module_id}/threads/{thread_id}', [ForumController::class, 'threads'])->name('forum.threads.show');
+
+    Route::prefix('module/{module_id}/forum')->group(function () {
+        Route::get('/', [ForumController::class, 'index'])->name('forum.show');
+        Route::prefix('threads')->group(function () {
+            Route::get('create', [ForumController::class, 'threadCreate'])
+                ->name('forum.thread.create')
+                ->middleware('auth');
+            Route::post('/', [ForumController::class, 'threadStore'])
+                ->name('forum.thread.store')
+                ->middleware('auth');
+            Route::get('{thread_id}', [ForumController::class, 'threadShow'])->name('forum.thread.show');
+            Route::post('{thread_id}/posts', [ForumController::class, 'postStore'])
+                ->name('forum.post.store')
+                ->middleware('auth');
+        });
+    });
 });
 
 /*
