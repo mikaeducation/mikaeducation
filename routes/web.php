@@ -147,16 +147,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('module/{module_id}/forum')->group(function () {
         Route::get('/', [ForumController::class, 'index'])->name('forum.show');
         Route::prefix('threads')->group(function () {
-            Route::get('create', [ForumController::class, 'threadCreate'])
-                ->name('forum.thread.create')
-                ->middleware('auth');
-            Route::post('/', [ForumController::class, 'threadStore'])
-                ->name('forum.thread.store')
-                ->middleware('auth');
-            Route::get('{thread_id}', [ForumController::class, 'threadShow'])->name('forum.thread.show');
-            Route::post('{thread_id}/posts', [ForumController::class, 'postStore'])
-                ->name('forum.post.store')
-                ->middleware('auth');
+            Route::get('create', [ForumController::class, 'threadCreate'])->name('forum.thread.create');
+            Route::post('/', [ForumController::class, 'threadStore'])->name('forum.thread.store');
+            Route::get('{thread}', [ForumController::class, 'threadShow'])->name('forum.thread.show');
+            Route::post('{thread}/posts', [ForumController::class, 'postStore'])->name('forum.post.store');
         });
     });
 });
