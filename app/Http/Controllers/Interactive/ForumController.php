@@ -12,7 +12,6 @@ use Illuminate\Validation\ValidationException;
 
 class ForumController extends Controller
 {
-    //
     public function index(int $module_id)
     {
         $module = Module::where('module_id', $module_id)->firstOrFail();
