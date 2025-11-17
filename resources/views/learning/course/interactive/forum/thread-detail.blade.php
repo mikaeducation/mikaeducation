@@ -41,11 +41,11 @@
                     <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue31 mb-8">
                         <div class="flex items-center mb-4">
                             <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3 font-semibold text-gray-600">
-                                {{ $thread->user->name[0] ?? 'U' }}
+                                {{ $thread->user?->profile?->username[0] ?? 'U' }}
                             </div>
                             <div>
-                                <p class="font-bold text-lg text-blue31">{{ $thread->user->name ?? 'Pengguna Anonim' }}</p>
-                                {{-- <p class="text-xs text-gray-500">Dibuat: {{ $thread->created_at->diffForHumans() }}</p> --}}
+                                <p class="font-bold text-lg text-blue31">{{ $thread->user?->profile?->username ?? 'Pengguna Anonim' }}</p>
+                                <p class="text-xs text-gray-500">Dibuat: {{ $thread->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
                         <div class="text-gray-800 leading-relaxed border-t pt-4">
@@ -79,11 +79,13 @@
                                 <div class="flex items-start mb-3">
                                     <div
                                         class="w-8 h-8 bg-bluee3 rounded-full flex items-center justify-center mr-3 text-sm font-semibold text-blue31 flex-shrink-0">
-                                        {{ $post->user->name[0] ?? 'U' }}
+                                        {{ $post->user?->profile?->username[0] ?? 'U' }}
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-md text-gray-800">{{ $post->user->name ?? 'Pengguna Anonim' }}</p>
-                                        <p class="text-xs text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
+                                        <p class="font-semibold text-md text-gray-800">
+                                            {{ $post->user?->profile?->username ?? 'Pengguna Anonim' }}
+                                        </p>
+                                        <p class="text-xs text-gray-500">{{ $post->created_at->diffForHumans() ?? 'Tidak diketahui' }}</p>
                                     </div>
                                 </div>
                                 <p class="text-gray-700 ml-11">{{ $post->content }}</p>
