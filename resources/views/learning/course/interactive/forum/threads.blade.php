@@ -36,7 +36,7 @@
                                     <h2 class="text-lg font-bold">{{ $thread->title }}</h2>
                                     <p class="text-black">{{ $thread->content }}</p>
                                     <div class="flex justify-between items-center text-xs mt-2 text-gray-500">
-                                        <span>Dibuat oleh: {{ $thread->user->name ?? 'Pengguna' }}</span>
+                                        <span>Dibuat oleh: {{ $thread->user?->profile?->username ?? 'Pengguna' }}</span>
                                         <span>{{ $thread->created_at->diffForHumans() }}</span>
                                     </div>
                                 </a>
