@@ -308,9 +308,54 @@ class QuizController extends Controller
     ];
     public function index(string $module_id, string $quiz_id)
     {
-        session(['quiz_start_time_' . $quiz_id => now()]); // timer untuk kuis
+        $user_id = Auth::id();
+        $quizIdInt = (int) $quiz_id;
+        
+        $userQuizSummary = DB::table('user_quizzes')
+            ->where('user_id', $user_id)
+            ->where('quiz_id', $quizIdInt)
+            ->first();
 
-        return view('learning.course.interactive.quiz1-' . $quiz_id, ['module_id' => $module_id, 'quiz_id' => $quiz_id]);
+        $quizResult = null;
+        $isFinished = false;
+
+        $highScore = $userQuizSummary->high_score ?? 0; // Default 0 jika belum ada attempt
+        
+        $high_score_history = $highScore;
+
+        if ($userQuizSummary) {
+            $latestAttempt = DB::table('user_quizzes_attempt')
+                ->where('user_quiz_id', $userQuizSummary->user_quiz_id)
+                ->orderByDesc('attempt_number')
+                ->first();
+                
+            if ($latestAttempt) {
+                $isFinished = true; // Kuis pernah diselesaikan
+                
+                $quizResult = [
+                    'high_score' => $highScore,
+                    'latest_score' => $latestAttempt->score,
+                    'correct_answers' => $latestAttempt->correct_answers,
+                    'total_questions' => $latestAttempt->total_questions,
+                ];
+            }
+        }
+        
+        $showLatestScore = session('show_latest_score') ?? false; // Ambil status live score
+        session()->forget('show_latest_score'); // Hapus flag setelah diambil
+        
+        if (!$isFinished) {
+            session(['quiz_start_time_' . $quiz_id => now()]);
+        }
+        
+        return view('learning.course.interactive.quiz1-' . $quiz_id, [
+            'module_id' => $module_id, 
+            'quiz_id' => $quiz_id,
+            'high_score_history' => $highScore,     // Nilai Tertinggi (Selalu ada riwayat)
+            'is_finished' => $isFinished,           // Apakah ada riwayat attempt?
+            'quiz_result' => $quizResult,
+            'show_latest_score' => $showLatestScore, // Tampilkan Nilai Terbaru (hanya pasca submit)
+        ]);
     }
 
     /**
@@ -492,6 +537,8 @@ class QuizController extends Controller
 
                 session()->forget('quiz_start_time_' . $quiz_id); // reset timer jika user melakukan submit
             });
+
+            session(['show_latest_score' => true]);
 
             return response()->json([
                 'status' => 'success',

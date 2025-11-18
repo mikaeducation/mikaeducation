@@ -11,6 +11,7 @@
     <meta name="show-asessment-dialog" content="true">
     <meta name="progress-id" content="{{ session('progress_id') }}">
     <meta name="user-id" content="{{ Auth::id() }}">
+    <meta name="quiz-is-finished" content="{{ $is_finished ? 'true' : 'false' }}">
     @vite('public/assets/css/style.css')
     @vite('resources/js/quiz/quiz1/quiz-group-type.js')
     @vite('resources/js/quiz/quiz1/submit-quiz1.js')
@@ -21,7 +22,7 @@
 
     <section class="w-full flex-1 flex text-blue31">
         {{-- Quiz Section --}}
-        <x-elearning.course.interactive.quiz>
+        <x-elearning.course.interactive.quiz.quiz>
 
             {{-- Quiz Title --}}
             <x-elearning.course.interactive.quiz.title>
@@ -66,7 +67,14 @@
             </div>
 
             {{-- Button --}}
-            <x-elearning.course.interactive.quiz.button :module-id="$module_id" :quiz-id="$quiz_id">
+            <x-elearning.course.interactive.quiz.button 
+                :module-id="$module_id" 
+                :quiz-id="$quiz_id"
+                :high-score-history="$high_score_history"
+                :is-finished="$is_finished"
+                :quiz-result="$quiz_result"
+                :show-latest-score="$show_latest_score"
+            > 
             </x-elearning.course.interactive.quiz.button>
 
         </x-elearning.course.interactive.quiz>

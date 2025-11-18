@@ -23,10 +23,9 @@ async function submitQuiz(url) {
     if (!answersFilled()) {
         alert('Mohon lengkapi semua lingkaran sebelum mengirimkan jawaban.');
         console.log('Validation Failed: Not all inputs filled.');
-        return; // Exit the function, blocking the submission
-    }
+        throw new Error('Validasi gagal: Kuis belum lengkap.'); 
+    }    
 
-    // Validation passed: ensure any temporary error borders are cleared
     document.querySelectorAll('.js-input').forEach((input) => {
         input.classList.remove('border-4', 'border-red-500');
     });
@@ -53,14 +52,42 @@ async function submitQuiz(url) {
         }
 
         const result = await response.json();
-        alert(response.message || 'Berhasil mengumpulkan kuis');
+        const latestScore = Math.round(result.data.score);
 
+        const scoreContainer = document.getElementById('quizScoreContainer');
+        let latestScoreElement = document.getElementById('latestScoreDisplay');
+        const highScoreElement = document.getElementById('highScoreDisplay');
+
+        if (!latestScoreElement && scoreContainer && highScoreElement) {
+            latestScoreElement = document.createElement('h1');
+            latestScoreElement.id = 'latestScoreDisplay';
+            latestScoreElement.className = 'text-white bg-blue31 h-full w-1/3 rounded flex items-center justify-center';
+            scoreContainer.insertBefore(latestScoreElement, highScoreElement);
+        }
+        
+        if (latestScoreElement) {
+            latestScoreElement.textContent = `Nilai Terbaru: ${latestScore}`;
+        }
+        
+        const currentHighScore = parseFloat(highScoreElement.textContent.replace(/[^\d.]/g, '')) || 0;
+        
+        if (latestScore > currentHighScore) {
+            highScoreElement.textContent = `Nilai Tertinggi: ${latestScore}`;
+        }
+        
+        scoreContainer?.classList.remove('hidden'); 
+        
+        const currentPath = window.location.pathname;
+        const quizStatusKey = `quiz_submitted_${currentPath}`; 
+        
+        sessionStorage.setItem(quizStatusKey, 'true'); 
+        
+        alert('Kuis berhasil dikumpulkan. Klik "Selanjutnya" untuk melanjutkan.');
+        
         document.dispatchEvent(new CustomEvent('quiz-submitted', { detail: result }));
 
-        // return { success: true, data: result }
     } catch (error) {
-        alert(error.message || 'Terdapat error saat mengumpulkan kuis');
-        // return { success: false, message: error.message }
+        throw error        // return { success: false, message: error.message }
     }
 }
 

@@ -28,6 +28,31 @@
 
 
 <script>
+    // Fungsi untuk mengubah URL dinamis Kuis menjadi placeholder (e.g., /module/1/quiz/1 -> /quiz_1)
+    function getQuizPlaceholderRoute(currentPath) {
+        const quizMatch = currentPath.match(/^\/module\/1\/quiz\/(\d+)$/);
+        if (quizMatch) {
+            return `/quiz_${quizMatch[1]}`;
+        }
+        return currentPath;
+    }
+
+    // Fungsi untuk mengecek apakah halaman saat ini adalah salah satu halaman Kuis
+    function isCurrentPageQuiz(currentPath) {
+        return /^\/module\/1\/quiz\/\d+$/.test(currentPath);
+    }
+
+    // FUNGSI VALIDASI KUIS YANG DIMODIFIKASI: 
+    function isQuizFormValid() {
+        // Memastikan fungsi answersFilled() (dari script kuis) sudah dimuat
+        if (typeof answersFilled === 'function') {
+            return answersFilled();
+        }
+        console.warn("Fungsi answersFilled tidak ditemukan. Asumsi valid.");
+        return true; 
+    }
+
+
     function adjustNavigation() {
         const navigation = document.getElementById("navigation");
         const footer = document.getElementById("footer");
@@ -64,13 +89,30 @@
     // --- Navigasi antar halaman (kecuali page2_1 akan ditangani khusus)
     function setupNavigation() {
         const currentPath = window.location.pathname;
+        
+        const placeholderPath = getQuizPlaceholderRoute(currentPath);
+        
         if (currentPath === "/page2_1") return; // Page ini ditangani khusus di setupAsessmentDialog
 
         const routes = [
             "/course", "/page2_0", "/page2_1", "/page2_2",
-            "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", // "/page3_2", "/page3_3",
+            "/page3_0",
+                "/module/1/quiz/1",
+            "/page3_1_0",
+                "/module/1/quiz/2",
+            "/page3_1_1",
+                "/module/1/quiz/3",
+            "/page3_1_2",
+                "/module/1/quiz/4",
+            "/page3_1_3",
+                "/module/1/quiz/5",
+            "/page3_1_4",
+                "/module/1/quiz/6",
+            // "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", // "/page3_2", "/page3_3",
             "/page4_0", // "/page4_1", "/page4_2", "/page4_3",
+                "/module/1/quiz/7",
             "/page5_0", // "/page5_1", "/page5_2", "/page5_3",
+                "/module/1/quiz/8",
             "/page6_0", "/page6_1_0", "/page6_2", //  "/page6_1_1", "/page6_3",
             "/page7",
             "/page8_0", "/page8_1","/page8_2_0", "/page8_2_1",
@@ -84,17 +126,47 @@
         const modulActive = document.getElementById("modul-active");
         const modulMap = {
             "/course": "Pengenalan",
-            "/page2_0": "Asessmen 1", "/page2_1": "Asessmen I - Penilaian Pra-Belajar - Bagian I: Pre-Test", "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
-            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme", "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi", "/page3_1_1": "Komunikasi Autistik - Ekspresif", "/page3_1_2": "Komunikasi Autistik - Reseptif", "/page3_1_3": "Komunikasi Autistik - Pragmatis", "/page3_1_4": "Strategi Komunikasi Autisme", // "/page3_2": "Rangkuman Materi", "/page3_3": "Uji Pengetahuan",
-            "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi", // "/page4_1": "Rangkuman Materi", "/page4_2": "Uji Pengetahuan", "/page4_3": "Latihan Berpikir",
-            "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur", // "/page5_1": "Rangkuman Materi", "/page5_2": "Uji Pengetahuan", "/page5_3": "Latihan Berpikir",
-            "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0", "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0", "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi", // "/page6_1_1": "Studi Kasus Admin", "/page6_3": "Rangkuman Materi",
+            "/page2_0": "Asessmen 1",
+            "/page2_1": "Asessmen I - Penilaian Pra-Belajar - Bagian I: Pre-Test",
+            "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
+
+            "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme",
+            "/module/1/quiz/1": "Kuis Memahami Autisme",
+            
+            "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi",
+            "/module/1/quiz/2": "Kuis Pra-Komunikasi",
+            
+            "/page3_1_1": "Komunikasi Autistik - Ekspresif",
+            "/module/1/quiz/3": "Kuis Komunikasi Ekspresif",
+            
+            "/page3_1_2": "Komunikasi Autistik - Reseptif",
+            "/module/1/quiz/4": "Kuis Komunikasi Reseptif",
+            
+            "/page3_1_3": "Komunikasi Autistik - Pragmatis",
+            "/module/1/quiz/5": "Kuis Komunikasi Pragmatis",
+            
+            "/page3_1_4": "Strategi Komunikasi Autisme",
+            "/module/1/quiz/6": "Kuis Strategi Komunikasi Autisme",
+
+            "/page4_0": "Matriks Perencanaan - Observasi, Pencatatan Karakteristik, Dampak dan Strategi",
+            "/module/1/quiz/7": "Kuis Matriks Perencanaan",
+
+            "/page5_0": "Pembelajaran Terstruktur - Belajar Terstruktur",
+            "/module/1/quiz/8": "Kuis Belajar Terstruktur",
+
+            "/page6_0": "Media Visual Komunikasi Anak - Memulai MIKA 1.0",
+            "/page6_1_0": "Media Visual Komunikasi Anak - Administratif MIKA 1.0",
+            "/page6_2": "Media Visual Komunikasi Anak - Evaluasi & Interpretasi",
+
             "/page7": "Studi Kasus - Latihan Mandiri",
-            "/page8_0": "Asessmen II", "/page8_1": "Asessmen II - Bagian 1", "/page8_2_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0", "/page8_2_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar"
+            "/page8_0": "Asessmen II",
+            "/page8_1": "Asessmen II - Bagian 1",
+            "/page8_2_0": "Asessmen II - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
+            "/page8_2_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar"
         };
 
-        modulActive.innerText = modulMap[currentPath] || "-";
-
+        modulActive.innerText = modulMap[currentPath] || modulMap[placeholderPath] || "-";        
+        
         // Khusus tampilan hasil penilaian setelah selesai
         if (currentPath === "/page2_0") {
             const status = document.querySelector('meta[name="assessment-status"]')?.content;
@@ -123,15 +195,49 @@
         ) {
             prevBtn.addEventListener("click", (e) => {
                 if (!e.defaultPrevented && currentIndex > 0) {
-                    window.location.href = routes[currentIndex - 1];
+                    let redirectURL = routes[currentIndex - 1];
+                    
+                    window.location.href = redirectURL;
                 }
             });
         }
 
         // Handler tombol next
         if (nextBtn) {
-        nextBtn.addEventListener("click", (e) => {
-            e.preventDefault();  // Cegah navigasi langsung
+            nextBtn.addEventListener("click", async (e) => {
+                e.preventDefault();  // Cegah navigasi langsung
+
+            if (isCurrentPageQuiz(currentPath)) {
+
+                const quizIsFinishedDB = document.querySelector('meta[name="quiz-is-finished"]')?.content === 'true';
+                const quizStatusKey = `quiz_submitted_${currentPath}`; 
+                const isQuizAlreadySubmitted = sessionStorage.getItem(quizStatusKey) === 'true';
+
+                if (quizIsFinishedDB || isQuizAlreadySubmitted) {                    // KONDISI A: Kuis sudah disubmit dan flag ada. Lanjutkan ke halaman berikutnya.
+                    let redirectURL = routes[currentIndex + 1];
+                    sessionStorage.removeItem(quizStatusKey);
+
+                    if (redirectURL === "/page8_0") {
+                        redirectURL = "/page8_0?asessment_id=2";
+                    } else if (redirectURL === "/page2_0") {
+                        redirectURL = "/page2_0?asessment_id=1";
+                    }
+                    
+                    window.location.href = redirectURL;
+                    return;
+                }
+                
+                const postUrl = currentPath; 
+                
+                try {
+                    await submitQuiz(postUrl);
+                    sessionStorage.setItem(quizStatusKey, 'true');
+                return;                     
+                } catch (error) {
+                    console.error("Proses kuis dihentikan.", error.message);                    
+                return;
+                }
+            }
 
             if (currentPath === "/page8_0" || currentPath === "/page8_1" || currentPath === "/page8_2_0" || currentPath === "/page8_2_1" || currentPath === "/page2_0" || currentPath === "/page2_1" || currentPath === "/page2_2") {
                 const form = document.getElementById("formAsessment");
