@@ -1,4 +1,4 @@
-<form class="bg-red-100 h-full w-full p-3 gap-3 flex justify-end items-center sticky bottom-0  rounded shadow-[0px_0px_12px_rgba(0,0,0,0.25)]">    
+<form class="h-full w-full p-3 gap-3 flex justify-end items-center sticky bottom-0  rounded shadow-[0px_0px_12px_rgba(0,0,0,0.25)]">    
     <div id="quizScoreContainer" class="h-full w-3/5 gap-3 flex justify-end items-center">
         @if ($showLatestScore)
             <h1 id="latestScoreDisplay" class="text-white bg-blue31 h-full w-1/3 rounded flex items-center justify-center">
