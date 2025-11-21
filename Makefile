@@ -1,4 +1,4 @@
-.PHONY: help mariadb-toggle mariadb-status start serve dev
+.PHONY: help mariadb-toggle mariadb-status start serve npm dev
 
 help: ## Print help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -18,13 +18,11 @@ mariadb-status: ## Display status of mariadb
 serve: ## Run Laravel dev server
 	php artisan serve
 
-dev: ## Run Vite dev server
+npm: ## Run Vite dev server
 	npm run dev
 
-start: mariadb-start ## Start Laravel + Vite + DB
-	(php artisan serve &) \
-	(npm run dev &)
-	@echo "🚀 Development environment started"
+dev:  ## Run dev environment
+	make -j 2 serve npm
 
 clear-cache: ## Clear Laravel cache, routes, config, and views
 	php artisan cache:clear
@@ -43,11 +41,11 @@ make: ## Run php artisan make:<TYPE> [NAME] [flags]
 	echo "🚀 Running: php artisan make:$$TYPE $$NAME $$FLAGS"; \
 	php artisan make:$$TYPE $$NAME $$FLAGS
 
-migrate: ## Run php artisan migrate[:option] [ARGS="--seed"]
+migrate: ## Run php artisan migrate[:option] [flags]
 	@OPTION=$(word 2,$(MAKECMDGOALS)); \
-	ARGS=$(ARGS); \
+	FLAGS=$(ARGS); \
 	if [ -z "$$OPTION" ]; then \
-		echo "🚀 Running: php artisan migrate $$ARGS"; \
+		echo "🚀 Running: php artisan migrate $$FLAGS"; \
 		php artisan migrate $$ARGS; \
 	else \
 		echo "🚀 Running: php artisan migrate:$$OPTION $$ARGS"; \
