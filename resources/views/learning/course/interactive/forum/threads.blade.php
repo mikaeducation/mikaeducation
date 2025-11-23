@@ -22,13 +22,26 @@
             <div id="left"
                 class="w-3/4 flex-1 max-h-[100vh] lg:max-h-[84vh] flex flex-col overflow-y-auto scrollbar scrollbar-thumb scrollbar-thumb-rounded scrollbar-thumb-blue31 scrollbar-track-gray-100">
                 <div class="pl-12 md:pr-12 mt-10 w-full h-full flex flex-col">
-                    <div class="h-full w-full space-y-8">
+                    <div class="h-full w-full space-y-2">
                         <h1 class="text-xl font-bold">
                             Forum Diskusi
                         </h1>
+                        <p>
+                            Forum diskusi dapat digunakan untuk berbagi informasi, pertanyaan, dan diskusi mengenai topik sesuai dengan topik
+                            modul.
+                            <br>
+                            Dalam berdiskusi mohon perhatikan peraturan berikut:
+                            <br>
+                            1. Tidak boleh mengirimkan link atau konten yang tidak relevan dengan topik diskusi.
+                            <br>
+                            2. Tidak boleh mengirimkan konten yang mengandung unsur pornografi, kekerasan, atau konten lain yang melanggar
+                            hukum.
+                            <br>
+                        </p>
                     </div>
 
-                    <div class="pt-4">
+                    <hr class="mt-4">
+                    <div class="py-4">
                         @if ($threads->count() > 0)
                             @foreach ($threads as $thread)
                                 <a href="{{ route('forum.thread.show', [$module->module_id, $thread->id]) }}"
@@ -42,7 +55,7 @@
                                 </a>
                             @endforeach
                         @else
-                            <p class="text-gray-600">Belum ada diskusi.</p>
+                            <p class="text-center text-xl font-bold text-gray-600">Belum ada diskusi.</p>
                         @endif
                     </div>
                 </div>

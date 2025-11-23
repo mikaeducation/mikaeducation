@@ -1,16 +1,19 @@
 <div id="navigation" class="w-full h-14 bg-blue31 flex justify-center items-center fixed bottom-0 left-0 z-40">
     <div class="w-[95%] h-full flex items-center justify-between space-x-2 text-white font-medium lg:text-lg text-base">
         <button id="prev-btn" class="flex items-center justify-center gap-4 w-fit h-full">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24" class="flex items-center justify-center bg-white w-7 h-7 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24"
+                class="flex items-center justify-center bg-white w-7 h-7 rounded-full">
                 <path d="M15.707 4.707a1 1 0 0 0-1.414 0L7.293 12l6.293 7.293a1 1 0 1 0 1.414-1.414L9.414 12l6.293-6.121a1 1 0 0 0 0-1.414z" />
-            </svg>                
+            </svg>
             <p class="md:block hidden">Sebelumnya</p>
         </button>
         <h5 id="modul-active" class="w-full flex items-center justify-center text-center">Pengenalan</h5>
         <button id="next-btn" class="flex items-center justify-center gap-4 w-fit h-full">
             <p class="md:block hidden">Selanjutnya</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24" class="flex items-center justify-center bg-white w-7 h-7 rounded-full">
-                <path d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24"
+                class="flex items-center justify-center bg-white w-7 h-7 rounded-full">
+                <path
+                    d="M8.293 4.707a1 1 0 0 1 1.414 0L16.707 12l-6.293 7.293a1 1 0 0 1-1.414-1.414L14.586 12 8.293 6.121a1 1 0 0 1 0-1.414z" />
             </svg>
         </button>
     </div>
@@ -23,9 +26,6 @@
         </div>
     </div>
 </footer>
-
-
-
 
 <script>
     // Fungsi untuk mengubah URL dinamis Kuis menjadi placeholder (e.g., /module/1/quiz/1 -> /quiz_1)
@@ -42,14 +42,14 @@
         return /^\/module\/1\/quiz\/\d+$/.test(currentPath);
     }
 
-    // FUNGSI VALIDASI KUIS YANG DIMODIFIKASI: 
+    // FUNGSI VALIDASI KUIS YANG DIMODIFIKASI:
     function isQuizFormValid() {
         // Memastikan fungsi answersFilled() (dari script kuis) sudah dimuat
         if (typeof answersFilled === 'function') {
             return answersFilled();
         }
         console.warn("Fungsi answersFilled tidak ditemukan. Asumsi valid.");
-        return true; 
+        return true;
     }
 
 
@@ -58,7 +58,7 @@
         const footer = document.getElementById("footer");
         const footerRect = footer.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-    
+
         if (footerRect.top <= windowHeight) {
             navigation.style.position = "absolute";
             navigation.style.bottom = `${footerRect.height}px`;
@@ -69,7 +69,7 @@
     }
 
     // Deteksi Tombol Back/Forward Browser]
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const protectedRoutes = [
             "/course", "/page2_0", "/page2_1", "/page2_2", "/page3_0",
             "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4",
@@ -85,37 +85,38 @@
             window.location.replace(`/modules/${moduleId}`);
         }
     });
-    
+
     // --- Navigasi antar halaman (kecuali page2_1 akan ditangani khusus)
     function setupNavigation() {
         const currentPath = window.location.pathname;
-        
+
         const placeholderPath = getQuizPlaceholderRoute(currentPath);
-        
+
         if (currentPath === "/page2_1") return; // Page ini ditangani khusus di setupAsessmentDialog
 
         const routes = [
-            "/course", "/page2_0", "/page2_1", "/page2_2",
+            "/course", "/module/1/forum",
+            "/page2_0", "/page2_1", "/page2_2",
             "/page3_0",
-                "/module/1/quiz/1",
+            "/module/1/quiz/1",
             "/page3_1_0",
-                "/module/1/quiz/2",
+            "/module/1/quiz/2",
             "/page3_1_1",
-                "/module/1/quiz/3",
+            "/module/1/quiz/3",
             "/page3_1_2",
-                "/module/1/quiz/4",
+            "/module/1/quiz/4",
             "/page3_1_3",
-                "/module/1/quiz/5",
+            "/module/1/quiz/5",
             "/page3_1_4",
-                "/module/1/quiz/6",
+            "/module/1/quiz/6",
             // "/page3_0", "/page3_1_0", "/page3_1_1", "/page3_1_2", "/page3_1_3", "/page3_1_4", // "/page3_2", "/page3_3",
             "/page4_0", // "/page4_1", "/page4_2", "/page4_3",
-                "/module/1/quiz/7",
+            "/module/1/quiz/7",
             "/page5_0", // "/page5_1", "/page5_2", "/page5_3",
-                "/module/1/quiz/8",
+            "/module/1/quiz/8",
             "/page6_0", "/page6_1_0", "/page6_2", //  "/page6_1_1", "/page6_3",
             "/page7",
-            "/page8_0", "/page8_1","/page8_2_0", "/page8_2_1",
+            "/page8_0", "/page8_1", "/page8_2_0", "/page8_2_1",
         ];
 
         const currentIndex = routes.indexOf(currentPath);
@@ -126,25 +127,26 @@
         const modulActive = document.getElementById("modul-active");
         const modulMap = {
             "/course": "Pengenalan",
+            "/module/1/forum": "Forum Diskusi",
             "/page2_0": "Asessmen 1",
             "/page2_1": "Asessmen I - Penilaian Pra-Belajar - Bagian I: Pre-Test",
             "/page2_2": "Asessmen I - Evaluasi - Bagian 2: Keyakinan Penggunaan MIKA 1.0",
 
             "/page3_0": "Gangguan Spektrum Autisme - Memahami Autisme",
             "/module/1/quiz/1": "Kuis Memahami Autisme",
-            
+
             "/page3_1_0": "Komunikasi Autistik - Pra Komunikasi",
             "/module/1/quiz/2": "Kuis Pra-Komunikasi",
-            
+
             "/page3_1_1": "Komunikasi Autistik - Ekspresif",
             "/module/1/quiz/3": "Kuis Komunikasi Ekspresif",
-            
+
             "/page3_1_2": "Komunikasi Autistik - Reseptif",
             "/module/1/quiz/4": "Kuis Komunikasi Reseptif",
-            
+
             "/page3_1_3": "Komunikasi Autistik - Pragmatis",
             "/module/1/quiz/5": "Kuis Komunikasi Pragmatis",
-            
+
             "/page3_1_4": "Strategi Komunikasi Autisme",
             "/module/1/quiz/6": "Kuis Strategi Komunikasi Autisme",
 
@@ -165,8 +167,7 @@
             "/page8_2_1": "Asessmen II - Evaluasi - Bagian 3: Kepuasan penggunaan MIKA Education sebagai sumber belajar"
         };
 
-        modulActive.innerText = modulMap[currentPath] || modulMap[placeholderPath] || "-";        
-        
+        modulActive.innerText = modulMap[currentPath] || modulMap[placeholderPath] || "-";
         // Khusus tampilan hasil penilaian setelah selesai
         if (currentPath === "/page2_0") {
             const status = document.querySelector('meta[name="assessment-status"]')?.content;
@@ -196,7 +197,7 @@
             prevBtn.addEventListener("click", (e) => {
                 if (!e.defaultPrevented && currentIndex > 0) {
                     let redirectURL = routes[currentIndex - 1];
-                    
+
                     window.location.href = redirectURL;
                 }
             });
@@ -205,84 +206,86 @@
         // Handler tombol next
         if (nextBtn) {
             nextBtn.addEventListener("click", async (e) => {
-                e.preventDefault();  // Cegah navigasi langsung
+                e.preventDefault(); // Cegah navigasi langsung
 
-            if (isCurrentPageQuiz(currentPath)) {
+                if (isCurrentPageQuiz(currentPath)) {
 
-                const quizIsFinishedDB = document.querySelector('meta[name="quiz-is-finished"]')?.content === 'true';
-                const quizStatusKey = `quiz_submitted_${currentPath}`; 
-                const isQuizAlreadySubmitted = sessionStorage.getItem(quizStatusKey) === 'true';
+                    const quizIsFinishedDB = document.querySelector('meta[name="quiz-is-finished"]')?.content === 'true';
+                    const quizStatusKey = `quiz_submitted_${currentPath}`;
+                    const isQuizAlreadySubmitted = sessionStorage.getItem(quizStatusKey) === 'true';
 
-                if (quizIsFinishedDB || isQuizAlreadySubmitted) {                    // KONDISI A: Kuis sudah disubmit dan flag ada. Lanjutkan ke halaman berikutnya.
+                    if (quizIsFinishedDB ||
+                        isQuizAlreadySubmitted) { // KONDISI A: Kuis sudah disubmit dan flag ada. Lanjutkan ke halaman berikutnya.
+                        let redirectURL = routes[currentIndex + 1];
+                        sessionStorage.removeItem(quizStatusKey);
+
+                        if (redirectURL === "/page8_0") {
+                            redirectURL = "/page8_0?asessment_id=2";
+                        } else if (redirectURL === "/page2_0") {
+                            redirectURL = "/page2_0?asessment_id=1";
+                        }
+
+                        window.location.href = redirectURL;
+                        return;
+                    }
+
+                    const postUrl = currentPath;
+
+                    try {
+                        await submitQuiz(postUrl);
+                        sessionStorage.setItem(quizStatusKey, 'true');
+                        return;
+                    } catch (error) {
+                        console.error("Proses kuis dihentikan.", error.message);
+                        return;
+                    }
+                }
+
+                if (currentPath === "/page8_0" || currentPath === "/page8_1" || currentPath === "/page8_2_0" || currentPath ===
+                    "/page8_2_1" || currentPath === "/page2_0" || currentPath === "/page2_1" || currentPath === "/page2_2") {
+                    const form = document.getElementById("formAsessment");
+
+                    const isFormValid = () => {
+                        const radios = form.querySelectorAll("input[type='radio']");
+                        const names = [...new Set([...radios].map(r => r.name))];
+                        return names.every(name => form.querySelector(`input[name="${name}"]:checked`));
+                    };
+
+                    // Jika form tidak valid, tidak lanjut ke halaman berikutnya
+                    if (!isFormValid()) {
+                        return; // Jika form belum lengkap, tidak lanjutkan ke halaman berikutnya
+                    }
+
+                    // Tampilkan modal konfirmasi jika form valid
+                    modalSubmit?.classList.remove("hidden");
+
+                    confirmSubmit?.addEventListener("click", () => {
+                        modalSubmit?.classList.add("hidden");
+
+                        // Setelah modal konfirmasi, lanjutkan ke halaman berikutnya
+                        if (currentPath === "/page8_0") {
+                            window.location.href = "/page8_2_0";
+                        } else if (currentPath === "/page2_0") {
+                            window.location.href = "/page2_1";
+                        } else if (currentPath === "/page2_2") {
+                            // Jika di page2_2, cek apakah valid dan arahkan
+                            window.location.href = "/page3_0"; // Atau halaman berikutnya sesuai logika
+                        }
+                    });
+                } else {
                     let redirectURL = routes[currentIndex + 1];
-                    sessionStorage.removeItem(quizStatusKey);
-
                     if (redirectURL === "/page8_0") {
                         redirectURL = "/page8_0?asessment_id=2";
                     } else if (redirectURL === "/page2_0") {
                         redirectURL = "/page2_0?asessment_id=1";
                     }
-                    
                     window.location.href = redirectURL;
-                    return;
                 }
-                
-                const postUrl = currentPath; 
-                
-                try {
-                    await submitQuiz(postUrl);
-                    sessionStorage.setItem(quizStatusKey, 'true');
-                return;                     
-                } catch (error) {
-                    console.error("Proses kuis dihentikan.", error.message);                    
-                return;
-                }
-            }
-
-            if (currentPath === "/page8_0" || currentPath === "/page8_1" || currentPath === "/page8_2_0" || currentPath === "/page8_2_1" || currentPath === "/page2_0" || currentPath === "/page2_1" || currentPath === "/page2_2") {
-                const form = document.getElementById("formAsessment");
-
-                const isFormValid = () => {
-                    const radios = form.querySelectorAll("input[type='radio']");
-                    const names = [...new Set([...radios].map(r => r.name))];
-                    return names.every(name => form.querySelector(`input[name="${name}"]:checked`));
-                };
-
-                // Jika form tidak valid, tidak lanjut ke halaman berikutnya
-                if (!isFormValid()) {
-                    return;  // Jika form belum lengkap, tidak lanjutkan ke halaman berikutnya
-                }
-
-                // Tampilkan modal konfirmasi jika form valid
-                modalSubmit?.classList.remove("hidden");
-
-                confirmSubmit?.addEventListener("click", () => {
-                    modalSubmit?.classList.add("hidden");
-
-                    // Setelah modal konfirmasi, lanjutkan ke halaman berikutnya
-                    if (currentPath === "/page8_0") {
-                        window.location.href = "/page8_2_0";
-                    } else if (currentPath === "/page2_0") {
-                        window.location.href = "/page2_1";
-                    } else if (currentPath === "/page2_2") {
-                        // Jika di page2_2, cek apakah valid dan arahkan
-                        window.location.href = "/page3_0"; // Atau halaman berikutnya sesuai logika
-                    }
-                });
-            } else {
-                let redirectURL = routes[currentIndex + 1];
-                if (redirectURL === "/page8_0") {
-                    redirectURL = "/page8_0?asessment_id=2";
-                } else if (redirectURL === "/page2_0") {
-                    redirectURL = "/page2_0?asessment_id=1";
-                }
-                window.location.href = redirectURL;
-            }
-        });
+            });
+        }
     }
-}
 
-    
+
     // --- Setup dialog khusus asesmen
     function setupAsessmentDialog() {
         const page = window.location.pathname;
@@ -300,9 +303,9 @@
         const modalEval = document.getElementById("modalDialogStart_Asessmen1_Eval");
 
         // --- Pemilihan modal back
-        const modalBack = (page === "/page2_0" || page === "/page8_0")
-            ? document.getElementById("modalDialogBack_Asessmen1_Ulangi")
-            : document.getElementById("modalDialogBack_Asessmen1");
+        const modalBack = (page === "/page2_0" || page === "/page8_0") ?
+            document.getElementById("modalDialogBack_Asessmen1_Ulangi") :
+            document.getElementById("modalDialogBack_Asessmen1");
 
         const startBtn = document.getElementById("btnMulaiAsessment");
         const nextBtn = document.getElementById("next-btn");
@@ -316,33 +319,36 @@
         const btnStartEvalConfirm = modalEval?.querySelector("#btnStartLearning_Eval");
         const btnBackEval = modalEval?.querySelector("#btnBack_Eval");
 
-        const confirmBack = (page === "/page2_0" || page === "/page8_0")
-            ? modalBack?.querySelector("#btnStartLearning_Ulangi")
-            : modalBack?.querySelector("#btnConfirmBack");
+        const confirmBack = (page === "/page2_0" || page === "/page8_0") ?
+            modalBack?.querySelector("#btnStartLearning_Ulangi") :
+            modalBack?.querySelector("#btnConfirmBack");
 
-        const cancelBack = (page === "/page2_0" || page === "/page8_0")
-            ? modalBack?.querySelector("#btnBack_Ulangi")
-            : modalBack?.querySelector("#btnCancelBack");
+        const cancelBack = (page === "/page2_0" || page === "/page8_0") ?
+            modalBack?.querySelector("#btnBack_Ulangi") :
+            modalBack?.querySelector("#btnCancelBack");
 
         let redirectURL = "/";
 
         // --- Fungsi modal awal asesmen
-        window.showModalForAsessment = function (moduleId, asessmentId) {
+        window.showModalForAsessment = function(moduleId, asessmentId) {
             fetch("/check-asessment-status", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-                },
-                body: JSON.stringify({ module_id: moduleId, asessment_id: asessmentId })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "ok") {
-                    redirectURL = data.redirect_to;
-                    modalStart?.classList.remove("hidden");
-                }
-            });
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                    },
+                    body: JSON.stringify({
+                        module_id: moduleId,
+                        asessment_id: asessmentId
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "ok") {
+                        redirectURL = data.redirect_to;
+                        modalStart?.classList.remove("hidden");
+                    }
+                });
         };
 
         // --- Page2_0 dan Page8_0: sebelum penilaian
@@ -433,8 +439,7 @@
             btnStartEvalConfirm?.addEventListener("click", () => {
                 if (page === "/page2_0") {
                     window.location.href = "/page2_2";
-                }
-                else if (page === "/page8_0") {
+                } else if (page === "/page8_0") {
                     window.location.href = "/page8_2_0";
                 }
             });
@@ -488,12 +493,11 @@
             confirmBack?.addEventListener("click", () => {
                 if (page === "/page2_1") {
                     window.location.href = "/page2_0?asessment_id=1";
-                }
-                else if (page === "/page8_1") {
+                } else if (page === "/page8_1") {
                     window.location.href = "/page8_0?asessment_id=2";
                 }
             });
-            
+
         }
 
 
@@ -512,7 +516,7 @@
                 "/page8_2_1": "formEvaluation8_2_1"
             };
 
-            
+
             const validatePage2_2 = () => {
                 const form = document.getElementById(formMap["/page2_2"]);
                 if (!form) return false;
@@ -531,7 +535,9 @@
                 const allFormAnswered = names.every(name => form.querySelector(`input[name="${name}"]:checked`));
 
                 // Cek hidden inputs untuk question_21–30 dari page8_2_0
-                const hiddenInputsValid = Array.from({ length: 10 }, (_, i) => {
+                const hiddenInputsValid = Array.from({
+                    length: 10
+                }, (_, i) => {
                     const key = `question_${i + 21}`;
                     const hiddenInput = form.querySelector(`input[type='hidden'][name='${key}']`);
                     return hiddenInput && hiddenInput.value !== '';
@@ -553,7 +559,7 @@
                 modalSubmitEval?.classList.remove("hidden");
             };
 
-        
+
             // --- Page2_2 : Form Evaluasi pasca penilaian I (after_asessment_id 1)
             if (page === "/page2_2") {
                 btnTriggerSubmit?.addEventListener("click", handleSubmitEval);
@@ -663,8 +669,8 @@
                     sessionStorage.setItem("fromEvaluation", "true");
 
                     const form = document.getElementById(formMap[page]);
-                    
-                    form.addEventListener("submit", function (e) {
+
+                    form.addEventListener("submit", function(e) {
                         // Tambahan proteksi agar tidak trigger 2x
                         if (form.dataset.submitted) return;
                         form.dataset.submitted = "true";
@@ -677,7 +683,8 @@
                         setTimeout(() => {
                             window.location.replace("/preLearn");
                         }, 1000); // beri waktu 1 detik agar server menerima POST
-                    }); form.submit();
+                    });
+                    form.submit();
                 });
 
                 cancelSubmitEval?.addEventListener("click", () => {
@@ -696,8 +703,7 @@
             confirmBackEval?.addEventListener("click", () => {
                 if (page === "/page2_2") {
                     window.location.href = "/page2_0?asessment_id=1";
-                }
-                else if (page === "/page8_2_0") {
+                } else if (page === "/page8_2_0") {
                     window.location.href = "/page8_0?asessment_id=2";
                 }
             });
@@ -705,55 +711,55 @@
 
         // --- Page2_0 dan Page8_0: pasca penilaian dan evaluasi, mengecek apakah pengguna sudah mengerjakan penilaian dan evaluasi
         if (page === "/page2_0" || page === "/page8_0") {
-            const userId = document.querySelector('meta[name="user-id"]').content;  // Ambil user_id dari meta tag
+            const userId = document.querySelector('meta[name="user-id"]').content; // Ambil user_id dari meta tag
             const progressId = document.querySelector('meta[name="progress-id"]')?.content ?? null;
             const assessmentId = 3;
             const afterAssessmentId = (page === "/page2_0") ? 1 : 2;
 
             // Cek di database apakah sudah ada data di tabel user_evaluate untuk user_id yang bersangkutan
             fetch("/check-user-evaluation", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-                },
-                body: JSON.stringify({ 
-                    user_id: userId, 
-                    progress_id: progressId,
-                    after_asessment_id: afterAssessmentId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const modalTitle = modalEval.querySelector("#modal-title");
-                const modalText = modalEval.querySelector("p");
-                const btnStartLearningText = btnStartEvalConfirm;
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        progress_id: progressId,
+                        after_asessment_id: afterAssessmentId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const modalTitle = modalEval.querySelector("#modal-title");
+                    const modalText = modalEval.querySelector("p");
+                    const btnStartLearningText = btnStartEvalConfirm;
 
-                if (data.evaluationCompleted) {
-                    // Jika sudah pernah mengerjakan evaluasi, ubah tampilan modal dan arahkan ke page3_0
-                    modalTitle.innerText = "Kembali ke Pembelajaran?";  // Ubah judul
-                    modalText.innerHTML = "Anda telah menyelesaikan tahapan evaluasi sebelumnya, jadi Anda dapat langsung ke halaman berikutnya tanpa harus mengerjakan evaluasi lagi.<br><br>Jika memerlukan bantuan lebih lanjut, <a href='https://wa.me/082156226440' class='relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full'>hubungi tim dukungan kami disini.</a>";
-                    btnStartLearningText.innerText = "Lanjutkan";
+                    if (data.evaluationCompleted) {
+                        // Jika sudah pernah mengerjakan evaluasi, ubah tampilan modal dan arahkan ke page3_0
+                        modalTitle.innerText = "Kembali ke Pembelajaran?"; // Ubah judul
+                        modalText.innerHTML =
+                            "Anda telah menyelesaikan tahapan evaluasi sebelumnya, jadi Anda dapat langsung ke halaman berikutnya tanpa harus mengerjakan evaluasi lagi.<br><br>Jika memerlukan bantuan lebih lanjut, <a href='https://wa.me/082156226440' class='relative text-blue31 font-medium before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-blue31 before:transition-all before:duration-300 hover:before:w-full'>hubungi tim dukungan kami disini.</a>";
+                        btnStartLearningText.innerText = "Lanjutkan";
 
-                    btnStartEvalConfirm?.addEventListener("click", () => {
-                        if (page === "/page2_0") {
-                            window.location.href = "/page3_0";
-                        }
-                        else if (page === "/page8_0") {
-                            window.location.href = "/preLearn";
-                        }
-                    });
-                    
-                } else if (sudahSelesai) {
-                    btnStartEvalConfirm?.addEventListener("click", () => {
-                        if (page === "/page2_0") {
-                            window.location.href = "/page2_2";
-                        }
-                        else if (page === "/page8_0") {
-                            window.location.href = "/page8_2_0";
-                        }
-                    });
-                }
-            });
+                        btnStartEvalConfirm?.addEventListener("click", () => {
+                            if (page === "/page2_0") {
+                                window.location.href = "/page3_0";
+                            } else if (page === "/page8_0") {
+                                window.location.href = "/preLearn";
+                            }
+                        });
+
+                    } else if (sudahSelesai) {
+                        btnStartEvalConfirm?.addEventListener("click", () => {
+                            if (page === "/page2_0") {
+                                window.location.href = "/page2_2";
+                            } else if (page === "/page8_0") {
+                                window.location.href = "/page8_2_0";
+                            }
+                        });
+                    }
+                });
         }
 
 
@@ -782,14 +788,13 @@
         }
     }
 
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        adjustNavigation();// Menyesuaikan style navigasi dan posisi footer
-        setupAsessmentDialog();// Atur modal dan navigasi khusus halaman penilaian
-        setupNavigation();// Atur navigasi umum antar halaman
+
+    document.addEventListener("DOMContentLoaded", function() {
+        adjustNavigation(); // Menyesuaikan style navigasi dan posisi footer
+        setupAsessmentDialog(); // Atur modal dan navigasi khusus halaman penilaian
+        setupNavigation(); // Atur navigasi umum antar halaman
     });
 
     window.addEventListener("scroll", adjustNavigation);
-    window.addEventListener("resize", adjustNavigation);    
-
+    window.addEventListener("resize", adjustNavigation);
 </script>
