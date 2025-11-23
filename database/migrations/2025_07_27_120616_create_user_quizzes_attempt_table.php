@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->integer('total_questions')->default(0);
             $table->integer('correct_answers')->default(0);
             $table->integer('incorrect_answers')->default(0);
-            $table->float('score');
+            $table->integer('score');
             $table->string('duration', 8)->nullable(); // TODO: hilangkan durasi dan hitung berdasarkan start dan end time
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();

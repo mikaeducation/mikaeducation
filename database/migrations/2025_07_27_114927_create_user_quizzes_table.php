@@ -27,7 +27,7 @@ return new class extends Migration
                     ->on('submodule_quizzes')
                     ->onDelete('cascade');
             $table->integer('attempt_count')->default(0);
-            $table->float('high_score')->default(0);
+            $table->integer('high_score')->default(0);
             $table->timestamps();
         });
     }
