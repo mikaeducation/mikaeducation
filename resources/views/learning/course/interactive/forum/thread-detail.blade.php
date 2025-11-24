@@ -26,7 +26,7 @@
                     {{-- Back Link --}}
                     <div class="mb-4">
                         <a href="{{ route('forum.show', $module->module_id) }}"
-                            class="text-blue31 hover:text-blue-600 transition duration-150 flex items-center">
+                            class="w-fit flex items-center text-blue31 transition hover:-translate-y-1 hover:scale-105">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -38,11 +38,11 @@
                     <h1 class="text-2xl font-bold mb-4">{{ $thread->title }}</h1>
 
                     {{-- Thread Content --}}
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue31 mb-8">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-blue31 mb-8">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3 font-semibold text-gray-600">
-                                {{ $thread->user?->profile?->username[0] ?? 'U' }}
-                            </div>
+                            <img class="mr-3 w-10 aspect-square rounded-full font-semibold text-gray-600"
+                                src="{{ $thread->user?->profile?->profile_image ? asset($thread->user?->profile?->profile_image) : asset('images/profile-sample.jpg') }}"
+                                alt="Foto Profil">
                             <div>
                                 <p class="font-bold text-lg text-blue31">{{ $thread->user?->profile?->username ?? 'Pengguna Anonim' }}</p>
                                 <p class="text-xs text-gray-500">Dibuat: {{ $thread->created_at->diffForHumans() }}</p>
@@ -76,11 +76,10 @@
                     <div class="space-y-6 mb-8">
                         @forelse ($posts as $post)
                             <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
-                                <div class="flex items-start mb-3">
-                                    <div
-                                        class="w-8 h-8 bg-bluee3 rounded-full flex items-center justify-center mr-3 text-sm font-semibold text-blue31 flex-shrink-0">
-                                        {{ $post->user?->profile?->username[0] ?? 'U' }}
-                                    </div>
+                                <div class="flex items-center mb-3">
+                                    <img class="mr-3 w-8 aspect-square rounded-full font-semibold text-gray-600"
+                                        src="{{ $thread->user?->profile?->profile_image ? asset($thread->user?->profile?->profile_image) : asset('images/profile-sample.jpg') }}"
+                                        alt="Foto Profil">
                                     <div>
                                         <p class="font-semibold text-md text-gray-800">
                                             {{ $post->user?->profile?->username ?? 'Pengguna Anonim' }}
@@ -109,11 +108,11 @@
                             <div class="mb-4">
                                 <label for="content" class="block text-gray-700 font-semibold mb-2">Konten Balasan:</label>
                                 <textarea name="content" id="content" rows="4"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue31 focus:border-blue31 transition duration-150"
                                     placeholder="Tulis balasan Anda di sini...">{{ old('content') }}</textarea>
                             </div>
                             <button type="submit"
-                                class="px-6 py-2 text-white bg-blue31 rounded-lg font-medium transition hover:bg-blue-600 shadow-md">
+                                class="px-6 py-2 text-white bg-blue31 rounded-lg font-medium transition hover:-translate-y-1 hover:scale-105">
                                 Kirim Balasan
                             </button>
                         </form>
@@ -129,7 +128,13 @@
         </div>
     </section>
 
-    @include('includes.components.elearning.course.footer')
+    <footer id="footer" class="w-full flex flex-col items-center justify-center bg-blue31 text-white mt-14">
+        <div class="w-full h-10 bg-blue20 font-light text-xs md:text-sm flex items-center justify-center">
+            <div class="w-3/4 h-full flex items-center justify-center space-x-3 md:space-x-7 lg:space-x-14">
+                <p class="text-center">© 2025 Media Visual Komunikasi Anak for Mikaeducation. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

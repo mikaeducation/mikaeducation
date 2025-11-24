@@ -27,7 +27,7 @@
                         {{-- Back Link --}}
                         <div class="mb-4">
                             <a href="{{ route('forum.show', $module->module_id) }}"
-                                class="text-blue31 hover:text-blue-600 transition duration-150 flex items-center">
+                                class="w-fit flex items-center text-blue31 transition hover:-translate-y-1 hover:scale-105">
                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
@@ -60,7 +60,7 @@
                             <div class="mb-6">
                                 <label for="title" class="block text-gray-700 font-semibold mb-2">Judul Diskusi:</label>
                                 <input type="text" name="title" id="title" value="{{ old('title') }}" required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue31 focus:border-blue31 transition duration-150"
                                     placeholder="Tulis judul yang jelas dan ringkas (min 10 karakter)">
                             </div>
 
@@ -68,13 +68,13 @@
                             <div class="mb-6">
                                 <label for="content" class="block text-gray-700 font-semibold mb-2">Isi Diskusi:</label>
                                 <textarea name="content" id="content" rows="10" required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue31 focus:border-blue31 transition duration-150"
                                     placeholder="Jelaskan topik diskusi Anda secara detail (min 20 karakter)">{{ old('content') }}</textarea>
                             </div>
 
                             {{-- Submit Button --}}
                             <button type="submit"
-                                class="px-6 py-3 text-white bg-blue31 rounded-lg font-bold transition hover:bg-blue-600 shadow-md">
+                                class="px-6 py-3 text-white bg-blue31 rounded-lg font-bold transition hover:-translate-y-1 hover:scale-105">
                                 Buat Diskusi
                             </button>
                         </form>
@@ -87,7 +87,13 @@
         </div>
     </section>
 
-    @include('includes.components.elearning.course.footer')
+    <footer id="footer" class="w-full flex flex-col items-center justify-center bg-blue31 text-white mt-14">
+        <div class="w-full h-10 bg-blue20 font-light text-xs md:text-sm flex items-center justify-center">
+            <div class="w-3/4 h-full flex items-center justify-center space-x-3 md:space-x-7 lg:space-x-14">
+                <p class="text-center">© 2025 Media Visual Komunikasi Anak for Mikaeducation. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
