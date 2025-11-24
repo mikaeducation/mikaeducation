@@ -92,6 +92,7 @@ async function submitCaseStudy(url, id) {
         const result = await response.json();
         alert(response.message || "Berhasil mengumpulkan Studi Kasus");
 
+        score.classList.remove("hidden");
         score.textContent = "Skor: " + result.score
 
     } catch (error) {
