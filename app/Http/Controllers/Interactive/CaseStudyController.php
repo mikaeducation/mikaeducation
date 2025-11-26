@@ -167,8 +167,6 @@ class CaseStudyController extends Controller
             Log::info('CaseStudyController@store', [
                 'case_study_id' => $case_study_id,
                 'answer' => $answer,
-                'key_answer' => $key_answer,
-                'prompt' => $prompt,
                 'response' => $response,
             ]);
 
