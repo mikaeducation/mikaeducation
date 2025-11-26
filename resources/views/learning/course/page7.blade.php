@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite('public/assets/css/style.css')
+        @vite(['resources/js/app.js'])
         {{-- <script>document.documentElement.classList.add('js')</script> --}}
     </head>
     <body class="font-futura w-full min-h-screen flex flex-col relative">
@@ -69,10 +70,16 @@
 
 {{-- Case Study Javascript --}}
 <script>
-async function submitCaseStudy(url, id) {
+async function submitCaseStudy(url, id, btn) {
     const token = document.querySelector('input[name="_token"]').value;
     const data = document.querySelector("#caseStudy-" + id)
     const score = document.querySelector("#score-" + id)
+    
+    if (typeof Alpine === 'undefined') {
+        console.error("Alpine.js is not loaded.");
+        return;
+    }
+    
     console.log(`case study answer submitted :`, data.value);
 
     try {
@@ -97,6 +104,11 @@ async function submitCaseStudy(url, id) {
 
     } catch (error) {
         alert(error.message || "Terdapat error saat mengumpulkan kuis");
+    } finally {
+        
+        if (typeof Alpine !== 'undefined') {
+            Alpine.$data(btn).loading = false;
+        }
     }
 }
 </script>

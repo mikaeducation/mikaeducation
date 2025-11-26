@@ -125,7 +125,7 @@ class CaseStudyController extends Controller
             ]);
 
             $response = $this->fetchGemini($prompt, $this->model);
-            $score = $response['candidates'][0]['content']['parts'][0]['text'] ?? 0;
+            $score = round($response['candidates'][0]['content']['parts'][0]['text'] ?? 0);
 
             $progress = ProgressTracking::where('user_id', $user->id)->firstOrFail();
             $profile = Profile::where('phone', $user->phone)->firstOrFail();
