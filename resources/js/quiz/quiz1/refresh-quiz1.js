@@ -1,3 +1,5 @@
+// WARN: javascript ini tidak digunakan
+// sebelumnya refresh dapat dilakukan tanpa reload page (stateful) melalui AJAX, sekarang refresh dilakukan dengan cara mereload page secara langsung
 document.addEventListener('DOMContentLoaded', function () {
     const answerCard = document.querySelector('.js-answer-card');
     const answer = document.querySelector('.js-answer');

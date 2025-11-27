@@ -12,9 +12,7 @@
 
     @csrf
     <button id="refreshButton" type="button" onclick="window.location.reload()"
-        @if (!$isFinished) class="w-1/5 p-1.5 text-blue31 flex items-center justify-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105 hidden"
-        @else
-            class="w-1/5 p-1.5 text-blue31 flex items-center justify-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105" @endif>
+        class="w-1/5 p-1.5 text-blue31 flex items-center justify-center border-2 border-blue31 rounded font-medium transition hover:-translate-y-1 hover:scale-105">
         Ulangi Kuis
     </button>
     <button id="submitButton" type="button" onclick="submitQuiz('{{ route('quiz.post', ['module_id' => $moduleId, 'quiz_id' => $quizId]) }}')"
