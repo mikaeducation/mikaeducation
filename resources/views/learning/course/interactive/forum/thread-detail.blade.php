@@ -78,7 +78,7 @@
                             <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
                                 <div class="flex items-center mb-3">
                                     <img class="mr-3 w-8 aspect-square rounded-full font-semibold text-gray-600"
-                                        src="{{ $thread->user?->profile?->profile_image ? asset($thread->user?->profile?->profile_image) : asset('images/profile-sample.jpg') }}"
+                                        src="{{ $post->user?->profile?->profile_image ? asset($post->user?->profile?->profile_image) : asset('images/profile-sample.jpg') }}"
                                         alt="Foto Profil">
                                     <div>
                                         <p class="font-semibold text-md text-gray-800">
