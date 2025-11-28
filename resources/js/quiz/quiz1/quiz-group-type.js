@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         answer.addEventListener('dragend', function () {
-            console.log('Drag Ended');
             this.classList.remove('opacity-50');
         });
     });
@@ -42,31 +41,33 @@ document.addEventListener('DOMContentLoaded', function () {
             const sourceType = e.dataTransfer.getData('source/type');
             const droppedText = e.dataTransfer.getData('text/plain');
 
-            console.log('Dropped Text:', droppedText);
             let text = droppedText.trim();
             text = text.replace(/\s+/g, ' ');
 
+            // check for valid quiz answer
             if (sourceType !== 'js-answer-source') {
-                console.warn('Dropped item is not a valid quiz answer.');
                 return;
             }
+
+            // check if the placeholder is empty
+            if (this.textContent.trim() !== '' && this.textContent.trim() !== '____') {
+                return;
+            }
+
+            this.textContent = droppedText;
 
             if (!answerPlaceholder.includes(text)) {
                 answerPlaceholder.push(text);
             }
             console.log('Current Answers:', answerPlaceholder);
 
-            if (this.textContent.trim() === '' || this.textContent.includes('____')) {
-                this.textContent = droppedText;
-
-                // Remove the dragged element from the list
-                const draggedElements = document.querySelectorAll('.js-answer');
-                draggedElements.forEach((el) => {
-                    if (el.textContent.trim() === droppedText.trim()) {
-                        el.remove();
-                    }
-                });
-            }
+            // Remove the dragged element from the list
+            const draggedElements = document.querySelectorAll('.js-answer');
+            draggedElements.forEach((el) => {
+                if (el.textContent.trim() === droppedText.trim()) {
+                    el.remove();
+                }
+            });
         });
     });
 
