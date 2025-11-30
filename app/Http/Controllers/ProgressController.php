@@ -12,14 +12,66 @@ use Carbon\Carbon;
 class ProgressController extends Controller
 {
     protected $modulePages = [
-        'modul-introduce' => ['/course'],
-        'modul-asessmen1' => ['/page2_0', '/page2_1', '/page2_2'],
-        'submodul1' => ['/page3_0', '/page3_1_0', '/page3_1_1', '/page3_1_2', '/page3_1_3', '/page3_1_4'], // '/page3_2', '/page3_3'
-        'submodul2' => ['/page4_0'], // '/page4_1', '/page4_2', '/page4_3'
-        'submodul3' => ['/page5_0'], //  '/page5_1', '/page5_2', '/page5_3'
-        'submodul4' => ['/page6_0', '/page6_1_0', '/page6_2'], //  '/page6_1_1', '/page6_3'
-        'modul-evaluative' => ['/page7'],
-        'modul-asessmen2' => ['/page8_0', '/page8_1', '/page8_2_0', '/page8_2_1'],
+        // Modul Introduce
+        'modul-introduce' => [
+            '/course',
+            '/module/1/forum',
+        ],
+
+        // Asessmen 1
+        'modul-asessmen1' => [
+            '/page2_0',
+            '/page2_1',
+            '/page2_2',
+        ],
+
+        // Submodul 1 + seluruh quiz
+        'submodul1' => [
+            '/page3_0',
+            '/module/1/quiz/1',
+            '/page3_1_0',
+            '/module/1/quiz/2',
+            '/page3_1_1',
+            '/module/1/quiz/3',
+            '/page3_1_2',
+            '/module/1/quiz/4',
+            '/page3_1_3',
+            '/module/1/quiz/5',
+            '/page3_1_4',
+            '/module/1/quiz/6',
+        ],
+
+        // Submodul 2
+        'submodul2' => [
+            '/page4_0',
+            '/module/1/quiz/7',
+        ],
+
+        // Submodul 3
+        'submodul3' => [
+            '/page5_0',
+            '/module/1/quiz/8',
+        ],
+
+        // Submodul 4
+        'submodul4' => [
+            '/page6_0',
+            '/page6_1_0',
+            '/page6_2',
+        ],
+
+        // Modul Evaluatif
+        'modul-evaluative' => [
+            '/page7',
+        ],
+
+        // Asessmen 2
+        'modul-asessmen2' => [
+            '/page8_0',
+            '/page8_1',
+            '/page8_2_0',
+            '/page8_2_1',
+        ],
     ];
 
     protected $progressWeights = [
