@@ -22,6 +22,8 @@
     </script>
     @endif
 
+    @include('includes.components.main.dialog.admin-choice')
+
     <body class="font-futura h-max w-full relative">
         @include('includes.components.main.header')
 
@@ -32,3 +34,15 @@
         @include('includes.components.main.footer')      
     </body>
 </html>
+
+<script>
+    function showAdminDialog() {
+        document.getElementById("adminChoiceModal").classList.remove("hidden");
+    }
+</script>
+
+@if(session('showAdminDialog'))
+    <script>
+        showAdminDialog();
+    </script>
+@endif

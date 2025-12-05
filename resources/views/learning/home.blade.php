@@ -66,11 +66,11 @@
                                     <div class="modul-item md:w-[330px] w-48 lg:min-h-[450px] md:min-h-[400px] min-h-[300px] pb-2 rounded flex flex-col items-center justify-center gap-2 md:gap-4 shadow-lg overflow-hidden">
                                         <div class="w-full lg:h-60 md:h-52 h-32 flex items-end justify-center relative rounded">
                                             <div id="module_publisher" class="flex items-center justify-start w-11/12 md:h-8 h-7 mb-3 gap-2 absolute z-10 text-white">
-                                                <img id="module-publisher-logo" src="{{ asset($module->module_publisher_logo) }}" alt="" class="h-full w-7 md:w-8 object-cover object-center rounded-full">
+                                                <img id="module-publisher-logo" src="{{ asset('storage/' . $module->module_publisher_logo) }}" alt="" class="h-full w-7 md:w-8 object-cover object-center rounded-full">
                                                 <p id="module-publisher-name" class="font-medium md:text-base text-xs line-clamp-1">{{ $module->module_publisher_name }}</p>
                                             </div>
                                             <div class="w-full h-1/2 absolute z-0 bottom-0 bg-gradient-to-t from-blue31 via-blue31/80 to-transparent"></div>
-                                            <img id="module-publisher-banner" src="{{ asset( $module->module_publisher_banner) }}" alt="" class="w-full h-full object-cover rounded max-h-full max-w-full">
+                                            <img id="module-publisher-banner" src="{{ asset('storage/' . $module->module_publisher_banner) }}" alt="" class="w-full h-full object-cover rounded max-h-full max-w-full">
                                         </div>
                                         <div class="w-11/12 flex flex-col flex-grow items-start justify-between">
                                             <div class="h-full flex flex-col flex-grow items-start justify-between pb-5 gap-2 md:gap-4">
@@ -119,11 +119,11 @@
                                     <div class="modul-item md:w-[330px] w-48 lg:min-h-[450px] md:min-h-[400px] min-h-[300px] pb-2 rounded flex flex-col items-center justify-center gap-2 md:gap-4 shadow-lg overflow-hidden">
                                         <div class="w-full lg:h-60 md:h-52 h-32 flex items-end justify-center relative rounded">
                                             <div id="module_publisher" class="flex items-center justify-start w-11/12 md:h-8 h-7 mb-3 gap-2 absolute z-10 text-white">
-                                                <img id="module-publisher-logo" src="{{ asset($module->module_publisher_logo) }}" alt="" class="h-full w-7 md:w-8 object-cover object-center rounded-full">
+                                                <img id="module-publisher-logo" src="{{ asset('storage/' . $module->module_publisher_logo) }}" alt="" class="h-full w-7 md:w-8 object-cover object-center rounded-full">
                                                 <p id="module-publisher-name" class="font-medium md:text-base text-xs line-clamp-1">{{ $module->module_publisher_name }}</p>
                                             </div>
                                             <div class="w-full h-1/2 absolute z-0 bottom-0 bg-gradient-to-t from-blue31 via-blue31/80 to-transparent"></div>
-                                            <img id="module-publisher-banner" src="{{ asset( $module->module_publisher_banner) }}" alt="" class="w-full h-full object-cover rounded max-h-full max-w-full">
+                                            <img id="module-publisher-banner" src="{{ asset('storage/' . $module->module_publisher_banner) }}"   alt="" class="w-full h-full object-cover rounded max-h-full max-w-full">
                                         </div>
                                         <div class="w-11/12 flex flex-col flex-grow items-start justify-between">
                                             <div class="h-full flex flex-col flex-grow items-start justify-between pb-5 gap-2 md:gap-4">

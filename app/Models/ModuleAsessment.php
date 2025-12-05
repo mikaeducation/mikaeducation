@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ModuleAsessment extends Model
 {
     protected $table = 'module_asessment';
-
+    protected $primaryKey = 'asessment_id';
+    protected $guarded = [];
     public $incrementing = false;
 
     protected $keyType = 'int';

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class SubmoduleQuizzes extends Model
 {
     protected $table = 'submodule_quizzes';
+    protected $primaryKey = 'quiz_id';
+    protected $guarded = [];
 
     public $incrementing = false;
 

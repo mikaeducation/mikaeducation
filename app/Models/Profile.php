@@ -27,7 +27,8 @@ class Profile extends Model
         'profile_image',  
         'description',  
     ];  
-    
+
+    protected $guarded = ['id'];
 
     /**
      * Relasi ke model User berdasarkan kolom 'phone'.
@@ -35,5 +36,10 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class, 'phone', 'phone'); //dibuat seperti ini agar nama class Profile tidak bentrok dengan namespace Symfony
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

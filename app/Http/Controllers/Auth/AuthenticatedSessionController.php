@@ -56,6 +56,10 @@ class AuthenticatedSessionController extends Controller
             return redirect('/registerprofile');
         }
 
+        if ($user->is_admin) {
+            return redirect('/')->with('showAdminDialog', true);
+        }
+
         return redirect()->intended('/');
     }
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+    
     // Memastikan semua method dapat berfungsi dan berjalan ketika pengguna yang sudah login
     public function __construct()
     {
@@ -90,7 +91,8 @@ class CourseController extends Controller
 
     public function startCourse(Request $request)
     {
-        $user = auth()->user();
+        /** @var \App\Models\User $user */
+        $user = $request->user();
         $moduleId = $request->input('module_id', 1);
 
         $module = DB::table('modules')->where('module_id', $moduleId)->first();

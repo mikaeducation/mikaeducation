@@ -9,6 +9,8 @@
         @vite('public/assets/css/style.css')
     </head>
     
+    @include('includes.components.main.dialog.admin-choice')
+
     <body>
         <section class="flex flex-col md:flex-row w-full h-screen font-futura text-blue31">
             <div class="w-full md:w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center pl-0 lg:pl-20">
@@ -99,6 +101,10 @@
 </html>
 
 <script>
+    function showAdminDialog() {
+        document.getElementById("adminChoiceModal").classList.remove("hidden");
+    }
+    
     function togglePasswordVisibility() {
         const input = document.getElementById("password");
         const icon = document.getElementById("togglePassword");
@@ -115,3 +121,9 @@
         }
     }
 </script>
+
+@if(session('showAdminDialog'))
+    <script>
+        showAdminDialog();
+    </script>
+@endif

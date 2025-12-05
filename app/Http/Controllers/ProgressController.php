@@ -87,7 +87,10 @@ class ProgressController extends Controller
 
     public function trackProgress(Request $request)
     {
-        $userId = auth()->id();
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+        $userId = $user->id;
+
         $moduleId = $request->input('module_id');
         $currentPart = $request->input('current_part');
         $pagePath = $request->input('page_path');
@@ -152,7 +155,10 @@ class ProgressController extends Controller
 
     public function updateProgress(Request $request)
     {
-        $userId = auth()->id();
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+        $userId = $user->id;
+
         $moduleId = $request->module_id;
         $pagePath = $request->page_path;
         $modulePart = $request->module_part;

@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @vite('public/assets/css/style.css')
     </head>
+
     <body class="font-futura h-max w-full relative">
 
     @include('includes.components.elearning.header')
@@ -32,7 +33,7 @@
                         </div>
                     </div>
                     <div class="w-full h-full absolute z-0 bg-blue31 bg-opacity-70 rounded"></div>
-                    <img id="module_publisher_banner" src="{{ asset($module->module_publisher_banner) }}" alt="" class="w-full h-full object-cover rounded">
+                    <img id="module_publisher_banner" src="{{ asset('storage/' . $module->module_publisher_banner) }}" alt="" class="w-full h-full object-cover rounded">
                 </div>
             </div>
         </section>
@@ -46,8 +47,28 @@
                     <div id="modul-learning-points" class="flex flex-col items-start justify-start gap-2">
                         <h2 class="font-medium text-lg md:text-xl lg:text-2xl">Apa saja yang akan Dipelajari</h2>
                         <div id="learning-points" class="w-full h-fit">
-                            @if (!empty($module->module_point))
-                                @foreach ($module->module_point as $index => $point)
+                        @php
+                            $pointsRaw = $module->module_point;
+                            $points = [];
+                            if (is_array($pointsRaw)) {
+                                $points = $pointsRaw;
+                            } 
+                            elseif (is_string($pointsRaw)) {
+                                $decoded = json_decode($pointsRaw, true);
+                                if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                                    $points = $decoded;
+                                } elseif (str_contains($pointsRaw, ',')) {
+                                    $points = explode(',', $pointsRaw);
+                                    $points = array_map('trim', $points);
+                                } else {
+                                    if (!empty($pointsRaw)) {
+                                        $points = [$pointsRaw];
+                                    }
+                                }
+                            }
+                        @endphp
+                        @if (count($points) > 0)
+                            @foreach ($points as $index => $point)
                                 <div id="point{{ $index + 1 }}" class="w-full flex items-start h-fit gap-2">
                                     <div class="w-7 h-7">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
@@ -57,16 +78,25 @@
                                     </div>
                                     <p id="module-point" class="w-full">{{ $point }}</p>
                                 </div>
-                                @endforeach
-                            @else
-                                <p class="text-gray-500 italic">Belum ada poin pembelajaran.</p>
-                            @endif
-                        </div>
+                            @endforeach
+                        @else
+                            <p class="text-gray-500 italic">Belum ada poin pembelajaran.</p>
+                        @endif
+                    </div>
                     </div>
                     <div id="modul-curriculum" class="w-full flex flex-col items-start justify-start gap-2">
                         <div class="w-full flex items-center justify-between font-medium text-lg md:text-xl lg:text-2xl">
                             <h2>Kurikulum Pembelajaran</h2>
-                            <h4 id="submodul-num" class="text-base md:text-lg lg:text-xl">{{ $module->mainSubject_num }} Materi Utama<span class=" opacity-50">/Sub-Modul</span> </h4>
+                            @php
+                                $totalTema = $module->subjects->count();
+                                $totalMateri = $module->subjects->sum(function($subject) {
+                                    return $subject->submodules->count();
+                                });
+                            @endphp
+                            <h4 id="submodul-num" class="text-base md:text-lg lg:text-xl">
+                                {{ $totalTema }} Tema
+                                <span class="opacity-50">/ {{ $totalMateri }} Materi Belajar</span>
+                            </h4>
                         </div>
                         <div id="submodul-list" class="w-full h-fit space-y-4">
                             @foreach ($module->subjects as $index => $subject)
@@ -78,7 +108,7 @@
                         
                                 <div id="{{ $submodulId }}" class="w-full h-fit mt-2 p-6 gap-4 flex flex-col items-center justify-start content-shadows rounded">
                                     <button onclick="toggleSubmodul('{{ $pointsId }}', this)" class="w-full flex items-center justify-between font-medium text-lg text-left">
-                                        <h3 id="{{ $titleId }}">Materi {{ $index + 1 }}: {{ $subject->submodule_title }}</h3>
+                                        <h3 id="{{ $titleId }}">Tema {{ $index + 1 }}: {{ $subject->submodule_title }}</h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" fill="#31587C" viewBox="0 0 24 24"
                                             class="transition-transform duration-300 ease-in-out rotate-0">
                                             <path d="M4.707 8.293a1 1 0 0 1 1.414 0L12 14.586l5.879-6.293a1 1 0 1 1 1.414 1.414L12 17l-7.293-7.293a1 1 0 0 1 0-1.414z" />
@@ -109,7 +139,22 @@
                     <div class="flex flex-col items-center justify-center w-full h-fit space-y-3 xl:space-y-5 rounded content-shadows pb-10">
                         <div class="w-full h-fit lg:h-[150px] xl:h-[200px] flex items-end justify-center rounded-t relative cursor-pointer">
                             <video id="modul-teaser" class="w-full h-full object-cover rounded-t" autoplay playsinline>
-                                <source src="{{ asset('videos/MIKA-tesear.mp4') }}" type="video/mp4">
+                                @if($module->module_teaser)
+                                    @php
+                                        if (Illuminate\Support\Str::startsWith($module->module_teaser, 'http')) {
+                                            $videoUrl = $module->module_teaser;
+                                        } 
+                                        else {
+                                            $bucketUrl = 'https://s3-id-jkt-1.kilatstorage.id/general-assets';
+                                            $videoUrl = $bucketUrl . '/' . $module->module_teaser;
+                                        }
+                                    @endphp
+                                    <source src="{{ $videoUrl }}" type="video/mp4">
+                                @else
+                                    <div class="flex items-center justify-center h-full bg-gray-200 text-red-600">
+                                        Video tidak tersedia
+                                    </div>
+                                @endif                            
                             </video>
                             <div class="absolute bottom-1 right-8">
                                 <button id="playBtn" class="opacity-80">
@@ -176,7 +221,19 @@
                                         <path d="M20.1642 8.58579L19.4571 9.29289L19.4571 9.29289L20.1642 8.58579ZM20.1642 11.4142L19.4571 10.7071V10.7071L20.1642 11.4142ZM17.3358 8.58579L16.6287 7.87868L17.3358 8.58579ZM13.75 12.1716L13.0429 12.8787L13.75 13.5858L14.4571 12.8787L13.75 12.1716ZM12.6642 11.0858L11.9571 11.7929L12.6642 11.0858ZM9.83579 13.9142L10.5429 13.2071H10.5429L9.83579 13.9142ZM11.6287 15.7071L12.3358 15L11.6287 15.7071ZM15.8713 15.7071L16.5784 16.4142V16.4142L15.8713 15.7071ZM20 19H8.125V21H20V19ZM23.5607 18.5607C23.4113 18.71 23.1798 18.8408 22.6099 18.9174C22.0113 18.9979 21.2068 19 20 19V21C21.1502 21 22.1135 21.0021 22.8764 20.8996C23.6681 20.7931 24.392 20.5578 24.9749 19.9749L23.5607 18.5607ZM24 15C24 16.2068 23.9979 17.0113 23.9174 17.6099C23.8408 18.1798 23.71 18.4113 23.5607 18.5607L24.9749 19.9749C25.5578 19.392 25.7931 18.6681 25.8996 17.8764C26.0021 17.1135 26 16.1502 26 15H24ZM24 8.75V15H26V8.75H24ZM23.5607 5.18934C23.71 5.33869 23.8408 5.57017 23.9174 6.14007C23.9979 6.73873 24 7.54322 24 8.75H26C26 7.59976 26.0021 6.63648 25.8996 5.87357C25.7931 5.0819 25.5578 4.35801 24.9749 3.77513L23.5607 5.18934ZM20 4.75C21.2068 4.75 22.0113 4.75212 22.6099 4.83261C23.1798 4.90923 23.4113 5.03999 23.5607 5.18934L24.9749 3.77513C24.392 3.19224 23.6681 2.95688 22.8764 2.85045C22.1135 2.74788 21.1502 2.75 20 2.75V4.75ZM10 4.75H20V2.75H10V4.75ZM6.43934 5.18934C6.58869 5.03999 6.82017 4.90923 7.39007 4.83261C7.98873 4.75212 8.79322 4.75 10 4.75V2.75C8.84976 2.75 7.88648 2.74788 7.12357 2.85045C6.3319 2.95688 5.60801 3.19224 5.02513 3.77513L6.43934 5.18934ZM6 8.75C6 7.54322 6.00212 6.73873 6.08261 6.14007C6.15923 5.57017 6.28999 5.33869 6.43934 5.18934L5.02513 3.77513C4.44224 4.35801 4.20688 5.0819 4.10045 5.87357C3.99788 6.63648 4 7.59976 4 8.75H6ZM6 23.125V8.75H4V23.125H6ZM8.125 19C5.84683 19 4 20.8468 4 23.125H6C6 21.9514 6.9514 21 8.125 21V19ZM19.4571 9.29289C19.8476 9.68342 19.8476 10.3166 19.4571 10.7071L20.8713 12.1213C22.0429 10.9497 22.0429 9.05025 20.8713 7.87868L19.4571 9.29289ZM18.0429 9.29289C18.4334 8.90237 19.0666 8.90237 19.4571 9.29289L20.8713 7.87868C19.6997 6.70711 17.8003 6.70711 16.6287 7.87868L18.0429 9.29289ZM14.4571 12.8787L18.0429 9.29289L16.6287 7.87868L13.0429 11.4645L14.4571 12.8787ZM11.9571 11.7929L13.0429 12.8787L14.4571 11.4645L13.3713 10.3787L11.9571 11.7929ZM10.5429 11.7929C10.9334 11.4024 11.5666 11.4024 11.9571 11.7929L13.3713 10.3787C12.1997 9.20711 10.3003 9.20711 9.12868 10.3787L10.5429 11.7929ZM10.5429 13.2071C10.1524 12.8166 10.1524 12.1834 10.5429 11.7929L9.12868 10.3787C7.95711 11.5503 7.95711 13.4497 9.12868 14.6213L10.5429 13.2071ZM12.3358 15L10.5429 13.2071L9.12868 14.6213L10.9216 16.4142L12.3358 15ZM15.1642 15C14.3832 15.781 13.1168 15.781 12.3358 15L10.9216 16.4142C12.4837 17.9763 15.0163 17.9763 16.5784 16.4142L15.1642 15ZM19.4571 10.7071L15.1642 15L16.5784 16.4142L20.8713 12.1213L19.4571 10.7071ZM13.75 25.25H8.125V27.25H13.75V25.25ZM4 23.125C4 25.4032 5.84683 27.25 8.125 27.25V25.25C6.95139 25.25 6 24.2986 6 23.125H4Z" fill="#31587C"/>
                                         <path d="M25 26.25H12.5" stroke="#31587C" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
-                                    <p>{{ $module->mainSubject_num }} Materi Utama/Sub-Modul</p>                          
+                                    @php
+                                        $totalTema = $module->subjects->count();
+                                        $totalMateri = $module->subjects->sum(function($subject) {
+                                            return $subject->submodules->count();
+                                        });
+                                    @endphp
+                                    <p>
+                                        @if ($totalTema > 0 || $totalMateri > 0)
+                                            {{ $totalTema }} Tema / {{ $totalMateri }} Materi Belajar
+                                        @else
+                                            Tidak Ada Materi Belajar
+                                        @endif
+                                    </p>                          
                                 </div>
                                 <div id="scoope2" class="flex gap-2">
                                     <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +247,24 @@
                                         <path d="M17.5 7.5L19 6" stroke="#31587C" stroke-width="2" stroke-linecap="round"/>
                                         <path d="M10.0681 2.37059C10.1821 2.26427 10.4332 2.17033 10.7825 2.10332C11.1318 2.03632 11.5597 2 12 2C12.4403 2 12.8682 2.03632 13.2175 2.10332C13.5668 2.17033 13.8179 2.26427 13.9319 2.37059" stroke="#31587C" stroke-width="2" stroke-linecap="round"/>
                                     </svg>                                       
-                                    <p>Durasi 150 Menit/2.5 jam</p>                          
+                                    @php
+                                        $inputDurasi = $module->module_duration; 
+                                        $teksDurasi = '-';
+                                        if ($inputDurasi) {
+                                            if (is_numeric($inputDurasi)) {
+                                                $menit = $inputDurasi;
+                                                $jam = round($inputDurasi / 60, 1); // Konversi ke jam, 1 desimal
+                                                if ($jam == intval($jam)) { 
+                                                    $jam = intval($jam); 
+                                                }
+                                                $teksDurasi = "Durasi {$menit} Menit / {$jam} Jam";
+                                            } 
+                                            else {
+                                                $teksDurasi = "Estimasi " . $inputDurasi;
+                                            }
+                                        }
+                                    @endphp
+                                    <p>{{ $teksDurasi }}</p>                         
                                 </div>
                                 <div id="scoope3" class="flex gap-2">
                                     <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -199,13 +273,13 @@
                                         <path d="M8.33341 8L11.6667 4.66667L8.33341 1.33333" stroke="#31587C" stroke-width="2"/>
                                         <path d="M4.94827 13.4166C4.43628 12.5298 4.16675 11.5239 4.16675 10.4999C4.16675 9.47595 4.43628 8.47003 4.94827 7.58325C5.46025 6.69647 6.19664 5.96009 7.08341 5.4481C7.97019 4.93612 8.97612 4.66659 10.0001 4.66659" stroke="#31587C" stroke-width="2" stroke-linecap="round"/>
                                     </svg>                                        
-                                    <p>Akses {{ $module->type_text }}</p>                          
+                                    <p>Akses Pengerjaan {{ $module->type_text }}</p>                          
                                 </div>
                                 <div id="scoope4" class="flex gap-2">
                                     <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.25 2.5V9.25L15.25 9.30441V9.30442V9.30443V9.30444C15.2499 9.7285 15.2498 10.1406 15.2955 10.4805C15.347 10.8637 15.4726 11.301 15.8358 11.6642C16.199 12.0274 16.6363 12.153 17.0195 12.2045C17.3594 12.2502 17.7715 12.2501 18.1956 12.25H18.1956H18.1956H18.1956L18.25 12.25H25V20C25 23.5355 25 25.3033 23.9017 26.4017C22.8033 27.5 21.0355 27.5 17.5 27.5H12.5C8.96447 27.5 7.1967 27.5 6.09835 26.4017C5 25.3033 5 23.5355 5 20V10C5 6.46447 5 4.6967 6.09835 3.59835C7.1967 2.5 8.96447 2.5 12.5 2.5H15.25ZM17.25 2.50167V9.25C17.25 9.74967 17.2521 10.0238 17.2777 10.214L17.2787 10.2213L17.286 10.2223C17.4762 10.2479 17.7503 10.25 18.25 10.25H24.9983C24.9919 9.59064 24.9608 9.1935 24.8097 8.82883C24.6194 8.3694 24.2581 8.00811 23.5355 7.28555L23.5355 7.28554L20.2145 3.96447C19.4919 3.24189 19.1306 2.8806 18.6712 2.6903C18.3065 2.53925 17.9094 2.50809 17.25 2.50167ZM10.25 16.25C10.25 15.6977 10.6977 15.25 11.25 15.25L18.75 15.25C19.3023 15.25 19.75 15.6977 19.75 16.25C19.75 16.8023 19.3023 17.25 18.75 17.25L11.25 17.25C10.6977 17.25 10.25 16.8023 10.25 16.25ZM11.25 20.25C10.6977 20.25 10.25 20.6977 10.25 21.25C10.25 21.8023 10.6977 22.25 11.25 22.25H16.25C16.8023 22.25 17.25 21.8023 17.25 21.25C17.25 20.6977 16.8023 20.25 16.25 20.25H11.25Z" fill="#31587C"/>
                                     </svg>                                        
-                                    <p>{{ $module->certificate_text }}</p>                          
+                                    <p>Tersedia {{ $module->certificate_text }}</p>                          
                                 </div>
                             </div>
                         </div>
@@ -214,10 +288,10 @@
                         <h3 class="w-11/12 lg:w-4/5 font-medium text-lg pb-4">Dikembangkan Oleh</h3>
                         <div class="h-fit w-11/12 lg:w-4/5 flex justify-start items-start flex-col gap-4">
                             <div class="flex items-center justify-start gap-4">
-                                <img id="publisher-logo" src="{{ asset('images/logo-1.png') }}" alt="Logo" class="h-10 w-10">
+                                <img id="module-publisher-logo" src="{{ asset('storage/' . $module->module_publisher_logo) }}" alt="Logo" class="h-10 w-10">
                                 <div class="font-medium">
-                                    <h3 id="publisher-name" class="text-lg lg:text-base">{{ $module->module_publisher_name }}</h3>
-                                    <h5 id="published-date" class="text-base lg:text-sm opacity-50">{{ $module->module_publish_date_formatted }}</h5>
+                                    <h3 id="module_publisher-name" class="text-lg lg:text-base">{{ $module->module_publisher_name }}</h3>
+                                    <h5 id="module-publish-date" class="text-base lg:text-sm opacity-50">{{ $module->module_publish_date_formatted }}</h5>
                                 </div>
                             </div>
                             <div class="flex items-center justify-start gap-4">

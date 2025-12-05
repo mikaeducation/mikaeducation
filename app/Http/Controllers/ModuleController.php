@@ -57,7 +57,7 @@ class ModuleController extends Controller
             default => 'Tidak Diketahui',
         };
 
-        $module->type_text = $module->module_type ? 'Berulang/Tanpa Batas' : 'Tidak Berulang';
+        $module->type_text = $module->module_type ? 'Berulang/' : 'Tidak Berulang';
         $module->status_text = $module->module_status ? 'Tersedia' : 'Tidak Tersedia';
         $module->certificate_text = $module->module_certificate ? 'Sertifikat Kelulusan' : 'Tidak ada Sertifikat';
         $module->module_publish_date_formatted = Carbon::parse($module->module_publish_date)->translatedFormat('d F Y');
