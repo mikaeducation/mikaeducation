@@ -135,7 +135,7 @@
 
 {{-- Render Komponen Popup --}}
 @foreach ($popups as $popup)
-    <x-elearning.course.interactive.popup-question id="{{ $popup }}" userId="{{ Auth::id() }}" moduleId=1 />
+    <x-elearning.course.interactive.popup-question.popup-question id="{{ $popup }}" userId="{{ Auth::id() }}" moduleId=1 />
 @endforeach
 
 {{-- Render Button Reset Popup --}}
