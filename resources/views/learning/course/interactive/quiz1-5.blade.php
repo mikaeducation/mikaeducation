@@ -67,6 +67,8 @@
                         'Kesulitan mengekspresikan perasaan dan suit memahami isyarat sosial',
                         'Sulit kontak mata, fokus mudah teralihkan',
                         'Tidak menyadari ruang personal space orang lain',
+                        'Sulit mempertahankan kontak mata',
+                        'Kesulitan meniru atau belajar dari orang lain.',
                     ];
                 @endphp
                 <x-elearning.course.interactive.quiz.answer-box :answers=$answers>
@@ -74,14 +76,14 @@
             </div>
 
             {{-- Button --}}
-            <x-elearning.course.interactive.quiz.button 
-                :module-id="$module_id" 
+            <x-elearning.course.interactive.quiz.button
+                :module-id="$module_id"
                 :quiz-id="$quiz_id"
                 :high-score-history="$high_score_history"
                 :is-finished="$is_finished"
                 :quiz-result="$quiz_result"
                 :show-latest-score="$show_latest_score"
-            > 
+            >
             </x-elearning.course.interactive.quiz.button>
 
         </x-elearning.course.interactive.quiz.quiz>
