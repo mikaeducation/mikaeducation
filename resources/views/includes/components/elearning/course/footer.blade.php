@@ -590,8 +590,8 @@
             // --- Page8_2_0 : Form Evaluasi pasca penilaian II (after_asessment_id 2), bagian 1
             if (page === "/page8_2_0") {
                 const nextBtn = document.getElementById('next-btn');
-                const nextBtn2 = document.getElementById('next-btn-2');
                 const prevBtn = document.getElementById('prev-btn');
+                const formEval = document.getElementById('formEval8_2_0');
 
                 const isFormValidEval = () => {
                     const radios = document.querySelectorAll("input[type='radio']");
@@ -600,25 +600,17 @@
                     return names.every(name => document.querySelector(`input[name="${name}"]:checked`));
                 };
 
-                const handleNextClick = (e) => {
-                    e.preventDefault();
-                    const radios = document.querySelectorAll(".eval-radio");
-                    radios.forEach(radio => {
-                        if (radio.checked) {
-                            sessionStorage.setItem(radio.name, radio.value);
+                // Validasi dan submit form
+                formEval?.addEventListener('submit', (e) => {
+                        if (!isFormValidEval()) {
+                            e.preventDefault();
+                            alert("Ada pertanyaan yang belum terjawab, silahkan periksa kembali jawaban Anda.");
                         }
                     });
 
-                    if (!isFormValidEval()) {
-                        alert("Ada pertanyaan yang belum terjawab, silahkan periksa kembali jawaban Anda untuk dapat melanjutkan.");
-                        return;
-                    }
-
-                    window.location.href = '/page8_2_1';
-                };
-
-                nextBtn?.addEventListener("click", handleNextClick);
-                nextBtn2?.addEventListener("click", handleNextClick);
+                nextBtn?.addEventListener("click", () => {
+                        formEval?.requestSubmit();
+                    });
 
                 prevBtn?.addEventListener("click", (e) => {
                     e.preventDefault();
@@ -629,41 +621,10 @@
 
             // --- Page8_2_1 : Form Evaluasi pasca penilaian II (after_asessment_id 2), bagian 2 (submitted)
             if (page === "/page8_2_1") {
-                window.addEventListener("DOMContentLoaded", () => {
-                    for (let i = 21; i <= 45; i++) {
-                        const name = `question_${i}`;
-                        const saved = sessionStorage.getItem(name);
-                        if (saved) {
-                            const radio = document.querySelector(`input[name='${name}'][value='${saved}']`);
-                            if (radio) radio.checked = true;
-                        }
-                    }
-                });
-
-                const appendHiddenInputs = () => {
-                    const form = document.getElementById(formMap[page]);
-                    if (!form) return;
-
-                    // Loop untuk seluruh question_21 hingga question_45
-                    for (let i = 21; i <= 45; i++) {
-                        const key = `question_${i}`;
-                        const value = sessionStorage.getItem(key);
-                        // Jika belum ada di form sebagai input hidden, tambahkan
-                        if (value !== null && !form.querySelector(`input[name="${key}"]`)) {
-                            let input = document.createElement("input");
-                            input.type = "hidden";
-                            input.name = key;
-                            input.value = value;
-                            form.appendChild(input);
-                        }
-                    }
-                };
-
                 btnTriggerSubmit?.addEventListener("click", handleSubmitEval);
                 nextBtn?.addEventListener("click", handleSubmitEval);
 
                 confirmSubmitEval?.addEventListener("click", () => {
-                    appendHiddenInputs();
                     modalSubmitEval?.classList.add("hidden");
 
                     sessionStorage.setItem("fromEvaluation", "true");

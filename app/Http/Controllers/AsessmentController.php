@@ -420,5 +420,17 @@ class AsessmentController extends Controller
             'evaluationCompleted' => $evaluationCompleted,
         ]);
     }
-
+    
+    public function savePage1(Request $request)
+    {
+        $answers = $request->only(array_map(
+            fn($i) => "question_$i", range(21, 30)
+        ));
+    
+        // Merge with existing session answers if any
+        $existing = session('user_answers', []);
+        session(['user_answers' => array_merge($existing, $answers)]);
+    
+        return redirect('/page8_2_1');
+    }
 }

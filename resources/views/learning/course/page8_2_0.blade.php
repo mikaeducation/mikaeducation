@@ -28,41 +28,45 @@
                                     <br>Intruksi: <span class="font-medium"> Dari skala 1-5, sejauh mana kalimat-kalimat di bawah ini sesuai menggambarkan keyakinan Anda menggunakan MIKA 1.0 untuk mendampingi anak autistik belajar komunikasi? </span>
                                 </p>
                             </div>
-                            <div class="w-full space-y-4 sm:pl-2 pb-2 ">
-                                <div class="w-full text-blue31">
-                                    <div class="space-y-4 sm:pr-4 text-justify">
-                                        @foreach($questions as $index => $question)
-                                            @if($question->question_id >= 21 && $question->question_id <= 30)
-                                                <div>
-                                                    <div class="mb-2 flex gap-2">
-                                                        <p class="asessmen1-num font-medium">{{ $index + 1 }}.</p>
-                                                        <p class="asessmen1-quest">{{ $question->question_text }}</p>
-                                                    </div>
-                                                    @foreach([1 => 'answerA', 2 => 'answerB', 3 => 'answerC', 4 => 'answerD', 5 => 'answerE'] as $score => $opt)
-                                                    <div class="flex items-start justify-start space-x-3 mb-1">
-                                                            <input 
-                                                                type="radio" 
-                                                                name="question_{{ $question->question_id }}" 
-                                                                id="q{{ $question->question_id }}_{{ $opt }}" 
-                                                                value="{{ $score }}" 
-                                                                class="mt-2 ml-6 eval-radio">
-                                                            <label for="q{{ $question->question_id }}_{{ $opt }}" class="block cursor-pointer">
-                                                                {{ $question->$opt }}
-                                                            </label>
+                            <form id="formEval8_2_0" action="/page8_2_0" method="post">
+                                @csrf
+                                <div class="w-full space-y-4 sm:pl-2 pb-2 ">
+                                    <div class="w-full text-blue31">
+                                        <div class="space-y-4 sm:pr-4 text-justify">
+                                            @foreach($questions as $index => $question)
+                                                @if($question->question_id >= 21 && $question->question_id <= 30)
+                                                    <div>
+                                                        <div class="mb-2 flex gap-2">
+                                                            <p class="asessmen1-num font-medium">{{ $index + 1 }}.</p>
+                                                            <p class="asessmen1-quest">{{ $question->question_text }}</p>
                                                         </div>
-                                                    @endforeach
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        <div class="w-full pt-4 pb-2 px-4 flex justify-end items-center">
-                                            <button id="next-btn-2" class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 rounded font-medium text-white bg-blue31">
-                                                Lanjutkan
-                                            </button>
+                                                        @foreach([1 => 'answerA', 2 => 'answerB', 3 => 'answerC', 4 => 'answerD', 5 => 'answerE'] as $score => $opt)
+                                                            <div class="flex items-start justify-start space-x-3 mb-1">
+                                                                <input
+                                                                    type="radio"
+                                                                    name="question_{{ $question->question_id }}"
+                                                                    id="q{{ $question->question_id }}_{{ $opt }}"
+                                                                    value="{{ $score }}"
+                                                                    class="mt-2 ml-6 eval-radio"
+                                                                >
+                                                                <label for="q{{ $question->question_id }}_{{ $opt }}" class="block cursor-pointer">
+                                                                    {{ $question->$opt }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                            <div class="w-full pt-4 pb-2 px-4 flex justify-end items-center">
+                                                <button type="submit" id="next-btn-2" class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 rounded font-medium text-white bg-blue31">
+                                                    Lanjutkan
+                                                </button>
+                                            </div>
+                                            @include('includes.components.elearning.course.dialog.modal-asessment')
                                         </div>
-                                        @include('includes.components.elearning.course.dialog.modal-asessment')
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

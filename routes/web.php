@@ -181,6 +181,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/page2_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page2_0');
     Route::get('/page8_0', [AsessmentController::class, 'asessmentHistoryUser'])->name('asessment.page8_0');
+    Route::post('/page8_2_0', [AsessmentController::class, 'savePage1']);
 
     Route::get('/{page}', [CourseController::class, 'showCoursePage'])->where('page', '.*');
 
